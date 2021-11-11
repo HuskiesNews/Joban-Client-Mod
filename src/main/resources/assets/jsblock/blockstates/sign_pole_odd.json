@@ -1,0 +1,8 @@
+{
+  "variants": {
+    "facing=north": { "model": "jsblock:block/sign_pole_odd" },
+    "facing=east": { "model": "jsblock:block/sign_pole_odd", "y": 90 },
+    "facing=west": { "model": "jsblock:block/sign_pole_odd", "y": 270 },
+    "facing=south": { "model": "jsblock:block/sign_pole_odd", "y": 180 }
+  }
+}
