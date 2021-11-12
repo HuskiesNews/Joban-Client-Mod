@@ -1,8 +1,8 @@
 {
   "variants": {
-    "facing=north": { "model": "jsblock:block/sign_pole" },
-    "facing=east": { "model": "jsblock:block/sign_pole", "y": 90 },
-    "facing=west": { "model": "jsblock:block/sign_pole", "y": 270 },
-    "facing=south": { "model": "jsblock:block/sign_pole", "y": 180 }
+    "facing=north": { "model": "jsblock:block/sign_pole_even" },
+    "facing=east": { "model": "jsblock:block/sign_pole_even", "y": 90 },
+    "facing=west": { "model": "jsblock:block/sign_pole_even", "y": 270 },
+    "facing=south": { "model": "jsblock:block/sign_pole_even", "y": 180 }
   }
 }
