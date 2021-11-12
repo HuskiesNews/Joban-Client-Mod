@@ -18,7 +18,7 @@ public class SignalLightBlue extends mtr.block.BlockSignalLightBase {
     public static class TileEntitySignalLightBlue extends BlockEntity {
 
         public TileEntitySignalLightBlue() {
-            super(Blocks.SIGNAL_LIGHT_BLUE_ENTITY_1);
+            super(Blocks.SIGNAL_LIGHT_BLUE_ENTITY);
         }
     }
 }

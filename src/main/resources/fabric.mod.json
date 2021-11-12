@@ -19,10 +19,10 @@
   "environment": "*",
   "entrypoints": {
     "main": [
-      "com.lx.jsblock.Initialize"
+      "com.lx.jsblock.Joestu"
     ],
     "client": [
-      "com.lx.jsblock.InitializeClient"
+      "com.lx.jsblock.JoestuClient"
     ]
   },
   "mixins": [

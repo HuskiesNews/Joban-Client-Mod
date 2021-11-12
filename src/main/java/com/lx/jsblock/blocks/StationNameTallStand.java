@@ -1,17 +1,11 @@
 package com.lx.jsblock.blocks;
 
 import com.lx.jsblock.Blocks;
-import com.lx.jsblock.Initialize;
-import mtr.block.BlockStationNameBase;
-import mtr.block.BlockStationNameTallWall;
 import mtr.block.IBlock;
-import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
-import net.minecraft.block.HorizontalFacingBlock;
 import net.minecraft.block.ShapeContext;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.item.ItemPlacementContext;
-import net.minecraft.state.StateManager;
 import net.minecraft.util.Pair;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
