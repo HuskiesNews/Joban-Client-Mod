@@ -23,8 +23,10 @@ public class Blocks {
     public static final Block CIRCLE_WALL_5 = new CircleWall(FabricBlockSettings.of(Material.METAL).strength(4.0f).nonOpaque());
     public static final Block CIRCLE_WALL_6 = new CircleWall(FabricBlockSettings.of(Material.METAL).strength(4.0f).nonOpaque());
     public static final Block CIRCLE_WALL_7 = new CircleWall(FabricBlockSettings.of(Material.METAL).strength(4.0f).nonOpaque());
-    public static final Block SIGN_POLE_EVEN = new SignPoleEven(FabricBlockSettings.of(Material.METAL).strength(4.0f).nonOpaque());
-    public static final Block SIGN_POLE_ODD = new SignPoleOdd(FabricBlockSettings.of(Material.METAL).strength(4.0f).nonOpaque());
+    public static final Block SIGN_POLE_EVEN = new SignPoleEven(FabricBlockSettings.of(Material.METAL).strength(4.0f));
+    public static final Block SIGN_POLE_ODD = new SignPoleOdd(FabricBlockSettings.of(Material.METAL).strength(4.0f));
+    public static final Block MODEL_E44 = new ModelE44(FabricBlockSettings.of(Material.METAL).strength(1.0f).nonOpaque());
+    public static final Block LIGHT_1 = new Light_1(FabricBlockSettings.of(Material.METAL).strength(1.0f).nonOpaque().luminance(15));
 
     public static void registerBlocks() {
         Registry.register(Registry.BLOCK, new Identifier(NAMESPACE, "light_block"), Blocks.LIGHT_BLOCK);
@@ -39,6 +41,10 @@ public class Blocks {
         Registry.register(Registry.ITEM, new Identifier(NAMESPACE, "sign_pole_even"), new BlockItem(Blocks.SIGN_POLE_EVEN, new FabricItemSettings().group(ItemGroup.MISC)));
         Registry.register(Registry.BLOCK, new Identifier(NAMESPACE, "sign_pole_odd"), Blocks.SIGN_POLE_ODD);
         Registry.register(Registry.ITEM, new Identifier(NAMESPACE, "sign_pole_odd"), new BlockItem(Blocks.SIGN_POLE_ODD, new FabricItemSettings().group(ItemGroup.MISC)));
+        Registry.register(Registry.BLOCK, new Identifier(NAMESPACE, "train_model_e44"), Blocks.MODEL_E44);
+        Registry.register(Registry.ITEM, new Identifier(NAMESPACE, "train_model_e44"), new BlockItem(Blocks.MODEL_E44, new FabricItemSettings().group(ItemGroup.MISC)));
+        Registry.register(Registry.BLOCK, new Identifier(NAMESPACE, "light_1"), Blocks.LIGHT_1);
+        Registry.register(Registry.ITEM, new Identifier(NAMESPACE, "light_1"), new BlockItem(Blocks.LIGHT_1, new FabricItemSettings().group(ItemGroup.MISC)));
         Registry.register(Registry.BLOCK, new Identifier(NAMESPACE, "circle_wall_1"), Blocks.CIRCLE_WALL_1);
         Registry.register(Registry.ITEM, new Identifier(NAMESPACE, "circle_wall_1"), new BlockItem(Blocks.CIRCLE_WALL_1, new FabricItemSettings().group(ItemGroup.MISC)));
         Registry.register(Registry.BLOCK, new Identifier(NAMESPACE, "circle_wall_2"), Blocks.CIRCLE_WALL_2);
