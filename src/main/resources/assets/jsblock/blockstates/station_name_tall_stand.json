@@ -45,7 +45,7 @@
         "third": "middle"
       },
       "apply": {
-        "model": "mtr:block/station_name_tall_wall_middle"
+        "model": "jsblock:block/station_name_tall_stand_middle"
       }
     },
     {
@@ -54,7 +54,7 @@
         "third": "middle"
       },
       "apply": {
-        "model": "mtr:block/station_name_tall_wall_middle",
+        "model": "jsblock:block/station_name_tall_stand_middle",
         "y": 90
       }
     },
@@ -64,7 +64,7 @@
         "third": "middle"
       },
       "apply": {
-        "model": "mtr:block/station_name_tall_wall_middle",
+        "model": "jsblock:block/station_name_tall_stand_middle",
         "y": 180
       }
     },
@@ -74,7 +74,7 @@
         "third": "middle"
       },
       "apply": {
-        "model": "mtr:block/station_name_tall_wall_middle",
+        "model": "jsblock:block/station_name_tall_stand_middle",
         "y": 270
       }
     },
@@ -84,7 +84,7 @@
         "third": "upper"
       },
       "apply": {
-        "model": "mtr:block/station_name_tall_wall_top"
+        "model": "jsblock:block/station_name_tall_stand_top"
       }
     },
     {
@@ -93,7 +93,7 @@
         "third": "upper"
       },
       "apply": {
-        "model": "mtr:block/station_name_tall_wall_top",
+        "model": "jsblock:block/station_name_tall_stand_top",
         "y": 90
       }
     },
@@ -103,7 +103,7 @@
         "third": "upper"
       },
       "apply": {
-        "model": "mtr:block/station_name_tall_wall_top",
+        "model": "jsblock:block/station_name_tall_stand_top",
         "y": 180
       }
     },
@@ -113,7 +113,7 @@
         "third": "upper"
       },
       "apply": {
-        "model": "mtr:block/station_name_tall_wall_top",
+        "model": "jsblock:block/station_name_tall_stand_top",
         "y": 270
       }
     }
