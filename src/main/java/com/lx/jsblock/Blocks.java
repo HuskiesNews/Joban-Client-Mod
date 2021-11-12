@@ -27,6 +27,7 @@ public class Blocks {
     public static final Block SIGN_POLE_ODD = new SignPoleOdd(FabricBlockSettings.of(Material.METAL).strength(4.0f));
     public static final Block MODEL_E44 = new ModelE44(FabricBlockSettings.of(Material.METAL).strength(1.0f).nonOpaque());
     public static final Block LIGHT_1 = new Light_1(FabricBlockSettings.of(Material.METAL).strength(1.0f).nonOpaque().luminance(15));
+    public static final Block EMG_STOP_1 = new EmgStop_1(FabricBlockSettings.of(Material.METAL).strength(1.0f).nonOpaque());
 
     public static void registerBlocks() {
         Registry.register(Registry.BLOCK, new Identifier(NAMESPACE, "light_block"), Blocks.LIGHT_BLOCK);
@@ -45,6 +46,8 @@ public class Blocks {
         Registry.register(Registry.ITEM, new Identifier(NAMESPACE, "train_model_e44"), new BlockItem(Blocks.MODEL_E44, new FabricItemSettings().group(ItemGroup.MISC)));
         Registry.register(Registry.BLOCK, new Identifier(NAMESPACE, "light_1"), Blocks.LIGHT_1);
         Registry.register(Registry.ITEM, new Identifier(NAMESPACE, "light_1"), new BlockItem(Blocks.LIGHT_1, new FabricItemSettings().group(ItemGroup.MISC)));
+        Registry.register(Registry.BLOCK, new Identifier(NAMESPACE, "emg_stop_1"), Blocks.EMG_STOP_1);
+        Registry.register(Registry.ITEM, new Identifier(NAMESPACE, "emg_stop_1"), new BlockItem(Blocks.EMG_STOP_1, new FabricItemSettings().group(ItemGroup.MISC)));
         Registry.register(Registry.BLOCK, new Identifier(NAMESPACE, "circle_wall_1"), Blocks.CIRCLE_WALL_1);
         Registry.register(Registry.ITEM, new Identifier(NAMESPACE, "circle_wall_1"), new BlockItem(Blocks.CIRCLE_WALL_1, new FabricItemSettings().group(ItemGroup.MISC)));
         Registry.register(Registry.BLOCK, new Identifier(NAMESPACE, "circle_wall_2"), Blocks.CIRCLE_WALL_2);

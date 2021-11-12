@@ -1,6 +1,7 @@
 package com.lx.jsblock.blocks;
 
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockRenderType;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.ShapeContext;
 import net.minecraft.util.math.BlockPos;
@@ -21,5 +22,15 @@ public class LightBlock extends Block {
     @Override
     public VoxelShape getCollisionShape(BlockState state, BlockView view, BlockPos pos, ShapeContext context) {
         return VoxelShapes.empty();
+    }
+
+    @Override
+    public boolean isTranslucent(BlockState state, BlockView world, BlockPos pos) {
+        return true;
+    }
+
+    @Override
+    public BlockRenderType getRenderType(BlockState state) {
+        return BlockRenderType.INVISIBLE;
     }
 }

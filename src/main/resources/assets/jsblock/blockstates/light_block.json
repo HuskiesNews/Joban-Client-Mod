@@ -1,5 +1,5 @@
 {
   "variants": {
-    "": { "model": "jsblock:block/light_block" }
+    "": { "model": "jsblock:block/emg_stop_1" }
   }
 }
