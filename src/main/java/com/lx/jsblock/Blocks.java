@@ -14,11 +14,6 @@ import net.minecraft.util.registry.Registry;
 import java.util.function.Supplier;
 
 public class Blocks {
-    public static final Block LIGHT_BLOCK = new LightBlock(FabricBlockSettings.of(Material.METAL).strength(4.0f).luminance(15).nonOpaque());
-    public static final Block HELPLINE_1 = new HelpLine1(FabricBlockSettings.of(Material.METAL).strength(4.0f).nonOpaque());
-    public static final Block HELPLINE_2 = new HelpLine2(FabricBlockSettings.of(Material.METAL).strength(4.0f).nonOpaque());
-    public static final Block HELPLINE_3 = new HelpLine3(FabricBlockSettings.of(Material.METAL).strength(4.0f).nonOpaque());
-    public static final Block WATER_MACHINE_1 = new WaterMachine1(FabricBlockSettings.of(Material.METAL).strength(4.0f).nonOpaque());
     public static final Block CIRCLE_WALL_1 = new CircleWall();
     public static final Block CIRCLE_WALL_2 = new CircleWall();
     public static final Block CIRCLE_WALL_3 = new CircleWall();
@@ -36,9 +31,15 @@ public class Blocks {
     public static final Block SIGN_POLE_ODD = new SignPoleOdd(FabricBlockSettings.of(Material.METAL).strength(4.0f));
     public static final Block PIDS_POLE = new PIDSPole(FabricBlockSettings.of(Material.METAL).strength(1.0f).nonOpaque());
     public static final Block CLOCK_POLE = new ClockPole(FabricBlockSettings.of(Material.METAL).strength(1.0f).nonOpaque());
+    public static final Block LIGHT_BLOCK = new LightBlock(FabricBlockSettings.of(Material.METAL).strength(4.0f).luminance(15).nonOpaque());
+    public static final Block HELPLINE_1 = new HelpLine1(FabricBlockSettings.of(Material.METAL).strength(4.0f).nonOpaque());
+    public static final Block HELPLINE_2 = new HelpLine2(FabricBlockSettings.of(Material.METAL).strength(4.0f).nonOpaque());
+    public static final Block HELPLINE_3 = new HelpLine3(FabricBlockSettings.of(Material.METAL).strength(4.0f).nonOpaque());
+    public static final Block CEILING_1 = new Ceiling1(FabricBlockSettings.of(Material.METAL).strength(4.0f).nonOpaque());
+    public static final Block WATER_MACHINE_1 = new WaterMachine1(FabricBlockSettings.of(Material.METAL).strength(4.0f).nonOpaque());
     public static final Block MODEL_E44 = new ModelE44(FabricBlockSettings.of(Material.METAL).strength(1.0f).nonOpaque());
     public static final Block LIGHT_1 = new Light_1(FabricBlockSettings.of(Material.METAL).strength(1.0f).nonOpaque().luminance(15));
-    public static final Block EMG_STOP_1 = new EmgStop_1(FabricBlockSettings.of(Material.METAL).strength(1.0f).nonOpaque());
+    public static final Block EMG_STOP_1 = new EmgStop_1(FabricBlockSettings.of(Material.METAL).strength(1.0f));
     public static final Block STATION_NAME_TALL_STAND = new StationNameTallStand();
 
     public static final BlockEntityType<StationNameTallStand.TileEntityStationNameTallStand> STATION_NAME_TALL_STAND_TILE_ENTITY = registerTileEntity("station_name_tall_stand", StationNameTallStand.TileEntityStationNameTallStand::new, Blocks.STATION_NAME_TALL_STAND);
@@ -63,6 +64,7 @@ public class Blocks {
         registerBlock("station_name_tall_stand", STATION_NAME_TALL_STAND);
         registerBlock("pids_pole", PIDS_POLE);
         registerBlock("clock_pole", CLOCK_POLE);
+        registerBlock("ceiling_1", CEILING_1);
         registerBlock("signal_light_red_1", SIGNAL_LIGHT_RED_1);
         registerBlock("signal_light_red_2", SIGNAL_LIGHT_RED_2);
         registerBlock("signal_light_blue", SIGNAL_LIGHT_BLUE);

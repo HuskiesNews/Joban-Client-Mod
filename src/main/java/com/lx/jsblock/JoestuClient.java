@@ -17,6 +17,7 @@ public class JoestuClient implements ClientModInitializer {
         BlockRenderLayerMap.INSTANCE.putBlock(Blocks.HELPLINE_2, RenderLayer.getCutout());
         BlockRenderLayerMap.INSTANCE.putBlock(Blocks.HELPLINE_3, RenderLayer.getCutout());
         BlockRenderLayerMap.INSTANCE.putBlock(Blocks.WATER_MACHINE_1, RenderLayer.getCutout());
+        BlockRenderLayerMap.INSTANCE.putBlock(Blocks.CEILING_1, RenderLayer.getCutout());
         BlockRenderLayerMap.INSTANCE.putBlock(Blocks.STATION_NAME_TALL_STAND, RenderLayer.getCutout());
         BlockEntityRendererRegistry.INSTANCE.register(Blocks.SIGNAL_LIGHT_RED_ENTITY_1, dispatcher -> new RenderSignalLight<>(dispatcher, true, 0xFFFF0000, false,false, 0xFF0000FF));
         BlockEntityRendererRegistry.INSTANCE.register(Blocks.SIGNAL_LIGHT_RED_ENTITY_2, dispatcher -> new RenderSignalLight<>(dispatcher, true, 0xFFFF0000, false,true, 0xFF0000FF));
@@ -26,7 +27,6 @@ public class JoestuClient implements ClientModInitializer {
         BlockEntityRendererRegistry.INSTANCE.register(Blocks.SIGNAL_LIGHT_INVERTED_ENTITY_2, dispatcher -> new RenderSignalLight<>(dispatcher, true, 0, true,false,0xFF00FF00));
         BlockEntityRendererRegistry.INSTANCE.register(Blocks.STATION_NAME_TALL_STAND_TILE_ENTITY, RenderStationNameTall::new);
         registerStationColor(Blocks.STATION_NAME_TALL_STAND);
-
     }
 
     private static void registerStationColor(Block block) {
