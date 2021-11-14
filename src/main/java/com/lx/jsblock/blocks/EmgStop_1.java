@@ -17,7 +17,7 @@ public class EmgStop_1 extends HorizontalFacingBlock {
 
     @Override
     public VoxelShape getOutlineShape(BlockState state, BlockView view, BlockPos pos, ShapeContext context) {
-        return mtr.block.IBlock.getVoxelShapeByDirection(3, 0, 0, 13, 13, 7, state.get(FACING));
+        return mtr.block.IBlock.getVoxelShapeByDirection(4.5, 3, 0, 11.5, 13, 6, state.get(FACING));
     }
 
     @Override
