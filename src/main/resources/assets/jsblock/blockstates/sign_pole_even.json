@@ -1,8 +1,28 @@
 {
   "variants": {
-    "facing=north": { "model": "jsblock:block/sign_pole_even" },
-    "facing=east": { "model": "jsblock:block/sign_pole_even", "y": 90 },
-    "facing=west": { "model": "jsblock:block/sign_pole_even", "y": 270 },
-    "facing=south": { "model": "jsblock:block/sign_pole_even", "y": 180 }
+    "facing=north,length=2": { "model": "jsblock:block/pole_sign_end_one" },
+    "facing=east,length=2": { "model": "jsblock:block/pole_sign_end_one", "y": 90 },
+    "facing=west,length=2": { "model": "jsblock:block/pole_sign_end_one", "y": 270 },
+    "facing=south,length=2": { "model": "jsblock:block/pole_sign_end_one", "y": 180 },
+    "facing=north,length=3": { "model": "jsblock:block/pole_sign_end_one_and_a_half" },
+    "facing=east,length=3": { "model": "jsblock:block/pole_sign_end_one_and_a_half", "y": 90 },
+    "facing=west,length=3": { "model": "jsblock:block/pole_sign_end_one_and_a_half", "y": 270 },
+    "facing=south,length=3": { "model": "jsblock:block/pole_sign_end_one_and_a_half", "y": 180 },
+    "facing=north,length=4": { "model": "jsblock:block/pole_sign_end_zero" },
+    "facing=east,length=4": { "model": "jsblock:block/pole_sign_end_zero", "y": 90 },
+    "facing=west,length=4": { "model": "jsblock:block/pole_sign_end_zero", "y": 270 },
+    "facing=south,length=4": { "model": "jsblock:block/pole_sign_end_zero", "y": 180 },
+    "facing=north,length=5": { "model": "jsblock:block/pole_sign_end_half" },
+    "facing=east,length=5": { "model": "jsblock:block/pole_sign_end_half", "y": 90 },
+    "facing=west,length=5": { "model": "jsblock:block/pole_sign_end_half", "y": 270 },
+    "facing=south,length=5": { "model": "jsblock:block/pole_sign_end_half", "y": 180 },
+    "facing=north,length=6": { "model": "jsblock:block/pole_sign_end_one" },
+    "facing=east,length=6": { "model": "jsblock:block/pole_sign_end_one", "y": 90 },
+    "facing=west,length=6": { "model": "jsblock:block/pole_sign_end_one", "y": 270 },
+    "facing=south,length=6": { "model": "jsblock:block/pole_sign_end_one", "y": 180 },
+    "facing=north,length=7": { "model": "jsblock:block/pole_sign_end_one_and_a_half" },
+    "facing=east,length=7": { "model": "jsblock:block/pole_sign_end_one_and_a_half", "y": 90 },
+    "facing=west,length=7": { "model": "jsblock:block/pole_sign_end_one_and_a_half", "y": 270 },
+    "facing=south,length=7": { "model": "jsblock:block/pole_sign_end_one_and_a_half", "y": 180 }
   }
 }
