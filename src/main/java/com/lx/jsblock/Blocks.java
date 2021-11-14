@@ -8,7 +8,6 @@ import net.minecraft.block.Material;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.item.BlockItem;
-import net.minecraft.item.ItemGroup;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
 
@@ -38,6 +37,7 @@ public class Blocks {
     public static final Block SIGNAL_LIGHT_GREEN = new SignalLightGreen(FabricBlockSettings.of(Material.METAL).strength(1.0f).nonOpaque());
     public static final Block SIGNAL_LIGHT_INVERTED_1 = new SignalLightInverted1(FabricBlockSettings.of(Material.METAL).strength(1.0f).nonOpaque());
     public static final Block SIGNAL_LIGHT_INVERTED_2 = new SignalLightInverted2(FabricBlockSettings.of(Material.METAL).strength(1.0f).nonOpaque());
+    public static final Block PIDS_POLE = new PIDSPole(FabricBlockSettings.of(Material.METAL).strength(1.0f).nonOpaque());
 
     public static final BlockEntityType<StationNameTallStand.TileEntityStationNameTallStand> STATION_NAME_TALL_STAND_TILE_ENTITY = registerTileEntity("station_name_tall_stand", StationNameTallStand.TileEntityStationNameTallStand::new, Blocks.STATION_NAME_TALL_STAND);
     public static final BlockEntityType<SignalLightRed1.TileEntitySignalLightRed> SIGNAL_LIGHT_RED_ENTITY_1 = registerTileEntity("signal_light_red_1", SignalLightRed1.TileEntitySignalLightRed::new, Blocks.SIGNAL_LIGHT_RED_1);
@@ -58,6 +58,7 @@ public class Blocks {
         registerBlock("light_1", LIGHT_1);
         registerBlock("emg_stop_1", EMG_STOP_1);
         registerBlock("station_name_tall_stand", STATION_NAME_TALL_STAND);
+        registerBlock("pids_pole", PIDS_POLE);
         registerBlock("signal_light_red_1", SIGNAL_LIGHT_RED_1);
         registerBlock("signal_light_red_2", SIGNAL_LIGHT_RED_2);
         registerBlock("signal_light_blue", SIGNAL_LIGHT_BLUE);
