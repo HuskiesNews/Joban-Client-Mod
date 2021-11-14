@@ -4,16 +4,16 @@
   "version": "${version}",
 
   "name": "Joestu Client Mod",
-  "description": "More blocks for the Joestu Server",
+  "description": "Add poles, static signal light and more blocks.",
   "authors": [
     "LX86"
   ],
   "contact": {
-    "homepage": "",
+    "homepage": "https://discord.gg/ue7reMvMc2",
     "sources": ""
   },
 
-  "license": "CC0-1.0",
+  "license": "N/A",
   "icon": "assets/jsblock/icon.png",
 
   "environment": "*",
@@ -32,6 +32,7 @@
   "depends": {
     "fabricloader": ">=0.7.4",
     "fabric": "*",
+    "mtr": "*",
     "minecraft": "1.16.x"
   },
   "suggests": {
