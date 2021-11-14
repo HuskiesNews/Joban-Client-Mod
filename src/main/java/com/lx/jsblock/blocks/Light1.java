@@ -10,8 +10,8 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.world.BlockView;
 
-public class Light_1 extends HorizontalFacingBlock {
-    public Light_1(Settings settings) {
+public class Light1 extends HorizontalFacingBlock {
+    public Light1(Settings settings) {
         super(settings);
     }
 

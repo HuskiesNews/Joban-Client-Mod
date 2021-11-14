@@ -1,7 +1,7 @@
 {
 	"textures": {
-		"0": "jsblock:block/helpline1",
-		"particle": "jsblock:block/helpline1"
+		"0": "jsblock:block/helpline_1",
+		"particle": "jsblock:block/helpline_1"
 	},
 	"elements": [
 		{

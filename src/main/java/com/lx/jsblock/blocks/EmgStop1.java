@@ -10,8 +10,8 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.world.BlockView;
 
-public class EmgStop_1 extends HorizontalFacingBlock {
-    public EmgStop_1(Settings settings) {
+public class EmgStop1 extends HorizontalFacingBlock {
+    public EmgStop1(Settings settings) {
         super(settings);
     }
 

@@ -30,6 +30,7 @@ public class JoestuClient implements ClientModInitializer {
     }
 
     private static void registerStationColor(Block block) {
+        /* Copied from MTR Mod as the method is private */
         ColorProviderRegistry.BLOCK.register((state, world, pos, tintIndex) -> {
             final int defaultColor = 0x7F7F7F;
             if (pos != null) {
