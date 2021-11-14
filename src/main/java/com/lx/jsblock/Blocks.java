@@ -25,19 +25,20 @@ public class Blocks {
     public static final Block CIRCLE_WALL_5 = new CircleWall();
     public static final Block CIRCLE_WALL_6 = new CircleWall();
     public static final Block CIRCLE_WALL_7 = new CircleWall();
-    public static final Block SIGN_POLE_EVEN = new SignPoleEven(FabricBlockSettings.of(Material.METAL).strength(4.0f));
-    public static final Block SIGN_POLE_ODD = new SignPoleOdd(FabricBlockSettings.of(Material.METAL).strength(4.0f));
-    public static final Block MODEL_E44 = new ModelE44(FabricBlockSettings.of(Material.METAL).strength(1.0f).nonOpaque());
-    public static final Block LIGHT_1 = new Light_1(FabricBlockSettings.of(Material.METAL).strength(1.0f).nonOpaque().luminance(15));
-    public static final Block EMG_STOP_1 = new EmgStop_1(FabricBlockSettings.of(Material.METAL).strength(1.0f).nonOpaque());
-    public static final Block STATION_NAME_TALL_STAND = new StationNameTallStand();
     public static final Block SIGNAL_LIGHT_RED_1 = new SignalLightRed1(FabricBlockSettings.of(Material.METAL).strength(1.0f).nonOpaque());
     public static final Block SIGNAL_LIGHT_RED_2 = new SignalLightRed2(FabricBlockSettings.of(Material.METAL).strength(1.0f).nonOpaque());
     public static final Block SIGNAL_LIGHT_BLUE = new SignalLightBlue(FabricBlockSettings.of(Material.METAL).strength(1.0f).nonOpaque());
     public static final Block SIGNAL_LIGHT_GREEN = new SignalLightGreen(FabricBlockSettings.of(Material.METAL).strength(1.0f).nonOpaque());
     public static final Block SIGNAL_LIGHT_INVERTED_1 = new SignalLightInverted1(FabricBlockSettings.of(Material.METAL).strength(1.0f).nonOpaque());
     public static final Block SIGNAL_LIGHT_INVERTED_2 = new SignalLightInverted2(FabricBlockSettings.of(Material.METAL).strength(1.0f).nonOpaque());
+    public static final Block SIGN_POLE_EVEN = new SignPoleEven(FabricBlockSettings.of(Material.METAL).strength(4.0f));
+    public static final Block SIGN_POLE_ODD = new SignPoleOdd(FabricBlockSettings.of(Material.METAL).strength(4.0f));
     public static final Block PIDS_POLE = new PIDSPole(FabricBlockSettings.of(Material.METAL).strength(1.0f).nonOpaque());
+    public static final Block CLOCK_POLE = new ClockPole(FabricBlockSettings.of(Material.METAL).strength(1.0f).nonOpaque());
+    public static final Block MODEL_E44 = new ModelE44(FabricBlockSettings.of(Material.METAL).strength(1.0f).nonOpaque());
+    public static final Block LIGHT_1 = new Light_1(FabricBlockSettings.of(Material.METAL).strength(1.0f).nonOpaque().luminance(15));
+    public static final Block EMG_STOP_1 = new EmgStop_1(FabricBlockSettings.of(Material.METAL).strength(1.0f).nonOpaque());
+    public static final Block STATION_NAME_TALL_STAND = new StationNameTallStand();
 
     public static final BlockEntityType<StationNameTallStand.TileEntityStationNameTallStand> STATION_NAME_TALL_STAND_TILE_ENTITY = registerTileEntity("station_name_tall_stand", StationNameTallStand.TileEntityStationNameTallStand::new, Blocks.STATION_NAME_TALL_STAND);
     public static final BlockEntityType<SignalLightRed1.TileEntitySignalLightRed> SIGNAL_LIGHT_RED_ENTITY_1 = registerTileEntity("signal_light_red_1", SignalLightRed1.TileEntitySignalLightRed::new, Blocks.SIGNAL_LIGHT_RED_1);
@@ -59,6 +60,7 @@ public class Blocks {
         registerBlock("emg_stop_1", EMG_STOP_1);
         registerBlock("station_name_tall_stand", STATION_NAME_TALL_STAND);
         registerBlock("pids_pole", PIDS_POLE);
+        registerBlock("clock_pole", CLOCK_POLE);
         registerBlock("signal_light_red_1", SIGNAL_LIGHT_RED_1);
         registerBlock("signal_light_red_2", SIGNAL_LIGHT_RED_2);
         registerBlock("signal_light_blue", SIGNAL_LIGHT_BLUE);
