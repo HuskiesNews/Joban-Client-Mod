@@ -29,11 +29,11 @@ public class EnquiryMachine1 extends mtr.block.BlockDirectionalDoubleBlockBase {
     public VoxelShape getOutlineShape(BlockState state, BlockView view, BlockPos pos, ShapeContext context) {
         final Direction facing = IBlock.getStatePropertySafe(state, FACING);
         if (IBlock.getStatePropertySafe(state, HALF) == DoubleBlockHalf.UPPER) {
-            VoxelShape vx1 = IBlock.getVoxelShapeByDirection(4, 0, 2, 12, 5.62, 9, facing);
-            VoxelShape vx2 = IBlock.getVoxelShapeByDirection(4, 5.62, 7.5, 12, 10.12, 7.7, facing);
+            VoxelShape vx1 = IBlock.getVoxelShapeByDirection(4, 0, 7, 12, 5.62, 14, facing);
+            VoxelShape vx2 = IBlock.getVoxelShapeByDirection(4, 5.62, 8.275, 12, 10.12, 8.425, facing);
             return VoxelShapes.union(vx1, vx2);
         } else {
-            return IBlock.getVoxelShapeByDirection(4, 0, 2, 12, 16, 9, facing);
+            return IBlock.getVoxelShapeByDirection(4, 0, 7, 12, 16, 14, facing);
         }
     }
 
