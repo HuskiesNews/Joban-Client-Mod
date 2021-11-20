@@ -90,7 +90,11 @@ public class Blocks {
     }
 
     private static void registerBlock(String path, Block block) {
-        Registry.register(Registry.BLOCK, new Identifier(Joestu.MOD_ID, path), block);
-        Registry.register(Registry.ITEM, new Identifier(Joestu.MOD_ID, path), new BlockItem(block, new FabricItemSettings().group(ItemGroups.MAIN)));
+        registerBlock(path, block, Joestu.MOD_ID);
+    }
+
+    private static void registerBlock(String path, Block block, String modID) {
+        Registry.register(Registry.BLOCK, new Identifier(modID, path), block);
+        Registry.register(Registry.ITEM, new Identifier(modID, path), new BlockItem(block, new FabricItemSettings().group(ItemGroups.MAIN)));
     }
 }
