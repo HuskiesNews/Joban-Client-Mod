@@ -38,6 +38,7 @@ public class Blocks {
     public static final Block HELPLINE_3 = new HelpLine3(FabricBlockSettings.of(Material.METAL).hardness(3.0f).nonOpaque());
     public static final Block CEILING_1 = new Ceiling1(FabricBlockSettings.of(Material.METAL).hardness(2.0f).nonOpaque());
     public static final Block WATER_MACHINE_1 = new WaterMachine1(FabricBlockSettings.of(Material.METAL).hardness(4.0f));
+    public static final Block SUBSIDY_MACHINE = new SubsidyMachine(FabricBlockSettings.of(Material.METAL).hardness(4.0f));
     public static final Block ENQUIRY_MACHINE_1 = new EnquiryMachine1(FabricBlockSettings.of(Material.METAL).hardness(4.0f));
     public static final Block MODEL_E44 = new ModelE44(FabricBlockSettings.of(Material.METAL).hardness(1.0f).nonOpaque());
     public static final Block LIGHT_1 = new Light1(FabricBlockSettings.of(Material.METAL).hardness(1.0f).nonOpaque().luminance(15));
@@ -61,6 +62,7 @@ public class Blocks {
         registerBlock("sign_pole_odd", SIGN_POLE_ODD);
         registerBlock("train_model_e44", MODEL_E44);
         registerBlock("water_machine_1", WATER_MACHINE_1);
+        registerBlock("subsidy_machine", SUBSIDY_MACHINE);
         registerBlock("enquiry_machine_1", ENQUIRY_MACHINE_1);
         registerBlock("light_1", LIGHT_1);
         registerBlock("emg_stop_1", EMG_STOP_1);

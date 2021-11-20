@@ -1,0 +1,45 @@
+{
+	"credit": "CoJ 2021",
+	"ambientocclusion": false,
+	"texture_size": [32, 32],
+	"textures": {
+		"0": "jsblock:block/subsidy_machine",
+		"particle": "jsblock:block/subsidy_machine"
+	},
+	"elements": [
+		{
+			"name": "octopusreader",
+			"from": [5.4, 5.5, 5.5],
+			"to": [9.4, 8.5, 6.5],
+			"faces": {
+				"north": {"uv": [0.5, 11, 2.5, 12.5], "texture": "#0"},
+				"east": {"uv": [0, 11, 0.5, 12.5], "texture": "#0"},
+				"south": {"uv": [3, 11, 5, 12.5], "texture": "#0"},
+				"west": {"uv": [2.5, 11, 3, 12.5], "texture": "#0"},
+				"up": {"uv": [2.5, 11, 0.5, 10.5], "texture": "#0"},
+				"down": {"uv": [4.5, 10.5, 2.5, 11], "texture": "#0"}
+			}
+		},
+		{
+			"name": "main",
+			"from": [2, 0, 6],
+			"to": [13, 18, 9],
+			"faces": {
+				"north": {"uv": [1.5, 1.5, 7, 10.5], "texture": "#0"},
+				"east": {"uv": [0, 1.5, 1.5, 10.5], "texture": "#0"},
+				"south": {"uv": [8.5, 1.5, 14, 10.5], "texture": "#0"},
+				"west": {"uv": [7, 1.5, 8.5, 10.5], "texture": "#0"},
+				"up": {"uv": [7, 1.5, 1.5, 0], "texture": "#0"},
+				"down": {"uv": [12.5, 0, 7, 1.5], "texture": "#0"}
+			}
+		}
+	],
+	"groups": [
+		{
+			"name": "body",
+			"origin": [8, 8, 8],
+			"color": 0,
+			"children": [0, 1]
+		}
+	]
+}
