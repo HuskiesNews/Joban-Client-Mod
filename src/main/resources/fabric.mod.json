@@ -3,10 +3,12 @@
   "id": "jsblock",
   "version": "${version}",
 
-  "name": "Joestu Client Mod",
-  "description": "Add poles, static signal light and more blocks.",
+  "name": "Joestu Blocks Mod",
+  "description": "Add poles, static signal light and more decoration blocks. Used in conjunction with the Joestu Pack",
   "authors": [
-    "LX86"
+    "LX86",
+    "StrikeSNC",
+    "AozoraSky"
   ],
   "contact": {
     "homepage": "https://discord.gg/ue7reMvMc2",
@@ -19,10 +21,10 @@
   "environment": "*",
   "entrypoints": {
     "main": [
-      "com.lx.jsblock.Joestu"
+      "com.jsblock.Joestu"
     ],
     "client": [
-      "com.lx.jsblock.JoestuClient"
+      "com.jsblock.JoestuClient"
     ]
   },
   "mixins": [
