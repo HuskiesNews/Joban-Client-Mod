@@ -33,7 +33,14 @@ public class WaterMachine1 extends mtr.block.BlockDirectionalDoubleBlockBase {
     public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
         for(ItemStack itm : player.getItemsHand()) {
             if(itm.getItem().asItem().equals(Items.GLASS_BOTTLE)) {
-                player.setStackInHand(hand, PotionUtil.setPotion(new ItemStack(Items.POTION), Potions.WATER));
+                ItemStack playerHolding = player.getStackInHand(hand);
+                ItemStack waterBottle = PotionUtil.setPotion(new ItemStack(Items.POTION), Potions.WATER);
+                playerHolding.decrement(1);
+                if(playerHolding.isEmpty()) {
+                    player.setStackInHand(hand, waterBottle);
+                } else {
+                    player.giveItemStack(waterBottle);
+                }
                 return ActionResult.SUCCESS;
             }
         }
