@@ -18,6 +18,7 @@ public class JoestuClient implements ClientModInitializer {
         BlockRenderLayerMap.INSTANCE.putBlock(Blocks.HELPLINE_2, RenderLayer.getCutout());
         BlockRenderLayerMap.INSTANCE.putBlock(Blocks.HELPLINE_3, RenderLayer.getCutout());
         BlockRenderLayerMap.INSTANCE.putBlock(Blocks.WATER_MACHINE_1, RenderLayer.getCutout());
+        BlockRenderLayerMap.INSTANCE.putBlock(Blocks.SUBSIDY_MACHINE, RenderLayer.getCutout());
         BlockRenderLayerMap.INSTANCE.putBlock(Blocks.ENQUIRY_MACHINE_1, RenderLayer.getCutout());
         BlockRenderLayerMap.INSTANCE.putBlock(Blocks.CEILING_1, RenderLayer.getCutout());
         BlockRenderLayerMap.INSTANCE.putBlock(Blocks.STATION_NAME_TALL_STAND, RenderLayer.getCutout());
