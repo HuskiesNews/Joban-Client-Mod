@@ -42,7 +42,6 @@ public class SubsidyMachine extends HorizontalFacingBlock {
         ScoreboardPlayerScore balanceScore = mtr.data.TicketSystem.getPlayerScore(world, player, mtr.data.TicketSystem.BALANCE_OBJECTIVE);
         balanceScore.setScore(balanceScore.getScore() + SUBSIDY_PRICE);
         player.sendMessage(new LiteralText("$10 Added to your balance, your balance is now $" + balanceScore.getScore()), true);
-        world.playSound(null, player.getBlockPos(), MTR.TICKET_PROCESSOR_ENTRY, SoundCategory.BLOCKS, 1, 1);
         return ActionResult.SUCCESS;
     }
 
