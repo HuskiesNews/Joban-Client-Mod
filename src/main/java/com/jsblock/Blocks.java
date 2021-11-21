@@ -28,10 +28,6 @@ public class Blocks {
     public static final Block SIGNAL_LIGHT_GREEN = new SignalLightGreen(FabricBlockSettings.of(Material.METAL, MapColor.BLACK).hardness(1.0f));
     public static final Block SIGNAL_LIGHT_INVERTED_1 = new SignalLightInverted1(FabricBlockSettings.of(Material.METAL, MapColor.BLACK).hardness(1.0f));
     public static final Block SIGNAL_LIGHT_INVERTED_2 = new SignalLightInverted2(FabricBlockSettings.of(Material.METAL, MapColor.BLACK).hardness(1.0f));
-    public static final Block SIGN_POLE_EVEN = new SignPoleEven(FabricBlockSettings.of(Material.METAL).hardness(4.0f));
-    public static final Block SIGN_POLE_ODD = new SignPoleOdd(FabricBlockSettings.of(Material.METAL).hardness(4.0f));
-    public static final Block PIDS_POLE = new PIDSPole(FabricBlockSettings.of(Material.METAL).hardness(1.0f));
-    public static final Block CLOCK_POLE = new ClockPole(FabricBlockSettings.of(Material.METAL).hardness(1.0f));
     public static final Block LIGHT_BLOCK = new LightBlock(FabricBlockSettings.of(Material.METAL).hardness(4.0f).luminance(15).nonOpaque());
     public static final Block HELPLINE_1 = new HelpLine1(FabricBlockSettings.of(Material.METAL).hardness(2.0f));
     public static final Block HELPLINE_2 = new HelpLine2(FabricBlockSettings.of(Material.METAL).hardness(2.0f));
@@ -58,8 +54,6 @@ public class Blocks {
         registerBlock("helpline_1", HELPLINE_1);
         registerBlock("helpline_2", HELPLINE_2);
         registerBlock("helpline_3", HELPLINE_3);
-        registerBlock("sign_pole_even", SIGN_POLE_EVEN);
-        registerBlock("sign_pole_odd", SIGN_POLE_ODD);
         registerBlock("train_model_e44", MODEL_E44);
         registerBlock("water_machine_1", WATER_MACHINE_1);
         registerBlock("subsidy_machine", SUBSIDY_MACHINE);
@@ -67,8 +61,6 @@ public class Blocks {
         registerBlock("light_1", LIGHT_1);
         registerBlock("emg_stop_1", EMG_STOP_1);
         registerBlock("station_name_tall_stand", STATION_NAME_TALL_STAND);
-        registerBlock("pids_pole", PIDS_POLE);
-        registerBlock("clock_pole", CLOCK_POLE);
         registerBlock("ceiling_1", CEILING_1);
         registerBlock("signal_light_red_1", SIGNAL_LIGHT_RED_1);
         registerBlock("signal_light_red_2", SIGNAL_LIGHT_RED_2);
