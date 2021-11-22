@@ -38,6 +38,7 @@ public class Blocks {
     public static final Block ENQUIRY_MACHINE_1 = new EnquiryMachine1(FabricBlockSettings.of(Material.METAL).hardness(4.0f));
     public static final Block MODEL_E44 = new ModelE44(FabricBlockSettings.of(Material.METAL).hardness(1.0f).nonOpaque());
     public static final Block LIGHT_1 = new Light1(FabricBlockSettings.of(Material.METAL).hardness(1.0f).luminance(15));
+    public static final Block LIGHT_2 = new Light2(FabricBlockSettings.of(Material.METAL).hardness(1.0f).luminance(15));
     public static final Block EMG_STOP_1 = new EmgStop1(FabricBlockSettings.of(Material.METAL).hardness(1.0f));
     public static final Block STATION_NAME_TALL_STAND = new StationNameTallStand();
 
@@ -59,6 +60,7 @@ public class Blocks {
         registerBlock("subsidy_machine", SUBSIDY_MACHINE);
         registerBlock("enquiry_machine_1", ENQUIRY_MACHINE_1);
         registerBlock("light_1", LIGHT_1);
+        registerBlock("light_2", LIGHT_2);
         registerBlock("emg_stop_1", EMG_STOP_1);
         registerBlock("station_name_tall_stand", STATION_NAME_TALL_STAND);
         registerBlock("ceiling_1", CEILING_1);
