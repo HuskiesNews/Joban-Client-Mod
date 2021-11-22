@@ -9,7 +9,7 @@ public class Joestu implements ModInitializer {
     public static final Logger LOGGER = LogManager.getLogger("Joestu Client");
     @Override
     public void onInitialize() {
-        LOGGER.info("-----Version Beta-----");
+        LOGGER.info("[Joestu Client] Version 1.0.0 (1.16)");
         Blocks.registerBlocks();
     }
 }
