@@ -19,6 +19,7 @@
   "block.jsblock.signal_light_green":"Signal Light (Green, Bottom)",
   "block.jsblock.signal_light_inverted_1":"Signal Light (Inverted, Blue-Red)",
   "block.jsblock.signal_light_inverted_2":"Signal Light (Inverted, Blue-Green)",
+  "block.jsblock.trespass_sign_1":"Trespass signage (1)",
   "block.jsblock.circle_wall_1":"Circle Wall (1)",
   "block.jsblock.circle_wall_2":"Circle Wall (2)",
   "block.jsblock.circle_wall_3":"Circle Wall (3)",

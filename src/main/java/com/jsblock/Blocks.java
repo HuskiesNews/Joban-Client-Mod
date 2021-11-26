@@ -28,19 +28,20 @@ public class Blocks {
     public static final Block SIGNAL_LIGHT_GREEN = new SignalLightGreen(FabricBlockSettings.of(Material.METAL, MapColor.BLACK).hardness(1.0f));
     public static final Block SIGNAL_LIGHT_INVERTED_1 = new SignalLightInverted1(FabricBlockSettings.of(Material.METAL, MapColor.BLACK).hardness(1.0f));
     public static final Block SIGNAL_LIGHT_INVERTED_2 = new SignalLightInverted2(FabricBlockSettings.of(Material.METAL, MapColor.BLACK).hardness(1.0f));
-    public static final Block LIGHT_BLOCK = new LightBlock(FabricBlockSettings.of(Material.METAL).hardness(4.0f).luminance(15).nonOpaque());
+    public static final Block CEILING_1 = new Ceiling1(FabricBlockSettings.of(Material.METAL).hardness(2.0f).nonOpaque());
+    public static final Block ENQUIRY_MACHINE_1 = new EnquiryMachine1(FabricBlockSettings.of(Material.METAL).hardness(4.0f));
+    public static final Block EMG_STOP_1 = new EmgStop1(FabricBlockSettings.of(Material.METAL).hardness(1.0f));
     public static final Block HELPLINE_1 = new HelpLine1(FabricBlockSettings.of(Material.METAL).hardness(2.0f));
     public static final Block HELPLINE_2 = new HelpLine2(FabricBlockSettings.of(Material.METAL).hardness(2.0f));
     public static final Block HELPLINE_3 = new HelpLine3(FabricBlockSettings.of(Material.METAL).hardness(3.0f).nonOpaque());
-    public static final Block CEILING_1 = new Ceiling1(FabricBlockSettings.of(Material.METAL).hardness(2.0f).nonOpaque());
-    public static final Block WATER_MACHINE_1 = new WaterMachine1(FabricBlockSettings.of(Material.METAL).hardness(4.0f));
-    public static final Block SUBSIDY_MACHINE = new SubsidyMachine(FabricBlockSettings.of(Material.METAL).hardness(4.0f));
-    public static final Block ENQUIRY_MACHINE_1 = new EnquiryMachine1(FabricBlockSettings.of(Material.METAL).hardness(4.0f));
-    public static final Block MODEL_E44 = new ModelE44(FabricBlockSettings.of(Material.METAL).hardness(1.0f).nonOpaque());
     public static final Block LIGHT_1 = new Light1(FabricBlockSettings.of(Material.METAL).hardness(1.0f).luminance(15));
     public static final Block LIGHT_2 = new Light2(FabricBlockSettings.of(Material.METAL).hardness(1.0f).luminance(15));
-    public static final Block EMG_STOP_1 = new EmgStop1(FabricBlockSettings.of(Material.METAL).hardness(1.0f));
+    public static final Block LIGHT_BLOCK = new LightBlock(FabricBlockSettings.of(Material.METAL).hardness(4.0f).luminance(15).nonOpaque());
+    public static final Block MODEL_E44 = new ModelE44(FabricBlockSettings.of(Material.METAL).hardness(1.0f).nonOpaque());
     public static final Block STATION_NAME_TALL_STAND = new StationNameTallStand();
+    public static final Block SUBSIDY_MACHINE = new SubsidyMachine(FabricBlockSettings.of(Material.METAL).hardness(4.0f));
+    public static final Block TRESPASS_SIGN_1 = new TrespassSign1(FabricBlockSettings.of(Material.METAL).hardness(2.0f).nonOpaque());
+    public static final Block WATER_MACHINE_1 = new WaterMachine1(FabricBlockSettings.of(Material.METAL).hardness(4.0f));
 
     public static final BlockEntityType<StationNameTallStand.TileEntityStationNameTallStand> STATION_NAME_TALL_STAND_TILE_ENTITY = registerTileEntity("station_name_tall_stand", StationNameTallStand.TileEntityStationNameTallStand::new, Blocks.STATION_NAME_TALL_STAND);
     public static final BlockEntityType<SignalLightRed1.TileEntitySignalLightRed> SIGNAL_LIGHT_RED_ENTITY_1 = registerTileEntity("signal_light_red_1", SignalLightRed1.TileEntitySignalLightRed::new, Blocks.SIGNAL_LIGHT_RED_1);
@@ -51,25 +52,6 @@ public class Blocks {
     public static final BlockEntityType<SignalLightInverted2.TileEntitySignalLightInverted> SIGNAL_LIGHT_INVERTED_ENTITY_2 = registerTileEntity("signal_light_inverted_2", SignalLightInverted2.TileEntitySignalLightInverted::new, Blocks.SIGNAL_LIGHT_INVERTED_2);
 
     public static void registerBlocks() {
-        registerBlock("light_block", LIGHT_BLOCK);
-        registerBlock("helpline_1", HELPLINE_1);
-        registerBlock("helpline_2", HELPLINE_2);
-        registerBlock("helpline_3", HELPLINE_3);
-        registerBlock("train_model_e44", MODEL_E44);
-        registerBlock("water_machine_1", WATER_MACHINE_1);
-        registerBlock("subsidy_machine", SUBSIDY_MACHINE);
-        registerBlock("enquiry_machine_1", ENQUIRY_MACHINE_1);
-        registerBlock("light_1", LIGHT_1);
-        registerBlock("light_2", LIGHT_2);
-        registerBlock("emg_stop_1", EMG_STOP_1);
-        registerBlock("station_name_tall_stand", STATION_NAME_TALL_STAND);
-        registerBlock("ceiling_1", CEILING_1);
-        registerBlock("signal_light_red_1", SIGNAL_LIGHT_RED_1);
-        registerBlock("signal_light_red_2", SIGNAL_LIGHT_RED_2);
-        registerBlock("signal_light_blue", SIGNAL_LIGHT_BLUE);
-        registerBlock("signal_light_green", SIGNAL_LIGHT_GREEN);
-        registerBlock("signal_light_inverted_1", SIGNAL_LIGHT_INVERTED_1);
-        registerBlock("signal_light_inverted_2", SIGNAL_LIGHT_INVERTED_2);
         registerBlock("circle_wall_1", CIRCLE_WALL_1);
         registerBlock("circle_wall_2", CIRCLE_WALL_2);
         registerBlock("circle_wall_3", CIRCLE_WALL_3);
@@ -77,6 +59,26 @@ public class Blocks {
         registerBlock("circle_wall_5", CIRCLE_WALL_5);
         registerBlock("circle_wall_6", CIRCLE_WALL_6);
         registerBlock("circle_wall_7", CIRCLE_WALL_7);
+        registerBlock("ceiling_1", CEILING_1);
+        registerBlock("emg_stop_1", EMG_STOP_1);
+        registerBlock("enquiry_machine_1", ENQUIRY_MACHINE_1);
+        registerBlock("helpline_1", HELPLINE_1);
+        registerBlock("helpline_2", HELPLINE_2);
+        registerBlock("helpline_3", HELPLINE_3);
+        registerBlock("light_1", LIGHT_1);
+        registerBlock("light_2", LIGHT_2);
+        registerBlock("light_block", LIGHT_BLOCK);
+        registerBlock("signal_light_red_1", SIGNAL_LIGHT_RED_1);
+        registerBlock("signal_light_red_2", SIGNAL_LIGHT_RED_2);
+        registerBlock("signal_light_blue", SIGNAL_LIGHT_BLUE);
+        registerBlock("signal_light_green", SIGNAL_LIGHT_GREEN);
+        registerBlock("signal_light_inverted_1", SIGNAL_LIGHT_INVERTED_1);
+        registerBlock("signal_light_inverted_2", SIGNAL_LIGHT_INVERTED_2);
+        registerBlock("station_name_tall_stand", STATION_NAME_TALL_STAND);
+        registerBlock("subsidy_machine", SUBSIDY_MACHINE);
+        registerBlock("train_model_e44", MODEL_E44);
+        registerBlock("trespass_sign_1", TRESPASS_SIGN_1);
+        registerBlock("water_machine_1", WATER_MACHINE_1);
     }
 
     private static <T extends BlockEntity> BlockEntityType<T> registerTileEntity(String path, Supplier<T> supplier, Block block) {
