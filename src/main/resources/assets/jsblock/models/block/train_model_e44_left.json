@@ -1,5 +1,5 @@
 {
-	"credit": "Made with Blockbench",
+	"credit": "CoJ 2021",
 	"texture_size": [48, 48],
 	"textures": {
 		"0": "jsblock:block/model_e44",
@@ -8,11 +8,11 @@
 	"elements": [
 		{
 			"from": [0, 0, 3],
-			"to": [32, 9, 12],
+			"to": [16, 9, 12],
 			"faces": {
-				"north": {"uv": [0, 3.02083, 10.66667, 6.02083], "texture": "#0"},
+				"north": {"uv": [0, 3.02083, 5.33333, 6.02083], "texture": "#0"},
 				"east": {"uv": [10.66667, 0, 13.66667, 3], "texture": "#0"},
-				"south": {"uv": [0, 0, 10.66667, 3], "texture": "#0"},
+				"south": {"uv": [5.33333, 0, 10.66667, 3], "texture": "#0"},
 				"west": {"uv": [10.66667, 3, 13.66667, 6], "texture": "#0"},
 				"up": {"uv": [10.66667, 9, 0, 6], "texture": "#0"},
 				"down": {"uv": [10.66667, 9, 0, 12], "texture": "#0"}
