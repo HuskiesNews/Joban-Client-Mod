@@ -3,8 +3,8 @@
   "id": "jsblock",
   "version": "${version}",
 
-  "name": "Joestu Blocks Mod",
-  "description": "Add poles, static signal light and more decoration blocks. Used in conjunction with the Joestu Pack",
+  "name": "Joestu Client Mod",
+  "description": "Add static signal light and more decoration blocks. Used in conjunction with the Joestu Pack",
   "authors": [
     "LX86",
     "StrikeSNC",
