@@ -39,7 +39,7 @@ public class Blocks {
     public static final Block LIGHT_BLOCK = new LightBlock(FabricBlockSettings.of(Material.METAL).hardness(4.0f).luminance(15).nonOpaque());
     public static final Block MODEL_E44 = new ModelE44(FabricBlockSettings.of(Material.METAL).hardness(1.0f).nonOpaque());
     public static final Block STATION_NAME_TALL_STAND = new StationNameTallStand();
-    public static final Block SUBSIDY_MACHINE = new SubsidyMachine(FabricBlockSettings.of(Material.METAL).hardness(4.0f));
+    public static final Block SUBSIDY_MACHINE_1 = new SubsidyMachine1(FabricBlockSettings.of(Material.METAL).hardness(4.0f));
     public static final Block TRESPASS_SIGN_1 = new TrespassSign1(FabricBlockSettings.of(Material.METAL).hardness(2.0f).nonOpaque());
     public static final Block TRESPASS_SIGN_2 = new TrespassSign2(FabricBlockSettings.of(Material.METAL).hardness(1.0f).nonOpaque());
     public static final Block WATER_MACHINE_1 = new WaterMachine1(FabricBlockSettings.of(Material.METAL).hardness(4.0f));
@@ -76,7 +76,7 @@ public class Blocks {
         registerBlock("signal_light_inverted_1", SIGNAL_LIGHT_INVERTED_1);
         registerBlock("signal_light_inverted_2", SIGNAL_LIGHT_INVERTED_2);
         registerBlock("station_name_tall_stand", STATION_NAME_TALL_STAND);
-        registerBlock("subsidy_machine", SUBSIDY_MACHINE);
+        registerBlock("subsidy_machine_1", SUBSIDY_MACHINE_1);
         registerBlock("train_model_e44", MODEL_E44);
         registerBlock("trespass_sign_1", TRESPASS_SIGN_1);
         registerBlock("trespass_sign_2", TRESPASS_SIGN_2);

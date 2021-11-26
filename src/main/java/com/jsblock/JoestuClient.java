@@ -21,7 +21,7 @@ public class JoestuClient implements ClientModInitializer {
         BlockRenderLayerMap.INSTANCE.putBlock(Blocks.HELPLINE_3, RenderLayer.getCutout());
         BlockRenderLayerMap.INSTANCE.putBlock(Blocks.LIGHT_2, RenderLayer.getCutout());
         BlockRenderLayerMap.INSTANCE.putBlock(Blocks.STATION_NAME_TALL_STAND, RenderLayer.getCutout());
-        BlockRenderLayerMap.INSTANCE.putBlock(Blocks.SUBSIDY_MACHINE, RenderLayer.getCutout());
+        BlockRenderLayerMap.INSTANCE.putBlock(Blocks.SUBSIDY_MACHINE_1, RenderLayer.getCutout());
         BlockRenderLayerMap.INSTANCE.putBlock(Blocks.TRESPASS_SIGN_1, RenderLayer.getCutout());
         BlockRenderLayerMap.INSTANCE.putBlock(Blocks.WATER_MACHINE_1, RenderLayer.getCutout());
         BlockEntityRendererRegistry.INSTANCE.register(Blocks.SIGNAL_LIGHT_RED_ENTITY_1, dispatcher -> new RenderConstantSignalLight<>(dispatcher, true, 0xFFFF0000, false));

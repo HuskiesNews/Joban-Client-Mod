@@ -3,8 +3,8 @@
 	"ambientocclusion": false,
 	"texture_size": [32, 32],
 	"textures": {
-		"0": "jsblock:block/subsidy_machine",
-		"particle": "jsblock:block/subsidy_machine"
+		"0": "jsblock:block/subsidy_machine_1",
+		"particle": "jsblock:block/subsidy_machine_1"
 	},
 	"elements": [
 		{

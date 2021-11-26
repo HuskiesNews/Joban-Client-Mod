@@ -18,9 +18,9 @@ import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 
-public class SubsidyMachine extends HorizontalFacingBlock {
+public class SubsidyMachine1 extends HorizontalFacingBlock {
     public final int SUBSIDY_PRICE = 10;
-    public SubsidyMachine(Settings settings) {
+    public SubsidyMachine1(Settings settings) {
         super(settings);
     }
 
