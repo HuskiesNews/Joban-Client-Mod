@@ -41,6 +41,7 @@ public class Blocks {
     public static final Block STATION_NAME_TALL_STAND = new StationNameTallStand();
     public static final Block SUBSIDY_MACHINE = new SubsidyMachine(FabricBlockSettings.of(Material.METAL).hardness(4.0f));
     public static final Block TRESPASS_SIGN_1 = new TrespassSign1(FabricBlockSettings.of(Material.METAL).hardness(2.0f).nonOpaque());
+    public static final Block TRESPASS_SIGN_2 = new TrespassSign2(FabricBlockSettings.of(Material.METAL).hardness(1.0f).nonOpaque());
     public static final Block WATER_MACHINE_1 = new WaterMachine1(FabricBlockSettings.of(Material.METAL).hardness(4.0f));
 
     public static final BlockEntityType<StationNameTallStand.TileEntityStationNameTallStand> STATION_NAME_TALL_STAND_TILE_ENTITY = registerTileEntity("station_name_tall_stand", StationNameTallStand.TileEntityStationNameTallStand::new, Blocks.STATION_NAME_TALL_STAND);
@@ -78,6 +79,7 @@ public class Blocks {
         registerBlock("subsidy_machine", SUBSIDY_MACHINE);
         registerBlock("train_model_e44", MODEL_E44);
         registerBlock("trespass_sign_1", TRESPASS_SIGN_1);
+        registerBlock("trespass_sign_2", TRESPASS_SIGN_2);
         registerBlock("water_machine_1", WATER_MACHINE_1);
     }
 
