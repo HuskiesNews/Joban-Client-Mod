@@ -29,12 +29,12 @@ public class DepartureTimer extends HorizontalFacingBlock implements BlockEntity
     @Override
     public VoxelShape getOutlineShape(BlockState state, BlockView view, BlockPos pos, ShapeContext context) {
         final Direction facing = IBlock.getStatePropertySafe(state, FACING);
-        return IBlock.getVoxelShapeByDirection(2.7, 0, 2.95, 13.3, 12, 16, facing);
+        return IBlock.getVoxelShapeByDirection(2.7, 0, 2.95, 13.3, 10.7, 16, facing);
     }
 
     @Override
     public BlockEntity createBlockEntity(BlockView world) {
-        return new TileEntityCountdownClock();
+        return new TileEntityDepartureTimer();
     }
 
     @Override
@@ -42,10 +42,10 @@ public class DepartureTimer extends HorizontalFacingBlock implements BlockEntity
         builder.add(FACING);
     }
 
-    public static class TileEntityCountdownClock extends BlockEntity {
+    public static class TileEntityDepartureTimer extends BlockEntity {
 
-        public TileEntityCountdownClock() {
-            super(Blocks.COUNTDOWN_CLOCK_TILE_ENTITY);
+        public TileEntityDepartureTimer() {
+            super(Blocks.DEPARTURE_TIMER_TILE_ENTITY);
         }
     }
 }

@@ -19,7 +19,7 @@
 		},
 		{
 			"from": [2, 0, 12],
-			"to": [14, 5, 12],
+			"to": [14, 5.1, 12],
 			"shade": false,
 			"rotation": {"angle": 0, "axis": "x", "origin": [13, 0.08242, 2.35968]},
 			"faces": {
