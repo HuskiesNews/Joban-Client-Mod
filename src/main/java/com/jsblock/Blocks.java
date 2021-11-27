@@ -22,6 +22,7 @@ public class Blocks {
     public static final Block CIRCLE_WALL_5 = new CircleWall();
     public static final Block CIRCLE_WALL_6 = new CircleWall();
     public static final Block CIRCLE_WALL_7 = new CircleWall();
+    public static final Block DEPARTURE_TIMER = new DepartureTimer(FabricBlockSettings.of(Material.METAL, MapColor.BLACK).hardness(3.0f));
     public static final Block SIGNAL_LIGHT_RED_1 = new SignalLightRed1(FabricBlockSettings.of(Material.METAL, MapColor.BLACK).hardness(1.0f));
     public static final Block SIGNAL_LIGHT_RED_2 = new SignalLightRed2(FabricBlockSettings.of(Material.METAL, MapColor.BLACK).hardness(1.0f));
     public static final Block SIGNAL_LIGHT_BLUE = new SignalLightBlue(FabricBlockSettings.of(Material.METAL, MapColor.BLACK).hardness(1.0f));
@@ -51,6 +52,7 @@ public class Blocks {
     public static final BlockEntityType<SignalLightGreen.TileEntitySignalLightGreen> SIGNAL_LIGHT_GREEN_ENTITY = registerTileEntity("signal_light_green", SignalLightGreen.TileEntitySignalLightGreen::new, Blocks.SIGNAL_LIGHT_GREEN);
     public static final BlockEntityType<SignalLightInverted1.TileEntitySignalLightInverted> SIGNAL_LIGHT_INVERTED_ENTITY_1 = registerTileEntity("signal_light_inverted_1", SignalLightInverted1.TileEntitySignalLightInverted::new, Blocks.SIGNAL_LIGHT_INVERTED_1);
     public static final BlockEntityType<SignalLightInverted2.TileEntitySignalLightInverted> SIGNAL_LIGHT_INVERTED_ENTITY_2 = registerTileEntity("signal_light_inverted_2", SignalLightInverted2.TileEntitySignalLightInverted::new, Blocks.SIGNAL_LIGHT_INVERTED_2);
+    public static final BlockEntityType<DepartureTimer.TileEntityCountdownClock> COUNTDOWN_CLOCK_TILE_ENTITY = registerTileEntity("countdown_clock", DepartureTimer.TileEntityCountdownClock::new, DEPARTURE_TIMER);
 
     public static void registerBlocks() {
         registerBlock("circle_wall_1", CIRCLE_WALL_1);
@@ -61,6 +63,7 @@ public class Blocks {
         registerBlock("circle_wall_6", CIRCLE_WALL_6);
         registerBlock("circle_wall_7", CIRCLE_WALL_7);
         registerBlock("ceiling_1", CEILING_1);
+        registerBlock("departure_timer", DEPARTURE_TIMER);
         registerBlock("emg_stop_1", EMG_STOP_1);
         registerBlock("enquiry_machine_1", ENQUIRY_MACHINE_1);
         registerBlock("helpline_1", HELPLINE_1);
