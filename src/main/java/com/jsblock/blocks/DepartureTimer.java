@@ -29,7 +29,7 @@ public class DepartureTimer extends HorizontalFacingBlock implements BlockEntity
     @Override
     public VoxelShape getOutlineShape(BlockState state, BlockView view, BlockPos pos, ShapeContext context) {
         final Direction facing = IBlock.getStatePropertySafe(state, FACING);
-            return IBlock.getVoxelShapeByDirection(2, 0, 2.95, 14, 12, 16, facing);
+        return IBlock.getVoxelShapeByDirection(2.7, 0, 2.95, 13.3, 12, 16, facing);
     }
 
     @Override

@@ -1,6 +1,7 @@
 package com.jsblock.render;
 
 import mtr.block.IBlock;
+import mtr.config.Config;
 import mtr.data.IGui;
 import mtr.data.Platform;
 import mtr.data.RailwayData;
@@ -14,6 +15,11 @@ import net.minecraft.client.render.VertexConsumerProvider;
 import net.minecraft.client.render.block.entity.BlockEntityRenderDispatcher;
 import net.minecraft.client.render.block.entity.BlockEntityRenderer;
 import net.minecraft.client.util.math.MatrixStack;
+import net.minecraft.text.LiteralText;
+import net.minecraft.text.OrderedText;
+import net.minecraft.text.Style;
+import net.minecraft.text.Text;
+import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.Vec3f;
@@ -32,6 +38,7 @@ public class RenderDepartureTimer<T extends BlockEntity> extends BlockEntityRend
 
     @Override
     public void render(T entity, float tickDelta, MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light, int overlay) {
+        final Style style = Config.useMTRFont() ? Style.EMPTY.withFont(new Identifier("jsblock", "font")) : Style.EMPTY;
         final WorldAccess world = entity.getWorld();
         final BlockPos pos = entity.getPos();
         if (world == null) {
@@ -84,7 +91,8 @@ public class RenderDepartureTimer<T extends BlockEntity> extends BlockEntityRend
         matrices.multiply(Vec3f.POSITIVE_Y.getDegreesQuaternion(facing.asRotation()));
         matrices.scale(0.021F, 0.021F, 0.021F);
         final TextRenderer textRenderer = MinecraftClient.getInstance().textRenderer;
-        textRenderer.draw(matrices, timeRemaining, 0, 0, 0xFF4444);
+        final Text formattedText = new LiteralText(timeRemaining).fillStyle(style);
+        textRenderer.draw(matrices, formattedText, 0, 0, 0xEE2233);
         matrices.pop();
     }
 }
