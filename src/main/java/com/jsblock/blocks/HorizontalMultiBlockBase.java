@@ -15,6 +15,7 @@ import net.minecraft.world.World;
 import net.minecraft.world.WorldAccess;
 
 public abstract class HorizontalMultiBlockBase extends HorizontalFacingBlock {
+    /* This is a class for blocks that are wider than 1 block. Please extend this from your own block */
     public static final BooleanProperty LEFT = BooleanProperty.of("left");
 
     public HorizontalMultiBlockBase(Settings settings) {

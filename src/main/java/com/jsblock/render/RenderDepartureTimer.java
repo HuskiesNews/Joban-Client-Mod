@@ -37,7 +37,6 @@ public class RenderDepartureTimer<T extends BlockEntity> extends BlockEntityRend
 
     @Override
     public void render(T entity, float tickDelta, MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light, int overlay) {
-        final Style style = Config.useMTRFont() ? Style.EMPTY.withFont(new Identifier("jsblock", "font")) : Style.EMPTY;
         final WorldAccess world = entity.getWorld();
         final BlockPos pos = entity.getPos();
         if (world == null) {
@@ -61,13 +60,18 @@ public class RenderDepartureTimer<T extends BlockEntity> extends BlockEntityRend
             Collections.sort(scheduleList);
             if(scheduleList.get(0).arrivalMillis - System.currentTimeMillis() > 0) return;
 
+            /* remainingSecond = Train ETA */
             int remainingSecond = (int) (scheduleList.get(0).arrivalMillis - System.currentTimeMillis()) / 1000;
+            /* seconds = dwell - ETA */
             int seconds = Math.abs((platform.getDwellTime() / 2) - Math.abs(remainingSecond));
             int minutes = seconds / 60;
             timeRemaining = String.format("%d:%02d", minutes, seconds % 60);
         }
 
+        /* This defines the font style. If MTR Font is enbled, use the font "jsblock:font". Otherwise don't add any style */
+        final Style style = Config.useMTRFont() ? Style.EMPTY.withFont(new Identifier("jsblock", "font")) : Style.EMPTY;
         final Direction facing = IBlock.getStatePropertySafe(world, pos, HorizontalFacingBlock.FACING);
+
         matrices.push();
         if(facing == Direction.SOUTH) {
             matrices.translate(0.73, 0.52, 0.43);
@@ -88,6 +92,7 @@ public class RenderDepartureTimer<T extends BlockEntity> extends BlockEntityRend
         matrices.multiply(Vec3f.POSITIVE_Z.getDegreesQuaternion(180));
         matrices.multiply(Vec3f.POSITIVE_Y.getDegreesQuaternion(facing.asRotation()));
         matrices.scale(0.021F, 0.021F, 0.021F);
+
         final TextRenderer textRenderer = MinecraftClient.getInstance().textRenderer;
         final Text formattedText = new LiteralText(timeRemaining).fillStyle(style);
         textRenderer.draw(matrices, formattedText, 0, 0, 0xEE2233);

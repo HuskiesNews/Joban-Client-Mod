@@ -21,11 +21,11 @@ import org.jetbrains.annotations.Nullable;
 import java.util.*;
 
 
-public class ButterFlyLight extends HorizontalFacingBlock implements BlockEntityProvider {
+public class ButterflyLight extends HorizontalFacingBlock implements BlockEntityProvider {
 
     public static final BooleanProperty LIT = BooleanProperty.of("lit");
 
-    public ButterFlyLight(Settings settings) {
+    public ButterflyLight(Settings settings) {
         super(settings);
     }
 
@@ -100,6 +100,7 @@ public class ButterFlyLight extends HorizontalFacingBlock implements BlockEntity
                     if(seconds > 10) return;
                     /* This gets the time of the day, expressed in ticks */
                     /* The following setBlockState code will be ran every 16 ticks or 0.8 second */
+                    /* Does not work when doDaylightCycle is false */
                     if(world.getTimeOfDay() % 16 == 0) {
                         /* This cycles through the block state of the "lit" property, which has true and false (as it's a boolean), creating a blinking effect */
                         world.setBlockState(pos, state.cycle(LIT));

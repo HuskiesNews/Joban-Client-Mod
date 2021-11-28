@@ -31,14 +31,19 @@ public class WaterMachine1 extends mtr.block.BlockDirectionalDoubleBlockBase {
 
     @Override
     public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
+        /* Loop through player's hand, as on 1.9+ player can use both the left hand and the right hand */
         for(ItemStack itm : player.getItemsHand()) {
             if(itm.getItem().asItem().equals(Items.GLASS_BOTTLE)) {
                 ItemStack playerHolding = player.getStackInHand(hand);
                 ItemStack waterBottle = PotionUtil.setPotion(new ItemStack(Items.POTION), Potions.WATER);
+                /* Remove 1 water bottle from player */
                 playerHolding.decrement(1);
+
+                /* If player is not holding anything, give the water bottle directly to their hand */
                 if(playerHolding.isEmpty()) {
                     player.setStackInHand(hand, waterBottle);
                 } else {
+                    /* Otherwise, just give them the water bottle and let Minecraft sorts it out */
                     player.giveItemStack(waterBottle);
                 }
                 return ActionResult.SUCCESS;

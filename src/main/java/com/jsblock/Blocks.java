@@ -15,7 +15,7 @@ import net.minecraft.util.registry.Registry;
 import java.util.function.Supplier;
 
 public class Blocks {
-    public static final Block BUTTERFLY_LIGHT = new ButterFlyLight(FabricBlockSettings.of(Material.METAL, MapColor.BLACK).hardness(3.0f).luminance(4));
+    public static final Block BUTTERFLY_LIGHT = new ButterflyLight(FabricBlockSettings.of(Material.METAL, MapColor.BLACK).hardness(3.0f).luminance(4));
     public static final Block CIRCLE_WALL_1 = new CircleWall();
     public static final Block CIRCLE_WALL_2 = new CircleWall();
     public static final Block CIRCLE_WALL_3 = new CircleWall();
@@ -47,7 +47,7 @@ public class Blocks {
     public static final Block TRESPASS_SIGN_2 = new TrespassSign2(FabricBlockSettings.of(Material.METAL).hardness(1.0f).nonOpaque());
     public static final Block WATER_MACHINE_1 = new WaterMachine1(FabricBlockSettings.of(Material.METAL).hardness(4.0f));
 
-    public static final BlockEntityType<ButterFlyLight.TileEntityButterFlyLight> BUTTERFLY_LIGHT_TILE_ENTITY = registerTileEntity("butterfly_light", ButterFlyLight.TileEntityButterFlyLight::new, BUTTERFLY_LIGHT);
+    public static final BlockEntityType<ButterflyLight.TileEntityButterFlyLight> BUTTERFLY_LIGHT_TILE_ENTITY = registerTileEntity("butterfly_light", ButterflyLight.TileEntityButterFlyLight::new, BUTTERFLY_LIGHT);
     public static final BlockEntityType<DepartureTimer.TileEntityDepartureTimer> DEPARTURE_TIMER_TILE_ENTITY = registerTileEntity("departure_timer", DepartureTimer.TileEntityDepartureTimer::new, DEPARTURE_TIMER);
     public static final BlockEntityType<StationNameTallStand.TileEntityStationNameTallStand> STATION_NAME_TALL_STAND_TILE_ENTITY = registerTileEntity("station_name_tall_stand", StationNameTallStand.TileEntityStationNameTallStand::new, Blocks.STATION_NAME_TALL_STAND);
     public static final BlockEntityType<SignalLightRed1.TileEntitySignalLightRed> SIGNAL_LIGHT_RED_ENTITY_1 = registerTileEntity("signal_light_red_1", SignalLightRed1.TileEntitySignalLightRed::new, Blocks.SIGNAL_LIGHT_RED_1);
