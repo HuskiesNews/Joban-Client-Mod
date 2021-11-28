@@ -22,9 +22,9 @@ public class TrespassSign2 extends HorizontalMultiBlockBase {
     public VoxelShape getOutlineShape(BlockState state, BlockView view, BlockPos pos, ShapeContext context) {
         final Direction facing = IBlock.getStatePropertySafe(state, FACING);
         if(IBlock.getStatePropertySafe(state, LEFT)) {
-            return IBlock.getVoxelShapeByDirection(0, 0, 15.9, 12, 12, 16, facing);
+            return IBlock.getVoxelShapeByDirection(0, 2, 15.9, 12, 14, 16, facing);
         } else {
-            return IBlock.getVoxelShapeByDirection(4, 0, 15.9, 16, 12, 16, facing);
+            return IBlock.getVoxelShapeByDirection(4, 2, 15.9, 16, 14, 16, facing);
         }
     }
 
