@@ -15,6 +15,7 @@ import net.minecraft.util.registry.Registry;
 import java.util.function.Supplier;
 
 public class Blocks {
+    public static final Block BUTTERFLY_LIGHT = new ButterFlyLight(FabricBlockSettings.of(Material.METAL, MapColor.BLACK).hardness(3.0f).luminance(4));
     public static final Block CIRCLE_WALL_1 = new CircleWall();
     public static final Block CIRCLE_WALL_2 = new CircleWall();
     public static final Block CIRCLE_WALL_3 = new CircleWall();
@@ -22,7 +23,6 @@ public class Blocks {
     public static final Block CIRCLE_WALL_5 = new CircleWall();
     public static final Block CIRCLE_WALL_6 = new CircleWall();
     public static final Block CIRCLE_WALL_7 = new CircleWall();
-    public static final Block BUTTERFLY_LIGHT = new ButterFlyLight(FabricBlockSettings.of(Material.METAL, MapColor.BLACK).hardness(3.0f).luminance(6));
     public static final Block DEPARTURE_TIMER = new DepartureTimer(FabricBlockSettings.of(Material.METAL, MapColor.BLACK).hardness(3.0f));
     public static final Block SIGNAL_LIGHT_RED_1 = new SignalLightRed1(FabricBlockSettings.of(Material.METAL, MapColor.BLACK).hardness(1.0f));
     public static final Block SIGNAL_LIGHT_RED_2 = new SignalLightRed2(FabricBlockSettings.of(Material.METAL, MapColor.BLACK).hardness(1.0f));
@@ -46,6 +46,8 @@ public class Blocks {
     public static final Block TRESPASS_SIGN_2 = new TrespassSign2(FabricBlockSettings.of(Material.METAL).hardness(1.0f).nonOpaque());
     public static final Block WATER_MACHINE_1 = new WaterMachine1(FabricBlockSettings.of(Material.METAL).hardness(4.0f));
 
+    public static final BlockEntityType<ButterFlyLight.TileEntityButterFlyLight> BUTTERFLY_LIGHT_TILE_ENTITY = registerTileEntity("butterfly_light", ButterFlyLight.TileEntityButterFlyLight::new, BUTTERFLY_LIGHT);
+    public static final BlockEntityType<DepartureTimer.TileEntityDepartureTimer> DEPARTURE_TIMER_TILE_ENTITY = registerTileEntity("departure_timer", DepartureTimer.TileEntityDepartureTimer::new, DEPARTURE_TIMER);
     public static final BlockEntityType<StationNameTallStand.TileEntityStationNameTallStand> STATION_NAME_TALL_STAND_TILE_ENTITY = registerTileEntity("station_name_tall_stand", StationNameTallStand.TileEntityStationNameTallStand::new, Blocks.STATION_NAME_TALL_STAND);
     public static final BlockEntityType<SignalLightRed1.TileEntitySignalLightRed> SIGNAL_LIGHT_RED_ENTITY_1 = registerTileEntity("signal_light_red_1", SignalLightRed1.TileEntitySignalLightRed::new, Blocks.SIGNAL_LIGHT_RED_1);
     public static final BlockEntityType<SignalLightRed2.TileEntitySignalLightRed2> SIGNAL_LIGHT_RED_ENTITY_2 = registerTileEntity("signal_light_red_2", SignalLightRed2.TileEntitySignalLightRed2::new, Blocks.SIGNAL_LIGHT_RED_2);
@@ -53,12 +55,10 @@ public class Blocks {
     public static final BlockEntityType<SignalLightGreen.TileEntitySignalLightGreen> SIGNAL_LIGHT_GREEN_ENTITY = registerTileEntity("signal_light_green", SignalLightGreen.TileEntitySignalLightGreen::new, Blocks.SIGNAL_LIGHT_GREEN);
     public static final BlockEntityType<SignalLightInverted1.TileEntitySignalLightInverted> SIGNAL_LIGHT_INVERTED_ENTITY_1 = registerTileEntity("signal_light_inverted_1", SignalLightInverted1.TileEntitySignalLightInverted::new, Blocks.SIGNAL_LIGHT_INVERTED_1);
     public static final BlockEntityType<SignalLightInverted2.TileEntitySignalLightInverted> SIGNAL_LIGHT_INVERTED_ENTITY_2 = registerTileEntity("signal_light_inverted_2", SignalLightInverted2.TileEntitySignalLightInverted::new, Blocks.SIGNAL_LIGHT_INVERTED_2);
-    public static final BlockEntityType<DepartureTimer.TileEntityDepartureTimer> DEPARTURE_TIMER_TILE_ENTITY = registerTileEntity("departure_timer", DepartureTimer.TileEntityDepartureTimer::new, DEPARTURE_TIMER);
-    public static final BlockEntityType<ButterFlyLight.TileEntityButterFlyLight> BUTTERFLY_LIGHT_TILE_ENTITY = registerTileEntity("butterfly_light", ButterFlyLight.TileEntityButterFlyLight::new, BUTTERFLY_LIGHT);
-
 
     public static void registerBlocks() {
         registerBlock("butterfly_light", BUTTERFLY_LIGHT);
+        registerBlock("ceiling_1", CEILING_1);
         registerBlock("circle_wall_1", CIRCLE_WALL_1);
         registerBlock("circle_wall_2", CIRCLE_WALL_2);
         registerBlock("circle_wall_3", CIRCLE_WALL_3);
@@ -66,7 +66,6 @@ public class Blocks {
         registerBlock("circle_wall_5", CIRCLE_WALL_5);
         registerBlock("circle_wall_6", CIRCLE_WALL_6);
         registerBlock("circle_wall_7", CIRCLE_WALL_7);
-        registerBlock("ceiling_1", CEILING_1);
         registerBlock("departure_timer", DEPARTURE_TIMER);
         registerBlock("emg_stop_1", EMG_STOP_1);
         registerBlock("enquiry_machine_1", ENQUIRY_MACHINE_1);
@@ -76,13 +75,13 @@ public class Blocks {
         registerBlock("light_1", LIGHT_1);
         registerBlock("light_2", LIGHT_2);
         registerBlock("light_block", LIGHT_BLOCK);
+        registerBlock("station_name_tall_stand", STATION_NAME_TALL_STAND);
         registerBlock("signal_light_red_1", SIGNAL_LIGHT_RED_1);
         registerBlock("signal_light_red_2", SIGNAL_LIGHT_RED_2);
-        registerBlock("signal_light_blue", SIGNAL_LIGHT_BLUE);
         registerBlock("signal_light_green", SIGNAL_LIGHT_GREEN);
+        registerBlock("signal_light_blue", SIGNAL_LIGHT_BLUE);
         registerBlock("signal_light_inverted_1", SIGNAL_LIGHT_INVERTED_1);
         registerBlock("signal_light_inverted_2", SIGNAL_LIGHT_INVERTED_2);
-        registerBlock("station_name_tall_stand", STATION_NAME_TALL_STAND);
         registerBlock("subsidy_machine_1", SUBSIDY_MACHINE_1);
         registerBlock("train_model_e44", MODEL_E44);
         registerBlock("trespass_sign_1", TRESPASS_SIGN_1);

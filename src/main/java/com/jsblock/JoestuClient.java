@@ -15,6 +15,7 @@ public class JoestuClient implements ClientModInitializer {
 
     @Override
     public void onInitializeClient() {
+        /* Allow transparent texture for the block*/
         BlockRenderLayerMap.INSTANCE.putBlock(Blocks.DEPARTURE_TIMER, RenderLayer.getCutout());
         BlockRenderLayerMap.INSTANCE.putBlock(Blocks.CEILING_1, RenderLayer.getCutout());
         BlockRenderLayerMap.INSTANCE.putBlock(Blocks.ENQUIRY_MACHINE_1, RenderLayer.getCutout());
@@ -27,6 +28,7 @@ public class JoestuClient implements ClientModInitializer {
         BlockRenderLayerMap.INSTANCE.putBlock(Blocks.TRESPASS_SIGN_1, RenderLayer.getCutout());
         BlockRenderLayerMap.INSTANCE.putBlock(Blocks.WATER_MACHINE_1, RenderLayer.getCutout());
 
+        /* Register entity that requires to be rendered, and pointing to the corresponding method */
         BlockEntityRendererRegistry.INSTANCE.register(Blocks.DEPARTURE_TIMER_TILE_ENTITY, RenderDepartureTimer::new);
         BlockEntityRendererRegistry.INSTANCE.register(Blocks.SIGNAL_LIGHT_RED_ENTITY_1, dispatcher -> new RenderConstantSignalLight<>(dispatcher, true, 0xFFFF0000, false));
         BlockEntityRendererRegistry.INSTANCE.register(Blocks.SIGNAL_LIGHT_RED_ENTITY_2, dispatcher -> new RenderConstantSignalLight<>(dispatcher, true, 0xFFFF0000, true));
@@ -38,8 +40,8 @@ public class JoestuClient implements ClientModInitializer {
         registerStationColor(Blocks.STATION_NAME_TALL_STAND);
     }
 
+    /* Method copied from MTR Mod as it's private */
     private static void registerStationColor(Block block) {
-        /* Copied from MTR Mod as the method is private */
         ColorProviderRegistry.BLOCK.register((state, world, pos, tintIndex) -> {
             final int defaultColor = 0x7F7F7F;
             if (pos != null) {
