@@ -5,7 +5,6 @@ import mtr.block.IBlock;
 import mtr.data.Platform;
 import mtr.data.RailwayData;
 import mtr.data.Route;
-import mtr.gui.ClientData;
 import net.minecraft.block.*;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.item.ItemPlacementContext;
@@ -99,7 +98,6 @@ public class ButterFlyLight extends HorizontalFacingBlock implements BlockEntity
                     int seconds = (platform.getDwellTime() / 2) - Math.abs(remainingSecond);
                     /* If the departure time is still more than 10 seconds, return and don't blink the light */
                     if(seconds > 10) return;
-                    System.out.println(world.getLunarTime());
                     /* This gets the time of the day, expressed in ticks */
                     /* The following setBlockState code will be ran every 16 ticks or 0.8 second */
                     if(world.getTimeOfDay() % 16 == 0) {
