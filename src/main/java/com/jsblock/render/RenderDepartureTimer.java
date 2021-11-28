@@ -16,7 +16,6 @@ import net.minecraft.client.render.block.entity.BlockEntityRenderDispatcher;
 import net.minecraft.client.render.block.entity.BlockEntityRenderer;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.text.LiteralText;
-import net.minecraft.text.OrderedText;
 import net.minecraft.text.Style;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
@@ -65,8 +64,7 @@ public class RenderDepartureTimer<T extends BlockEntity> extends BlockEntityRend
             int remainingSecond = (int) (scheduleList.get(0).arrivalMillis - System.currentTimeMillis()) / 1000;
             int seconds = Math.abs((platform.getDwellTime() / 2) - Math.abs(remainingSecond));
             int minutes = seconds / 60;
-
-            timeRemaining = String.format("%d:%02d", minutes, seconds);
+            timeRemaining = String.format("%d:%02d", minutes, seconds % 60);
         }
 
         final Direction facing = IBlock.getStatePropertySafe(world, pos, HorizontalFacingBlock.FACING);
