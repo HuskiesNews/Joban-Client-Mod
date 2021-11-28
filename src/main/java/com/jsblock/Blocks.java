@@ -23,6 +23,7 @@ public class Blocks {
     public static final Block CIRCLE_WALL_5 = new CircleWall();
     public static final Block CIRCLE_WALL_6 = new CircleWall();
     public static final Block CIRCLE_WALL_7 = new CircleWall();
+    public static final Block DEPARTURE_POLE = new DeparturePole(FabricBlockSettings.of(Material.METAL, MapColor.BLACK).hardness(3.0f).nonOpaque());
     public static final Block DEPARTURE_TIMER = new DepartureTimer(FabricBlockSettings.of(Material.METAL, MapColor.BLACK).hardness(3.0f));
     public static final Block SIGNAL_LIGHT_RED_1 = new SignalLightRed1(FabricBlockSettings.of(Material.METAL, MapColor.BLACK).hardness(1.0f));
     public static final Block SIGNAL_LIGHT_RED_2 = new SignalLightRed2(FabricBlockSettings.of(Material.METAL, MapColor.BLACK).hardness(1.0f));
@@ -66,6 +67,7 @@ public class Blocks {
         registerBlock("circle_wall_5", CIRCLE_WALL_5);
         registerBlock("circle_wall_6", CIRCLE_WALL_6);
         registerBlock("circle_wall_7", CIRCLE_WALL_7);
+        registerBlock("departure_pole", DEPARTURE_POLE);
         registerBlock("departure_timer", DEPARTURE_TIMER);
         registerBlock("emg_stop_1", EMG_STOP_1);
         registerBlock("enquiry_machine_1", ENQUIRY_MACHINE_1);

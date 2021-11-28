@@ -42,7 +42,7 @@ public class ButterFlyLight extends HorizontalFacingBlock implements BlockEntity
     @Override
     public VoxelShape getOutlineShape(BlockState state, BlockView view, BlockPos pos, ShapeContext context) {
         final Direction facing = IBlock.getStatePropertySafe(state, FACING);
-        return IBlock.getVoxelShapeByDirection(2, 0, 5.95, 14, 5.8, 16, facing);
+        return IBlock.getVoxelShapeByDirection(2, 0, 0, 14, 5.8, 10, facing);
     }
 
     @Override

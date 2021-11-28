@@ -70,19 +70,19 @@ public class RenderDepartureTimer<T extends BlockEntity> extends BlockEntityRend
         final Direction facing = IBlock.getStatePropertySafe(world, pos, HorizontalFacingBlock.FACING);
         matrices.push();
         if(facing == Direction.SOUTH) {
-            matrices.translate(0.73, 0.52, 0.24);
+            matrices.translate(0.73, 0.52, 0.43);
         }
 
         if(facing == Direction.NORTH) {
-            matrices.translate(0.28, 0.52, 0.76);
+            matrices.translate(0.28, 0.52, 0.57);
         }
 
         if(facing == Direction.EAST) {
-            matrices.translate(0.24, 0.52, 0.28);
+            matrices.translate(0.43, 0.52, 0.28);
         }
 
         if(facing == Direction.WEST) {
-            matrices.translate(0.76, 0.52, 0.73);
+            matrices.translate(0.57, 0.52, 0.73);
         }
 
         matrices.multiply(Vec3f.POSITIVE_Z.getDegreesQuaternion(180));
