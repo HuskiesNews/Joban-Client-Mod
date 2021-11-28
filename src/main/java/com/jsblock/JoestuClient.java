@@ -16,7 +16,6 @@ public class JoestuClient implements ClientModInitializer {
     @Override
     public void onInitializeClient() {
         /* Allow transparent texture for the block*/
-        BlockRenderLayerMap.INSTANCE.putBlock(Blocks.DEPARTURE_TIMER, RenderLayer.getCutout());
         BlockRenderLayerMap.INSTANCE.putBlock(Blocks.CEILING_1, RenderLayer.getCutout());
         BlockRenderLayerMap.INSTANCE.putBlock(Blocks.ENQUIRY_MACHINE_1, RenderLayer.getCutout());
         BlockRenderLayerMap.INSTANCE.putBlock(Blocks.HELPLINE_1, RenderLayer.getCutout());

@@ -63,7 +63,7 @@ public class TicketMachineScreen extends Screen implements IGui, IPacket {
         try {
             renderBackground(matrices);
             final Text emeraldsText = new TranslatableText("gui.mtr.emeralds", getEmeraldCount());
-            final Text ATMText = new TranslatableText("gui.jsblock.atm_near_fuka");
+            final Text ATMText = new TranslatableText("gui.jsblock.ticket_machine_atm_loc");
             textRenderer.draw(matrices, balanceText, TEXT_PADDING, TEXT_PADDING, ARGB_WHITE);
             textRenderer.draw(matrices, emeraldsText, width - TEXT_PADDING - textRenderer.getWidth(emeraldsText), TEXT_PADDING, ARGB_WHITE);
             textRenderer.draw(matrices, ATMText, (width / 2) - (textRenderer.getWidth(ATMText) / 2), TEXT_PADDING, ARGB_WHITE);

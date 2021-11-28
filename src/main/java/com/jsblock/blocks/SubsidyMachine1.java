@@ -10,6 +10,7 @@ import net.minecraft.item.ItemPlacementContext;
 import net.minecraft.scoreboard.ScoreboardPlayerScore;
 import net.minecraft.state.StateManager;
 import net.minecraft.text.LiteralText;
+import net.minecraft.text.TranslatableText;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
 import net.minecraft.util.hit.BlockHitResult;
@@ -39,7 +40,7 @@ public class SubsidyMachine1 extends HorizontalFacingBlock {
         mtr.data.TicketSystem.addObjectivesIfMissing(world);
         ScoreboardPlayerScore balanceScore = mtr.data.TicketSystem.getPlayerScore(world, player, mtr.data.TicketSystem.BALANCE_OBJECTIVE);
         balanceScore.setScore(balanceScore.getScore() + SUBSIDY_PRICE);
-        player.sendMessage(new LiteralText("$10 Added to your balance, your balance is now $" + balanceScore.getScore()), true);
+        player.sendMessage(new TranslatableText("gui.jsblock.subsidy", balanceScore.getScore()), true);
         return ActionResult.SUCCESS;
     }
 

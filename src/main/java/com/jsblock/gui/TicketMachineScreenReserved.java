@@ -88,7 +88,7 @@ public class TicketMachineScreenReserved extends Screen implements IGui, IPacket
         try {
             renderBackground(matrices);
             final Text emeraldsText = new TranslatableText("gui.mtr.emeralds", getEmeraldCount());
-            final Text ticketsText = new LiteralText("Purchase tickets");
+            final Text ticketsText = new TranslatableText("gui.jsblock.ticket_machine_tickets");
             textRenderer.draw(matrices, balanceText, TEXT_PADDING, TEXT_PADDING, ARGB_WHITE);
             textRenderer.draw(matrices, emeraldsText, width - TEXT_PADDING - textRenderer.getWidth(emeraldsText), TEXT_PADDING, ARGB_WHITE);
             textRenderer.draw(matrices, ticketsText, width / 2, (BAL_BUTTON_COUNT + 2) * SQUARE_SIZE, ARGB_WHITE);
