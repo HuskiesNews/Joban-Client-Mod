@@ -68,12 +68,17 @@ public class ButterFlyLight extends HorizontalFacingBlock implements BlockEntity
             if(world != null && !world.isClient()) {
                 final BlockState state = world.getBlockState(pos);
 
-                final Platform platform = RailwayData.getClosePlatform(ClientData.PLATFORMS, pos, 5, 3, 3);
+                final RailwayData railwayData = RailwayData.getInstance(world);
+                if (railwayData == null) {
+                    return;
+                }
+
+                final Platform platform = RailwayData.getClosePlatform(railwayData.platforms, pos, 5, 3, 3);
                 if (platform == null) {
                     return;
                 }
 
-                final Set<Route.ScheduleEntry> schedules = ClientData.SCHEDULES_FOR_PLATFORM.get(platform.id);
+                final Set<Route.ScheduleEntry> schedules = railwayData.getSchedulesAtPlatform(platform.id);
                 if (schedules == null) {
                     return;
                 }
@@ -92,10 +97,9 @@ public class ButterFlyLight extends HorizontalFacingBlock implements BlockEntity
 
                     int remainingSecond = (int) (scheduleList.get(0).arrivalMillis - System.currentTimeMillis()) / 1000;
                     int seconds = (platform.getDwellTime() / 2) - Math.abs(remainingSecond);
-
-                    /* If the departure time is still more than 8 seconds, return and don't blink the light */
+                    /* If the departure time is still more than 10 seconds, return and don't blink the light */
                     if(seconds > 10) return;
-
+                    System.out.println(world.getLunarTime());
                     /* This gets the time of the day, expressed in ticks */
                     /* The following setBlockState code will be ran every 16 ticks or 0.8 second */
                     if(world.getTimeOfDay() % 16 == 0) {
