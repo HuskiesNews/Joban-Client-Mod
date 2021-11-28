@@ -29,5 +29,6 @@
   "block.jsblock.train_model_e44":"Train Model (E44)",
   "block.jsblock.trespass_sign_1":"Trespass Signage",
   "block.jsblock.trespass_sign_2":"Trespass Signage (KCR)",
-  "block.jsblock.water_machine_1":"Water Machine"
+  "block.jsblock.water_machine_1":"Water Machine",
+  "gui.jsblock.atm_near_fuka": "You can get emeralds in the ATM near Fuka Entrance."
 }
