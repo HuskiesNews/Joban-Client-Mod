@@ -5,7 +5,7 @@
     "facing=west,left=true": { "model": "jsblock:block/train_model_e44_left", "y": 270 },
     "facing=south,left=true": { "model": "jsblock:block/train_model_e44_left", "y": 180 },
     "facing=north,left=false": { "model": "jsblock:block/train_model_e44_right" },
-    "facing=east,left=false": { "model": "jsblock:block/train_model_e44_right", ",y": 90 },
+    "facing=east,left=false": { "model": "jsblock:block/train_model_e44_right", "y": 90 },
     "facing=west,left=false": { "model": "jsblock:block/train_model_e44_right", "y": 270 },
     "facing=south,left=false": { "model": "jsblock:block/train_model_e44_right", "y": 180 }
   }
