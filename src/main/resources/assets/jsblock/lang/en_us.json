@@ -31,7 +31,7 @@
   "block.jsblock.trespass_sign_1":"Trespass Signage",
   "block.jsblock.trespass_sign_2":"Trespass Signage (KCR)",
   "block.jsblock.water_machine_1":"Water Machine",
-  "gui.jsblock.ticket_machine_atm_loc": "You can get emeralds in the ATM near Fuka Entrance.",
+  "gui.jsblock.ticket_machine_atm_loc": "",
   "gui.jsblock.ticket_machine_tickets": "Purchase tickets",
   "gui.jsblock.subsidy": "$10 added to your balance, your balance is now $%d"
 }
