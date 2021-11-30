@@ -34,6 +34,7 @@ public class Blocks {
     public static final Block CEILING_1 = new Ceiling1(FabricBlockSettings.of(Material.METAL).hardness(2.0f).nonOpaque());
     public static final Block ENQUIRY_MACHINE_1 = new EnquiryMachine1(FabricBlockSettings.of(Material.METAL).hardness(4.0f));
     public static final Block EMG_STOP_1 = new EmgStop1(FabricBlockSettings.of(Material.METAL).hardness(1.0f));
+    public static final Block EXIT_SIGN_1 = new ExitSign1(FabricBlockSettings.of(Material.METAL).hardness(0.5f).luminance(10));
     public static final Block HELPLINE_1 = new HelpLine1(FabricBlockSettings.of(Material.METAL).hardness(2.0f));
     public static final Block HELPLINE_2 = new HelpLine2(FabricBlockSettings.of(Material.METAL).hardness(2.0f));
     public static final Block HELPLINE_3 = new HelpLine3(FabricBlockSettings.of(Material.METAL).hardness(3.0f).nonOpaque());
@@ -71,6 +72,7 @@ public class Blocks {
         registerBlock("departure_timer", DEPARTURE_TIMER);
         registerBlock("emg_stop_1", EMG_STOP_1);
         registerBlock("enquiry_machine_1", ENQUIRY_MACHINE_1);
+        registerBlock("exit_sign_1", EXIT_SIGN_1);
         registerBlock("helpline_1", HELPLINE_1);
         registerBlock("helpline_2", HELPLINE_2);
         registerBlock("helpline_3", HELPLINE_3);
