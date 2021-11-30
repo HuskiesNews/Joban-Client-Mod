@@ -34,10 +34,5 @@
   "block.jsblock.water_machine_1":"饮水机",
   "gui.jsblock.ticket_machine_atm_loc": "",
   "gui.jsblock.ticket_machine_tickets": "购买车票",
-  "gui.jsblock.subsidy": "已把 $10 加入你的余额，你现在的余额是 $%d",
-  "block.jsblock.sign_pole_even": "Sign Pole (Even)",
-  "block.jsblock.sign_pole_odd": "Sign Pole (Odd)",
-  "block.jsblock.subsidy_machine": "Subsidy Machine",
-  "block.jsblock.pids_pole": "PIDS Pole",
-  "block.jsblock.clock_pole": "Clock Pole"
+  "gui.jsblock.subsidy": "已把 $10 加入你的余额，你现在的余额是 $%d"
 }
