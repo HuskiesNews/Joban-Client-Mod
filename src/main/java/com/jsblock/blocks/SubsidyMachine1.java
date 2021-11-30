@@ -35,10 +35,12 @@ public class SubsidyMachine1 extends HorizontalFacingBlock {
 
     @Override
     public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
-        mtr.data.TicketSystem.addObjectivesIfMissing(world);
-        ScoreboardPlayerScore balanceScore = mtr.data.TicketSystem.getPlayerScore(world, player, mtr.data.TicketSystem.BALANCE_OBJECTIVE);
-        balanceScore.setScore(balanceScore.getScore() + SUBSIDY_PRICE);
-        player.sendMessage(new TranslatableText("gui.jsblock.subsidy", balanceScore.getScore()), true);
+        if(!world.isClient()) {
+            mtr.data.TicketSystem.addObjectivesIfMissing(world);
+            ScoreboardPlayerScore balanceScore = mtr.data.TicketSystem.getPlayerScore(world, player, mtr.data.TicketSystem.BALANCE_OBJECTIVE);
+            balanceScore.setScore(balanceScore.getScore() + SUBSIDY_PRICE);
+            player.sendMessage(new TranslatableText("gui.jsblock.subsidy", balanceScore.getScore()), true);
+        }
         return ActionResult.SUCCESS;
     }
 
