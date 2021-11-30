@@ -12,7 +12,6 @@ import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.world.BlockView;
 
 public class TrespassSign2 extends HorizontalMultiBlockBase {
-    public static final BooleanProperty LEFT = BooleanProperty.of("left");
 
     public TrespassSign2(Settings settings) {
         super(settings);
