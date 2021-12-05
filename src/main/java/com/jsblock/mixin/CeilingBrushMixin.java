@@ -1,6 +1,5 @@
 package com.jsblock.mixin;
 
-import mtr.block.BlockCeiling;
 import mtr.block.BlockCeilingAuto;
 import mtr.block.IBlock;
 import net.minecraft.block.Block;
