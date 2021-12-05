@@ -1,6 +1,7 @@
 package com.jsblock.mixin;
 
 import mtr.block.BlockCeiling;
+import mtr.block.BlockCeilingAuto;
 import mtr.block.IBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -14,10 +15,10 @@ import net.minecraft.world.World;
 import net.minecraft.world.WorldAccess;
 import org.spongepowered.asm.mixin.Mixin;
 
-import static mtr.block.BlockCeiling.LIGHT;
+import static mtr.block.BlockCeilingAuto.LIGHT;
 
 /* This mixin disables the "enforced" ceiling light pattern, and allows for manual changes via brush */
-@Mixin(BlockCeiling.class)
+@Mixin(BlockCeilingAuto.class)
 public class CeilingBrushMixin extends Block {
     public CeilingBrushMixin(Settings settings) {
         super(settings);
