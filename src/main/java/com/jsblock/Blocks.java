@@ -1,18 +1,18 @@
 package com.jsblock;
 
 import com.jsblock.blocks.*;
+import mapper.BlockEntityMapper;
+import mapper.Utilities;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.minecraft.block.Block;
 import net.minecraft.block.MapColor;
 import net.minecraft.block.Material;
-import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.item.BlockItem;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
 
-import java.util.function.Supplier;
 
 public class Blocks {
     public static final Block BUTTERFLY_LIGHT = new ButterflyLight(FabricBlockSettings.of(Material.METAL, MapColor.BLACK).hardness(3.0f).luminance(4));
@@ -93,8 +93,8 @@ public class Blocks {
         registerBlock("water_machine_1", WATER_MACHINE_1);
     }
 
-    private static <T extends BlockEntity> BlockEntityType<T> registerTileEntity(String path, Supplier<T> supplier, Block block) {
-        return Registry.register(Registry.BLOCK_ENTITY_TYPE, Joestu.MOD_ID + ":" + path, BlockEntityType.Builder.create(supplier, block).build(null));
+    static <T extends BlockEntityMapper> BlockEntityType<T> registerTileEntity(String path, Utilities.TileEntitySupplier<T> supplier, Block block) {
+        return Registry.register(Registry.BLOCK_ENTITY_TYPE, Joestu.MOD_ID + ":" + path, BlockEntityType.Builder.create(() -> supplier.supplier(null, null), block).build(null));
     }
 
     private static void registerBlock(String path, Block block) {

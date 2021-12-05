@@ -1,6 +1,8 @@
 package com.jsblock.blocks;
 
 import com.jsblock.Blocks;
+import mapper.BlockEntityMapper;
+import mapper.BlockEntityProviderMapper;
 import mtr.block.IBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockEntityProvider;
@@ -15,7 +17,7 @@ import net.minecraft.util.math.Direction;
 import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.world.BlockView;
 
-public class DepartureTimer extends HorizontalFacingBlock implements BlockEntityProvider {
+public class DepartureTimer extends HorizontalFacingBlock implements BlockEntityProviderMapper {
 
     public DepartureTimer(Settings settings) {
         super(settings);
@@ -33,8 +35,8 @@ public class DepartureTimer extends HorizontalFacingBlock implements BlockEntity
     }
 
     @Override
-    public BlockEntity createBlockEntity(BlockView world) {
-        return new TileEntityDepartureTimer();
+    public BlockEntity createBlockEntity(BlockPos pos, BlockState state) {
+        return new TileEntityDepartureTimer(pos, state);
     }
 
     @Override
@@ -42,10 +44,10 @@ public class DepartureTimer extends HorizontalFacingBlock implements BlockEntity
         builder.add(FACING);
     }
 
-    public static class TileEntityDepartureTimer extends BlockEntity {
+    public static class TileEntityDepartureTimer extends BlockEntityMapper {
 
-        public TileEntityDepartureTimer() {
-            super(Blocks.DEPARTURE_TIMER_TILE_ENTITY);
+        public TileEntityDepartureTimer(BlockPos pos, BlockState state) {
+            super(Blocks.DEPARTURE_TIMER_TILE_ENTITY, pos, state);
         }
     }
 }

@@ -28,13 +28,13 @@ public class StationNameTallStand extends mtr.block.BlockStationNameTallBase {
     }
 
     @Override
-    public BlockEntity createBlockEntity(BlockView world) {
-        return new TileEntityStationNameTallStand();
+    public BlockEntity createBlockEntity(BlockPos pos, BlockState state) {
+        return new TileEntityStationNameTallStand(pos, state);
     }
 
     public static class TileEntityStationNameTallStand extends mtr.block.BlockStationNameTallWall.TileEntityStationNameTallBase {
-        public TileEntityStationNameTallStand() {
-            super(Blocks.STATION_NAME_TALL_STAND_TILE_ENTITY, 0.04025F);
+        public TileEntityStationNameTallStand(BlockPos pos, BlockState state) {
+            super(Blocks.STATION_NAME_TALL_STAND_TILE_ENTITY, pos, state, 0.04025F);
         }
     }
 

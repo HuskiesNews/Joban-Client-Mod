@@ -1,6 +1,8 @@
 package com.jsblock.blocks;
 
 import com.jsblock.Blocks;
+import mapper.BlockEntityMapper;
+import mapper.BlockEntityProviderMapper;
 import mtr.block.IBlock;
 import mtr.data.Platform;
 import mtr.data.RailwayData;
@@ -21,7 +23,7 @@ import org.jetbrains.annotations.Nullable;
 import java.util.*;
 
 
-public class ButterflyLight extends HorizontalFacingBlock implements BlockEntityProvider {
+public class ButterflyLight extends HorizontalFacingBlock implements BlockEntityProviderMapper {
 
     public static final BooleanProperty LIT = BooleanProperty.of("lit");
 
@@ -52,14 +54,14 @@ public class ButterflyLight extends HorizontalFacingBlock implements BlockEntity
 
     @Nullable
     @Override
-    public BlockEntity createBlockEntity(BlockView world) {
-        return new TileEntityButterFlyLight();
+    public BlockEntity createBlockEntity(BlockPos pos, BlockState state) {
+        return new TileEntityButterFlyLight(pos, state);
     }
 
-    public static class TileEntityButterFlyLight extends BlockEntity implements Tickable {
+    public static class TileEntityButterFlyLight extends BlockEntityMapper implements Tickable {
 
-        public TileEntityButterFlyLight() {
-            super(Blocks.BUTTERFLY_LIGHT_TILE_ENTITY);
+        public TileEntityButterFlyLight(BlockPos pos, BlockState state) {
+            super(Blocks.BUTTERFLY_LIGHT_TILE_ENTITY, pos, state);
         }
 
         @Override

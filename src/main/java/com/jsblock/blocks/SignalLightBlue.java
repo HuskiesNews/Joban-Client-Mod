@@ -1,8 +1,10 @@
 package com.jsblock.blocks;
 
 import com.jsblock.Blocks;
+import mapper.BlockEntityMapper;
+import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
-import net.minecraft.world.BlockView;
+import net.minecraft.util.math.BlockPos;
 
 public class SignalLightBlue extends mtr.block.BlockSignalLightBase {
 
@@ -11,14 +13,14 @@ public class SignalLightBlue extends mtr.block.BlockSignalLightBase {
     }
 
     @Override
-    public BlockEntity createBlockEntity(BlockView world) {
-        return new TileEntitySignalLightBlue();
+    public BlockEntity createBlockEntity(BlockPos pos, BlockState state) {
+        return new TileEntitySignalLightBlue(pos, state);
     }
 
-    public static class TileEntitySignalLightBlue extends BlockEntity {
+    public static class TileEntitySignalLightBlue extends BlockEntityMapper {
 
-        public TileEntitySignalLightBlue() {
-            super(Blocks.SIGNAL_LIGHT_BLUE_ENTITY);
+        public TileEntitySignalLightBlue(BlockPos pos, BlockState state) {
+            super(Blocks.SIGNAL_LIGHT_BLUE_ENTITY, pos, state);
         }
     }
 }
