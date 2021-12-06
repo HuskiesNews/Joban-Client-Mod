@@ -64,13 +64,13 @@ public class TicketMachineScreenReserved extends Screen implements IGui, IPacket
             IDrawing.setPositionAndWidth(ticketButtons[i], width - BUTTON_WIDTH, (SQUARE_SIZE * (i + 1)) + (SQUARE_SIZE * BAL_BUTTON_COUNT) + (SQUARE_SIZE * SEPARATOR_MARGIN), BUTTON_WIDTH - TEXT_FIELD_PADDING);
         }
 
-        for (final ButtonWidget button : buttons) {
-            addDrawableChild(button);
-        }
-
-        for (final ButtonWidget button : ticketButtons) {
-            addDrawableChild(button);
-        }
+//        for (final ButtonWidget button : buttons) {
+//            addDrawableChild(button);
+//        }
+//
+//        for (final ButtonWidget button : ticketButtons) {
+//            addDrawableChild(button);
+//        }
     }
 
     @Override
