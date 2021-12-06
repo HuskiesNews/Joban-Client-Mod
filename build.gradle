@@ -1,14 +1,26 @@
 plugins {
-	id 'fabric-loom' version '0.7-SNAPSHOT'
+	id 'fabric-loom' version '0.10-SNAPSHOT'
 	id 'maven-publish'
 }
 
-sourceCompatibility = JavaVersion.VERSION_1_8
-targetCompatibility = JavaVersion.VERSION_1_8
+def default_minecraft_version = "1.18"
+def minecraft_version = project.properties.containsKey("buildVersion") ? project.getProperties().get("buildVersion") : default_minecraft_version
+def is_1_16 = (minecraft_version as String).startsWith("1.16")
+def is_1_17 = (minecraft_version as String).startsWith("1.17")
 
-archivesBaseName = project.archives_base_name
-version = project.mod_version
-group = project.maven_group
+if (is_1_16) {
+	sourceCompatibility = JavaVersion.VERSION_1_8
+	targetCompatibility = JavaVersion.VERSION_1_8
+} else if (is_1_17) {
+	sourceCompatibility = JavaVersion.VERSION_16
+	targetCompatibility = JavaVersion.VERSION_16
+} else {
+	sourceCompatibility = JavaVersion.VERSION_17
+	targetCompatibility = JavaVersion.VERSION_17
+}
+
+version = (minecraft_version as String) + "-" + (project.mod_version as String)
+group = project.maven_group as String
 
 repositories {
 	// Add repositories to retrieve artifacts from in here.
@@ -20,20 +32,17 @@ repositories {
 
 dependencies {
 	// To change the versions see the gradle.properties file
-	minecraft "com.mojang:minecraft:${project.minecraft_version}"
-	mappings "net.fabricmc:yarn:${project.yarn_mappings}:v2"
-	modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
+	minecraft "com.mojang:minecraft:${minecraft_version}"
+	mappings "net.fabricmc:yarn:${is_1_16 ? project.yarn_mappings_1_16 : is_1_17 ? project.yarn_mappings_1_17 : project.yarn_mappings_1_18}:v2"
+	modImplementation "net.fabricmc:fabric-loader:${is_1_16 ? project.loader_version_1_16 : is_1_17 ? project.loader_version_1_17 : project.loader_version_1_18}"
 	modImplementation 'com.github.jonafanho:Minecraft-Transit-Railway:beta-8-SNAPSHOT'
-	modImplementation "com.terraformersmc:modmenu:${project.mod_menu_version}"
-	modImplementation "com.github.BlueMap-Minecraft:BlueMapAPI:${project.blue_map_version}"
-	modImplementation "de.guntram.mcmod:crowdin-translate:${project.crowdin_translate_version}"
-	include "de.guntram.mcmod:crowdin-translate:${project.crowdin_translate_version}"
-
-	// Fabric API. This is technically optional, but you probably want it anyway.
-	modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
-
-	// PSA: Some older mods, compiled on Loom 0.2.1, might have outdated Maven POMs.
-	// You may need to force-disable transitiveness on them.
+	modImplementation "com.terraformersmc:modmenu:${is_1_16 ? project.mod_menu_version_1_16 : is_1_17 ? project.mod_menu_version_1_17 : project.mod_menu_version_1_18}"
+	modImplementation "com.github.jonafanho:Minecraft-Mappings:${is_1_16 ? project.mappings_version_1_16 : is_1_17 ? project.mappings_version_1_17 : project.mappings_version_1_18}"
+	modImplementation "com.github.BlueMap-Minecraft:BlueMapAPI:${is_1_16 ? project.blue_map_version_1_16 : is_1_17 ? project.blue_map_version_1_17 : project.blue_map_version_1_18}"
+	modImplementation "de.guntram.mcmod:crowdin-translate:${is_1_16 ? project.crowdin_translate_version_1_16 : is_1_17 ? project.crowdin_translate_version_1_17 : project.crowdin_translate_version_1_18}"
+	modImplementation "net.fabricmc.fabric-api:fabric-api:${is_1_16 ? project.fabric_version_1_16 : is_1_17 ? project.fabric_version_1_17 : project.fabric_version_1_18}"
+	include "de.guntram.mcmod:crowdin-translate:${is_1_16 ? project.crowdin_translate_version_1_16 : is_1_17 ? project.crowdin_translate_version_1_17 : project.crowdin_translate_version_1_18}"
+	include "com.github.jonafanho:Minecraft-Mappings:${is_1_16 ? project.mappings_version_1_16 : is_1_17 ? project.mappings_version_1_17 : project.mappings_version_1_18}"
 }
 
 processResources {
@@ -51,10 +60,15 @@ tasks.withType(JavaCompile).configureEach {
 	// If Javadoc is generated, this must be specified in that task too.
 	it.options.encoding = "UTF-8"
 
-	// Minecraft 1.17 (21w19a) upwards uses Java 16.
-	def targetVersion = 8
-	if (JavaVersion.current().isJava9Compatible()) {
-		 it.options.release = targetVersion
+	if (is_1_16) {
+		def targetVersion = 8
+		if (JavaVersion.current().isJava9Compatible()) {
+			it.options.release = targetVersion
+		}
+	} else if (is_1_17) {
+		it.options.release = 16
+	} else {
+		it.options.release = 17
 	}
 }
 
@@ -71,34 +85,31 @@ jar {
 	}
 }
 
+configurations.all {
+	resolutionStrategy {
+		force "com.github.jonafanho:Minecraft-Mappings:${is_1_16 ? project.mappings_version_1_16 : is_1_17 ? project.mappings_version_1_17 : project.mappings_version_1_18}"
+	}
+}
+
 // configure the maven publication
 publishing {
 	publications {
 		mavenJava(MavenPublication) {
-			// add all the jars that should be included when publishing to maven
-			artifact(remapJar) {
-				builtBy remapJar
-			}
-			artifact(sourcesJar) {
-				builtBy remapSourcesJar
-			}
+			from components.java
 		}
 	}
+}
 
-	// See https://docs.gradle.org/current/userguide/publishing_maven.html for information on how to set up publishing.
-		allprojects {
-			repositories {
-				maven {
-					name = "BlueMap"
-					url = "https://jitpack.io/"
-				}
-				maven {
-					url = "https://minecraft.guntram.de/maven/"
-				}
-				maven {
-					url = "https://maven.terraformersmc.com/"
-				}
-				maven { url 'https://www.jitpack.io' }
-			}
+allprojects {
+	repositories {
+		maven {
+			url = "https://minecraft.guntram.de/maven/"
 		}
+		maven {
+			url = "https://maven.terraformersmc.com/"
+		}
+		maven {
+			url = "https://www.jitpack.io"
+		}
+	}
 }
