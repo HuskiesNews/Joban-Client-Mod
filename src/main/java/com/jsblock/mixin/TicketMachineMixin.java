@@ -1,5 +1,6 @@
 package com.jsblock.mixin;
 
+import minecraftmappings.UtilitiesClient;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.network.PacketByteBuf;
 import org.spongepowered.asm.mixin.Mixin;
@@ -16,7 +17,7 @@ public class TicketMachineMixin {
         final int balance = packet.readInt();
         minecraftClient.execute(() -> {
             if (!(minecraftClient.currentScreen instanceof com.jsblock.gui.TicketMachineScreen)) {
-                minecraftClient.openScreen(new com.jsblock.gui.TicketMachineScreen(balance));
+                UtilitiesClient.setScreen(minecraftClient, new com.jsblock.gui.TicketMachineScreen(balance));
             }
         });
         /* Because our code is injected before the MTR Mod's, we can cancel running further code to prevent MTR Mod from bringing up the default screen */

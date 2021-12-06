@@ -1,5 +1,6 @@
 package com.jsblock.render;
 
+import minecraftmappings.BlockEntityRendererMapper;
 import mtr.block.IBlock;
 import mtr.config.Config;
 import mtr.data.IGui;
@@ -13,7 +14,6 @@ import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.font.TextRenderer;
 import net.minecraft.client.render.VertexConsumerProvider;
 import net.minecraft.client.render.block.entity.BlockEntityRenderDispatcher;
-import net.minecraft.client.render.block.entity.BlockEntityRenderer;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.text.LiteralText;
 import net.minecraft.text.Style;
@@ -29,7 +29,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Set;
 
-public class RenderDepartureTimer<T extends BlockEntity> extends BlockEntityRenderer<T> implements IGui {
+public class RenderDepartureTimer<T extends BlockEntity> extends BlockEntityRendererMapper<T> implements IGui {
 
     public RenderDepartureTimer(BlockEntityRenderDispatcher dispatcher) {
         super(dispatcher);

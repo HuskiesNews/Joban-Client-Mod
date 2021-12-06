@@ -1,7 +1,7 @@
 package com.jsblock.blocks;
 
 import com.jsblock.Blocks;
-import mapper.BlockEntityMapper;
+import minecraftmappings.BlockEntityMapper;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.util.math.BlockPos;

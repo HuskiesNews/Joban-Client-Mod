@@ -1,11 +1,10 @@
 package com.jsblock.blocks;
 
 import com.jsblock.Blocks;
-import mapper.BlockEntityMapper;
-import mapper.BlockEntityProviderMapper;
+import minecraftmappings.BlockEntityMapper;
+import minecraftmappings.BlockEntityProviderMapper;
 import mtr.block.IBlock;
 import net.minecraft.block.Block;
-import net.minecraft.block.BlockEntityProvider;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.HorizontalFacingBlock;
 import net.minecraft.block.ShapeContext;

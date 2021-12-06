@@ -1,24 +1,26 @@
 package com.jsblock.blocks;
 
 import com.jsblock.Blocks;
-import mapper.BlockEntityMapper;
-import mapper.BlockEntityProviderMapper;
+import minecraftmappings.BlockEntityMapper;
+import minecraftmappings.BlockEntityProviderMapper;
+import minecraftmappings.TickableMapper;
+import minecraftmappings.Utilities;
 import mtr.block.IBlock;
 import mtr.data.Platform;
 import mtr.data.RailwayData;
 import mtr.data.Route;
 import net.minecraft.block.*;
 import net.minecraft.block.entity.BlockEntity;
+import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.item.ItemPlacementContext;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.BooleanProperty;
-import net.minecraft.util.Tickable;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.world.BlockView;
-import org.jetbrains.annotations.Nullable;
+import net.minecraft.world.World;
 
 import java.util.*;
 
@@ -42,6 +44,16 @@ public class ButterflyLight extends HorizontalFacingBlock implements BlockEntity
     }
 
     @Override
+    public BlockEntityType<? extends BlockEntity> getType() {
+        return Blocks.BUTTERFLY_LIGHT_TILE_ENTITY;
+    }
+
+    @Override
+    public <T extends BlockEntity> void tick(World world, BlockPos pos, T blockEntity) {
+        TileEntityButterFlyLight.tick(world, pos, blockEntity);
+    }
+
+    @Override
     public VoxelShape getOutlineShape(BlockState state, BlockView view, BlockPos pos, ShapeContext context) {
         final Direction facing = IBlock.getStatePropertySafe(state, FACING);
         return IBlock.getVoxelShapeByDirection(2, 0, 0, 14, 5.8, 10, facing);
@@ -52,13 +64,12 @@ public class ButterflyLight extends HorizontalFacingBlock implements BlockEntity
         builder.add(FACING, LIT);
     }
 
-    @Nullable
     @Override
     public BlockEntity createBlockEntity(BlockPos pos, BlockState state) {
         return new TileEntityButterFlyLight(pos, state);
     }
 
-    public static class TileEntityButterFlyLight extends BlockEntityMapper implements Tickable {
+    public static class TileEntityButterFlyLight extends BlockEntityMapper implements TickableMapper {
 
         public TileEntityButterFlyLight(BlockPos pos, BlockState state) {
             super(Blocks.BUTTERFLY_LIGHT_TILE_ENTITY, pos, state);
@@ -66,9 +77,12 @@ public class ButterflyLight extends HorizontalFacingBlock implements BlockEntity
 
         @Override
         public void tick() {
+            tick(world, pos, this);
+        }
+
+        public static <T extends BlockEntity> void tick(World world, BlockPos pos, T blockEntity) {
             if(world != null && !world.isClient()) {
                 final BlockState state = world.getBlockState(pos);
-
                 final RailwayData railwayData = RailwayData.getInstance(world);
                 if (railwayData == null) {
                     return;
@@ -90,8 +104,8 @@ public class ButterflyLight extends HorizontalFacingBlock implements BlockEntity
 
                     /* If the train has not yet arrived (Should be negative when train arrived) */
                     if(scheduleList.get(0).arrivalMillis - System.currentTimeMillis() > 0) {
-                        if(!world.getBlockTickScheduler().isScheduled(pos, state.getBlock())) {
-                            world.getBlockTickScheduler().schedule(new BlockPos(pos), state.getBlock(), 16);
+                        if(!Utilities.isScheduled(world, pos, state.getBlock())) {
+                            Utilities.scheduleBlockTick(world, new BlockPos(pos), state.getBlock(), 16);
                         }
                         return;
                     }

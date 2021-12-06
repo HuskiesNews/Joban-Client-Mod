@@ -1,5 +1,7 @@
 package com.jsblock.gui;
 
+import minecraftmappings.Utilities;
+import minecraftmappings.UtilitiesClient;
 import mtr.data.IGui;
 import mtr.gui.IDrawing;
 import mtr.packet.IPacket;
@@ -32,7 +34,7 @@ public class TicketMachineScreenReserved extends Screen implements IGui, IPacket
             buttons[i] = new ButtonWidget(0, 0, 0, SQUARE_SIZE, new TranslatableText("gui.mtr.add_value"), button -> {
                 PacketTrainDataGuiClient.addBalanceC2S(getAddAmount(index), (int) Math.pow(2, index));
                 if (client != null) {
-                    client.openScreen(null);
+                    UtilitiesClient.setScreen(client, null);
                 }
             });
         }
@@ -42,7 +44,7 @@ public class TicketMachineScreenReserved extends Screen implements IGui, IPacket
             ticketButtons[i] = new ButtonWidget(0, 0, 0, SQUARE_SIZE, new TranslatableText("gui.jsblock.buy_ticket"), button -> {
                 PacketTrainDataGuiClient.addBalanceC2S(getAddAmount(index), (int) Math.pow(2, index));
                 if (client != null) {
-                    client.openScreen(null);
+                    UtilitiesClient.setScreen(client,null);
                 }
             });
         }
@@ -63,11 +65,11 @@ public class TicketMachineScreenReserved extends Screen implements IGui, IPacket
         }
 
         for (final ButtonWidget button : buttons) {
-            addButton(button);
+            addDrawableChild(button);
         }
 
         for (final ButtonWidget button : ticketButtons) {
-            addButton(button);
+            addDrawableChild(button);
         }
     }
 
@@ -110,7 +112,7 @@ public class TicketMachineScreenReserved extends Screen implements IGui, IPacket
 
     private int getEmeraldCount() {
         if (client != null && client.player != null) {
-            return client.player.inventory.count(Items.EMERALD);
+            return Utilities.getInventory(client.player).count(Items.EMERALD);
         } else {
             return 0;
         }

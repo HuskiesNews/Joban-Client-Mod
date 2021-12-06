@@ -1,5 +1,7 @@
 package com.jsblock.packets;
 
+import minecraftmappings.Utilities;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.Inventories;
 import net.minecraft.item.Items;
 import net.minecraft.network.PacketByteBuf;
@@ -17,7 +19,7 @@ public class Server {
         minecraftServer.execute(() -> {
             final World world = player.world;
             // TODO: Merge code from server tickets mod
-            Inventories.remove(player.inventory, itemStack -> itemStack.getItem() == Items.EMERALD, emeralds, false);
+            Inventories.remove(Utilities.getInventory(player), itemStack -> itemStack.getItem() == Items.EMERALD, emeralds, false);
             world.playSound(null, player.getBlockPos(), SoundEvents.ENTITY_EXPERIENCE_ORB_PICKUP, SoundCategory.BLOCKS, 1, 1);
         });
     }

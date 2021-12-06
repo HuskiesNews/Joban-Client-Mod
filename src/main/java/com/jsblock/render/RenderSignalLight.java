@@ -1,6 +1,7 @@
 package com.jsblock.render;
 
 import mtr.gui.IDrawing;
+import mtr.render.RenderSignalBase;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.client.render.VertexConsumer;
 import net.minecraft.client.render.VertexConsumerProvider;
@@ -8,7 +9,7 @@ import net.minecraft.client.render.block.entity.BlockEntityRenderDispatcher;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.util.math.Direction;
 
-public class RenderSignalLight<T extends BlockEntity> extends mtr.render.RenderSignalBase<T> {
+public class RenderSignalLight<T extends BlockEntity> extends RenderSignalBase<T> {
 
         final int proceedColor;
         final boolean inverted;
