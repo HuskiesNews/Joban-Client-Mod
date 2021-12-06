@@ -1,6 +1,6 @@
 package com.jsblock.blocks;
 
-import com.jsblock.Blocks;
+import com.jsblock.Joestu;
 import minecraftmappings.BlockEntityMapper;
 import minecraftmappings.BlockEntityProviderMapper;
 import minecraftmappings.TickableMapper;
@@ -45,7 +45,7 @@ public class ButterflyLight extends HorizontalFacingBlock implements BlockEntity
 
     @Override
     public BlockEntityType<? extends BlockEntity> getType() {
-        return Blocks.BUTTERFLY_LIGHT_TILE_ENTITY;
+        return Joestu.BUTTERFLY_LIGHT_TILE_ENTITY;
     }
 
     @Override
@@ -72,7 +72,7 @@ public class ButterflyLight extends HorizontalFacingBlock implements BlockEntity
     public static class TileEntityButterFlyLight extends BlockEntityMapper implements TickableMapper {
 
         public TileEntityButterFlyLight(BlockPos pos, BlockState state) {
-            super(Blocks.BUTTERFLY_LIGHT_TILE_ENTITY, pos, state);
+            super(Joestu.BUTTERFLY_LIGHT_TILE_ENTITY, pos, state);
         }
 
         @Override

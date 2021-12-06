@@ -1,19 +1,14 @@
 package com.jsblock;
 
 import com.jsblock.blocks.*;
-import minecraftmappings.BlockEntityMapper;
-import minecraftmappings.Utilities;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.minecraft.block.Block;
 import net.minecraft.block.MapColor;
 import net.minecraft.block.Material;
-import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.item.BlockItem;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
-
-import static minecraftmappings.Utilities.registerTileEntity;
 
 
 public class Blocks {
@@ -49,16 +44,6 @@ public class Blocks {
     public static final Block TRESPASS_SIGN_1 = new TrespassSign1(FabricBlockSettings.of(Material.METAL).hardness(2.0f).nonOpaque());
     public static final Block TRESPASS_SIGN_2 = new TrespassSign2(FabricBlockSettings.of(Material.METAL).hardness(1.0f).nonOpaque());
     public static final Block WATER_MACHINE_1 = new WaterMachine1(FabricBlockSettings.of(Material.METAL).hardness(4.0f));
-
-    public static final BlockEntityType<ButterflyLight.TileEntityButterFlyLight> BUTTERFLY_LIGHT_TILE_ENTITY = registerTileEntity("jsblock:butterfly_light", ButterflyLight.TileEntityButterFlyLight::new, BUTTERFLY_LIGHT);
-    public static final BlockEntityType<DepartureTimer.TileEntityDepartureTimer> DEPARTURE_TIMER_TILE_ENTITY = registerTileEntity("jsblock:departure_timer", DepartureTimer.TileEntityDepartureTimer::new, DEPARTURE_TIMER);
-    public static final BlockEntityType<StationNameTallStand.TileEntityStationNameTallStand> STATION_NAME_TALL_STAND_TILE_ENTITY = registerTileEntity("jsblock:station_name_tall_stand", StationNameTallStand.TileEntityStationNameTallStand::new, Blocks.STATION_NAME_TALL_STAND);
-    public static final BlockEntityType<SignalLightRed1.TileEntitySignalLightRed> SIGNAL_LIGHT_RED_ENTITY_1 = registerTileEntity("jsblock:signal_light_red_1", SignalLightRed1.TileEntitySignalLightRed::new, Blocks.SIGNAL_LIGHT_RED_1);
-    public static final BlockEntityType<SignalLightRed2.TileEntitySignalLightRed2> SIGNAL_LIGHT_RED_ENTITY_2 = registerTileEntity("jsblock:signal_light_red_2", SignalLightRed2.TileEntitySignalLightRed2::new, Blocks.SIGNAL_LIGHT_RED_2);
-    public static final BlockEntityType<SignalLightBlue.TileEntitySignalLightBlue> SIGNAL_LIGHT_BLUE_ENTITY = registerTileEntity("jsblock:signal_light_blue", SignalLightBlue.TileEntitySignalLightBlue::new, Blocks.SIGNAL_LIGHT_BLUE);
-    public static final BlockEntityType<SignalLightGreen.TileEntitySignalLightGreen> SIGNAL_LIGHT_GREEN_ENTITY = registerTileEntity("jsblock:signal_light_green", SignalLightGreen.TileEntitySignalLightGreen::new, Blocks.SIGNAL_LIGHT_GREEN);
-    public static final BlockEntityType<SignalLightInverted1.TileEntitySignalLightInverted> SIGNAL_LIGHT_INVERTED_ENTITY_1 = registerTileEntity("jsblock:signal_light_inverted_1", SignalLightInverted1.TileEntitySignalLightInverted::new, Blocks.SIGNAL_LIGHT_INVERTED_1);
-    public static final BlockEntityType<SignalLightInverted2.TileEntitySignalLightInverted> SIGNAL_LIGHT_INVERTED_ENTITY_2 = registerTileEntity("jsblock:signal_light_inverted_2", SignalLightInverted2.TileEntitySignalLightInverted::new, Blocks.SIGNAL_LIGHT_INVERTED_2);
 
     public static void registerBlocks() {
         registerBlock("butterfly_light", BUTTERFLY_LIGHT);

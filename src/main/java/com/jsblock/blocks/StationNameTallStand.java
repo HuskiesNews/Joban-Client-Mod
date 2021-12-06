@@ -1,6 +1,6 @@
 package com.jsblock.blocks;
 
-import com.jsblock.Blocks;
+import com.jsblock.Joestu;
 import mtr.block.IBlock;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.ShapeContext;
@@ -34,7 +34,7 @@ public class StationNameTallStand extends mtr.block.BlockStationNameTallBase {
 
     public static class TileEntityStationNameTallStand extends mtr.block.BlockStationNameTallWall.TileEntityStationNameTallBase {
         public TileEntityStationNameTallStand(BlockPos pos, BlockState state) {
-            super(Blocks.STATION_NAME_TALL_STAND_TILE_ENTITY, pos, state, 0.04025F);
+            super(Joestu.STATION_NAME_TALL_STAND_TILE_ENTITY, pos, state, 0.04025F);
         }
     }
 

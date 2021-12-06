@@ -1,6 +1,6 @@
 package com.jsblock.blocks;
 
-import com.jsblock.Blocks;
+import com.jsblock.Joestu;
 import minecraftmappings.BlockEntityMapper;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
@@ -20,7 +20,7 @@ public class SignalLightInverted1 extends mtr.block.BlockSignalLightBase {
     public static class TileEntitySignalLightInverted extends BlockEntityMapper {
 
         public TileEntitySignalLightInverted(BlockPos pos, BlockState state) {
-            super(Blocks.SIGNAL_LIGHT_INVERTED_ENTITY_1, pos, state);
+            super(Joestu.SIGNAL_LIGHT_INVERTED_ENTITY_1, pos, state);
         }
     }
 }

@@ -1,6 +1,6 @@
 package com.jsblock.blocks;
 
-import com.jsblock.Blocks;
+import com.jsblock.Joestu;
 import minecraftmappings.BlockEntityMapper;
 import minecraftmappings.BlockEntityProviderMapper;
 import mtr.block.IBlock;
@@ -46,7 +46,7 @@ public class DepartureTimer extends HorizontalFacingBlock implements BlockEntity
     public static class TileEntityDepartureTimer extends BlockEntityMapper {
 
         public TileEntityDepartureTimer(BlockPos pos, BlockState state) {
-            super(Blocks.DEPARTURE_TIMER_TILE_ENTITY, pos, state);
+            super(Joestu.DEPARTURE_TIMER_TILE_ENTITY, pos, state);
         }
     }
 }
