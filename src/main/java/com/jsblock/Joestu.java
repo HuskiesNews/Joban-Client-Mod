@@ -2,6 +2,7 @@ package com.jsblock;
 
 import com.jsblock.blocks.*;
 import net.fabricmc.api.ModInitializer;
+import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents;
 import net.minecraft.block.entity.BlockEntityType;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -21,12 +22,13 @@ public class Joestu implements ModInitializer {
 
     public static final String MOD_ID = "jsblock";
     public static final Logger LOGGER = LogManager.getLogger("Joestu Client");
+    private static int gameTick = 0;
 
     @Override
     public void onInitialize() {
         // RESERVED FOR TICKETS
         //ServerPlayNetworking.registerGlobalReceiver(new Identifier("packet_buy_tickets"), (minecraftServer, player, handler, packet, sender) -> PacketTrainDataGuiServer.receiveAddBalanceC2S(minecraftServer, player, packet));
-        LOGGER.info("[Joestu Client] Version 1.0.2 (1.16)");
+        LOGGER.info("[Joestu Client] Version 1.0.2");
 
         /* Try to register the block */
         try {
@@ -46,5 +48,13 @@ public class Joestu implements ModInitializer {
             } catch (InterruptedException ignored) {
             }
         }
+
+        ServerTickEvents.START_SERVER_TICK.register(minecraftServer -> {
+            gameTick++;
+        });
+    }
+
+    public static boolean isGameTickInterval(int interval) {
+        return gameTick % interval == 0;
     }
 }
