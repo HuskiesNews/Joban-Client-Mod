@@ -3,7 +3,7 @@ plugins {
 	id 'maven-publish'
 }
 
-def default_minecraft_version = "1.16.5"
+def default_minecraft_version = "1.18"
 def minecraft_version = project.properties.containsKey("buildVersion") ? project.getProperties().get("buildVersion") : default_minecraft_version
 def is_1_16 = (minecraft_version as String).startsWith("1.16")
 def is_1_17 = (minecraft_version as String).startsWith("1.17")
@@ -35,7 +35,7 @@ dependencies {
 	minecraft "com.mojang:minecraft:${minecraft_version}"
 	mappings "net.fabricmc:yarn:${is_1_16 ? project.yarn_mappings_1_16 : is_1_17 ? project.yarn_mappings_1_17 : project.yarn_mappings_1_18}:v2"
 	modImplementation "net.fabricmc:fabric-loader:${is_1_16 ? project.loader_version_1_16 : is_1_17 ? project.loader_version_1_17 : project.loader_version_1_18}"
-	modImplementation 'com.github.jonafanho:Minecraft-Transit-Railway:beta-8-SNAPSHOT'
+	modImplementation 'com.github.jonafanho:Minecraft-Transit-Railway:master-SNAPSHOT'
 	modImplementation "com.terraformersmc:modmenu:${is_1_16 ? project.mod_menu_version_1_16 : is_1_17 ? project.mod_menu_version_1_17 : project.mod_menu_version_1_18}"
 	modImplementation "com.github.jonafanho:Minecraft-Mappings:${is_1_16 ? project.mappings_version_1_16 : is_1_17 ? project.mappings_version_1_17 : project.mappings_version_1_18}"
 	modImplementation "com.github.BlueMap-Minecraft:BlueMapAPI:${is_1_16 ? project.blue_map_version_1_16 : is_1_17 ? project.blue_map_version_1_17 : project.blue_map_version_1_18}"

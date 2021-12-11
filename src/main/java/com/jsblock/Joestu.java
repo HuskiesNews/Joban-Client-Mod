@@ -28,7 +28,7 @@ public class Joestu implements ModInitializer {
     public void onInitialize() {
         // RESERVED FOR TICKETS
         //ServerPlayNetworking.registerGlobalReceiver(new Identifier("packet_buy_tickets"), (minecraftServer, player, handler, packet, sender) -> PacketTrainDataGuiServer.receiveAddBalanceC2S(minecraftServer, player, packet));
-        LOGGER.info("[Joestu Client] Version 1.0.2");
+        LOGGER.info("[Joestu Client] Version 1.0.3");
 
         /* Try to register the block */
         try {
