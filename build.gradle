@@ -3,7 +3,7 @@ plugins {
 	id 'maven-publish'
 }
 
-def default_minecraft_version = "1.18"
+def default_minecraft_version = "1.16.5"
 def minecraft_version = project.properties.containsKey("buildVersion") ? project.getProperties().get("buildVersion") : default_minecraft_version
 def is_1_16 = (minecraft_version as String).startsWith("1.16")
 def is_1_17 = (minecraft_version as String).startsWith("1.17")
@@ -35,14 +35,9 @@ dependencies {
 	minecraft "com.mojang:minecraft:${minecraft_version}"
 	mappings "net.fabricmc:yarn:${is_1_16 ? project.yarn_mappings_1_16 : is_1_17 ? project.yarn_mappings_1_17 : project.yarn_mappings_1_18}:v2"
 	modImplementation "net.fabricmc:fabric-loader:${is_1_16 ? project.loader_version_1_16 : is_1_17 ? project.loader_version_1_17 : project.loader_version_1_18}"
-	modImplementation 'com.github.jonafanho:Minecraft-Transit-Railway:master-SNAPSHOT'
-	modImplementation "com.terraformersmc:modmenu:${is_1_16 ? project.mod_menu_version_1_16 : is_1_17 ? project.mod_menu_version_1_17 : project.mod_menu_version_1_18}"
-	modImplementation "com.github.jonafanho:Minecraft-Mappings:${is_1_16 ? project.mappings_version_1_16 : is_1_17 ? project.mappings_version_1_17 : project.mappings_version_1_18}"
-	modImplementation "com.github.BlueMap-Minecraft:BlueMapAPI:${is_1_16 ? project.blue_map_version_1_16 : is_1_17 ? project.blue_map_version_1_17 : project.blue_map_version_1_18}"
-	modImplementation "de.guntram.mcmod:crowdin-translate:${is_1_16 ? project.crowdin_translate_version_1_16 : is_1_17 ? project.crowdin_translate_version_1_17 : project.crowdin_translate_version_1_18}"
 	modImplementation "net.fabricmc.fabric-api:fabric-api:${is_1_16 ? project.fabric_version_1_16 : is_1_17 ? project.fabric_version_1_17 : project.fabric_version_1_18}"
-	include "de.guntram.mcmod:crowdin-translate:${is_1_16 ? project.crowdin_translate_version_1_16 : is_1_17 ? project.crowdin_translate_version_1_17 : project.crowdin_translate_version_1_18}"
-	include "com.github.jonafanho:Minecraft-Mappings:${is_1_16 ? project.mappings_version_1_16 : is_1_17 ? project.mappings_version_1_17 : project.mappings_version_1_18}"
+	modImplementation "com.github.jonafanho:Minecraft-Transit-Railway:${project.mtr_version}"
+	modImplementation "com.github.jonafanho:Minecraft-Mappings:${is_1_16 ? project.mappings_version_1_16 : is_1_17 ? project.mappings_version_1_17 : project.mappings_version_1_18}"
 }
 
 processResources {
@@ -76,7 +71,7 @@ java {
 	// Loom will automatically attach sourcesJar to a RemapSourcesJar task and to the "build" task
 	// if it is present.
 	// If you remove this line, sources will not be generated.
-	withSourcesJar()
+	// withSourcesJar()
 }
 
 jar {
