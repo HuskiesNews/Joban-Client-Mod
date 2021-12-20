@@ -44,18 +44,15 @@ public class RenderRVPIDS<T extends BlockEntity> extends BlockEntityRendererMapp
 	private final float startY;
 	private final float startZ;
 	private final boolean rotate90;
-	private final boolean renderArrivalNumber;
 	private final boolean showPlatforms;
 	private final int textColor;
-	private final int firstTrainColor;
 	private List<ClientCache.PlatformRouteDetails> routeData;
-	private final int CLOCK_HEIGHT = 10;
 
-	private static final int SWITCH_LANGUAGE_TICKS = 60;
+	private static final int SWITCH_LANGUAGE_TICKS = 80;
 	private static final int CAR_TEXT_COLOR = 0xFF0000;
 	private static final int MAX_VIEW_DISTANCE = 16;
 
-	public RenderRVPIDS(BlockEntityRenderDispatcher dispatcher, int maxArrivals, float startX, float startY, float startZ, float maxHeight, int maxWidth, boolean rotate90, boolean renderArrivalNumber, boolean showPlatforms, int textColor, int firstTrainColor) {
+	public RenderRVPIDS(BlockEntityRenderDispatcher dispatcher, int maxArrivals, float startX, float startY, float startZ, float maxHeight, int maxWidth, boolean rotate90, boolean renderArrivalNumber, boolean showPlatforms, int textColor) {
 		super(dispatcher);
 		scale = 230 * maxArrivals / maxHeight;
 		totalScaledWidth = scale * maxWidth / 16;
@@ -69,10 +66,8 @@ public class RenderRVPIDS<T extends BlockEntity> extends BlockEntityRendererMapp
 		this.startY = startY;
 		this.startZ = startZ;
 		this.rotate90 = rotate90;
-		this.renderArrivalNumber = renderArrivalNumber;
 		this.showPlatforms = showPlatforms;
 		this.textColor = textColor;
-		this.firstTrainColor = firstTrainColor;
 	}
 
 	@Override
@@ -137,7 +132,28 @@ public class RenderRVPIDS<T extends BlockEntity> extends BlockEntityRendererMapp
 
 			final TextRenderer textRenderer = MinecraftClient.getInstance().textRenderer;
 
-			boolean renderedOnce = false;
+			matrices.push();
+			matrices.translate(0.5, 0, 0.5);
+			matrices.multiply(Vec3f.POSITIVE_Y.getDegreesQuaternion((rotate90 ? 90 : 0) - facing.asRotation()));
+			matrices.multiply(Vec3f.POSITIVE_Z.getDegreesQuaternion(180));
+			matrices.translate((startX - 8) / 16, -startY / 16 + 0 * maxHeight / maxArrivals / 16, (startZ - 8) / 16 - SMALL_OFFSET * 2);
+			matrices.scale(1F / scale, 1F / scale, 1F / scale);
+
+			/* CLOCK */
+			long currTime = world.getLunarTime();
+			Text timeString = new LiteralText(String.format("%02d:%02d", ((currTime / 1000) + 6) % 24, Math.round(currTime / 16.672) % 60)).fillStyle(style);
+			matrices.push();
+			matrices.translate(90,-9.8,0);
+			matrices.scale(0.75F, 0.75F, 0.75F);
+			renderTextWithOffset(matrices, textRenderer, timeString, 0, 0, 0xFFFFFF);
+			matrices.pop();
+
+			/* DRAW RV BACKGROUND */
+			final VertexConsumer vertexConsumerPIDSBG = vertexConsumers.getBuffer(MoreRenderLayers.getLight(new Identifier("jsblock:textures/block/pids_5.png"), false));
+			matrices.translate(0,-9.5,0.01);
+			drawTexture(matrices, vertexConsumerPIDSBG, startX - 26F / 2, -1.5F, 119F, 65.8F, facing, ARGB_WHITE, MAX_LIGHT_GLOWING);
+			matrices.pop();
+
 			for (int i = 0; i < maxArrivals; i++) {
 				final int languageTicks = (int) Math.floor(RenderTrains.getGameTicks()) / SWITCH_LANGUAGE_TICKS;
 				final String destinationString;
@@ -171,39 +187,16 @@ public class RenderRVPIDS<T extends BlockEntity> extends BlockEntityRendererMapp
 				matrices.translate((startX - 8) / 16, -startY / 16 + i * maxHeight / maxArrivals / 16, (startZ - 8) / 16 - SMALL_OFFSET * 2);
 				matrices.scale(1F / scale, 1F / scale, 1F / scale);
 
-				if(!renderedOnce) {
-					/* CLOCK */
-					long currTime = world.getLunarTime();
-					Text timeString = new LiteralText(String.format("%02d:%02d", ((currTime / 1000) + 6) % 24, Math.round(currTime / 16.73) % 60)).fillStyle(style);
-					matrices.push();
-					matrices.translate(90,-10,0);
-					matrices.scale(0.85F, 0.85F, 0.85F);
-					textRenderer.draw(matrices, timeString, 0, 0, 0xFFFFFF);
-					matrices.pop();
-
-					/* DRAW RV BACKGROUND */
-					final VertexConsumer vertexConsumerPIDSBG = vertexConsumers.getBuffer(MoreRenderLayers.getLight(new Identifier("jsblock:textures/block/pids_5.png"), false));
-					matrices.push();
-					matrices.translate(0,-9.5,0.01);
-					drawTexture(matrices, vertexConsumerPIDSBG, startX - 26F / 2, -1.5F, 119F, 65.8F, facing, ARGB_WHITE, MAX_LIGHT_GLOWING);
-					matrices.pop();
-					renderedOnce = true;
-				}
-
 				if (useCustomMessage) {
 					final int destinationWidth = textRenderer.getWidth(destinationString);
 					if (destinationWidth > totalScaledWidth) {
 						matrices.scale(totalScaledWidth / destinationWidth, 1, 1);
 					}
-					Text destString = new LiteralText(destinationString).fillStyle(style);
-					textRenderer.draw(matrices, destString, 0, 0, textColor);
 
-					matrices.push();
-					matrices.translate(0,0,0.01);
-					matrices.pop();
+					Text destString = new LiteralText(destinationString).fillStyle(style);
+					renderTextWithOffset(matrices, textRenderer, destString, 0, 0, textColor);
 				} else {
 					final Route.ScheduleEntry currentSchedule = scheduleList.get(i);
-
 					final Text arrivalText;
 					final int seconds = (int) ((currentSchedule.arrivalMillis - System.currentTimeMillis()) / 1000);
 					final boolean isCJK = destinationString.codePoints().anyMatch(Character::isIdeographic);
@@ -229,32 +222,32 @@ public class RenderRVPIDS<T extends BlockEntity> extends BlockEntityRendererMapp
 							matrices.translate(destinationStart + newDestinationMaxWidth, 1.2F, -0.05);
 							matrices.scale(0.8F, 0.8F, 0.8F);
 							Text platformText = new LiteralText(platform.name).fillStyle(style);
-							textRenderer.draw(matrices, platformText, -1F, 0, 0xFFFFFF);
+							renderTextWithOffset(matrices, textRenderer, platformText, -0.9F, 0, 0xFFFFFF);
 							matrices.pop();
 						}
 					}
 
-					if (showCarLength) {
-						matrices.push();
-						matrices.translate(destinationStart + newDestinationMaxWidth + platformMaxWidth, 0, 0);
-						final int carTextWidth = textRenderer.getWidth(carText);
-						if (carTextWidth > carLengthMaxWidth) {
-							matrices.scale(carLengthMaxWidth / carTextWidth, 1, 1);
-						}
-						textRenderer.draw(matrices, carText, 0, 0, CAR_TEXT_COLOR);
-						matrices.pop();
-					}
+//					if (showCarLength) {
+//						matrices.push();
+//						matrices.translate(destinationStart + newDestinationMaxWidth + platformMaxWidth, 0, 0);
+//						final int carTextWidth = textRenderer.getWidth(carText);
+//						if (carTextWidth > carLengthMaxWidth) {
+//							matrices.scale(carLengthMaxWidth / carTextWidth, 1, 1);
+//						}
+//						textRenderer.draw(matrices, carText, 0, 0, CAR_TEXT_COLOR);
+//						matrices.pop();
+//					}
 
 					matrices.push();
 					matrices.translate(destinationStart, 0, 0);
-					/* + 2 is offset to prevent text overflowing the platform circle */
+					/* + 3 is offset to prevent text overflowing the platform circle */
 					final int destinationWidth = textRenderer.getWidth(destinationString) + 3;
 					if (destinationWidth > newDestinationMaxWidth) {
 						matrices.scale(newDestinationMaxWidth / destinationWidth, 1, 1);
 					}
 
 					Text destText = new LiteralText(destinationString).fillStyle(style);
-					textRenderer.draw(matrices, destText, 0, 0, 0x000000);
+					renderTextWithOffset(matrices, textRenderer, destText, 0, 0, 0x000000);
 					matrices.pop();
 
 					if (arrivalText != null) {
@@ -266,7 +259,7 @@ public class RenderRVPIDS<T extends BlockEntity> extends BlockEntityRendererMapp
 						} else {
 							matrices.translate(totalScaledWidth - arrivalWidth, 0, 0);
 						}
-						textRenderer.draw(matrices, arrivalText, 0, 0, textColor);
+						renderTextWithOffset(matrices, textRenderer, arrivalText, 0,-0.025F, textColor);
 						matrices.pop();
 					}
 				}
@@ -280,5 +273,16 @@ public class RenderRVPIDS<T extends BlockEntity> extends BlockEntityRendererMapp
 
 	static void drawTexture(MatrixStack matrices, VertexConsumer vertexConsumer, float x, float y, float width, float height, Direction facing, int color, int light) {
 		IDrawing.drawTexture(matrices, vertexConsumer, x, y, 0, x + width, y + height, 0, 0, 0, 1, 1, facing, color, light);
+	}
+
+	static void renderTextWithOffset(MatrixStack matrices, TextRenderer textRenderer, Text text, float x, float y, int color) {
+		final float finalY;
+		if(Config.useMTRFont() && text.getString().codePoints().noneMatch(Character::isIdeographic)) {
+			finalY = y + 0.5F;
+		} else {
+			finalY = y;
+		}
+
+		textRenderer.draw(matrices, text, x, finalY, color);
 	}
 }

@@ -37,7 +37,7 @@ public class JoestuClient implements ClientModInitializer {
         UtilitiesClient.registerTileEntityRenderer(Joestu.SIGNAL_LIGHT_INVERTED_ENTITY_2, dispatcher -> new RenderSignalLight<>(dispatcher, true, true,false,0xFF00FF00));
         UtilitiesClient.registerTileEntityRenderer(Joestu.STATION_NAME_TALL_STAND_TILE_ENTITY, RenderStationNameTall::new);
         UtilitiesClient.registerTileEntityRenderer(Joestu.PIDS_4_TILE_ENTITY, dispatcher -> new RenderPIDS<>(dispatcher, PIDS4.TileEntityBlockPIDS4.MAX_ARRIVALS, 1, 9.5F, 6, 8.8F, 30, true, false, false, 0xFF9900, 0xFF9900));
-        UtilitiesClient.registerTileEntityRenderer(Joestu.PIDS_5_TILE_ENTITY, dispatcher -> new RenderRVPIDS<>(dispatcher, PIDS5.TileEntityBlockPIDS5.MAX_ARRIVALS, 6, 8.25F, 6, 11F, 20, true, false, true, 0x000000, 0x000000));
+        UtilitiesClient.registerTileEntityRenderer(Joestu.PIDS_5_TILE_ENTITY, dispatcher -> new RenderRVPIDS<>(dispatcher, PIDS5.TileEntityBlockPIDS5.MAX_ARRIVALS, 6, 8.25F, 6, 11F, 20, true, false, true, 0x000000));
         registerStationColor(Blocks.STATION_NAME_TALL_STAND);
     }
 
