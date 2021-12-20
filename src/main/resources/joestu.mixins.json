@@ -4,7 +4,6 @@
   "package": "com.jsblock.mixin",
   "compatibilityLevel": "JAVA_8",
   "mixins": [
-    "CeilingBrushMixin"
   ],
   "client": [
     "TicketMachineMixin"
