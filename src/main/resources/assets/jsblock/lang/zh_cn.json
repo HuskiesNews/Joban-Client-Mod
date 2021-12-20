@@ -20,6 +20,8 @@
   "block.jsblock.light_block": "光源方块",
   "block.jsblock.light_1": "灯",
   "block.jsblock.light_2": "天花灯",
+  "block.jsblock.pids_4": "乘客资讯显示屏",
+  "block.jsblock.pids_5": "铁路愿景乘客资讯显示屏",
   "block.jsblock.signal_light_red_1":"信号灯 (红色在下)",
   "block.jsblock.signal_light_red_2":"信号灯 (红色在上)",
   "block.jsblock.signal_light_blue":"信号灯 (蓝色在上)",
