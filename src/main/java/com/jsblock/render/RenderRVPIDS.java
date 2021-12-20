@@ -247,7 +247,8 @@ public class RenderRVPIDS<T extends BlockEntity> extends BlockEntityRendererMapp
 
 					matrices.push();
 					matrices.translate(destinationStart, 0, 0);
-					final int destinationWidth = textRenderer.getWidth(destinationString);
+					/* + 2 is offset to prevent text overflowing the platform circle */
+					final int destinationWidth = textRenderer.getWidth(destinationString) + 3;
 					if (destinationWidth > newDestinationMaxWidth) {
 						matrices.scale(newDestinationMaxWidth / destinationWidth, 1, 1);
 					}
