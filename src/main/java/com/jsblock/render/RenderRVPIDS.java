@@ -79,9 +79,6 @@ public class RenderRVPIDS<T extends BlockEntity> extends BlockEntityRendererMapp
 
 		final BlockPos pos = entity.getPos();
 		final Direction facing = IBlock.getStatePropertySafe(world, pos, HorizontalFacingBlock.FACING);
-		if (RenderTrains.shouldNotRender(pos, Math.min(MAX_VIEW_DISTANCE, RenderTrains.maxTrainRenderDistance), rotate90 ? null : facing)) {
-			return;
-		}
 		final Style style = Config.useMTRFont() ? Style.EMPTY.withFont(new Identifier(MTR.MOD_ID, "mtr")) : Style.EMPTY;
 
 		final String[] customMessages = new String[maxArrivals];
@@ -140,10 +137,10 @@ public class RenderRVPIDS<T extends BlockEntity> extends BlockEntityRendererMapp
 			matrices.scale(1F / scale, 1F / scale, 1F / scale);
 
 			/* CLOCK */
-			long currTime = world.getLunarTime();
-			Text timeString = new LiteralText(String.format("%02d:%02d", ((currTime / 1000) + 6) % 24, Math.round(currTime / 16.672) % 60)).fillStyle(style);
+			long time = world.getLunarTime() + 6000;
+			Text timeString = new LiteralText(String.format("%02d:%02d", (time / 1000) % 24, Math.round(time / 16.666657) % 60)).fillStyle(style);
 			matrices.push();
-			matrices.translate(90,-9.8,0);
+			matrices.translate(90,-9.8,-0.01);
 			matrices.scale(0.75F, 0.75F, 0.75F);
 			renderTextWithOffset(matrices, textRenderer, timeString, 0, 0, 0xFFFFFF);
 			matrices.pop();
@@ -153,6 +150,10 @@ public class RenderRVPIDS<T extends BlockEntity> extends BlockEntityRendererMapp
 			matrices.translate(0,-9.5,0.01);
 			drawTexture(matrices, vertexConsumerPIDSBG, startX - 26F / 2, -1.5F, 119F, 65.8F, facing, ARGB_WHITE, MAX_LIGHT_GLOWING);
 			matrices.pop();
+
+			if (RenderTrains.shouldNotRender(pos, Math.min(MAX_VIEW_DISTANCE, RenderTrains.maxTrainRenderDistance), rotate90 ? null : facing)) {
+				return;
+			}
 
 			for (int i = 0; i < maxArrivals; i++) {
 				final int languageTicks = (int) Math.floor(RenderTrains.getGameTicks()) / SWITCH_LANGUAGE_TICKS;
