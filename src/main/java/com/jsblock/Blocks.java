@@ -40,8 +40,8 @@ public class Blocks {
     public static final Block LIGHT_1 = new Light1(FabricBlockSettings.of(Material.METAL).hardness(1.0f).luminance(15));
     public static final Block LIGHT_2 = new Light2(FabricBlockSettings.of(Material.METAL).hardness(1.0f).luminance(15));
     public static final Block LIGHT_BLOCK = new LightBlock(FabricBlockSettings.of(Material.METAL).hardness(4.0f).luminance(15).nonOpaque());
-    public static final Block PIDS_4 = new PIDS4();
-    public static final Block PIDS_5 = new PIDS5();
+    public static final Block PIDS_1A = new PIDS1A();
+    public static final Block PIDS_RV = new PIDSRV();
     public static final Block MODEL_E44 = new ModelE44(FabricBlockSettings.of(Material.METAL).hardness(1.0f).nonOpaque());
     public static final Block STATION_NAME_TALL_STAND = new StationNameTallStand();
     public static final Block SUBSIDY_MACHINE_1 = new SubsidyMachine1(FabricBlockSettings.of(Material.METAL).hardness(4.0f));
@@ -71,8 +71,8 @@ public class Blocks {
         registerBlock("light_1", LIGHT_1);
         registerBlock("light_2", LIGHT_2);
         registerBlock("light_block", LIGHT_BLOCK);
-        registerBlock("pids_4", PIDS_4);
-        registerBlock("pids_5", PIDS_5);
+        registerBlock("pids_1a", PIDS_1A);
+        registerBlock("pids_rv", PIDS_RV);
         registerBlock("station_name_tall_stand", STATION_NAME_TALL_STAND);
         registerBlock("signal_light_red_1", SIGNAL_LIGHT_RED_1);
         registerBlock("signal_light_red_2", SIGNAL_LIGHT_RED_2);

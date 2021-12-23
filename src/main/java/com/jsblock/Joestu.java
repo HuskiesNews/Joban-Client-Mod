@@ -19,8 +19,8 @@ public class Joestu implements ModInitializer {
     public static final BlockEntityType<SignalLightGreen.TileEntitySignalLightGreen> SIGNAL_LIGHT_GREEN_ENTITY = registerTileEntity("jsblock:signal_light_green", SignalLightGreen.TileEntitySignalLightGreen::new, Blocks.SIGNAL_LIGHT_GREEN);
     public static final BlockEntityType<SignalLightInverted1.TileEntitySignalLightInverted> SIGNAL_LIGHT_INVERTED_ENTITY_1 = registerTileEntity("jsblock:signal_light_inverted_1", SignalLightInverted1.TileEntitySignalLightInverted::new, Blocks.SIGNAL_LIGHT_INVERTED_1);
     public static final BlockEntityType<SignalLightInverted2.TileEntitySignalLightInverted> SIGNAL_LIGHT_INVERTED_ENTITY_2 = registerTileEntity("jsblock:signal_light_inverted_2", SignalLightInverted2.TileEntitySignalLightInverted::new, Blocks.SIGNAL_LIGHT_INVERTED_2);
-    public static final BlockEntityType<PIDS4.TileEntityBlockPIDS4> PIDS_4_TILE_ENTITY = registerTileEntity("jsblock:pids_4", PIDS4.TileEntityBlockPIDS4::new, Blocks.PIDS_4);
-    public static final BlockEntityType<PIDS5.TileEntityBlockPIDS5> PIDS_5_TILE_ENTITY = registerTileEntity("jsblock:pids_5", PIDS5.TileEntityBlockPIDS5::new, Blocks.PIDS_5);
+    public static final BlockEntityType<PIDS1A.TileEntityBlockPIDS4> PIDS_4_TILE_ENTITY = registerTileEntity("jsblock:pids_4", PIDS1A.TileEntityBlockPIDS4::new, Blocks.PIDS_1A);
+    public static final BlockEntityType<PIDSRV.TileEntityBlockPIDS5> PIDS_5_TILE_ENTITY = registerTileEntity("jsblock:pids_5", PIDSRV.TileEntityBlockPIDS5::new, Blocks.PIDS_RV);
 
 
     public static final String MOD_ID = "jsblock";

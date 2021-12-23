@@ -12,26 +12,26 @@ import net.minecraft.util.shape.VoxelShapes;
 import net.minecraft.world.BlockView;
 
 
-public class PIDS4 extends BlockPIDSBase {
+public class PIDSRV extends BlockPIDSBase {
 
     @Override
     public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
-        VoxelShape shape1 = IBlock.getVoxelShapeByDirection(6, 0, 0, 10, 11, 16, IBlock.getStatePropertySafe(state, FACING));
-        VoxelShape shape2 = IBlock.getVoxelShapeByDirection(7.5, 11, 12.5, 8.5, 16, 13.5, IBlock.getStatePropertySafe(state, FACING));
+        VoxelShape shape1 = IBlock.getVoxelShapeByDirection(5.9, -3.0, 0, 10.1, 11, 12, IBlock.getStatePropertySafe(state, FACING));
+        VoxelShape shape2 = IBlock.getVoxelShapeByDirection(7.5, 11, 8.5, 8.5, 16, 9.5, IBlock.getStatePropertySafe(state, FACING));
         return VoxelShapes.union(shape1, shape2);
     }
 
     @Override
     public BlockEntity createBlockEntity(BlockPos pos, BlockState state) {
-        return new TileEntityBlockPIDS4(pos, state);
+        return new TileEntityBlockPIDS5(pos, state);
     }
 
-    public static class TileEntityBlockPIDS4 extends TileEntityBlockPIDSBase {
+    public static class TileEntityBlockPIDS5 extends TileEntityBlockPIDSBase {
 
-        public static final int MAX_ARRIVALS = 3;
+        public static final int MAX_ARRIVALS = 4;
 
-        public TileEntityBlockPIDS4(BlockPos pos, BlockState state) {
-            super(Joestu.PIDS_4_TILE_ENTITY, pos, state);
+        public TileEntityBlockPIDS5(BlockPos pos, BlockState state) {
+            super(Joestu.PIDS_5_TILE_ENTITY, pos, state);
         }
 
         @Override
