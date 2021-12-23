@@ -3,7 +3,7 @@
 		{
 			"type": "ttf",
 			"file": "jsblock:aotf.otf",
-			"shift": [ -0.6, 0.95 ],
+			"shift": [ -0.6, 0.85 ],
 			"size": 9.7,
 			"oversample": 7.0
 		},

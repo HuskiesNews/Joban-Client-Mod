@@ -18,12 +18,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 public interface IDrawing {
-    static void drawStringWithFont(MatrixStack matrices, TextRenderer textRenderer, VertexConsumerProvider.Immediate immediate, String text, IGui.HorizontalAlignment horizontalAlignment, IGui.VerticalAlignment verticalAlignment, float x, float y, float maxWidth, float maxHeight, float scale, int textColor, boolean shadow, int light, String fontName) {
-        drawStringWithFont(matrices, textRenderer, immediate, text, horizontalAlignment, verticalAlignment, horizontalAlignment, x, y, maxWidth, maxHeight, scale, textColor, shadow, light, fontName, null);
+    static void drawStringWithFont(MatrixStack matrices, TextRenderer textRenderer, VertexConsumerProvider.Immediate immediate, String text, IGui.HorizontalAlignment horizontalAlignment, IGui.VerticalAlignment verticalAlignment, float x, float y, float maxWidth, float maxHeight, float scale, int textColor, boolean shadow, int light, String fontChinese, String fontEnglish) {
+        drawStringWithFont(matrices, textRenderer, immediate, text, horizontalAlignment, verticalAlignment, horizontalAlignment, x, y, maxWidth, maxHeight, scale, textColor, shadow, light, fontChinese, fontEnglish, null);
     }
 
-    static void drawStringWithFont(MatrixStack matrices, TextRenderer textRenderer, VertexConsumerProvider.Immediate immediate, String text, IGui.HorizontalAlignment horizontalAlignment, IGui.VerticalAlignment verticalAlignment, IGui.HorizontalAlignment xAlignment, float x, float y, float maxWidth, float maxHeight, float scale, int textColor, boolean shadow, int light, String fontName, mtr.gui.IDrawing.DrawingCallback drawingCallback) {
-        final Style style = Config.useMTRFont() ? Style.EMPTY.withFont(new Identifier(Joestu.MOD_ID, fontName)) : Style.EMPTY;
+    static void drawStringWithFont(MatrixStack matrices, TextRenderer textRenderer, VertexConsumerProvider.Immediate immediate, String text, IGui.HorizontalAlignment horizontalAlignment, IGui.VerticalAlignment verticalAlignment, IGui.HorizontalAlignment xAlignment, float x, float y, float maxWidth, float maxHeight, float scale, int textColor, boolean shadow, int light, String fontChinese, String fontEnglish, mtr.gui.IDrawing.DrawingCallback drawingCallback) {
+        final Style styleChinese = Config.useMTRFont() ? Style.EMPTY.withFont(new Identifier(Joestu.MOD_ID, fontChinese)) : Style.EMPTY;
+        final Style styleEnglish = Config.useMTRFont() ? Style.EMPTY.withFont(new Identifier(Joestu.MOD_ID, fontEnglish)) : Style.EMPTY;
 
         while (text.contains("||")) {
             text = text.replace("||", "|");
@@ -37,7 +38,7 @@ public interface IDrawing {
             final boolean isCJK = stringSplitPart.codePoints().anyMatch(Character::isIdeographic);
             isCJKList.add(isCJK);
 
-            final OrderedText orderedText = new LiteralText(stringSplitPart).fillStyle(style).asOrderedText();
+            final OrderedText orderedText = isCJK ? new LiteralText(stringSplitPart).fillStyle(styleChinese).asOrderedText() : new LiteralText(stringSplitPart).fillStyle(styleEnglish).asOrderedText();
             orderedTexts.add(orderedText);
 
             totalHeight += IGui.LINE_HEIGHT * (isCJK ? 2 : 1);

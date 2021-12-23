@@ -70,7 +70,7 @@ public class RenderKCRStationName<T extends BlockEntity> extends BlockEntityRend
         final TextRenderer textRenderer = MinecraftClient.getInstance().textRenderer;
         final String stationName = station == null ? new TranslatableText("gui.mtr.untitled").getString() : station.name;
         final VertexConsumerProvider.Immediate immediate = VertexConsumerProvider.immediate(Tessellator.getInstance().getBuffer());
-        IDrawing.drawStringWithFont(matrices, textRenderer, immediate, stationName, HorizontalAlignment.CENTER, VerticalAlignment.CENTER, 0, 0, 60, 32, 1, 0xEEEEEE, false, MAX_LIGHT_GLOWING, "kcr");
+        IDrawing.drawStringWithFont(matrices, textRenderer, immediate, stationName, HorizontalAlignment.CENTER, VerticalAlignment.CENTER, 0, 0, 60, 32, 1, 0xEEEEEE, false, MAX_LIGHT_GLOWING, "kcr_chin", "kcr_eng");
         immediate.draw();
         matrices.pop();
     }
