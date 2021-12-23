@@ -65,7 +65,7 @@ public class RenderDepartureTimer<T extends BlockEntity> extends BlockEntityRend
             /* seconds = dwell - ETA */
             int seconds = Math.abs((platform.getDwellTime() / 2) - Math.abs(remainingSecond));
             int minutes = seconds / 60;
-            timeRemaining = String.format("%d:%02d", minutes, seconds % 60);
+            timeRemaining = String.format("%d:%02d", minutes % 60, seconds % 60);
         }
 
         /* This defines the font style. If MTR Font is enbled, use the font "jsblock:font". Otherwise don't add any style */
