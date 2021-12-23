@@ -136,9 +136,17 @@ public class RenderRVPIDS<T extends BlockEntity> extends BlockEntityRendererMapp
 			matrices.translate((startX - 8) / 16, -startY / 16 + 0 * maxHeight / maxArrivals / 16, (startZ - 8) / 16 - SMALL_OFFSET * 2);
 			matrices.scale(1F / scale, 1F / scale, 1F / scale);
 
+			if (RenderTrains.shouldNotRender(pos, Math.min(MAX_VIEW_DISTANCE, RenderTrains.maxTrainRenderDistance), rotate90 ? null : facing)) {
+				final VertexConsumer vertexConsumerPIDSBG = vertexConsumers.getBuffer(MoreRenderLayers.getLight(new Identifier("jsblock:textures/block/pids_5.png"), false));
+				matrices.translate(0,-9.5,0.01);
+				drawTexture(matrices, vertexConsumerPIDSBG, startX - 26F / 2, -1.5F, 119F, 65.8F, facing, ARGB_WHITE, MAX_LIGHT_GLOWING);
+				matrices.pop();
+				return;
+			}
+
 			/* CLOCK */
 			long time = world.getLunarTime() + 6000;
-			Text timeString = new LiteralText(String.format("%02d:%02d", (time / 1000) % 24, Math.round(time / 16.666657) % 60)).fillStyle(style);
+			Text timeString = new LiteralText(String.format("%02d:%02d", (time / 1000) % 24, Math.round(time / 16.666656) % 60)).fillStyle(style);
 			matrices.push();
 			matrices.translate(90,-9.8,-0.01);
 			matrices.scale(0.75F, 0.75F, 0.75F);
@@ -150,10 +158,6 @@ public class RenderRVPIDS<T extends BlockEntity> extends BlockEntityRendererMapp
 			matrices.translate(0,-9.5,0.01);
 			drawTexture(matrices, vertexConsumerPIDSBG, startX - 26F / 2, -1.5F, 119F, 65.8F, facing, ARGB_WHITE, MAX_LIGHT_GLOWING);
 			matrices.pop();
-
-			if (RenderTrains.shouldNotRender(pos, Math.min(MAX_VIEW_DISTANCE, RenderTrains.maxTrainRenderDistance), rotate90 ? null : facing)) {
-				return;
-			}
 
 			for (int i = 0; i < maxArrivals; i++) {
 				final int languageTicks = (int) Math.floor(RenderTrains.getGameTicks()) / SWITCH_LANGUAGE_TICKS;
@@ -278,12 +282,15 @@ public class RenderRVPIDS<T extends BlockEntity> extends BlockEntityRendererMapp
 
 	static void renderTextWithOffset(MatrixStack matrices, TextRenderer textRenderer, Text text, float x, float y, int color) {
 		final float finalY;
+		final float finalX;
 		if(Config.useMTRFont() && text.getString().codePoints().noneMatch(Character::isIdeographic)) {
 			finalY = y + 0.5F;
+			finalX = x;
 		} else {
 			finalY = y;
+			finalX = x + 0.5F;
 		}
 
-		textRenderer.draw(matrices, text, x, finalY, color);
+		textRenderer.draw(matrices, text, finalX, finalY, color);
 	}
 }
