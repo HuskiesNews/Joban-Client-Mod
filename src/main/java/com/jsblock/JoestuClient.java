@@ -22,6 +22,7 @@ public class JoestuClient implements ClientModInitializer {
         BlockRenderLayerMap.INSTANCE.putBlock(Blocks.HELPLINE_1, RenderLayer.getCutout());
         BlockRenderLayerMap.INSTANCE.putBlock(Blocks.HELPLINE_2, RenderLayer.getCutout());
         BlockRenderLayerMap.INSTANCE.putBlock(Blocks.HELPLINE_3, RenderLayer.getCutout());
+        BlockRenderLayerMap.INSTANCE.putBlock(Blocks.KCR_NAME_SIGN, RenderLayer.getCutout());
         BlockRenderLayerMap.INSTANCE.putBlock(Blocks.LIGHT_2, RenderLayer.getCutout());
         BlockRenderLayerMap.INSTANCE.putBlock(Blocks.STATION_NAME_TALL_STAND, RenderLayer.getCutout());
         BlockRenderLayerMap.INSTANCE.putBlock(Blocks.SUBSIDY_MACHINE_1, RenderLayer.getCutout());
@@ -39,6 +40,8 @@ public class JoestuClient implements ClientModInitializer {
         UtilitiesClient.registerTileEntityRenderer(Joestu.STATION_NAME_TALL_STAND_TILE_ENTITY, RenderStationNameTall::new);
         UtilitiesClient.registerTileEntityRenderer(Joestu.PIDS_4_TILE_ENTITY, dispatcher -> new RenderPIDS<>(dispatcher, PIDS1A.TileEntityBlockPIDS4.MAX_ARRIVALS, 1, 9.5F, 6, 8.8F, 30, true, false, false, 0xFF9900, 0xFF9900));
         UtilitiesClient.registerTileEntityRenderer(Joestu.PIDS_5_TILE_ENTITY, dispatcher -> new RenderRVPIDS<>(dispatcher, PIDSRV.TileEntityBlockPIDS5.MAX_ARRIVALS, 6, 8.25F, 6, 11F, 20, true, false, true, 0x000000));
+        UtilitiesClient.registerTileEntityRenderer(Joestu.KCR_NAME_SIGN_TILE_ENTITY, RenderKCRStationName::new);
+
         registerStationColor(Blocks.STATION_NAME_TALL_STAND);
     }
 

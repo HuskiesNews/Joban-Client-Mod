@@ -13,6 +13,7 @@ import net.minecraft.util.registry.Registry;
 
 
 public class Blocks {
+    public static final Block AUTO_IRON_DOOR = new AutoDoor(AbstractBlock.Settings.copy(net.minecraft.block.Blocks.IRON_DOOR));
     public static final Block BUTTERFLY_LIGHT = new ButterflyLight(FabricBlockSettings.of(Material.METAL, MapColor.BLACK).hardness(3.0f).luminance(4));
     public static final Block CIRCLE_WALL_1 = new CircleWall();
     public static final Block CIRCLE_WALL_2 = new CircleWall();
@@ -32,17 +33,17 @@ public class Blocks {
     public static final Block CEILING_1 = new Ceiling1(FabricBlockSettings.of(Material.METAL).hardness(2.0f).nonOpaque());
     public static final Block ENQUIRY_MACHINE_1 = new EnquiryMachine1(FabricBlockSettings.of(Material.METAL).hardness(4.0f));
     public static final Block EMG_STOP_1 = new EmgStop1(FabricBlockSettings.of(Material.METAL).hardness(1.0f));
-    public static final Block EXIT_SIGN_1 = new ExitSign1(FabricBlockSettings.of(Material.METAL).hardness(0.5f).luminance(10));
-    public static final Block AUTO_IRON_DOOR = new AutoDoor(AbstractBlock.Settings.copy(net.minecraft.block.Blocks.IRON_DOOR));
+    public static final Block EXIT_SIGN_1 = new ExitSign1(FabricBlockSettings.of(Material.METAL).hardness(1.0f).luminance(10));
     public static final Block HELPLINE_1 = new HelpLine1(FabricBlockSettings.of(Material.METAL).hardness(2.0f));
     public static final Block HELPLINE_2 = new HelpLine2(FabricBlockSettings.of(Material.METAL).hardness(2.0f));
     public static final Block HELPLINE_3 = new HelpLine3(FabricBlockSettings.of(Material.METAL).hardness(3.0f).nonOpaque());
+    public static final Block KCR_NAME_SIGN = new KCRNameSign(FabricBlockSettings.of(Material.METAL).hardness(4.0f).luminance(15).nonOpaque());
     public static final Block LIGHT_1 = new Light1(FabricBlockSettings.of(Material.METAL).hardness(1.0f).luminance(15));
     public static final Block LIGHT_2 = new Light2(FabricBlockSettings.of(Material.METAL).hardness(1.0f).luminance(15));
     public static final Block LIGHT_BLOCK = new LightBlock(FabricBlockSettings.of(Material.METAL).hardness(4.0f).luminance(15).nonOpaque());
     public static final Block PIDS_1A = new PIDS1A();
     public static final Block PIDS_RV = new PIDSRV();
-    public static final Block MODEL_E44 = new ModelE44(FabricBlockSettings.of(Material.METAL).hardness(1.0f).nonOpaque());
+    public static final Block MODEL_E44 = new ModelE44(FabricBlockSettings.of(Material.METAL).hardness(0.5f).nonOpaque());
     public static final Block STATION_NAME_TALL_STAND = new StationNameTallStand();
     public static final Block SUBSIDY_MACHINE_1 = new SubsidyMachine1(FabricBlockSettings.of(Material.METAL).hardness(4.0f));
     public static final Block TRESPASS_SIGN_1 = new TrespassSign1(FabricBlockSettings.of(Material.METAL).hardness(2.0f).nonOpaque());
@@ -50,6 +51,7 @@ public class Blocks {
     public static final Block WATER_MACHINE_1 = new WaterMachine1(FabricBlockSettings.of(Material.METAL).hardness(4.0f));
 
     public static void registerBlocks() {
+        registerBlock("auto_iron_door", AUTO_IRON_DOOR);
         registerBlock("butterfly_light", BUTTERFLY_LIGHT);
         registerBlock("ceiling_1", CEILING_1);
         registerBlock("circle_wall_1", CIRCLE_WALL_1);
@@ -64,10 +66,10 @@ public class Blocks {
         registerBlock("emg_stop_1", EMG_STOP_1);
         registerBlock("enquiry_machine_1", ENQUIRY_MACHINE_1);
         registerBlock("exit_sign_1", EXIT_SIGN_1);
-        registerBlock("auto_iron_door", AUTO_IRON_DOOR);
         registerBlock("helpline_1", HELPLINE_1);
         registerBlock("helpline_2", HELPLINE_2);
         registerBlock("helpline_3", HELPLINE_3);
+        registerBlock("kcr_name_sign", KCR_NAME_SIGN);
         registerBlock("light_1", LIGHT_1);
         registerBlock("light_2", LIGHT_2);
         registerBlock("light_block", LIGHT_BLOCK);

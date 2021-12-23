@@ -21,7 +21,7 @@ public class Joestu implements ModInitializer {
     public static final BlockEntityType<SignalLightInverted2.TileEntitySignalLightInverted> SIGNAL_LIGHT_INVERTED_ENTITY_2 = registerTileEntity("jsblock:signal_light_inverted_2", SignalLightInverted2.TileEntitySignalLightInverted::new, Blocks.SIGNAL_LIGHT_INVERTED_2);
     public static final BlockEntityType<PIDS1A.TileEntityBlockPIDS4> PIDS_4_TILE_ENTITY = registerTileEntity("jsblock:pids_4", PIDS1A.TileEntityBlockPIDS4::new, Blocks.PIDS_1A);
     public static final BlockEntityType<PIDSRV.TileEntityBlockPIDS5> PIDS_5_TILE_ENTITY = registerTileEntity("jsblock:pids_5", PIDSRV.TileEntityBlockPIDS5::new, Blocks.PIDS_RV);
-
+    public static final BlockEntityType<KCRNameSign.TileEntityKCRNameSign> KCR_NAME_SIGN_TILE_ENTITY = registerTileEntity("jsblock:kcr_name_sign", KCRNameSign.TileEntityKCRNameSign::new, Blocks.KCR_NAME_SIGN);
 
     public static final String MOD_ID = "jsblock";
     public static final Logger LOGGER = LogManager.getLogger("Joestu Client");
