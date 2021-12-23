@@ -145,8 +145,9 @@ public class RenderRVPIDS<T extends BlockEntity> extends BlockEntityRendererMapp
 			}
 
 			/* CLOCK */
-			long time = world.getLunarTime() + 6000;
-			Text timeString = new LiteralText(String.format("%02d:%02d", (time / 1000) % 24, Math.round(time / 16.666656) % 60)).fillStyle(style);
+			World worlds = entity.getWorld();
+			long time = worlds.getTimeOfDay() + 6000;
+			Text timeString = new LiteralText(String.format("%02d:%02d", (time / 1000) % 24, Math.round(time / 16.669) % 60)).fillStyle(style);
 			matrices.push();
 			matrices.translate(90,-9.8,-0.01);
 			matrices.scale(0.75F, 0.75F, 0.75F);

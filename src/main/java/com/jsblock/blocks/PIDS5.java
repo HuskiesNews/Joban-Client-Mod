@@ -17,7 +17,7 @@ public class PIDS5 extends BlockPIDSBase {
     @Override
     public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
         VoxelShape shape1 = IBlock.getVoxelShapeByDirection(5.9, -3.0, 0, 10.1, 11, 12, IBlock.getStatePropertySafe(state, FACING));
-        VoxelShape shape2 = IBlock.getVoxelShapeByDirection(8.5, 11, 9.5, 7.5, 16, 8.5, IBlock.getStatePropertySafe(state, FACING));
+        VoxelShape shape2 = IBlock.getVoxelShapeByDirection(7.5, 11, 8.5, 8.5, 16, 9.5, IBlock.getStatePropertySafe(state, FACING));
         return VoxelShapes.union(shape1, shape2);
     }
 
