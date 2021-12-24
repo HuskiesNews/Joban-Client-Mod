@@ -4,7 +4,6 @@ import com.jsblock.blocks.PIDS1A;
 import com.jsblock.blocks.PIDSRV;
 import com.jsblock.gui.TicketMachineScreen;
 import com.jsblock.render.*;
-import mtr.RegistryClient;
 import mtr.mappings.UtilitiesClient;
 import mtr.packet.IPacket;
 import mtr.render.RenderPIDS;
