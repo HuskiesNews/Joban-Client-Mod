@@ -31,3 +31,6 @@ bin/
 # fabric
 
 run/
+mappings
+checkouts
+.architectury-transformer

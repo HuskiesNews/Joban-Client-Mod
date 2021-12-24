@@ -1,0 +1,39 @@
+modLoader = "javafml"
+loaderVersion = "[36,)"
+license = "MIT"
+
+[[mods]]
+modId = "jsblock"
+version = "${version}"
+displayName = "Joestu Client Mod"
+authors = "LX86, StrikeSNC, AozoraSky"
+description = "Add static signal light, more PIDS, decoration blocks and additional functionalities to the MTR Mod."
+logoFile = "icon.png"
+
+[[dependencies.jsblock]]
+modId = "forge"
+mandatory = true
+versionRange = "[36,)"
+ordering = "NONE"
+side = "BOTH"
+
+[[dependencies.jsblock]]
+modId = "minecraft"
+mandatory = true
+versionRange = "[1.16.5,)"
+ordering = "NONE"
+side = "BOTH"
+
+[[dependencies.jsblock]]
+modId = "architectury"
+mandatory = true
+versionRange = "[1.26.37,)"
+ordering = "AFTER"
+side = "BOTH"
+
+[[dependencies.jsblock]]
+modId = "mtr"
+mandatory = true
+versionRange = "1.0"
+ordering = "AFTER"
+side = "BOTH"
