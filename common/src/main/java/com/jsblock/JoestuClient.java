@@ -2,9 +2,13 @@ package com.jsblock;
 
 import com.jsblock.blocks.PIDS1A;
 import com.jsblock.blocks.PIDSRV;
+import com.jsblock.gui.TicketMachineScreen;
 import com.jsblock.render.*;
 import mtr.RegistryClient;
+import mtr.mappings.UtilitiesClient;
+import mtr.packet.IPacket;
 import mtr.render.RenderPIDS;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.RenderType;
 
 public class JoestuClient {
@@ -38,5 +42,10 @@ public class JoestuClient {
 		RegistryClient.registerTileEntityRenderer(BlockEntityTypes.KCR_NAME_SIGN_TILE_ENTITY, RenderKCRStationName::new);
 
 		RegistryClient.registerBlockColors(Blocks.STATION_NAME_TALL_STAND);
+		RegistryClient.registerNetworkReceiver(IPacket.PACKET_OPEN_TICKET_MACHINE_SCREEN, packet -> {
+			final int balance = packet.readInt();
+			final Minecraft minecraft = Minecraft.getInstance();
+			minecraft.execute(() -> UtilitiesClient.setScreen(minecraft, new TicketMachineScreen(balance)));
+		});
 	}
 }
