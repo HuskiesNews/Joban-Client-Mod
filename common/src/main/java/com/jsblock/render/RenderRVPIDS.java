@@ -151,11 +151,21 @@ public class RenderRVPIDS<T extends BlockEntityMapper> extends BlockEntityRender
 			/* CLOCK */
 			Level worlds = entity.getLevel();
 			long time = worlds.getDayTime() + 6000;
-			Component timeString = new TextComponent(String.format("%02d:%02d", (time / 1000) % 24, Math.round(time / 16.669) % 60)).setStyle(style);
+			long hours = time / 1000;
+			long minutes = Math.round((time - (hours * 1000)) / 16.8);
+			Component timeString = new TextComponent(String.format("%02d:%02d", hours % 24, minutes % 60)).setStyle(style);
 			matrices.pushPose();
 			matrices.translate(90, -9.8, -0.01);
 			matrices.scale(0.75F, 0.75F, 0.75F);
 			renderTextWithOffset(matrices, textRenderer, timeString, 0, 0, 0xFFFFFF);
+			matrices.popPose();
+
+			/* WEATHER */
+			ResourceLocation weatherTexture = worlds.getLevelData().isRaining() ? new ResourceLocation("jsblock:textures/block/weather_rainy.png") : new ResourceLocation("jsblock:textures/block/weather_sunny.png");
+			final VertexConsumer vertexConsumerWeather = vertexConsumers.getBuffer(MoreRenderLayers.getLight(weatherTexture, false));
+			matrices.pushPose();
+			matrices.translate(0, -9.5, -0.01);
+			drawTexture(matrices, vertexConsumerWeather, startX - 10F, -1.5F, 8F, 8F, facing, ARGB_WHITE, MAX_LIGHT_GLOWING);
 			matrices.popPose();
 
 			/* DRAW RV BACKGROUND */
