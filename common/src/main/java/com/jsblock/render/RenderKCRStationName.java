@@ -38,34 +38,40 @@ public class RenderKCRStationName<T extends BlockEntityMapper> extends BlockEnti
 
 		Station station = RailwayData.getStation(ClientData.STATIONS, pos);
 		final Direction facing = IBlock.getStatePropertySafe(world, pos, HorizontalDirectionalBlock.FACING);
-		final double offset = IBlock.getStatePropertySafe(world, pos, KCRNameSign.EXIT_ON_LEFT) ? 0.5 : 0;
+		Boolean exitOnLeft = IBlock.getStatePropertySafe(world, pos, KCRNameSign.EXIT_ON_LEFT);
+		double offset = exitOnLeft ? 0.5 : 0;
 
-		matrices.pushPose();
-		if (facing == Direction.SOUTH) {
-			matrices.translate(0.69 - offset, 0.43, 0.43);
+		for (int i = 0; i < 2; i++) {
+			Direction newFacing = i == 1 ? facing.getOpposite() : facing;
+			offset = i == 1 ? !exitOnLeft ? 0.5 : 0 : offset;
+
+			matrices.pushPose();
+			if (newFacing == Direction.SOUTH) {
+				matrices.translate(0.69 - offset, 0.43, 0.33);
+			}
+
+			if (newFacing == Direction.NORTH) {
+				matrices.translate(0.31 + offset, 0.43, 0.67);
+			}
+
+			if (newFacing == Direction.EAST) {
+				matrices.translate(0.33, 0.43, 0.31 + offset);
+			}
+
+			if (newFacing == Direction.WEST) {
+				matrices.translate(0.67, 0.43, 0.69 - offset);
+			}
+
+			matrices.mulPose(Vector3f.ZP.rotationDegrees(180));
+			matrices.mulPose(Vector3f.YP.rotationDegrees(newFacing.toYRot()));
+			matrices.scale(0.021F, 0.021F, 0.021F);
+
+			final Font textRenderer = Minecraft.getInstance().font;
+			final String stationName = station == null ? new TranslatableComponent("gui.mtr.untitled").getString() : station.name;
+			final MultiBufferSource.BufferSource immediate = MultiBufferSource.immediate(Tesselator.getInstance().getBuilder());
+			IDrawing.drawStringWithFont(matrices, textRenderer, immediate, stationName, HorizontalAlignment.CENTER, VerticalAlignment.CENTER, 0, 0, 60, 32, 1, 0xEEEEEE, false, MAX_LIGHT_GLOWING, "kcr_chin", "kcr_eng");
+			immediate.endBatch();
+			matrices.popPose();
 		}
-
-		if (facing == Direction.NORTH) {
-			matrices.translate(0.31 + offset, 0.43, 0.57);
-		}
-
-		if (facing == Direction.EAST) {
-			matrices.translate(0.43, 0.43, 0.31 + offset);
-		}
-
-		if (facing == Direction.WEST) {
-			matrices.translate(0.57, 0.43, 0.69 - offset);
-		}
-
-		matrices.mulPose(Vector3f.ZP.rotationDegrees(180));
-		matrices.mulPose(Vector3f.YP.rotationDegrees(facing.toYRot()));
-		matrices.scale(0.021F, 0.021F, 0.021F);
-
-		final Font textRenderer = Minecraft.getInstance().font;
-		final String stationName = station == null ? new TranslatableComponent("gui.mtr.untitled").getString() : station.name;
-		final MultiBufferSource.BufferSource immediate = MultiBufferSource.immediate(Tesselator.getInstance().getBuilder());
-		IDrawing.drawStringWithFont(matrices, textRenderer, immediate, stationName, HorizontalAlignment.CENTER, VerticalAlignment.CENTER, 0, 0, 60, 32, 1, 0xEEEEEE, false, MAX_LIGHT_GLOWING, "kcr_chin", "kcr_eng");
-		immediate.endBatch();
-		matrices.popPose();
 	}
 }
