@@ -161,7 +161,7 @@ public class RenderRVPIDS<T extends BlockEntityMapper> extends BlockEntityRender
 			matrices.popPose();
 
 			/* WEATHER */
-			ResourceLocation weatherTexture = worlds.getLevelData().isRaining() ? new ResourceLocation("jsblock:textures/block/weather_rainy.png") : new ResourceLocation("jsblock:textures/block/weather_sunny.png");
+			ResourceLocation weatherTexture = worlds.isThundering() ? new ResourceLocation("jsblock:textures/block/weather_thunder.png") : worlds.isRaining() ? new ResourceLocation("jsblock:textures/block/weather_rainy.png") : new ResourceLocation("jsblock:textures/block/weather_sunny.png");
 			final VertexConsumer vertexConsumerWeather = vertexConsumers.getBuffer(MoreRenderLayers.getLight(weatherTexture, false));
 			matrices.pushPose();
 			matrices.translate(0, -9.5, -0.01);
