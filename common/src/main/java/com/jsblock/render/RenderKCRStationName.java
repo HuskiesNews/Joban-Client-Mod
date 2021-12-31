@@ -36,7 +36,7 @@ public class RenderKCRStationName<T extends BlockEntityMapper> extends BlockEnti
 			return;
 		}
 
-		Station station = RailwayData.getStation(ClientData.STATIONS, pos);
+		Station station = RailwayData.getStation(ClientData.STATIONS, ClientData.DATA_CACHE, pos);
 		final Direction facing = IBlock.getStatePropertySafe(world, pos, HorizontalDirectionalBlock.FACING);
 		Boolean exitOnLeft = IBlock.getStatePropertySafe(world, pos, KCRNameSign.EXIT_ON_LEFT);
 		double offset = exitOnLeft ? 0.5 : 0;

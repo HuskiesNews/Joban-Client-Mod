@@ -43,12 +43,12 @@ public class RenderDepartureTimer<T extends BlockEntityMapper> extends BlockEnti
 			return;
 		}
 
-		final Platform platform = RailwayData.getClosePlatform(ClientData.PLATFORMS, pos, 5, 3, 3);
-		if (platform == null) {
+		final long platformId = RailwayData.getClosePlatformId(ClientData.PLATFORMS, ClientData.DATA_CACHE, pos, 5, 3, 3);
+		if (platformId == 0) {
 			return;
 		}
 
-		final Set<Route.ScheduleEntry> schedules = ClientData.SCHEDULES_FOR_PLATFORM.get(platform.id);
+		final Set<Route.ScheduleEntry> schedules = ClientData.SCHEDULES_FOR_PLATFORM.get(platformId);
 		if (schedules == null) {
 			return;
 		}
@@ -65,7 +65,8 @@ public class RenderDepartureTimer<T extends BlockEntityMapper> extends BlockEnti
 			/* remainingSecond = Train ETA */
 			int remainingSecond = (int) (scheduleList.get(0).arrivalMillis - System.currentTimeMillis()) / 1000;
 			/* seconds = dwell - ETA */
-			int seconds = Math.abs((platform.getDwellTime() / 2) - Math.abs(remainingSecond));
+			final Platform platform = ClientData.DATA_CACHE.platformIdMap.get(platformId);
+			int seconds = platform == null ? 0 : Math.abs((platform.getDwellTime() / 2) - Math.abs(remainingSecond));
 			int minutes = seconds / 60;
 			timeRemaining = String.format("%d:%02d", minutes % 60, seconds % 60);
 		}

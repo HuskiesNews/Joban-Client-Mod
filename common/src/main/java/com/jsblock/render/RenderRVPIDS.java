@@ -99,11 +99,11 @@ public class RenderRVPIDS<T extends BlockEntityMapper> extends BlockEntityRender
 		try {
 			final Set<Route.ScheduleEntry> schedules;
 
-			final Platform platform = RailwayData.getClosePlatform(ClientData.PLATFORMS, pos);
-			if (platform == null) {
+			final long platformId = RailwayData.getClosePlatformId(ClientData.PLATFORMS, ClientData.DATA_CACHE, pos);
+			if (platformId == 0) {
 				schedules = new HashSet<>();
 			} else {
-				final Set<Route.ScheduleEntry> schedulesForPlatform = ClientData.SCHEDULES_FOR_PLATFORM.get(platform.id);
+				final Set<Route.ScheduleEntry> schedulesForPlatform = ClientData.SCHEDULES_FOR_PLATFORM.get(platformId);
 				schedules = schedulesForPlatform == null ? new HashSet<>() : schedulesForPlatform;
 			}
 
@@ -232,6 +232,7 @@ public class RenderRVPIDS<T extends BlockEntityMapper> extends BlockEntityRender
 					if (showPlatforms) {
 						final VertexConsumer vertexConsumerStationCircle = vertexConsumers.getBuffer(MoreRenderLayers.getLight(new ResourceLocation("mtr:textures/sign/circle.png"), true));
 
+						final Platform platform = ClientData.DATA_CACHE.platformIdMap.get(platformId);
 						if (platform != null) {
 							final List<ClientCache.PlatformRouteDetails> platformRouteDetails = ClientData.DATA_CACHE.requestPlatformIdToRoutes(platform.id);
 							routeData = platformRouteDetails == null ? new ArrayList<>() : platformRouteDetails;

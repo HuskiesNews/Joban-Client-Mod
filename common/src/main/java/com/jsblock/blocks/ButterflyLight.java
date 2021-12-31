@@ -94,12 +94,12 @@ public class ButterflyLight extends HorizontalDirectionalBlock implements Entity
 					return;
 				}
 
-				final Platform platform = RailwayData.getClosePlatform(railwayData.platforms, pos, 5, 3, 3);
-				if (platform == null) {
+				final long platformId = RailwayData.getClosePlatformId(railwayData.platforms, railwayData.dataCache, pos, 5, 3, 3);
+				if (platformId == 0) {
 					return;
 				}
 
-				final List<Route.ScheduleEntry> schedules = railwayData.getSchedulesAtPlatform(platform.id);
+				final List<Route.ScheduleEntry> schedules = railwayData.getSchedulesAtPlatform(platformId);
 				if (schedules == null) {
 					return;
 				}
@@ -117,7 +117,8 @@ public class ButterflyLight extends HorizontalDirectionalBlock implements Entity
 					}
 
 					int remainingSecond = (int) (scheduleList.get(0).arrivalMillis - System.currentTimeMillis()) / 1000;
-					int seconds = (platform.getDwellTime() / 2) - Math.abs(remainingSecond);
+					final Platform platform = railwayData.dataCache.platformIdMap.get(platformId);
+					int seconds = platform == null ? 0 : (platform.getDwellTime() / 2) - Math.abs(remainingSecond);
 					/* If the departure time is still more than 10 seconds, return and don't blink the light */
 					if (seconds > 10) {
 						return;
