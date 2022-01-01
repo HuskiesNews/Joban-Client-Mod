@@ -53,7 +53,7 @@ public class RenderRVPIDS<T extends BlockEntityMapper> extends BlockEntityRender
 	private List<ClientCache.PlatformRouteDetails> routeData;
 
 	private static final int SWITCH_LANGUAGE_TICKS = 80;
-	private static final int CAR_TEXT_COLOR = 0xFF0000;
+	private static final int MTR_FONT_OFFSET = 20;
 	private static final int MAX_VIEW_DISTANCE = 16;
 
 	public RenderRVPIDS(BlockEntityRenderDispatcher dispatcher, int maxArrivals, float startX, float startY, float startZ, float maxHeight, int maxWidth, boolean rotate90, boolean renderArrivalNumber, boolean showPlatforms, int textColor) {
@@ -111,8 +111,6 @@ public class RenderRVPIDS<T extends BlockEntityMapper> extends BlockEntityRender
 			Collections.sort(scheduleList);
 
 			final boolean showCarLength;
-			final float carLengthMaxWidth;
-			if (!showPlatforms) {
 				int maxCars = 0;
 				int minCars = Integer.MAX_VALUE;
 				for (final Route.ScheduleEntry scheduleEntry : scheduleList) {
@@ -125,11 +123,6 @@ public class RenderRVPIDS<T extends BlockEntityMapper> extends BlockEntityRender
 					}
 				}
 				showCarLength = minCars != maxCars;
-				carLengthMaxWidth = showCarLength ? scale * 6 / 16 : 0;
-			} else {
-				showCarLength = false;
-				carLengthMaxWidth = 0;
-			}
 
 			final Font textRenderer = Minecraft.getInstance().font;
 
@@ -208,7 +201,9 @@ public class RenderRVPIDS<T extends BlockEntityMapper> extends BlockEntityRender
 				matrices.scale(1F / scale, 1F / scale, 1F / scale);
 
 				if (useCustomMessage) {
-					final int destinationWidth = textRenderer.width(destinationString);
+					int destinationWidth = textRenderer.width(destinationString);
+					if(Config.useMTRFont()) destinationWidth -= MTR_FONT_OFFSET;
+
 					if (destinationWidth > totalScaledWidth) {
 						matrices.scale(totalScaledWidth / destinationWidth, 1, 1);
 					}
@@ -225,10 +220,11 @@ public class RenderRVPIDS<T extends BlockEntityMapper> extends BlockEntityRender
 					} else {
 						arrivalText = seconds > 0 ? new TranslatableComponent(isCJK ? "gui.mtr.arrival_sec_cjk" : "gui.mtr.arrival_sec", seconds).setStyle(style) : null;
 					}
-					final Component carText = new TranslatableComponent(isCJK ? "gui.mtr.arrival_car_cjk" : "gui.mtr.arrival_car", currentSchedule.trainCars);
+					final Component carText = new TranslatableComponent(isCJK ? "gui.mtr.arrival_car_cjk" : "gui.mtr.arrival_car", currentSchedule.trainCars).setStyle(style);
 
-					final float newDestinationMaxWidth = destinationMaxWidth - carLengthMaxWidth;
+					final float newDestinationMaxWidth = destinationMaxWidth;
 
+					/* PLATFORM */
 					if (showPlatforms) {
 						final VertexConsumer vertexConsumerStationCircle = vertexConsumers.getBuffer(MoreRenderLayers.getLight(new ResourceLocation("mtr:textures/sign/circle.png"), true));
 
@@ -238,31 +234,27 @@ public class RenderRVPIDS<T extends BlockEntityMapper> extends BlockEntityRender
 							routeData = platformRouteDetails == null ? new ArrayList<>() : platformRouteDetails;
 
 							final float x = destinationStart + newDestinationMaxWidth;
-							drawTexture(matrices, vertexConsumerStationCircle, x - 4.5F / 2, 0, 8, 8, facing, ARGB_BLACK + routeData.get(0).routeColor, 15);
+							drawTexture(matrices, vertexConsumerStationCircle, x - 4.5F / 2, 0, 8, 8, facing, routeData.get(0).routeColor + ARGB_BLACK, MAX_LIGHT_GLOWING);
 							matrices.pushPose();
 							matrices.translate(destinationStart + newDestinationMaxWidth, 1.2F, -0.05);
 							matrices.scale(0.8F, 0.8F, 0.8F);
 							Component platformText = new TextComponent(platform.name).setStyle(style);
+							final int totalWidth = textRenderer.width(platformText);
+							final float platformMaxWidth = 7.0F;
+							if(totalWidth > platformMaxWidth) {
+								matrices.translate(-1, (platformMaxWidth / totalWidth), 0);
+								matrices.scale(platformMaxWidth / totalWidth,  platformMaxWidth / totalWidth, 1);
+							}
+
 							renderTextWithOffset(matrices, textRenderer, platformText, -0.9F, 0, 0xFFFFFF);
 							matrices.popPose();
 						}
 					}
 
-//					if (showCarLength) {
-//						matrices.pushPose();
-//						matrices.translate(destinationStart + newDestinationMaxWidth + platformMaxWidth, 0, 0);
-//						final int carTextWidth = textRenderer.width(carText);
-//						if (carTextWidth > carLengthMaxWidth) {
-//							matrices.scale(carLengthMaxWidth / carTextWidth, 1, 1);
-//						}
-//						textRenderer.draw(matrices, carText, 0, 0, CAR_TEXT_COLOR);
-//						matrices.popPose();
-//					}
-
 					matrices.pushPose();
 					matrices.translate(destinationStart, 0, 0);
-					/* + 3 is offset to prevent text overflowing the platform circle */
-					final int destinationWidth = textRenderer.width(destinationString) + 3;
+					/* 5 is offset to prevent text overflowing the platform circle */
+					final int destinationWidth = textRenderer.width(destinationString) + 5;
 					if (destinationWidth > newDestinationMaxWidth) {
 						matrices.scale(newDestinationMaxWidth / destinationWidth, 1, 1);
 					}
@@ -273,14 +265,28 @@ public class RenderRVPIDS<T extends BlockEntityMapper> extends BlockEntityRender
 
 					if (arrivalText != null) {
 						matrices.pushPose();
-						final int arrivalWidth = textRenderer.width(arrivalText);
+						final int arrivalWidth;
+						final boolean isShowCar = showCarLength && (languageTicks % 5 == 0 || languageTicks % 5 == 1);
+
+						if (isShowCar) {
+							arrivalWidth = textRenderer.width(carText);
+						} else {
+							arrivalWidth = textRenderer.width(arrivalText);
+						}
+
 						if (arrivalWidth > arrivalMaxWidth) {
-							matrices.translate(destinationStart + newDestinationMaxWidth + platformMaxWidth + carLengthMaxWidth, 0, 0);
+							matrices.translate(destinationStart + newDestinationMaxWidth + platformMaxWidth, 0, 0);
 							matrices.scale(arrivalMaxWidth / arrivalWidth, 1, 1);
 						} else {
 							matrices.translate(totalScaledWidth - arrivalWidth, 0, 0);
 						}
-						renderTextWithOffset(matrices, textRenderer, arrivalText, 0, -0.025F, textColor);
+
+						if (isShowCar) {
+							renderTextWithOffset(matrices, textRenderer, carText, 0, -0.025F, textColor);
+						} else {
+							renderTextWithOffset(matrices, textRenderer, arrivalText, 0, -0.025F, textColor);
+						}
+
 						matrices.popPose();
 					}
 				}
