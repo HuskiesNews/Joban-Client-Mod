@@ -45,6 +45,7 @@ public class Joestu {
 			registerBlockItem.accept("light_1", Blocks.LIGHT_1, ItemGroups.MAIN);
 			registerBlockItem.accept("light_2", Blocks.LIGHT_2, ItemGroups.MAIN);
 			registerBlockItem.accept("light_block", Blocks.LIGHT_BLOCK, ItemGroups.MAIN);
+			registerBlockItem.accept("op_button", Blocks.OP_BUTTONS, ItemGroups.MAIN);
 			registerBlockItem.accept("pids_1a", Blocks.PIDS_1A, ItemGroups.MAIN);
 			registerBlockItem.accept("pids_rv", Blocks.PIDS_RV, ItemGroups.MAIN);
 			registerBlockItem.accept("station_name_tall_stand", Blocks.STATION_NAME_TALL_STAND, ItemGroups.MAIN);

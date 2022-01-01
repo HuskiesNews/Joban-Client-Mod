@@ -22,6 +22,7 @@
   "block.jsblock.light_block": "Light Source Block",
   "block.jsblock.light_1": "Light Lantern",
   "block.jsblock.light_2": "Ceiling Light",
+  "block.jsblock.op_button":"Operator only button",
   "block.jsblock.pids_1a":"Passenger Information Display System",
   "block.jsblock.pids_rv":"Railway Vision PIDS",
   "block.jsblock.signal_light_red_1":"Signal Light (Red, Bottom)",
