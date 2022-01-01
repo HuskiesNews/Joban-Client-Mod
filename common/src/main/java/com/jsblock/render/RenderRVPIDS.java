@@ -239,11 +239,11 @@ public class RenderRVPIDS<T extends BlockEntityMapper> extends BlockEntityRender
 							matrices.translate(destinationStart + newDestinationMaxWidth, 1.2F, -0.05);
 							matrices.scale(0.8F, 0.8F, 0.8F);
 							Component platformText = new TextComponent(platform.name).setStyle(style);
-							final int totalWidth = textRenderer.width(platformText);
+							final int platformTextWidth = textRenderer.width(platformText);
 							final float platformMaxWidth = 7.0F;
-							if(totalWidth > platformMaxWidth) {
-								matrices.translate(-1, (platformMaxWidth / totalWidth), 0);
-								matrices.scale(platformMaxWidth / totalWidth,  platformMaxWidth / totalWidth, 1);
+							if(platformTextWidth > platformMaxWidth) {
+								matrices.translate(-0.73 - (platformTextWidth / 100.0F), 0.9F + (platformTextWidth / 20.0F), 0);
+								matrices.scale(platformMaxWidth / platformTextWidth,  platformMaxWidth / platformTextWidth, 1);
 							}
 
 							renderTextWithOffset(matrices, textRenderer, platformText, -0.9F, 0, 0xFFFFFF);
@@ -266,7 +266,7 @@ public class RenderRVPIDS<T extends BlockEntityMapper> extends BlockEntityRender
 					if (arrivalText != null) {
 						matrices.pushPose();
 						final int arrivalWidth;
-						final boolean isShowCar = showCarLength && (languageTicks % 5 == 0 || languageTicks % 5 == 1);
+						final boolean isShowCar = showCarLength && (languageTicks % 6 == 0 || languageTicks % 6 == 1);
 
 						if (isShowCar) {
 							arrivalWidth = textRenderer.width(carText);
