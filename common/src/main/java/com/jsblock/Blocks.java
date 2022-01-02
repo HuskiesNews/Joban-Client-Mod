@@ -10,7 +10,7 @@ import net.minecraft.world.level.material.MaterialColor;
 public interface Blocks {
 	Block AUTO_IRON_DOOR = new AutoDoor(BlockBehaviour.Properties.copy(net.minecraft.world.level.block.Blocks.IRON_DOOR));
 	Block BUTTERFLY_LIGHT = new ButterflyLight(BlockBehaviour.Properties.of(Material.METAL, MaterialColor.COLOR_BLACK).strength(3.0f).lightLevel(state -> 4));
-	Block BUFFERSTOP_1 = new OpOnlyButton(BlockBehaviour.Properties.of(Material.METAL).strength(4.0f).lightLevel(state -> 15).noOcclusion());
+	Block BUFFERSTOP_1 = new Bufferstop1(BlockBehaviour.Properties.of(Material.METAL).strength(4.0f).lightLevel(state -> 15).noOcclusion());
 	Block CIRCLE_WALL_1 = new CircleWall();
 	Block CIRCLE_WALL_2 = new CircleWall();
 	Block CIRCLE_WALL_3 = new CircleWall();
