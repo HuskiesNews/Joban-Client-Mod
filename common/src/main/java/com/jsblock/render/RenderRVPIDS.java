@@ -83,7 +83,7 @@ public class RenderRVPIDS<T extends BlockEntityMapper> extends BlockEntityRender
 
 		final BlockPos pos = entity.getBlockPos();
 		final Direction facing = IBlock.getStatePropertySafe(world, pos, HorizontalDirectionalBlock.FACING);
-		final Style style = Config.useMTRFont() ? Style.EMPTY.withFont(new ResourceLocation(MTR.MOD_ID, "mtr")) : Style.EMPTY;
+		final Style mtrFontStyle = Config.useMTRFont() ? Style.EMPTY.withFont(new ResourceLocation(MTR.MOD_ID, "mtr")) : Style.EMPTY;
 
 		final String[] customMessages = new String[maxArrivals];
 		final boolean[] hideArrival = new boolean[maxArrivals];
@@ -111,18 +111,20 @@ public class RenderRVPIDS<T extends BlockEntityMapper> extends BlockEntityRender
 			Collections.sort(scheduleList);
 
 			final boolean showCarLength;
-				int maxCars = 0;
-				int minCars = Integer.MAX_VALUE;
-				for (final Route.ScheduleEntry scheduleEntry : scheduleList) {
-					final int trainCars = scheduleEntry.trainCars;
-					if (trainCars > maxCars) {
-						maxCars = trainCars;
-					}
-					if (trainCars < minCars) {
-						minCars = trainCars;
-					}
+			int maxCars = 0;
+			int minCars = Integer.MAX_VALUE;
+
+			/* Find the maximum and minimum cars out of the schedule list */
+			for (final Route.ScheduleEntry scheduleEntry : scheduleList) {
+				final int trainCars = scheduleEntry.trainCars;
+				if (trainCars > maxCars) {
+					maxCars = trainCars;
 				}
-				showCarLength = minCars != maxCars;
+				if (trainCars < minCars) {
+					minCars = trainCars;
+				}
+			}
+			showCarLength = minCars != maxCars;
 
 			final Font textRenderer = Minecraft.getInstance().font;
 
@@ -133,6 +135,7 @@ public class RenderRVPIDS<T extends BlockEntityMapper> extends BlockEntityRender
 			matrices.translate((startX - 8) / 16, -startY / 16 + 0 * maxHeight / maxArrivals / 16, (startZ - 8) / 16 - SMALL_OFFSET * 2);
 			matrices.scale(1F / scale, 1F / scale, 1F / scale);
 
+			/* If the player is too far away from the PIDS that not even the train renders */
 			if (RenderTrains.shouldNotRender(pos, Math.min(MAX_VIEW_DISTANCE, RenderTrains.maxTrainRenderDistance), rotate90 ? null : facing)) {
 				final VertexConsumer vertexConsumerPIDSBG = vertexConsumers.getBuffer(MoreRenderLayers.getLight(new ResourceLocation("jsblock:textures/block/pids_5.png"), false));
 				matrices.translate(0, -9.5, 0.01);
@@ -141,19 +144,19 @@ public class RenderRVPIDS<T extends BlockEntityMapper> extends BlockEntityRender
 				return;
 			}
 
-			/* CLOCK */
+			/* Render Clock */
 			Level worlds = entity.getLevel();
 			long time = worlds.getDayTime() + 6000;
 			long hours = time / 1000;
 			long minutes = Math.round((time - (hours * 1000)) / 16.8);
-			Component timeString = new TextComponent(String.format("%02d:%02d", hours % 24, minutes % 60)).setStyle(style);
+			Component timeString = new TextComponent(String.format("%02d:%02d", hours % 24, minutes % 60)).setStyle(mtrFontStyle);
 			matrices.pushPose();
 			matrices.translate(90, -9.8, -0.01);
 			matrices.scale(0.75F, 0.75F, 0.75F);
 			renderTextWithOffset(matrices, textRenderer, timeString, 0, 0, 0xFFFFFF);
 			matrices.popPose();
 
-			/* WEATHER */
+			/* Draw Weather icon */
 			ResourceLocation weatherTexture = worlds.isThundering() ? new ResourceLocation("jsblock:textures/block/weather_thunder.png") : worlds.isRaining() ? new ResourceLocation("jsblock:textures/block/weather_rainy.png") : new ResourceLocation("jsblock:textures/block/weather_sunny.png");
 			final VertexConsumer vertexConsumerWeather = vertexConsumers.getBuffer(MoreRenderLayers.getLight(weatherTexture, false));
 			matrices.pushPose();
@@ -161,12 +164,13 @@ public class RenderRVPIDS<T extends BlockEntityMapper> extends BlockEntityRender
 			drawTexture(matrices, vertexConsumerWeather, startX - 9F, -1.5F, 8F, 8F, facing, ARGB_WHITE, MAX_LIGHT_GLOWING);
 			matrices.popPose();
 
-			/* DRAW RV BACKGROUND */
+			/* Render PIDS Background */
 			final VertexConsumer vertexConsumerPIDSBG = vertexConsumers.getBuffer(MoreRenderLayers.getLight(new ResourceLocation("jsblock:textures/block/pids_5.png"), false));
 			matrices.translate(0, -9.5, 0.01);
 			drawTexture(matrices, vertexConsumerPIDSBG, startX - 26F / 2, -1.5F, 119F, 65.8F, facing, ARGB_WHITE, MAX_LIGHT_GLOWING);
 			matrices.popPose();
 
+			/* Loop through each arrival */
 			for (int i = 0; i < maxArrivals; i++) {
 				final int languageTicks = (int) Math.floor(RenderTrains.getGameTicks()) / SWITCH_LANGUAGE_TICKS;
 				final String destinationString;
@@ -208,7 +212,7 @@ public class RenderRVPIDS<T extends BlockEntityMapper> extends BlockEntityRender
 						matrices.scale(totalScaledWidth / destinationWidth, 1, 1);
 					}
 
-					Component destString = new TextComponent(destinationString).setStyle(style);
+					Component destString = new TextComponent(destinationString).setStyle(mtrFontStyle);
 					renderTextWithOffset(matrices, textRenderer, destString, 0, 0, textColor);
 				} else {
 					final Route.ScheduleEntry currentSchedule = scheduleList.get(i);
@@ -216,11 +220,11 @@ public class RenderRVPIDS<T extends BlockEntityMapper> extends BlockEntityRender
 					final int seconds = (int) ((currentSchedule.arrivalMillis - System.currentTimeMillis()) / 1000);
 					final boolean isCJK = destinationString.codePoints().anyMatch(Character::isIdeographic);
 					if (seconds >= 60) {
-						arrivalText = new TranslatableComponent(isCJK ? "gui.mtr.arrival_min_cjk" : "gui.mtr.arrival_min", seconds / 60).setStyle(style);
+						arrivalText = new TranslatableComponent(isCJK ? "gui.mtr.arrival_min_cjk" : "gui.mtr.arrival_min", seconds / 60).setStyle(mtrFontStyle);
 					} else {
-						arrivalText = seconds > 0 ? new TranslatableComponent(isCJK ? "gui.mtr.arrival_sec_cjk" : "gui.mtr.arrival_sec", seconds).setStyle(style) : null;
+						arrivalText = seconds > 0 ? new TranslatableComponent(isCJK ? "gui.mtr.arrival_sec_cjk" : "gui.mtr.arrival_sec", seconds).setStyle(mtrFontStyle) : null;
 					}
-					final Component carText = new TranslatableComponent(isCJK ? "gui.mtr.arrival_car_cjk" : "gui.mtr.arrival_car", currentSchedule.trainCars).setStyle(style);
+					final Component carText = new TranslatableComponent(isCJK ? "gui.mtr.arrival_car_cjk" : "gui.mtr.arrival_car", currentSchedule.trainCars).setStyle(mtrFontStyle);
 
 					final float newDestinationMaxWidth = destinationMaxWidth;
 
@@ -238,7 +242,7 @@ public class RenderRVPIDS<T extends BlockEntityMapper> extends BlockEntityRender
 							matrices.pushPose();
 							matrices.translate(destinationStart + newDestinationMaxWidth, 1.2F, -0.05);
 							matrices.scale(0.8F, 0.8F, 0.8F);
-							Component platformText = new TextComponent(platform.name).setStyle(style);
+							Component platformText = new TextComponent(platform.name).setStyle(mtrFontStyle);
 							final int platformTextWidth = textRenderer.width(platformText);
 							final float platformMaxWidth = 7.0F;
 							if(platformTextWidth > platformMaxWidth) {
@@ -259,7 +263,7 @@ public class RenderRVPIDS<T extends BlockEntityMapper> extends BlockEntityRender
 						matrices.scale(newDestinationMaxWidth / destinationWidth, 1, 1);
 					}
 
-					Component destText = new TextComponent(destinationString).setStyle(style);
+					Component destText = new TextComponent(destinationString).setStyle(mtrFontStyle);
 					renderTextWithOffset(matrices, textRenderer, destText, 0, 0, 0x000000);
 					matrices.popPose();
 

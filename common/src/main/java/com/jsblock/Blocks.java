@@ -40,6 +40,7 @@ public interface Blocks {
 	Block PIDS_1A = new PIDS1A();
 	Block PIDS_RV = new PIDSRV();
 	Block MODEL_E44 = new ModelE44(BlockBehaviour.Properties.of(Material.METAL).strength(0.5f).noOcclusion());
+	Block RV_PIDS_POLE = new RVPIDSPole(BlockBehaviour.Properties.of(Material.METAL).strength(0.5f).noOcclusion());
 	Block STATION_NAME_TALL_STAND = new StationNameTallStand();
 	Block SUBSIDY_MACHINE_1 = new SubsidyMachine1(BlockBehaviour.Properties.of(Material.METAL).strength(4.0f));
 	Block TRESPASS_SIGN_1 = new TrespassSign1(BlockBehaviour.Properties.of(Material.METAL).strength(2.0f).noOcclusion());
