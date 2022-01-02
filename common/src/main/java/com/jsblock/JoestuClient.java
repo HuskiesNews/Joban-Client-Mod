@@ -16,6 +16,7 @@ public class JoestuClient {
 	public static void init() {
 		/* Allow transparent texture for the block */
 		RegistryClient.registerBlockRenderType(RenderType.cutout(), Blocks.AUTO_IRON_DOOR);
+		RegistryClient.registerBlockRenderType(RenderType.cutout(), Blocks.BUFFERSTOP_1);
 		RegistryClient.registerBlockRenderType(RenderType.cutout(), Blocks.CEILING_1);
 		RegistryClient.registerBlockRenderType(RenderType.cutout(), Blocks.ENQUIRY_MACHINE_1);
 		RegistryClient.registerBlockRenderType(RenderType.cutout(), Blocks.HELPLINE_1);
