@@ -1,6 +1,7 @@
 {
   "itemGroup.jsblock.core": "Joestu Blocks",
   "block.jsblock.auto_iron_door":"Automatic Iron Door",
+  "block.jsblock.block.rv_pids_pole":"Must be placed on top of existing Railway Vision PIDS",
   "block.jsblock.butterfly_light":"Door Closing Indicator (Butterfly Light)",
   "block.jsblock.bufferstop_1":"Buffer Stop (East Rail Line type)",
   "block.jsblock.ceiling_1": "Ceiling (45°)",
@@ -26,6 +27,7 @@
   "block.jsblock.op_button":"Operator only button",
   "block.jsblock.pids_1a":"Passenger Information Display System",
   "block.jsblock.pids_rv":"Railway Vision PIDS",
+  "block.jsblock.rv_pids_pole":"Railway Vision PIDS Pole",
   "block.jsblock.signal_light_red_1":"Signal Light (Red, Bottom)",
   "block.jsblock.signal_light_red_2":"Signal Light (Red, Top)",
   "block.jsblock.signal_light_blue":"Signal Light (Blue, Top)",
