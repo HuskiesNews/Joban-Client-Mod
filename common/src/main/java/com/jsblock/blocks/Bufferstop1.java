@@ -33,7 +33,7 @@ public class Bufferstop1 extends HorizontalDirectionalBlock {
 
 	@Override
 	public VoxelShape getShape(BlockState state, BlockGetter blockGetter, BlockPos pos, CollisionContext collisionContext) {
-		return mtr.block.IBlock.getVoxelShapeByDirection(0, 0, 0, 31, 16, 16, state.getValue(FACING));
+		return mtr.block.IBlock.getVoxelShapeByDirection(0, 0, 0, 16, 16, 31, state.getValue(FACING));
 	}
 
 	@Override
