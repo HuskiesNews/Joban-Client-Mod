@@ -25,6 +25,7 @@ public class Joestu {
 		try {
 			registerBlockItem.accept("auto_iron_door", Blocks.AUTO_IRON_DOOR, ItemGroups.MAIN);
 			registerBlockItem.accept("butterfly_light", Blocks.BUTTERFLY_LIGHT, ItemGroups.MAIN);
+			registerBlockItem.accept("bufferstop_1", Blocks.BUFFERSTOP_1, ItemGroups.MAIN);
 			registerBlockItem.accept("ceiling_1", Blocks.CEILING_1, ItemGroups.MAIN);
 			registerBlockItem.accept("circle_wall_1", Blocks.CIRCLE_WALL_1, ItemGroups.MAIN);
 			registerBlockItem.accept("circle_wall_2", Blocks.CIRCLE_WALL_2, ItemGroups.MAIN);
