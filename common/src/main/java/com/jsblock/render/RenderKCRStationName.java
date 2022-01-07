@@ -1,15 +1,15 @@
 package com.jsblock.render;
 
 import com.jsblock.blocks.KCRNameSign;
-import com.jsblock.gui.IDrawing;
+import com.jsblock.gui.IDrawingJoestu;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.Tesselator;
 import com.mojang.math.Vector3f;
 import mtr.block.IBlock;
+import mtr.client.ClientData;
 import mtr.data.IGui;
 import mtr.data.RailwayData;
 import mtr.data.Station;
-import mtr.gui.ClientData;
 import mtr.mappings.BlockEntityMapper;
 import mtr.mappings.BlockEntityRendererMapper;
 import net.minecraft.client.Minecraft;
@@ -69,7 +69,7 @@ public class RenderKCRStationName<T extends BlockEntityMapper> extends BlockEnti
 			final Font textRenderer = Minecraft.getInstance().font;
 			final String stationName = station == null ? new TranslatableComponent("gui.mtr.untitled").getString() : station.name;
 			final MultiBufferSource.BufferSource immediate = MultiBufferSource.immediate(Tesselator.getInstance().getBuilder());
-			IDrawing.drawStringWithFont(matrices, textRenderer, immediate, stationName, HorizontalAlignment.CENTER, VerticalAlignment.CENTER, 0, 0, 60, 32, 1, 0xEEEEEE, false, MAX_LIGHT_GLOWING, "kcr_chin", "kcr_eng");
+			IDrawingJoestu.drawStringWithFont(matrices, textRenderer, immediate, stationName, HorizontalAlignment.CENTER, VerticalAlignment.CENTER, 0, 0, 60, 32, 1, 0xEEEEEE, false, MAX_LIGHT_GLOWING, "kcr_chin", "kcr_eng");
 			immediate.endBatch();
 			matrices.popPose();
 		}

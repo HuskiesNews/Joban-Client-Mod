@@ -2,7 +2,7 @@ package com.jsblock.render;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
-import mtr.gui.IDrawing;
+import mtr.client.IDrawing;
 import mtr.mappings.BlockEntityMapper;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderDispatcher;

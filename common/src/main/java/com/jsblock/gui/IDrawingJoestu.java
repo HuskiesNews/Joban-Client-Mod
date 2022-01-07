@@ -2,7 +2,7 @@ package com.jsblock.gui;
 
 import com.jsblock.Joestu;
 import com.mojang.blaze3d.vertex.PoseStack;
-import mtr.config.Config;
+import mtr.client.Config;
 import mtr.data.IGui;
 import net.minecraft.client.gui.Font;
 import net.minecraft.client.renderer.LightTexture;
@@ -15,12 +15,12 @@ import net.minecraft.util.FormattedCharSequence;
 import java.util.ArrayList;
 import java.util.List;
 
-public interface IDrawing {
+public interface IDrawingJoestu {
 	static void drawStringWithFont(PoseStack matrices, Font textRenderer, MultiBufferSource.BufferSource immediate, String text, IGui.HorizontalAlignment horizontalAlignment, IGui.VerticalAlignment verticalAlignment, float x, float y, float maxWidth, float maxHeight, float scale, int textColor, boolean shadow, int light, String fontChinese, String fontEnglish) {
 		drawStringWithFont(matrices, textRenderer, immediate, text, horizontalAlignment, verticalAlignment, horizontalAlignment, x, y, maxWidth, maxHeight, scale, textColor, shadow, light, fontChinese, fontEnglish, null);
 	}
 
-	static void drawStringWithFont(PoseStack matrices, Font textRenderer, MultiBufferSource.BufferSource immediate, String text, IGui.HorizontalAlignment horizontalAlignment, IGui.VerticalAlignment verticalAlignment, IGui.HorizontalAlignment xAlignment, float x, float y, float maxWidth, float maxHeight, float scale, int textColor, boolean shadow, int light, String fontChinese, String fontEnglish, mtr.gui.IDrawing.DrawingCallback drawingCallback) {
+	static void drawStringWithFont(PoseStack matrices, Font textRenderer, MultiBufferSource.BufferSource immediate, String text, IGui.HorizontalAlignment horizontalAlignment, IGui.VerticalAlignment verticalAlignment, IGui.HorizontalAlignment xAlignment, float x, float y, float maxWidth, float maxHeight, float scale, int textColor, boolean shadow, int light, String fontChinese, String fontEnglish, mtr.client.IDrawing.DrawingCallback drawingCallback) {
 		final Style styleChinese = Config.useMTRFont() ? Style.EMPTY.withFont(new ResourceLocation(Joestu.MOD_ID, fontChinese)) : Style.EMPTY;
 		final Style styleEnglish = Config.useMTRFont() ? Style.EMPTY.withFont(new ResourceLocation(Joestu.MOD_ID, fontEnglish)) : Style.EMPTY;
 

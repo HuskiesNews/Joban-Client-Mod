@@ -2,7 +2,6 @@ package com.jsblock.gui;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import mtr.data.IGui;
-import mtr.gui.IDrawing;
 import mtr.mappings.Utilities;
 import mtr.mappings.UtilitiesClient;
 import mtr.packet.IPacket;
@@ -57,11 +56,11 @@ public class TicketMachineScreenReserved extends Screen implements IGui, IPacket
 		super.init();
 
 		for (int i = 0; i < BAL_BUTTON_COUNT; i++) {
-			IDrawing.setPositionAndWidth(buttons[i], width - BUTTON_WIDTH, SQUARE_SIZE * (i + 1), BUTTON_WIDTH - TEXT_FIELD_PADDING);
+			mtr.client.IDrawing.setPositionAndWidth(buttons[i], width - BUTTON_WIDTH, SQUARE_SIZE * (i + 1), BUTTON_WIDTH - TEXT_FIELD_PADDING);
 		}
 
 		for (int i = 0; i < TICKET_BUTTON_COUNT; i++) {
-			IDrawing.setPositionAndWidth(ticketButtons[i], width - BUTTON_WIDTH, (SQUARE_SIZE * (i + 1)) + (SQUARE_SIZE * BAL_BUTTON_COUNT) + (SQUARE_SIZE * SEPARATOR_MARGIN), BUTTON_WIDTH - TEXT_FIELD_PADDING);
+			mtr.client.IDrawing.setPositionAndWidth(ticketButtons[i], width - BUTTON_WIDTH, (SQUARE_SIZE * (i + 1)) + (SQUARE_SIZE * BAL_BUTTON_COUNT) + (SQUARE_SIZE * SEPARATOR_MARGIN), BUTTON_WIDTH - TEXT_FIELD_PADDING);
 		}
 
 //        for (final Button button : buttons) {

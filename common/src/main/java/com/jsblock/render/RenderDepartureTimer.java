@@ -3,12 +3,12 @@ package com.jsblock.render;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.math.Vector3f;
 import mtr.block.IBlock;
-import mtr.config.Config;
+import mtr.client.ClientData;
+import mtr.client.Config;
 import mtr.data.IGui;
 import mtr.data.Platform;
 import mtr.data.RailwayData;
-import mtr.data.Route;
-import mtr.gui.ClientData;
+import mtr.data.ScheduleEntry;
 import mtr.mappings.BlockEntityMapper;
 import mtr.mappings.BlockEntityRendererMapper;
 import net.minecraft.client.Minecraft;
@@ -48,14 +48,14 @@ public class RenderDepartureTimer<T extends BlockEntityMapper> extends BlockEnti
 			return;
 		}
 
-		final Set<Route.ScheduleEntry> schedules = ClientData.SCHEDULES_FOR_PLATFORM.get(platformId);
+		final Set<ScheduleEntry> schedules = ClientData.SCHEDULES_FOR_PLATFORM.get(platformId);
 		if (schedules == null) {
 			return;
 		}
 
 		String timeRemaining = "";
 
-		final List<Route.ScheduleEntry> scheduleList = new ArrayList<>(schedules);
+		final List<ScheduleEntry> scheduleList = new ArrayList<>(schedules);
 		if (!scheduleList.isEmpty()) {
 			Collections.sort(scheduleList);
 			if (scheduleList.get(0).arrivalMillis - System.currentTimeMillis() > 0) {

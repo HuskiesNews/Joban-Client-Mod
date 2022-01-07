@@ -4,7 +4,7 @@ import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.TranslatableComponent;
 
-public class TicketMachineScreen extends mtr.gui.TicketMachineScreen {
+public class TicketMachineScreen extends mtr.screen.TicketMachineScreen {
 
 	public TicketMachineScreen(int balance) {
 		super(balance);

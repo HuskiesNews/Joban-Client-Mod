@@ -6,14 +6,14 @@ import com.mojang.math.Vector3f;
 import mtr.MTR;
 import mtr.block.BlockPIDSBase;
 import mtr.block.IBlock;
-import mtr.config.Config;
+import mtr.client.ClientCache;
+import mtr.client.ClientData;
+import mtr.client.Config;
+import mtr.client.IDrawing;
 import mtr.data.IGui;
 import mtr.data.Platform;
 import mtr.data.RailwayData;
-import mtr.data.Route;
-import mtr.gui.ClientCache;
-import mtr.gui.ClientData;
-import mtr.gui.IDrawing;
+import mtr.data.ScheduleEntry;
 import mtr.mappings.BlockEntityMapper;
 import mtr.mappings.BlockEntityRendererMapper;
 import mtr.render.MoreRenderLayers;
@@ -97,17 +97,17 @@ public class RenderRVPIDS<T extends BlockEntityMapper> extends BlockEntityRender
 		}
 
 		try {
-			final Set<Route.ScheduleEntry> schedules;
+			final Set<ScheduleEntry> schedules;
 
 			final long platformId = RailwayData.getClosePlatformId(ClientData.PLATFORMS, ClientData.DATA_CACHE, pos);
 			if (platformId == 0) {
 				schedules = new HashSet<>();
 			} else {
-				final Set<Route.ScheduleEntry> schedulesForPlatform = ClientData.SCHEDULES_FOR_PLATFORM.get(platformId);
+				final Set<ScheduleEntry> schedulesForPlatform = ClientData.SCHEDULES_FOR_PLATFORM.get(platformId);
 				schedules = schedulesForPlatform == null ? new HashSet<>() : schedulesForPlatform;
 			}
 
-			final List<Route.ScheduleEntry> scheduleList = new ArrayList<>(schedules);
+			final List<ScheduleEntry> scheduleList = new ArrayList<>(schedules);
 			Collections.sort(scheduleList);
 
 			final boolean showCarLength;
@@ -115,7 +115,7 @@ public class RenderRVPIDS<T extends BlockEntityMapper> extends BlockEntityRender
 			int minCars = Integer.MAX_VALUE;
 
 			/* Find the maximum and minimum cars out of the schedule list */
-			for (final Route.ScheduleEntry scheduleEntry : scheduleList) {
+			for (final ScheduleEntry scheduleEntry : scheduleList) {
 				final int trainCars = scheduleEntry.trainCars;
 				if (trainCars > maxCars) {
 					maxCars = trainCars;
@@ -206,7 +206,9 @@ public class RenderRVPIDS<T extends BlockEntityMapper> extends BlockEntityRender
 
 				if (useCustomMessage) {
 					int destinationWidth = textRenderer.width(destinationString);
-					if(Config.useMTRFont()) destinationWidth -= MTR_FONT_OFFSET;
+					if (Config.useMTRFont()) {
+						destinationWidth -= MTR_FONT_OFFSET;
+					}
 
 					if (destinationWidth > totalScaledWidth) {
 						matrices.scale(totalScaledWidth / destinationWidth, 1, 1);
@@ -215,7 +217,7 @@ public class RenderRVPIDS<T extends BlockEntityMapper> extends BlockEntityRender
 					Component destString = new TextComponent(destinationString).setStyle(mtrFontStyle);
 					renderTextWithOffset(matrices, textRenderer, destString, 0, 0, textColor);
 				} else {
-					final Route.ScheduleEntry currentSchedule = scheduleList.get(i);
+					final ScheduleEntry currentSchedule = scheduleList.get(i);
 					final Component arrivalText;
 					final int seconds = (int) ((currentSchedule.arrivalMillis - System.currentTimeMillis()) / 1000);
 					final boolean isCJK = destinationString.codePoints().anyMatch(Character::isIdeographic);
@@ -245,9 +247,9 @@ public class RenderRVPIDS<T extends BlockEntityMapper> extends BlockEntityRender
 							Component platformText = new TextComponent(platform.name).setStyle(mtrFontStyle);
 							final int platformTextWidth = textRenderer.width(platformText);
 							final float platformMaxWidth = 7.0F;
-							if(platformTextWidth > platformMaxWidth) {
+							if (platformTextWidth > platformMaxWidth) {
 								matrices.translate(-0.73 - (platformTextWidth / 100.0F), 0.9F + (platformTextWidth / 20.0F), 0);
-								matrices.scale(platformMaxWidth / platformTextWidth,  platformMaxWidth / platformTextWidth, 1);
+								matrices.scale(platformMaxWidth / platformTextWidth, platformMaxWidth / platformTextWidth, 1);
 							}
 
 							renderTextWithOffset(matrices, textRenderer, platformText, -0.9F, 0, 0xFFFFFF);

@@ -99,12 +99,12 @@ public class ButterflyLight extends HorizontalDirectionalBlock implements Entity
 					return;
 				}
 
-				final List<Route.ScheduleEntry> schedules = railwayData.getSchedulesAtPlatform(platformId);
+				final List<ScheduleEntry> schedules = railwayData.getSchedulesAtPlatform(platformId);
 				if (schedules == null) {
 					return;
 				}
 
-				final List<Route.ScheduleEntry> scheduleList = new ArrayList<>(schedules);
+				final List<ScheduleEntry> scheduleList = new ArrayList<>(schedules);
 				if (!scheduleList.isEmpty()) {
 					Collections.sort(scheduleList);
 
