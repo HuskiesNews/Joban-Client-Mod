@@ -5,7 +5,7 @@ import mtr.MTR;
 import mtr.block.IBlock;
 import mtr.data.Platform;
 import mtr.data.RailwayData;
-import mtr.data.Route;
+import mtr.data.ScheduleEntry;
 import mtr.mappings.BlockEntityMapper;
 import mtr.mappings.EntityBlockMapper;
 import mtr.mappings.TickableMapper;
