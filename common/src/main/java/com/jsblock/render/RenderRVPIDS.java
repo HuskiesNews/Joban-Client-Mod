@@ -238,9 +238,9 @@ public class RenderRVPIDS<T extends BlockEntityMapper> extends BlockEntityRender
 						if (platform != null) {
 							final List<ClientCache.PlatformRouteDetails> platformRouteDetails = ClientData.DATA_CACHE.requestPlatformIdToRoutes(platform.id);
 							routeData = platformRouteDetails == null ? new ArrayList<>() : platformRouteDetails;
-
 							final float x = destinationStart + newDestinationMaxWidth;
-							drawTexture(matrices, vertexConsumerStationCircle, x - 4.5F / 2, 0, 8, 8, facing, routeData.get(0).routeColor + ARGB_BLACK, MAX_LIGHT_GLOWING);
+							int routeColor = routeData.isEmpty() ? 0 : routeData.get(0).routeColor;
+							drawTexture(matrices, vertexConsumerStationCircle, x - 4.5F / 2, 0, 8, 8, facing, routeColor + ARGB_BLACK, MAX_LIGHT_GLOWING);
 							matrices.pushPose();
 							matrices.translate(destinationStart + newDestinationMaxWidth, 1.2F, -0.05);
 							matrices.scale(0.8F, 0.8F, 0.8F);
