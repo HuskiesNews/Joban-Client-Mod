@@ -22,6 +22,7 @@ public class JoestuClient {
 		RegistryClient.registerBlockRenderType(RenderType.cutout(), Blocks.HELPLINE_1);
 		RegistryClient.registerBlockRenderType(RenderType.cutout(), Blocks.HELPLINE_2);
 		RegistryClient.registerBlockRenderType(RenderType.cutout(), Blocks.HELPLINE_3);
+		RegistryClient.registerBlockRenderType(RenderType.cutout(), Blocks.HELPLINE_4);
 		RegistryClient.registerBlockRenderType(RenderType.cutout(), Blocks.KCR_NAME_SIGN);
 		RegistryClient.registerBlockRenderType(RenderType.cutout(), Blocks.LIGHT_2);
 		RegistryClient.registerBlockRenderType(RenderType.cutout(), Blocks.STATION_NAME_TALL_STAND);

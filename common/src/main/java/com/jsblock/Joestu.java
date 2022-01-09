@@ -42,6 +42,7 @@ public class Joestu {
 			registerBlockItem.accept("helpline_1", Blocks.HELPLINE_1, ItemGroups.MAIN);
 			registerBlockItem.accept("helpline_2", Blocks.HELPLINE_2, ItemGroups.MAIN);
 			registerBlockItem.accept("helpline_3", Blocks.HELPLINE_3, ItemGroups.MAIN);
+			registerBlockItem.accept("helpline_4", Blocks.HELPLINE_4, ItemGroups.MAIN);
 			registerBlockItem.accept("kcr_name_sign", Blocks.KCR_NAME_SIGN, ItemGroups.MAIN);
 			registerBlockItem.accept("light_1", Blocks.LIGHT_1, ItemGroups.MAIN);
 			registerBlockItem.accept("light_2", Blocks.LIGHT_2, ItemGroups.MAIN);

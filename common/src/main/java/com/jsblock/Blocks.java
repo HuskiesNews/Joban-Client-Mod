@@ -33,6 +33,7 @@ public interface Blocks {
 	Block HELPLINE_1 = new HelpLine1(BlockBehaviour.Properties.of(Material.METAL).strength(2.0f));
 	Block HELPLINE_2 = new HelpLine2(BlockBehaviour.Properties.of(Material.METAL).strength(2.0f));
 	Block HELPLINE_3 = new HelpLine3(BlockBehaviour.Properties.of(Material.METAL).strength(3.0f).noOcclusion());
+	Block HELPLINE_4 = new HelpLine4(BlockBehaviour.Properties.of(Material.METAL).strength(3.0f).noOcclusion());
 	Block KCR_NAME_SIGN = new KCRNameSign(BlockBehaviour.Properties.of(Material.METAL).strength(4.0f).lightLevel(state -> 15).noOcclusion());
 	Block LIGHT_1 = new Light1(BlockBehaviour.Properties.of(Material.METAL).strength(1.0f).lightLevel(state -> 15));
 	Block LIGHT_2 = new Light2(BlockBehaviour.Properties.of(Material.METAL).strength(1.0f).lightLevel(state -> 15));
