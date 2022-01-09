@@ -47,19 +47,19 @@ public class RenderKCRStationName<T extends BlockEntityMapper> extends BlockEnti
 
 			matrices.pushPose();
 			if (newFacing == Direction.SOUTH) {
-				matrices.translate(0.69 - offset, 0.43, 0.33);
+				matrices.translate(0.69 - offset, 0.53, 0.33);
 			}
 
 			if (newFacing == Direction.NORTH) {
-				matrices.translate(0.31 + offset, 0.43, 0.67);
+				matrices.translate(0.31 + offset, 0.53, 0.67);
 			}
 
 			if (newFacing == Direction.EAST) {
-				matrices.translate(0.33, 0.43, 0.31 + offset);
+				matrices.translate(0.33, 0.53, 0.31 + offset);
 			}
 
 			if (newFacing == Direction.WEST) {
-				matrices.translate(0.67, 0.43, 0.69 - offset);
+				matrices.translate(0.67, 0.53, 0.69 - offset);
 			}
 
 			matrices.mulPose(Vector3f.ZP.rotationDegrees(180));

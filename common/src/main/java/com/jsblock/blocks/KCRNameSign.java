@@ -50,7 +50,7 @@ public class KCRNameSign extends HorizontalDirectionalBlock implements EntityBlo
 	@Override
 	public VoxelShape getShape(BlockState state, BlockGetter blockGetter, BlockPos pos, CollisionContext collisionContext) {
 		final Direction facing = IBlock.getStatePropertySafe(state, FACING);
-		return IBlock.getVoxelShapeByDirection(-7, 0, 5.5, 23, 14, 10.51, facing);
+		return IBlock.getVoxelShapeByDirection(-7, 2, 5.5, 23, 16, 10.51, facing);
 	}
 
 	@Override
