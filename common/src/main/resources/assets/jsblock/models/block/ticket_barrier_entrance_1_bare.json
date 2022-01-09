@@ -2,9 +2,9 @@
 	"credit": "CoJ 2022",
 	"textures": {
 		"4": "jsblock:block/ticket_barrier_1_canin",
-		"tex": "jsblock:block/ticket_barrier_1_entrance",
-		"stby": "jsblock:block/ticket_barrier_1_stby",
-		"nis": "jsblock:block/ticket_barrier_1_nis"
+		"tex": "jsblock:block/ticket_barrier_1_bare",
+		"stby": "jsblock:block/ticket_barrier_1_stby_bare",
+		"nis": "jsblock:block/ticket_barrier_1_nis_bare"
 	},
 	"elements": [
 		{

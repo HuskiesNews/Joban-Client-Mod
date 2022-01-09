@@ -4,8 +4,8 @@
 		"4": "jsblock:block/ticket_barrier_1_canout",
 		"tex": "jsblock:block/ticket_barrier_1_exit",
 		"barrier": "jsblock:block/ticket_barrier_1_door",
-		"stby": "jsblock:block/ticket_barrier_1_stby",
-		"nis": "jsblock:block/ticket_barrier_1_nis"
+		"stby": "jsblock:block/ticket_barrier_1_stby_exit",
+		"nis": "jsblock:block/ticket_barrier_1_nis_exit"
 	},
 	"elements": [
 		{
