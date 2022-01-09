@@ -61,6 +61,7 @@ public class Joestu {
 			registerBlockItem.accept("train_model_e44", Blocks.MODEL_E44, ItemGroups.MAIN);
 			registerBlockItem.accept("ticket_barrier_1_entrance", Blocks.TICKET_BARRIER_1_ENTRANCE, ItemGroups.MAIN);
 			registerBlockItem.accept("ticket_barrier_1_exit", Blocks.TICKET_BARRIER_1_EXIT, ItemGroups.MAIN);
+			registerBlockItem.accept("ticket_barrier_1_bare", Blocks.TICKET_BARRIER_1_DECOR, ItemGroups.MAIN);
 			registerBlockItem.accept("trespass_sign_1", Blocks.TRESPASS_SIGN_1, ItemGroups.MAIN);
 			registerBlockItem.accept("trespass_sign_2", Blocks.TRESPASS_SIGN_2, ItemGroups.MAIN);
 			registerBlockItem.accept("water_machine_1", Blocks.WATER_MACHINE_1, ItemGroups.MAIN);
