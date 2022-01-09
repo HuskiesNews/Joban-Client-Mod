@@ -1,12 +1,12 @@
 {
-	"credit": "Made with Blockbench",
+	"credit": "CoJ 2022",
 	"textures": {
-		"particle": "mtr:block/metal",
-		"4": "mtr:block/canin",
-		"tex": "mtr:block/parts",
-		"barrier": "mtr:block/door",
-		"stby": "mtr:block/stby",
-		"nis": "mtr:block/nis"
+		"particle": "jsblock:block/ticket_barrier_1_metal",
+		"4": "jsblock:block/ticket_barrier_1_canin",
+		"tex": "jsblock:block/ticket_barrier_1_entrance",
+		"barrier": "jsblock:block/ticket_barrier_1_door",
+		"stby": "jsblock:block/ticket_barrier_1_stby",
+		"nis": "jsblock:block/ticket_barrier_1_nis"
 	},
 	"elements": [
 		{

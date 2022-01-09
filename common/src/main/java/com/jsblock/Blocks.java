@@ -44,6 +44,8 @@ public interface Blocks {
 	Block RV_PIDS_POLE = new RVPIDSPole(BlockBehaviour.Properties.of(Material.METAL).strength(0.5f).noOcclusion());
 	Block STATION_NAME_TALL_STAND = new StationNameTallStand();
 	Block SUBSIDY_MACHINE_1 = new SubsidyMachine1(BlockBehaviour.Properties.of(Material.METAL).strength(4.0f));
+	Block TICKET_BARRIER_1_ENTRANCE = new TicketBarrier1(true);
+	Block TICKET_BARRIER_1_EXIT = new TicketBarrier1(false);
 	Block TRESPASS_SIGN_1 = new TrespassSign1(BlockBehaviour.Properties.of(Material.METAL).strength(2.0f).noOcclusion());
 	Block TRESPASS_SIGN_2 = new TrespassSign2(BlockBehaviour.Properties.of(Material.METAL).strength(1.0f).noOcclusion());
 	Block WATER_MACHINE_1 = new WaterMachine1(BlockBehaviour.Properties.of(Material.METAL).strength(4.0f));
