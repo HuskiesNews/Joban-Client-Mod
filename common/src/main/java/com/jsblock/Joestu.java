@@ -11,6 +11,7 @@ import java.util.function.BiConsumer;
 
 public class Joestu {
 	public static final String MOD_ID = "jsblock";
+	public static final String VERSION = "1.0.5";
 	public static final Logger LOGGER = LogManager.getLogger("Joestu Client");
 
 	public static void init(
@@ -19,7 +20,7 @@ public class Joestu {
 	) {
 		// RESERVED FOR TICKETS
 		//ServerPlayNetworking.registerGlobalReceiver(new ResourceLocation("packet_buy_tickets"), (minecraftServer, player, handler, packet, sender) -> PacketTrainDataGuiServer.receiveAddBalanceC2S(minecraftServer, player, packet));
-		LOGGER.info("[Joestu Client] Version 1.0.4");
+		LOGGER.info("[Joestu Client] Version " + VERSION);
 
 		/* Try to register the block */
 		try {
@@ -84,10 +85,6 @@ public class Joestu {
 			/* Let's warn the user beforehand, as the game will crash eventually */
 			LOGGER.error("[Joestu Client] Cannot find class " + error.getMessage() + " which is required by this mod!");
 			LOGGER.info("");
-			LOGGER.error("[Joestu Client] Please make sure you're on the latest unofficial MTR Mod (https://discord.gg/PVZ2nfUaTW).");
-			LOGGER.info("");
-			LOGGER.error("[Joestu Client] Otherwise, contact a staff on https://discord.gg/ue7reMvMc2.");
-
 			/* Give them 20s to read */
 			try {
 				Thread.sleep(20000);
