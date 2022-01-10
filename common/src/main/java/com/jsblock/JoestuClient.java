@@ -28,6 +28,9 @@ public class JoestuClient {
 		RegistryClient.registerBlockRenderType(RenderType.cutout(), Blocks.STATION_NAME_TALL_STAND);
 		RegistryClient.registerBlockRenderType(RenderType.cutout(), Blocks.SUBSIDY_MACHINE_1);
 		RegistryClient.registerBlockRenderType(RenderType.cutout(), Blocks.TRESPASS_SIGN_1);
+		RegistryClient.registerBlockRenderType(RenderType.cutout(), Blocks.TICKET_BARRIER_1_ENTRANCE);
+		RegistryClient.registerBlockRenderType(RenderType.cutout(), Blocks.TICKET_BARRIER_1_EXIT);
+		RegistryClient.registerBlockRenderType(RenderType.cutout(), Blocks.TICKET_BARRIER_1_DECOR);
 		RegistryClient.registerBlockRenderType(RenderType.cutout(), Blocks.WATER_MACHINE_1);
 
 		/* Register entity that requires to be rendered, and pointing to the corresponding method */

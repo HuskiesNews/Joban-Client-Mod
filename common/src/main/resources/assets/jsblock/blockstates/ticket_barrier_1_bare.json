@@ -1,0 +1,19 @@
+{
+	"variants": {
+		"facing=north": {
+			"model": "jsblock:block/ticket_barrier_entrance_1_bare"
+		},
+		"facing=east": {
+			"model": "jsblock:block/ticket_barrier_entrance_1_bare",
+			"y": 90
+		},
+		"facing=south": {
+			"model": "jsblock:block/ticket_barrier_entrance_1_bare",
+			"y": 180
+		},
+		"facing=west": {
+			"model": "jsblock:block/ticket_barrier_entrance_1_bare",
+			"y": 270
+		}
+	}
+}
