@@ -22,15 +22,15 @@ public class PIDS1A extends BlockPIDSBase {
 
 	@Override
 	public BlockEntityMapper createBlockEntity(BlockPos pos, BlockState state) {
-		return new TileEntityBlockPIDS4(pos, state);
+		return new TileEntityBlockPIDS1A(pos, state);
 	}
 
-	public static class TileEntityBlockPIDS4 extends TileEntityBlockPIDSBase {
+	public static class TileEntityBlockPIDS1A extends TileEntityBlockPIDSBase {
 
 		public static final int MAX_ARRIVALS = 3;
 
-		public TileEntityBlockPIDS4(BlockPos pos, BlockState state) {
-			super(BlockEntityTypes.PIDS_4_TILE_ENTITY, pos, state);
+		public TileEntityBlockPIDS1A(BlockPos pos, BlockState state) {
+			super(BlockEntityTypes.PIDS_1A_TILE_ENTITY, pos, state);
 		}
 
 		@Override

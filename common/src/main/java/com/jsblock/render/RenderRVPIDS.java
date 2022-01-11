@@ -34,6 +34,8 @@ import net.minecraft.world.level.block.HorizontalDirectionalBlock;
 
 import java.util.*;
 
+import static com.jsblock.gui.IDrawingJoestu.renderTextWithOffset;
+
 public class RenderRVPIDS<T extends BlockEntityMapper> extends BlockEntityRendererMapper<T> implements IGui {
 
 	private final float scale;
@@ -306,19 +308,5 @@ public class RenderRVPIDS<T extends BlockEntityMapper> extends BlockEntityRender
 
 	static void drawTexture(PoseStack matrices, VertexConsumer vertexConsumer, float x, float y, float width, float height, Direction facing, int color, int light) {
 		IDrawing.drawTexture(matrices, vertexConsumer, x, y, 0, x + width, y + height, 0, 0, 0, 1, 1, facing, color, light);
-	}
-
-	static void renderTextWithOffset(PoseStack matrices, Font textRenderer, Component text, float x, float y, int color) {
-		final float finalY;
-		final float finalX;
-		if (Config.useMTRFont() && text.getString().codePoints().noneMatch(Character::isIdeographic)) {
-			finalY = y + 0.5F;
-			finalX = x;
-		} else {
-			finalY = y - 0.2F;
-			finalX = x + 0.5F;
-		}
-
-		textRenderer.draw(matrices, text, finalX, finalY, color);
 	}
 }

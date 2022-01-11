@@ -15,7 +15,8 @@ public interface BlockEntityTypes {
 	BlockEntityType<SignalLightGreen.TileEntitySignalLightGreen> SIGNAL_LIGHT_GREEN_ENTITY = RegistryUtilities.getBlockEntityType(SignalLightGreen.TileEntitySignalLightGreen::new, Blocks.SIGNAL_LIGHT_GREEN);
 	BlockEntityType<SignalLightInverted1.TileEntitySignalLightInverted> SIGNAL_LIGHT_INVERTED_ENTITY_1 = RegistryUtilities.getBlockEntityType(SignalLightInverted1.TileEntitySignalLightInverted::new, Blocks.SIGNAL_LIGHT_INVERTED_1);
 	BlockEntityType<SignalLightInverted2.TileEntitySignalLightInverted> SIGNAL_LIGHT_INVERTED_ENTITY_2 = RegistryUtilities.getBlockEntityType(SignalLightInverted2.TileEntitySignalLightInverted::new, Blocks.SIGNAL_LIGHT_INVERTED_2);
-	BlockEntityType<PIDS1A.TileEntityBlockPIDS4> PIDS_4_TILE_ENTITY = RegistryUtilities.getBlockEntityType(PIDS1A.TileEntityBlockPIDS4::new, Blocks.PIDS_1A);
+	BlockEntityType<PIDS1A.TileEntityBlockPIDS1A> PIDS_1A_TILE_ENTITY = RegistryUtilities.getBlockEntityType(PIDS1A.TileEntityBlockPIDS1A::new, Blocks.PIDS_1A);
+	BlockEntityType<PIDS4.TileEntityBlockPIDS4> PIDS_4_TILE_ENTITY = RegistryUtilities.getBlockEntityType(PIDS4.TileEntityBlockPIDS4::new, Blocks.PIDS_4);
 	BlockEntityType<PIDSRV.TileEntityBlockPIDS5> PIDS_5_TILE_ENTITY = RegistryUtilities.getBlockEntityType(PIDSRV.TileEntityBlockPIDS5::new, Blocks.PIDS_RV);
 	BlockEntityType<KCRNameSign.TileEntityKCRNameSign> KCR_NAME_SIGN_TILE_ENTITY = RegistryUtilities.getBlockEntityType(KCRNameSign.TileEntityKCRNameSign::new, Blocks.KCR_NAME_SIGN);
 }

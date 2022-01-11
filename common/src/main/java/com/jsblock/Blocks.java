@@ -40,6 +40,7 @@ public interface Blocks {
 	Block LIGHT_BLOCK = new LightBlock(BlockBehaviour.Properties.of(Material.METAL).strength(4.0f).lightLevel(state -> 15).noOcclusion());
 	Block OP_BUTTONS = new OpOnlyButton(BlockBehaviour.Properties.of(Material.METAL).strength(4.0f).lightLevel(state -> 15).noOcclusion());
 	Block PIDS_1A = new PIDS1A();
+	Block PIDS_4 = new PIDS4();
 	Block PIDS_RV = new PIDSRV();
 	Block MODEL_E44 = new ModelE44(BlockBehaviour.Properties.of(Material.METAL).strength(0.5f).noOcclusion());
 	Block RV_PIDS_POLE = new RVPIDSPole(BlockBehaviour.Properties.of(Material.METAL).strength(0.5f).noOcclusion());

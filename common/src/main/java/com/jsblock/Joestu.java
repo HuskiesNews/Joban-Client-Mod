@@ -49,9 +49,10 @@ public class Joestu {
 			registerBlockItem.accept("light_2", Blocks.LIGHT_2, ItemGroups.MAIN);
 			registerBlockItem.accept("light_block", Blocks.LIGHT_BLOCK, ItemGroups.MAIN);
 			registerBlockItem.accept("op_button", Blocks.OP_BUTTONS, ItemGroups.MAIN);
-			registerBlockItem.accept("pids_1a", Blocks.PIDS_1A, ItemGroups.MAIN);
-			registerBlockItem.accept("pids_rv", Blocks.PIDS_RV, ItemGroups.MAIN);
-			registerBlockItem.accept("rv_pids_pole", Blocks.RV_PIDS_POLE, ItemGroups.MAIN);
+			registerBlockItem.accept("pids_1a", Blocks.PIDS_1A, ItemGroups.PIDS);
+			registerBlockItem.accept("pids_4", Blocks.PIDS_4, ItemGroups.PIDS);
+			registerBlockItem.accept("pids_rv", Blocks.PIDS_RV, ItemGroups.PIDS);
+			registerBlockItem.accept("rv_pids_pole", Blocks.RV_PIDS_POLE, ItemGroups.PIDS);
 			registerBlockItem.accept("station_name_tall_stand", Blocks.STATION_NAME_TALL_STAND, ItemGroups.MAIN);
 			registerBlockItem.accept("signal_light_red_1", Blocks.SIGNAL_LIGHT_RED_1, ItemGroups.MAIN);
 			registerBlockItem.accept("signal_light_red_2", Blocks.SIGNAL_LIGHT_RED_2, ItemGroups.MAIN);
@@ -77,8 +78,9 @@ public class Joestu {
 			registerBlockEntityType.accept("signal_light_green", BlockEntityTypes.SIGNAL_LIGHT_GREEN_ENTITY);
 			registerBlockEntityType.accept("signal_light_inverted_1", BlockEntityTypes.SIGNAL_LIGHT_INVERTED_ENTITY_1);
 			registerBlockEntityType.accept("signal_light_inverted_2", BlockEntityTypes.SIGNAL_LIGHT_INVERTED_ENTITY_2);
-			registerBlockEntityType.accept("pids_4", BlockEntityTypes.PIDS_4_TILE_ENTITY);
+			registerBlockEntityType.accept("pids_4", BlockEntityTypes.PIDS_1A_TILE_ENTITY);
 			registerBlockEntityType.accept("pids_5", BlockEntityTypes.PIDS_5_TILE_ENTITY);
+			registerBlockEntityType.accept("pids_4a", BlockEntityTypes.PIDS_4_TILE_ENTITY);
 			registerBlockEntityType.accept("kcr_name_sign", BlockEntityTypes.KCR_NAME_SIGN_TILE_ENTITY);
 		} catch (NoClassDefFoundError error) {
 			/* If we end up with a NoClassDefFoundError, this means some method we use are not found, presumably MTR Mod */

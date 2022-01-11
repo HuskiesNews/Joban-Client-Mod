@@ -7,6 +7,7 @@ import mtr.data.IGui;
 import net.minecraft.client.gui.Font;
 import net.minecraft.client.renderer.LightTexture;
 import net.minecraft.client.renderer.MultiBufferSource;
+import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.Style;
 import net.minecraft.network.chat.TextComponent;
 import net.minecraft.resources.ResourceLocation;
@@ -98,5 +99,19 @@ public interface IDrawingJoestu {
 			final float y1 = verticalAlignment.getOffset(y, totalHeight / scale);
 			drawingCallback.drawingCallback(x1, y1, x1 + totalWidthScaled / scale, y1 + totalHeight / scale);
 		}
+	}
+
+	static void renderTextWithOffset(PoseStack matrices, Font textRenderer, Component text, float x, float y, int color) {
+		final float finalY;
+		final float finalX;
+		if (Config.useMTRFont() && text.getString().codePoints().noneMatch(Character::isIdeographic)) {
+			finalY = y + 0.5F;
+			finalX = x;
+		} else {
+			finalY = y - 0.2F;
+			finalX = x + 0.5F;
+		}
+
+		textRenderer.draw(matrices, text, finalX, finalY, color);
 	}
 }
