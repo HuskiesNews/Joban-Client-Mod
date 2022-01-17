@@ -1,6 +1,7 @@
 package com.jsblock.blocks;
 
 import mtr.block.IBlock;
+import mtr.data.TicketSystem;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.item.context.BlockPlaceContext;
@@ -12,6 +13,7 @@ import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.material.Material;
 import net.minecraft.world.level.material.MaterialColor;
 import net.minecraft.world.phys.shapes.CollisionContext;
+import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
 
@@ -28,6 +30,12 @@ public class TicketBarrier1Decor extends HorizontalDirectionalBlock {
 
 	@Override
 	public VoxelShape getShape(BlockState state, BlockGetter blockGetter, BlockPos pos, CollisionContext collisionContext) {
+		final Direction facing = IBlock.getStatePropertySafe(state, FACING);
+		return IBlock.getVoxelShapeByDirection(12, 0, 0, 16, 16, 16, facing);
+	}
+
+	@Override
+	public VoxelShape getCollisionShape(BlockState state, BlockGetter blockGetter, BlockPos blockPos, CollisionContext collisionContext) {
 		final Direction facing = IBlock.getStatePropertySafe(state, FACING);
 		return IBlock.getVoxelShapeByDirection(12, 0, 0, 16, 24, 16, facing);
 	}
