@@ -83,6 +83,8 @@ public class RenderRVPIDS<T extends BlockEntityMapper> extends BlockEntityRender
 			return;
 		}
 
+		return;
+
 		final BlockPos pos = entity.getBlockPos();
 		final Direction facing = IBlock.getStatePropertySafe(world, pos, HorizontalDirectionalBlock.FACING);
 		final Style mtrFontStyle = Config.useMTRFont() ? Style.EMPTY.withFont(new ResourceLocation(MTR.MOD_ID, "mtr")) : Style.EMPTY;
