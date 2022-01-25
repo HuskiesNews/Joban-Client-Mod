@@ -3,7 +3,7 @@
 	"id": "jsblock",
 	"version": "${version}",
 	"name": "Joestu Client Mod",
-	"description": "Add static signal light, more PIDS, decoration blocks and additional functionalities to the MTR Mod.",
+	"description": "Add static signal light, PIDS and decoration blocks to the MTR Mod.",
 	"authors": [
 		"LX86",
 		"StrikeSNC",
@@ -13,7 +13,7 @@
 		"homepage": "https://discord.gg/ue7reMvMc2",
 		"sources": ""
 	},
-	"license": "N/A",
+	"license": "Apache 2.0",
 	"icon": "icon.png",
 	"environment": "*",
 	"entrypoints": {

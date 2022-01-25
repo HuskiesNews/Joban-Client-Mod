@@ -1,13 +1,13 @@
 modLoader = "javafml"
 loaderVersion = "[36,)"
-license = "MIT"
+license = "Apache 2.0"
 
 [[mods]]
 modId = "jsblock"
 version = "${version}"
 displayName = "Joestu Client Mod"
 authors = "LX86, StrikeSNC, AozoraSky"
-description = "Add static signal light, more PIDS, decoration blocks and additional functionalities to the MTR Mod."
+description = "Add static signal light, PIDS and decoration blocks to the MTR Mod."
 logoFile = "icon.png"
 
 [[dependencies.jsblock]]
