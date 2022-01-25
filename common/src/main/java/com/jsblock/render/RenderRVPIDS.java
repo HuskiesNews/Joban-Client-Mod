@@ -1,9 +1,9 @@
 package com.jsblock.render;
 
+import com.jsblock.config.ClientConfig;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import com.mojang.math.Vector3f;
-import mtr.MTR;
 import mtr.block.BlockPIDSBase;
 import mtr.block.IBlock;
 import mtr.client.ClientCache;
@@ -79,13 +79,14 @@ public class RenderRVPIDS<T extends BlockEntityMapper> extends BlockEntityRender
 	@Override
 	public void render(T entity, float tickDelta, PoseStack matrices, MultiBufferSource vertexConsumers, int light, int overlay) {
 		final Level world = entity.getLevel();
-		if (world == null) {
+		if (world == null || ClientConfig.getRenderDisabled()) {
 			return;
 		}
 
 		final BlockPos pos = entity.getBlockPos();
 		final Direction facing = IBlock.getStatePropertySafe(world, pos, HorizontalDirectionalBlock.FACING);
-		final Style mtrFontStyle = Config.useMTRFont() ? Style.EMPTY.withFont(new ResourceLocation(MTR.MOD_ID, "mtr")) : Style.EMPTY;
+		final Style FontChinStyle = Config.useMTRFont() ? Style.EMPTY.withFont(new ResourceLocation(ClientConfig.getRVPIDSChinFont())) : Style.EMPTY;
+		final Style FontEngStyle = Config.useMTRFont() ? Style.EMPTY.withFont(new ResourceLocation(ClientConfig.getRVPIDSEngFont())) : Style.EMPTY;
 
 		final String[] customMessages = new String[maxArrivals];
 		final boolean[] hideArrival = new boolean[maxArrivals];
@@ -151,7 +152,7 @@ public class RenderRVPIDS<T extends BlockEntityMapper> extends BlockEntityRender
 			long time = worlds.getDayTime() + 6000;
 			long hours = time / 1000;
 			long minutes = Math.round((time - (hours * 1000)) / 16.8);
-			Component timeString = new TextComponent(String.format("%02d:%02d", hours % 24, minutes % 60)).setStyle(mtrFontStyle);
+			Component timeString = new TextComponent(String.format("%02d:%02d", hours % 24, minutes % 60)).setStyle(FontEngStyle);
 			matrices.pushPose();
 			matrices.translate(90, -9.8, -0.01);
 			matrices.scale(0.75F, 0.75F, 0.75F);
@@ -216,7 +217,7 @@ public class RenderRVPIDS<T extends BlockEntityMapper> extends BlockEntityRender
 						matrices.scale(totalScaledWidth / destinationWidth, 1, 1);
 					}
 
-					Component destString = new TextComponent(destinationString).setStyle(mtrFontStyle);
+					Component destString = new TextComponent(destinationString).setStyle(FontChinStyle);
 					renderTextWithOffset(matrices, textRenderer, destString, 0, 0, textColor);
 				} else {
 					final ScheduleEntry currentSchedule = scheduleList.get(i);
@@ -224,11 +225,11 @@ public class RenderRVPIDS<T extends BlockEntityMapper> extends BlockEntityRender
 					final int seconds = (int) ((currentSchedule.arrivalMillis - System.currentTimeMillis()) / 1000);
 					final boolean isCJK = destinationString.codePoints().anyMatch(Character::isIdeographic);
 					if (seconds >= 60) {
-						arrivalText = new TranslatableComponent(isCJK ? "gui.mtr.arrival_min_cjk" : "gui.mtr.arrival_min", seconds / 60).setStyle(mtrFontStyle);
+						arrivalText = new TranslatableComponent(isCJK ? "gui.mtr.arrival_min_cjk" : "gui.mtr.arrival_min", seconds / 60).setStyle(isCJK ? FontChinStyle : FontEngStyle);
 					} else {
-						arrivalText = seconds > 0 ? new TranslatableComponent(isCJK ? "gui.mtr.arrival_sec_cjk" : "gui.mtr.arrival_sec", seconds).setStyle(mtrFontStyle) : null;
+						arrivalText = seconds > 0 ? new TranslatableComponent(isCJK ? "gui.mtr.arrival_sec_cjk" : "gui.mtr.arrival_sec", seconds).setStyle(isCJK? FontChinStyle : FontEngStyle) : null;
 					}
-					final Component carText = new TranslatableComponent(isCJK ? "gui.mtr.arrival_car_cjk" : "gui.mtr.arrival_car", currentSchedule.trainCars).setStyle(mtrFontStyle);
+					final Component carText = new TranslatableComponent(isCJK ? "gui.mtr.arrival_car_cjk" : "gui.mtr.arrival_car", currentSchedule.trainCars).setStyle(isCJK ? FontChinStyle : FontEngStyle);
 
 					final float newDestinationMaxWidth = destinationMaxWidth;
 
@@ -246,7 +247,7 @@ public class RenderRVPIDS<T extends BlockEntityMapper> extends BlockEntityRender
 							matrices.pushPose();
 							matrices.translate(destinationStart + newDestinationMaxWidth, 1.2F, -0.05);
 							matrices.scale(0.8F, 0.8F, 0.8F);
-							Component platformText = new TextComponent(platform.name).setStyle(mtrFontStyle);
+							Component platformText = new TextComponent(platform.name).setStyle(isCJK ? FontChinStyle : FontEngStyle);
 							final int platformTextWidth = textRenderer.width(platformText);
 							final float platformMaxWidth = 7.0F;
 							if (platformTextWidth > platformMaxWidth) {
@@ -267,7 +268,7 @@ public class RenderRVPIDS<T extends BlockEntityMapper> extends BlockEntityRender
 						matrices.scale(newDestinationMaxWidth / destinationWidth, 1, 1);
 					}
 
-					Component destText = new TextComponent(destinationString).setStyle(mtrFontStyle);
+					Component destText = new TextComponent(destinationString).setStyle(isCJK ? FontChinStyle : FontEngStyle);
 					renderTextWithOffset(matrices, textRenderer, destText, 0, 0, 0x000000);
 					matrices.popPose();
 

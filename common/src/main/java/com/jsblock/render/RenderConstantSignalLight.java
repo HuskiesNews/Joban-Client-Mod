@@ -1,5 +1,6 @@
 package com.jsblock.render;
 
+import com.jsblock.config.ClientConfig;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import mtr.client.IDrawing;
@@ -21,6 +22,7 @@ public class RenderConstantSignalLight<T extends BlockEntityMapper> extends Rend
 
 	@Override
 	protected void render(PoseStack matrices, MultiBufferSource vertexConsumers, VertexConsumer vertexConsumer, T entity, float tickDelta, Direction facing, boolean isOccupied, boolean isBackSide) {
+		/* The super class has already checked the config that rendering is enabled */
 		float y = redOnTop ? 0.4375F : 0.0625F;
 		IDrawing.drawTexture(matrices, vertexConsumer, -0.125F, y, -0.19375F, 0.125F, y + 0.25F, -0.19375F, facing.getOpposite(), constantColor, MAX_LIGHT_GLOWING);
 	}

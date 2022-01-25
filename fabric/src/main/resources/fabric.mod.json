@@ -22,6 +22,9 @@
 		],
 		"client": [
 			"com.jsblock.JoestuFabricClient"
+		],
+		"modmenu": [
+			"com.jsblock.ModMenuConfig"
 		]
 	},
 	"mixins": [

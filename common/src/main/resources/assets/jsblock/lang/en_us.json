@@ -46,5 +46,11 @@
   "block.jsblock.trespass_sign_2":"Trespass Signage (KCR)",
   "block.jsblock.water_machine_1":"Water Machine",
   "gui.jsblock.ticket_machine_atm_loc": "",
-  "gui.jsblock.subsidy": "$10 added to your balance, your balance is now $%d"
+  "gui.jsblock.subsidy": "$10 added to your balance, your balance is now $%d",
+  "gui.jsblock.config": "Joestu Client Mod Config",
+  "gui.jsblock.config.enable_render": "Disable rendering component (For debugging)",
+  "gui.jsblock.config.rvpids_chin_font": "Font path for the Railway Vision PIDS (Chinese)",
+  "gui.jsblock.config.rvpids_eng_font": "Font path for the Railway Vision PIDS (English)",
+  "gui.jsblock.config.kcrsign_chin_font": "Font path for the KCR Signs (Chinese)",
+  "gui.jsblock.config.kcrsign_eng_font": "Font path for the KCR Signs (English)"
 }

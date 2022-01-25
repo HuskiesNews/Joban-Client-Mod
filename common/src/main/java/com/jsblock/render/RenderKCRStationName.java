@@ -1,6 +1,7 @@
 package com.jsblock.render;
 
 import com.jsblock.blocks.KCRNameSign;
+import com.jsblock.config.ClientConfig;
 import com.jsblock.gui.IDrawingJoestu;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.Tesselator;
@@ -32,7 +33,7 @@ public class RenderKCRStationName<T extends BlockEntityMapper> extends BlockEnti
 	public void render(T entity, float tickDelta, PoseStack matrices, MultiBufferSource vertexConsumers, int light, int overlay) {
 		final Level world = entity.getLevel();
 		final BlockPos pos = entity.getBlockPos();
-		if (world == null) {
+		if (world == null || ClientConfig.getRenderDisabled()) {
 			return;
 		}
 

@@ -1,9 +1,9 @@
 package com.jsblock.render;
 
 import com.jsblock.Joestu;
+import com.jsblock.config.ClientConfig;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.math.Vector3f;
-import mtr.MTR;
 import mtr.block.BlockPIDSBase;
 import mtr.block.IBlock;
 import mtr.client.ClientData;
@@ -27,8 +27,6 @@ import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.block.HorizontalDirectionalBlock;
 
 import java.util.*;
-
-import static com.jsblock.gui.IDrawingJoestu.renderTextWithOffset;
 
 public class RenderPIDS<T extends BlockEntityMapper> extends BlockEntityRendererMapper<T> implements IGui {
 
@@ -87,7 +85,7 @@ public class RenderPIDS<T extends BlockEntityMapper> extends BlockEntityRenderer
 		final Style fontStyleEng = Config.useMTRFont() ? Style.EMPTY.withFont(new ResourceLocation(Joestu.MOD_ID, engFont)) : Style.EMPTY;
 
 		final BlockGetter world = entity.getLevel();
-		if (world == null) {
+		if (world == null || ClientConfig.getRenderDisabled()) {
 			return;
 		}
 

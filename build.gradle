@@ -17,6 +17,7 @@ rootProject.ext.architectury_id = is_1_16 ? "me.shedaniel" : "dev.architectury"
 rootProject.ext.fabric_loader_version = is_1_16 ? rootProject.fabric_loader_version_1_16 : is_1_17 ? rootProject.fabric_loader_version_1_17 : rootProject.fabric_loader_version_1_18
 rootProject.ext.fabric_api_version = is_1_16 ? rootProject.fabric_version_1_16 : is_1_17 ? rootProject.fabric_version_1_17 : rootProject.fabric_version_1_18
 rootProject.ext.forge_version = is_1_16 ? rootProject.forge_version_1_16 : is_1_17 ? rootProject.forge_version_1_17 : rootProject.forge_version_1_18
+rootProject.ext.mod_menu_version = is_1_16 ? rootProject.mod_menu_version_1_16 : is_1_17 ? rootProject.mod_menu_version_1_17 : rootProject.mod_menu_version_1_18
 
 architectury {
 	minecraft = minecraft_version
@@ -116,6 +117,10 @@ allprojects {
 
 	version = minecraft_version + "-" + project.mod_version
 	group = project.maven_group
+
+	repositories {
+		maven { url = "https://maven.terraformersmc.com/" }
+	}
 
 	tasks.withType(JavaCompile) {
 		options.encoding = "UTF-8"

@@ -1,5 +1,6 @@
 package com.jsblock.render;
 
+import com.jsblock.config.ClientConfig;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import mtr.client.IDrawing;
@@ -24,6 +25,7 @@ public class RenderSignalLight<T extends BlockEntityMapper> extends RenderSignal
 
 	@Override
 	protected void render(PoseStack matrices, MultiBufferSource vertexConsumers, VertexConsumer vertexConsumer, T entity, float tickDelta, Direction facing, boolean isOccupied, boolean isBackSide) {
+		if(ClientConfig.getRenderDisabled()) return;
 		float y = isOccupied == redOnTop ? 0.4375F : 0.0625F;
 		if (inverted) {
 			IDrawing.drawTexture(matrices, vertexConsumer, -0.125F, y, -0.19375F, 0.125F, y + 0.25F, -0.19375F, facing.getOpposite(), isOccupied ? proceedColor : 0xFFFF0000, MAX_LIGHT_GLOWING);

@@ -3,6 +3,8 @@ package com.jsblock;
 import com.jsblock.blocks.PIDS1A;
 import com.jsblock.blocks.PIDS4;
 import com.jsblock.blocks.PIDSRV;
+import com.jsblock.config.ClientConfig;
+import com.jsblock.gui.ConfigScreen;
 import com.jsblock.gui.TicketMachineScreen;
 import com.jsblock.render.*;
 import mtr.RegistryClient;
@@ -11,10 +13,13 @@ import mtr.packet.IPacket;
 import mtr.render.RenderPIDS;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.RenderType;
+import net.minecraft.resources.ResourceLocation;
 
 public class JoestuClient {
 
 	public static void init() {
+		ClientConfig.loadConfig();
+		if(ClientConfig.getRenderDisabled()) Joestu.LOGGER.info("[Joestu Client] Rendering is disabled.");
 		/* Allow transparent texture for the block */
 		RegistryClient.registerBlockRenderType(RenderType.cutout(), Blocks.AUTO_IRON_DOOR);
 		RegistryClient.registerBlockRenderType(RenderType.cutout(), Blocks.BUFFERSTOP_1);
@@ -55,6 +60,11 @@ public class JoestuClient {
 			final int balance = packet.readInt();
 			final Minecraft minecraft = Minecraft.getInstance();
 			minecraft.execute(() -> UtilitiesClient.setScreen(minecraft, new TicketMachineScreen(balance)));
+		});
+
+		RegistryClient.registerNetworkReceiver(new ResourceLocation("jsblock", "packet_open_jcm_config_screen"), packet -> {
+			final Minecraft minecraft = Minecraft.getInstance();
+			minecraft.execute(() -> UtilitiesClient.setScreen(minecraft, new ConfigScreen()));
 		});
 	}
 }
