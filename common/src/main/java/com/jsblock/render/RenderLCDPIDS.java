@@ -28,7 +28,7 @@ import net.minecraft.world.level.block.HorizontalDirectionalBlock;
 
 import java.util.*;
 
-public class RenderPIDS<T extends BlockEntityMapper> extends BlockEntityRendererMapper<T> implements IGui {
+public class RenderLCDPIDS<T extends BlockEntityMapper> extends BlockEntityRendererMapper<T> implements IGui {
 
 	private final float scale;
 	private final float totalScaledWidth;
@@ -55,7 +55,7 @@ public class RenderPIDS<T extends BlockEntityMapper> extends BlockEntityRenderer
 	private static final int CAR_TEXT_COLOR = 0xFF0000;
 	private static final int MAX_VIEW_DISTANCE = 16;
 
-	public RenderPIDS(BlockEntityRenderDispatcher dispatcher, int maxArrivals, float startX, float startY, float startZ, float maxHeight, int maxWidth, boolean rotate90, boolean renderArrivalNumber, boolean showAllPlatforms, int textColor, int firstTrainColor, float textPadding, boolean appendDotAfterMin, boolean showCars, String chinFont, String engFont) {
+	public RenderLCDPIDS(BlockEntityRenderDispatcher dispatcher, int maxArrivals, float startX, float startY, float startZ, float maxHeight, int maxWidth, boolean rotate90, boolean renderArrivalNumber, boolean showAllPlatforms, int textColor, int firstTrainColor, float textPadding, boolean appendDotAfterMin, boolean showCars, String chinFont, String engFont) {
 		super(dispatcher);
 		scale = 160 * maxArrivals / maxHeight * textPadding;
 		totalScaledWidth = scale * maxWidth / 16;
@@ -81,8 +81,8 @@ public class RenderPIDS<T extends BlockEntityMapper> extends BlockEntityRenderer
 
 	@Override
 	public void render(T entity, float tickDelta, PoseStack matrices, MultiBufferSource vertexConsumers, int light, int overlay) {
-		final Style fontStyleChin = Config.useMTRFont() ? Style.EMPTY.withFont(new ResourceLocation(Joestu.MOD_ID, chinFont)) : Style.EMPTY;
-		final Style fontStyleEng = Config.useMTRFont() ? Style.EMPTY.withFont(new ResourceLocation(Joestu.MOD_ID, engFont)) : Style.EMPTY;
+		final Style fontStyleChin = Config.useMTRFont() ? Style.EMPTY.withFont(new ResourceLocation(ClientConfig.getPIDS4ChinFont())) : Style.EMPTY;
+		final Style fontStyleEng = Config.useMTRFont() ? Style.EMPTY.withFont(new ResourceLocation(ClientConfig.getPIDS4EngFont())) : Style.EMPTY;
 
 		final BlockGetter world = entity.getLevel();
 		if (world == null || ClientConfig.getRenderDisabled()) {

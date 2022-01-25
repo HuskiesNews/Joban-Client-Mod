@@ -13,6 +13,8 @@ public class ClientConfig {
     private static boolean renderDisabled = true;
     private static String RVPIDSChinFont = MTR.MOD_ID + ":" + "mtr";
     private static String RVPIDSEngFont = MTR.MOD_ID + ":" + "mtr";
+    private static String PIDS4ChinFont = Joestu.MOD_ID + ":" + "pids_4";
+    private static String PIDS4EngFont = Joestu.MOD_ID + ":" + "pids_4";
     private static String KCRSignChinFont = Joestu.MOD_ID + ":" + "kcr_chin";
     private static String KCRSignEngFont = Joestu.MOD_ID + ":" + "kcr_eng";
 
@@ -46,6 +48,14 @@ public class ClientConfig {
             if(jsonConfig.has("KCRSignEngFont")) {
                 KCRSignEngFont = jsonConfig.get("KCRSignEngFont").getAsString();
             }
+
+            if(jsonConfig.has("PIDS4ChinFont")) {
+                PIDS4ChinFont = jsonConfig.get("PIDS4ChinFont").getAsString();
+            }
+
+            if(jsonConfig.has("PIDS4EngFont")) {
+                PIDS4EngFont = jsonConfig.get("PIDS4EngFont").getAsString();
+            }
         } catch (Exception e) {
             e.printStackTrace();
             writeConfig();
@@ -60,6 +70,8 @@ public class ClientConfig {
         jsonConfig.addProperty("RVPIDSEngFont", RVPIDSEngFont == null ? "" : RVPIDSEngFont);
         jsonConfig.addProperty("KCRSignChinFont", KCRSignChinFont);
         jsonConfig.addProperty("KCRSignEngFont", KCRSignEngFont);
+        jsonConfig.addProperty("PIDS4ChinFont", PIDS4ChinFont);
+        jsonConfig.addProperty("PIDS4EngFont", PIDS4EngFont);
 
         try {
             Files.write(Paths.get(CONFIG_PATH), Collections.singleton(new GsonBuilder().setPrettyPrinting().create().toJson(jsonConfig)));
@@ -78,6 +90,14 @@ public class ClientConfig {
 
     public static String getRVPIDSEngFont() {
         return RVPIDSEngFont;
+    }
+
+    public static String getPIDS4ChinFont() {
+        return PIDS4ChinFont;
+    }
+
+    public static String getPIDS4EngFont() {
+        return PIDS4EngFont;
     }
 
     public static String getKCRSignChinFont() {
@@ -99,6 +119,14 @@ public class ClientConfig {
 
     public static void setRVPIDSEngFont(String id) {
         RVPIDSEngFont = id;
+    }
+
+    public static void setPIDS4ChinFont(String id) {
+        PIDS4ChinFont = id;
+    }
+
+    public static void setPIDS4EngFont(String id) {
+        PIDS4EngFont = id;
     }
 
     public static void setKCRSignChinFont(String id) {

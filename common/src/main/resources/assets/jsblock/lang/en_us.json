@@ -51,6 +51,8 @@
   "gui.jsblock.config.enable_render": "Disable rendering component (For debugging)",
   "gui.jsblock.config.rvpids_chin_font": "Font path for the Railway Vision PIDS (Chinese)",
   "gui.jsblock.config.rvpids_eng_font": "Font path for the Railway Vision PIDS (English)",
+  "gui.jsblock.config.pids_4_chin_font": "Font path for the TKL LCD PIDS (Chinese)",
+  "gui.jsblock.config.pids_4_eng_font": "Font path for the TKL LCD PIDS (English)",
   "gui.jsblock.config.kcrsign_chin_font": "Font path for the KCR Signs (Chinese)",
   "gui.jsblock.config.kcrsign_eng_font": "Font path for the KCR Signs (English)"
 }

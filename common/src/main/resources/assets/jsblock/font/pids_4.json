@@ -2,6 +2,13 @@
 	"providers": [
 		{
 			"type": "ttf",
+			"file": "jsblock:source_sans_pro.ttf",
+			"shift": [ -0.8, 0.0 ],
+			"size": 12,
+			"oversample": 6.0
+		},
+		{
+			"type": "ttf",
 			"file": "jsblock:noto_serif_l.otf",
 			"shift": [ -0.8, 0.0 ],
 			"size": 12,
