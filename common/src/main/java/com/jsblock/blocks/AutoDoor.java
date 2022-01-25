@@ -30,14 +30,6 @@ public class AutoDoor extends DoorBlock {
 	}
 
 	@Override
-	public void randomTick(BlockState state, ServerLevel world, BlockPos pos, Random random) {
-		/* FAILSAFE */
-		if (!world.getBlockTicks().hasScheduledTick(pos, state.getBlock())) {
-			Utilities.scheduleBlockTick(world, pos, state.getBlock(), 15);
-		}
-	}
-
-	@Override
 	public void tick(BlockState state, ServerLevel world, BlockPos pos, Random random) {
 		if (world == null || world.isClientSide) {
 			return;
@@ -59,10 +51,5 @@ public class AutoDoor extends DoorBlock {
 		}
 
 		Utilities.scheduleBlockTick(world, pos, state.getBlock(), 15);
-	}
-
-	@Override
-	public boolean isRandomlyTicking(BlockState blockState) {
-		return true;
 	}
 }

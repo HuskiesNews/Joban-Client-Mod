@@ -42,14 +42,6 @@ public class Bufferstop1 extends HorizontalDirectionalBlock {
 	}
 
 	@Override
-	public void randomTick(BlockState state, ServerLevel world, BlockPos pos, Random random) {
-		/* FAILSAFE */
-		if (!world.getBlockTicks().hasScheduledTick(pos, state.getBlock())) {
-			Utilities.scheduleBlockTick(world, pos, state.getBlock(), 20);
-		}
-	}
-
-	@Override
 	public void tick(BlockState state, ServerLevel world, BlockPos pos, Random random) {
 		if (world == null || world.isClientSide) {
 			return;
@@ -67,10 +59,5 @@ public class Bufferstop1 extends HorizontalDirectionalBlock {
 	@Override
 	protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
 		builder.add(FACING, RIGHT);
-	}
-
-	@Override
-	public boolean isRandomlyTicking(BlockState blockState) {
-		return true;
 	}
 }
