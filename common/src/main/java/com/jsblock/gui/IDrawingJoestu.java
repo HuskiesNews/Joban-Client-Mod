@@ -103,14 +103,14 @@ public interface IDrawingJoestu {
 		final float finalY;
 		final float finalX;
 		if (Config.useMTRFont()) {
-			finalY = y + 0.5F;
+			finalY = y + 0.4F;
 			finalX = x;
 		} else {
 			finalY = y + 0.4F;
 			finalX = x + 0.1F;
 		}
 
-		drawStringWithFont(matrices, textRenderer, immediate, text, xAlignment, yAlignment, finalX, finalY, maxX, 5, 1F, keepRatio, color, false, light, fontChin, fontEng);
+		drawStringWithFont(matrices, textRenderer, immediate, text, xAlignment, yAlignment, finalX, finalY, maxX, 5, 1, keepRatio, color, false, light, fontChin, fontEng);
 		immediate.endBatch();
 	}
 }

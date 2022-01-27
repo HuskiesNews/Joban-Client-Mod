@@ -1,16 +1,23 @@
 package com.jsblock.render;
 
-import com.jsblock.Joestu;
 import com.jsblock.config.ClientConfig;
 import com.mojang.blaze3d.vertex.PoseStack;
+import com.mojang.blaze3d.vertex.Tesselator;
+import com.mojang.blaze3d.vertex.VertexConsumer;
 import com.mojang.math.Vector3f;
 import mtr.block.BlockPIDSBase;
 import mtr.block.IBlock;
+import mtr.client.ClientCache;
 import mtr.client.ClientData;
 import mtr.client.Config;
-import mtr.data.*;
+import mtr.client.IDrawing;
+import mtr.data.IGui;
+import mtr.data.Platform;
+import mtr.data.RailwayData;
+import mtr.data.ScheduleEntry;
 import mtr.mappings.BlockEntityMapper;
 import mtr.mappings.BlockEntityRendererMapper;
+import mtr.render.MoreRenderLayers;
 import mtr.render.RenderTrains;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Font;
@@ -20,16 +27,19 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.Style;
-import net.minecraft.network.chat.TextComponent;
 import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.level.BlockGetter;
+import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.HorizontalDirectionalBlock;
 
 import java.util.*;
 
+import static com.jsblock.gui.IDrawingJoestu.renderTextWithOffset;
+
 public class RenderLCDPIDS<T extends BlockEntityMapper> extends BlockEntityRendererMapper<T> implements IGui {
 
+	private final String pidsType;
+	private final float textPadding;
 	private final float scale;
 	private final float totalScaledWidth;
 	private final float destinationStart;
@@ -41,27 +51,21 @@ public class RenderLCDPIDS<T extends BlockEntityMapper> extends BlockEntityRende
 	private final float startX;
 	private final float startY;
 	private final float startZ;
-	private final boolean showCars;
-	private final String chinFont;
-	private final String engFont;
 	private final boolean rotate90;
-	private final boolean renderArrivalNumber;
-	private final boolean showAllPlatforms;
+	private final boolean appendDotsAfterMin;
+	private final boolean showPlatforms;
 	private final int textColor;
-	private final int firstTrainColor;
-	private final boolean appendDotAfterMin;
+	private List<ClientCache.PlatformRouteDetails> routeData;
 
-	private static final int SWITCH_LANGUAGE_TICKS = 60;
-	private static final int CAR_TEXT_COLOR = 0xFF0000;
+	private static final int SWITCH_LANGUAGE_TICKS = 80;
 	private static final int MAX_VIEW_DISTANCE = 16;
 
-	public RenderLCDPIDS(BlockEntityRenderDispatcher dispatcher, int maxArrivals, float startX, float startY, float startZ, float maxHeight, int maxWidth, boolean rotate90, boolean renderArrivalNumber, boolean showAllPlatforms, int textColor, int firstTrainColor, float textPadding, boolean appendDotAfterMin, boolean showCars, String chinFont, String engFont) {
-		super(dispatcher);
-		scale = 160 * maxArrivals / maxHeight * textPadding;
+	public RenderLCDPIDS(BlockEntityRenderDispatcher dispatcher, int maxArrivals, float startX, float startY, float startZ, float maxHeight, int maxWidth, boolean rotate90, boolean renderArrivalNumber, boolean showPlatforms, int textColor, float textPadding, boolean appendDotAfterMin, String pidsType) {		super(dispatcher);
+		scale = 230 * maxArrivals / maxHeight;
 		totalScaledWidth = scale * maxWidth / 16;
 		destinationStart = renderArrivalNumber ? scale * 2 / 16 : 0;
-		destinationMaxWidth = totalScaledWidth * 0.7F;
-		platformMaxWidth = showAllPlatforms ? scale * 2 / 16 : 0;
+		destinationMaxWidth = totalScaledWidth * 0.33F;
+		platformMaxWidth = showPlatforms ? scale * 2F / 16 : 0;
 		arrivalMaxWidth = totalScaledWidth - destinationStart - destinationMaxWidth - platformMaxWidth;
 		this.maxArrivals = maxArrivals;
 		this.maxHeight = maxHeight;
@@ -69,28 +73,34 @@ public class RenderLCDPIDS<T extends BlockEntityMapper> extends BlockEntityRende
 		this.startY = startY;
 		this.startZ = startZ;
 		this.rotate90 = rotate90;
-		this.showCars = showCars;
-		this.chinFont = chinFont;
-		this.engFont = engFont;
-		this.renderArrivalNumber = renderArrivalNumber;
-		this.showAllPlatforms = showAllPlatforms;
+		this.showPlatforms = showPlatforms;
 		this.textColor = textColor;
-		this.firstTrainColor = firstTrainColor;
-		this.appendDotAfterMin = appendDotAfterMin;
+		this.pidsType = pidsType;
+		this.textPadding = textPadding;
+		this.appendDotsAfterMin = appendDotAfterMin;
 	}
 
 	@Override
 	public void render(T entity, float tickDelta, PoseStack matrices, MultiBufferSource vertexConsumers, int light, int overlay) {
-		final Style fontStyleChin = Config.useMTRFont() ? Style.EMPTY.withFont(new ResourceLocation(ClientConfig.getPIDS4ChinFont())) : Style.EMPTY;
-		final Style fontStyleEng = Config.useMTRFont() ? Style.EMPTY.withFont(new ResourceLocation(ClientConfig.getPIDS4EngFont())) : Style.EMPTY;
-
-		final BlockGetter world = entity.getLevel();
+		final Level world = entity.getLevel();
 		if (world == null || ClientConfig.getRenderDisabled()) {
 			return;
 		}
 
 		final BlockPos pos = entity.getBlockPos();
 		final Direction facing = IBlock.getStatePropertySafe(world, pos, HorizontalDirectionalBlock.FACING);
+		final String chineseFont;
+		final String englishFont;
+
+		if(pidsType.equals("pids_tkl")) {
+			chineseFont = ClientConfig.getPIDS4ChinFont();
+			englishFont = ClientConfig.getPIDS4EngFont();
+		} else {
+			chineseFont = "mtr:mtr";
+			englishFont = "mtr:mtr";
+		}
+
+		/* If the player is too far away from the PIDS that not even the train renders */
 		if (RenderTrains.shouldNotRender(pos, Math.min(MAX_VIEW_DISTANCE, RenderTrains.maxTrainRenderDistance), rotate90 ? null : facing)) {
 			return;
 		}
@@ -108,71 +118,48 @@ public class RenderLCDPIDS<T extends BlockEntityMapper> extends BlockEntityRende
 
 		try {
 			final Set<ScheduleEntry> schedules;
-			final Map<Long, String> platformIdToName = new HashMap<>();
 
-			if (showAllPlatforms) {
-				final Station station = RailwayData.getStation(ClientData.STATIONS, ClientData.DATA_CACHE, pos);
-				if (station == null) {
-					return;
-				}
-
-				final Map<Long, Platform> platforms = ClientData.DATA_CACHE.requestStationIdToPlatforms(station.id);
-				if (platforms.isEmpty()) {
-					return;
-				}
-
+			final long platformId = RailwayData.getClosePlatformId(ClientData.PLATFORMS, ClientData.DATA_CACHE, pos);
+			if (platformId == 0) {
 				schedules = new HashSet<>();
-				platforms.values().forEach(platform -> {
-					final Set<ScheduleEntry> scheduleForPlatform = ClientData.SCHEDULES_FOR_PLATFORM.get(platform.id);
-					if (scheduleForPlatform != null) {
-						scheduleForPlatform.forEach(scheduleEntry -> {
-							if (!scheduleEntry.isTerminating) {
-								schedules.add(scheduleEntry);
-								platformIdToName.put(platform.id, platform.name);
-							}
-						});
-					}
-				});
 			} else {
-				final long platformId = RailwayData.getClosePlatformId(ClientData.PLATFORMS, ClientData.DATA_CACHE, pos);
-				if (platformId == 0) {
-					schedules = new HashSet<>();
-				} else {
-					final Set<ScheduleEntry> schedulesForPlatform = ClientData.SCHEDULES_FOR_PLATFORM.get(platformId);
-					schedules = schedulesForPlatform == null ? new HashSet<>() : schedulesForPlatform;
-				}
+				final Set<ScheduleEntry> schedulesForPlatform = ClientData.SCHEDULES_FOR_PLATFORM.get(platformId);
+				schedules = schedulesForPlatform == null ? new HashSet<>() : schedulesForPlatform;
 			}
 
 			final List<ScheduleEntry> scheduleList = new ArrayList<>(schedules);
 			Collections.sort(scheduleList);
 
 			final boolean showCarLength;
-			final float carLengthMaxWidth;
+			int maxCars = 0;
+			int minCars = Integer.MAX_VALUE;
 
-			if(!showCars) {
-				showCarLength = false;
-				carLengthMaxWidth = 0;
-			} else {
-				if (!showAllPlatforms) {
-					int maxCars = 0;
-					int minCars = Integer.MAX_VALUE;
-					for (final ScheduleEntry scheduleEntry : scheduleList) {
-						final int trainCars = scheduleEntry.trainCars;
-						if (trainCars > maxCars) {
-							maxCars = trainCars;
-						}
-						if (trainCars < minCars) {
-							minCars = trainCars;
-						}
-					}
-					showCarLength = minCars != maxCars;
-					carLengthMaxWidth = showCarLength ? scale * 6 / 16 : 0;
-				} else {
-					showCarLength = false;
-					carLengthMaxWidth = 0;
+			/* Find the maximum and minimum cars out of the schedule list */
+			for (final ScheduleEntry scheduleEntry : scheduleList) {
+				final int trainCars = scheduleEntry.trainCars;
+				if (trainCars > maxCars) {
+					maxCars = trainCars;
+				}
+				if (trainCars < minCars) {
+					minCars = trainCars;
 				}
 			}
+			showCarLength = minCars != maxCars;
 
+			final Font textRenderer = Minecraft.getInstance().font;
+
+			matrices.pushPose();
+			matrices.translate(0.5, 0, 0.5);
+			matrices.mulPose(Vector3f.YP.rotationDegrees((rotate90 ? 90 : 0) - facing.toYRot()));
+			matrices.mulPose(Vector3f.ZP.rotationDegrees(180));
+			matrices.translate((startX - 8) / 16, -startY / 16 + 0 * maxHeight / maxArrivals / 16, (startZ - 8) / 16 - SMALL_OFFSET * 2);
+			matrices.scale(1F / scale, 1F / scale, 1F / scale);
+
+			final MultiBufferSource.BufferSource immediate = MultiBufferSource.immediate(Tesselator.getInstance().getBuilder());
+
+			matrices.popPose();
+
+			/* Loop through each arrival */
 			for (int i = 0; i < maxArrivals; i++) {
 				final int languageTicks = (int) Math.floor(RenderTrains.getGameTicks()) / SWITCH_LANGUAGE_TICKS;
 				final String destinationString;
@@ -204,76 +191,63 @@ public class RenderLCDPIDS<T extends BlockEntityMapper> extends BlockEntityRende
 				matrices.mulPose(Vector3f.YP.rotationDegrees((rotate90 ? 90 : 0) - facing.toYRot()));
 				matrices.mulPose(Vector3f.ZP.rotationDegrees(180));
 				matrices.translate((startX - 8) / 16, -startY / 16 + i * maxHeight / maxArrivals / 16, (startZ - 8) / 16 - SMALL_OFFSET * 2);
-				matrices.scale(1F / scale, 1F / scale, 1F / scale);
-
-				final Font textRenderer = Minecraft.getInstance().font;
+				matrices.scale(1F / (scale / 2), 1F / (scale / 2), 1F / (scale / 2));
 
 				if (useCustomMessage) {
-					final int destinationWidth = textRenderer.width(destinationString);
-					if (destinationWidth > totalScaledWidth) {
-						matrices.scale(totalScaledWidth / destinationWidth, 1, 1);
-					}
-					Component destinationText = new TextComponent(destinationString).setStyle(destinationString.codePoints().anyMatch(Character::isIdeographic) ? fontStyleChin : fontStyleEng);
-					textRenderer.draw(matrices, destinationText, 0, 0, textColor);
+					renderTextWithOffset(matrices, textRenderer, immediate, destinationString, 0, 0, arrivalMaxWidth - platformMaxWidth, 4, textColor, MAX_LIGHT_GLOWING, HorizontalAlignment.LEFT, VerticalAlignment.TOP, false, chineseFont, englishFont);
 				} else {
 					final ScheduleEntry currentSchedule = scheduleList.get(i);
-
 					final Component arrivalText;
 					final int seconds = (int) ((currentSchedule.arrivalMillis - System.currentTimeMillis()) / 1000);
 					final boolean isCJK = destinationString.codePoints().anyMatch(Character::isIdeographic);
 					if (seconds >= 60) {
-						arrivalText = new TranslatableComponent(isCJK ? "gui.mtr.arrival_min_cjk" : "gui.mtr.arrival_min", seconds / 60).append(appendDotAfterMin && !isCJK ? "." : "").setStyle(isCJK ? fontStyleChin : fontStyleEng);
+						arrivalText = new TranslatableComponent(isCJK ? "gui.mtr.arrival_min_cjk" : "gui.mtr.arrival_min", seconds / 60);
 					} else {
-						arrivalText = seconds > 0 ? new TranslatableComponent(isCJK ? "gui.mtr.arrival_sec_cjk" : "gui.mtr.arrival_sec", seconds).append(appendDotAfterMin && !isCJK ? "." : "").setStyle(isCJK ? fontStyleChin : fontStyleEng) : null;
+						arrivalText = seconds > 0 ? new TranslatableComponent(isCJK ? "gui.mtr.arrival_sec_cjk" : "gui.mtr.arrival_sec", seconds) : null;
 					}
 					final Component carText = new TranslatableComponent(isCJK ? "gui.mtr.arrival_car_cjk" : "gui.mtr.arrival_car", currentSchedule.trainCars);
 
+					/* PLATFORM */
+					if (showPlatforms) {
+						final VertexConsumer vertexConsumerStationCircle = vertexConsumers.getBuffer(MoreRenderLayers.getLight(new ResourceLocation("mtr:textures/sign/circle.png"), true));
 
-					if (renderArrivalNumber) {
-						textRenderer.draw(matrices, String.valueOf(i + 1), 0, 0, seconds > 0 ? textColor : firstTrainColor);
-					}
+						final Platform platform = ClientData.DATA_CACHE.platformIdMap.get(platformId);
+						if (platform != null) {
+							final List<ClientCache.PlatformRouteDetails> platformRouteDetails = ClientData.DATA_CACHE.requestPlatformIdToRoutes(platform.id);
+							routeData = platformRouteDetails == null ? new ArrayList<>() : platformRouteDetails;
+							final float x = destinationStart + destinationMaxWidth;
 
-					final float newDestinationMaxWidth = destinationMaxWidth - carLengthMaxWidth;
+							/* PLATFORM CIRCLE */
+							int routeColor = routeData.isEmpty() ? 0 : routeData.get(0).routeColor;
+							drawTexture(matrices, vertexConsumerStationCircle, x, 0, 4, 4, facing, routeColor + ARGB_BLACK, MAX_LIGHT_GLOWING);
+							matrices.pushPose();
+							matrices.translate(x + 1.95F, 2.2F, -0.05);
+							matrices.scale(0.7F, 0.7F, 0.7F);
 
-					if (showAllPlatforms) {
-						final String platformName = platformIdToName.get(currentSchedule.platformId);
-						if (platformName != null) {
-							textRenderer.draw(matrices, platformName, destinationStart + newDestinationMaxWidth, 0, seconds > 0 ? textColor : firstTrainColor);
+							renderTextWithOffset(matrices, textRenderer, immediate, platform.name, 0, 0, 4, 3,textColor, MAX_LIGHT_GLOWING, HorizontalAlignment.CENTER, VerticalAlignment.CENTER, true, chineseFont, englishFont);
+							matrices.popPose();
 						}
-					}
-
-					if (showCarLength) {
-						matrices.pushPose();
-						matrices.translate(destinationStart + newDestinationMaxWidth + platformMaxWidth, 0, 0);
-						final int carTextWidth = textRenderer.width(carText);
-						if (carTextWidth > carLengthMaxWidth) {
-							matrices.scale(carLengthMaxWidth / carTextWidth, 1, 1);
-						}
-						textRenderer.draw(matrices, carText, 0, 0, CAR_TEXT_COLOR);
-						matrices.popPose();
 					}
 
 					matrices.pushPose();
 					matrices.translate(destinationStart, 0, 0);
-					final int destinationWidth = textRenderer.width(destinationString);
-					if (destinationWidth > newDestinationMaxWidth) {
-						matrices.scale(newDestinationMaxWidth / destinationWidth, 1, 1);
-					}
-					Component destinationText = new TextComponent(destinationString).setStyle(destinationString.codePoints().anyMatch(Character::isIdeographic) ? fontStyleChin : fontStyleEng);
 
-					textRenderer.draw(matrices, destinationText, 0, 0, seconds > 0 ? textColor : firstTrainColor);
+					renderTextWithOffset(matrices, textRenderer, immediate, destinationString, 0, 0, destinationMaxWidth, 5, textColor, MAX_LIGHT_GLOWING, HorizontalAlignment.LEFT, VerticalAlignment.TOP, false, chineseFont, englishFont);
 					matrices.popPose();
 
 					if (arrivalText != null) {
 						matrices.pushPose();
-						final int arrivalWidth = textRenderer.width(arrivalText);
-						if (arrivalWidth > arrivalMaxWidth) {
-							matrices.translate(destinationStart + newDestinationMaxWidth + platformMaxWidth + carLengthMaxWidth, 0, 0);
-							matrices.scale(arrivalMaxWidth / arrivalWidth, 1, 1);
+						final boolean isShowCar = showCarLength && (languageTicks % 6 == 0 || languageTicks % 6 == 1);
+
+						/* TODO: FIX ARRIVAL WRONG POS (TKL PIDS) */
+						matrices.translate(destinationMaxWidth + 18F, 0, 0);
+
+						if (isShowCar) {
+							renderTextWithOffset(matrices, textRenderer, immediate, carText.getString(), 0, -0.025F, 15, 5, textColor, MAX_LIGHT_GLOWING, HorizontalAlignment.RIGHT, VerticalAlignment.TOP, false, chineseFont, englishFont);
 						} else {
-							matrices.translate(totalScaledWidth - arrivalWidth, 0, 0);
+							renderTextWithOffset(matrices, textRenderer, immediate, arrivalText.getString(), 0, -0.025F, 15, 5, textColor, MAX_LIGHT_GLOWING, HorizontalAlignment.RIGHT, VerticalAlignment.TOP, false, chineseFont, englishFont);
 						}
-						textRenderer.draw(matrices, arrivalText, 0, 0, textColor);
+
 						matrices.popPose();
 					}
 				}
@@ -283,5 +257,9 @@ public class RenderLCDPIDS<T extends BlockEntityMapper> extends BlockEntityRende
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+	}
+
+	static void drawTexture(PoseStack matrices, VertexConsumer vertexConsumer, float x, float y, float width, float height, Direction facing, int color, int light) {
+		IDrawing.drawTexture(matrices, vertexConsumer, x, y, 0, x + width, y + height, 0, 0, 0, 1, 1, facing, color, light);
 	}
 }

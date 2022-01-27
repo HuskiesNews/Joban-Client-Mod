@@ -216,9 +216,9 @@ public class RenderRVPIDS<T extends BlockEntityMapper> extends BlockEntityRender
 					final int seconds = (int) ((currentSchedule.arrivalMillis - System.currentTimeMillis()) / 1000);
 					final boolean isCJK = destinationString.codePoints().anyMatch(Character::isIdeographic);
 					if (seconds >= 60) {
-						arrivalText = new TranslatableComponent(isCJK ? "gui.mtr.arrival_min_cjk" : "gui.mtr.arrival_min", seconds / 60).setStyle(isCJK ? FontChinStyle : FontEngStyle);
+						arrivalText = new TranslatableComponent(isCJK ? "gui.mtr.arrival_min_cjk" : "gui.mtr.arrival_min", seconds / 60);
 					} else {
-						arrivalText = seconds > 0 ? new TranslatableComponent(isCJK ? "gui.mtr.arrival_sec_cjk" : "gui.mtr.arrival_sec", seconds).setStyle(isCJK? FontChinStyle : FontEngStyle) : null;
+						arrivalText = seconds > 0 ? new TranslatableComponent(isCJK ? "gui.mtr.arrival_sec_cjk" : "gui.mtr.arrival_sec", seconds) : null;
 					}
 					final Component carText = new TranslatableComponent(isCJK ? "gui.mtr.arrival_car_cjk" : "gui.mtr.arrival_car", currentSchedule.trainCars);
 
@@ -253,7 +253,7 @@ public class RenderRVPIDS<T extends BlockEntityMapper> extends BlockEntityRender
 					if (arrivalText != null) {
 						matrices.pushPose();
 						final boolean isShowCar = showCarLength && (languageTicks % 6 == 0 || languageTicks % 6 == 1);
-						
+
 						matrices.translate(arrivalMaxWidth - platformMaxWidth, 0, 0);
 
 						if (isShowCar) {
