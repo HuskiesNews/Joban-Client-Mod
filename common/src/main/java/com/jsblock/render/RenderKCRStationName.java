@@ -70,7 +70,7 @@ public class RenderKCRStationName<T extends BlockEntityMapper> extends BlockEnti
 			final Font textRenderer = Minecraft.getInstance().font;
 			final String stationName = station == null ? new TranslatableComponent("gui.mtr.untitled").getString() : station.name;
 			final MultiBufferSource.BufferSource immediate = MultiBufferSource.immediate(Tesselator.getInstance().getBuilder());
-			IDrawingJoestu.drawStringWithFont(matrices, textRenderer, immediate, stationName, HorizontalAlignment.CENTER, VerticalAlignment.CENTER, 0, 0, 60, 32, 1, 0xEEEEEE, false, MAX_LIGHT_GLOWING, "kcr_chin", "kcr_eng");
+			IDrawingJoestu.drawStringWithFont(matrices, textRenderer, immediate, stationName, HorizontalAlignment.CENTER, VerticalAlignment.CENTER, 0, 0, 60, 32, 1, false, 0xEEEEEE, false, MAX_LIGHT_GLOWING, ClientConfig.getKCRSignChinFont(), ClientConfig.getKCRSignEngFont());
 			immediate.endBatch();
 			matrices.popPose();
 		}

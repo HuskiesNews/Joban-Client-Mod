@@ -1,14 +1,11 @@
 package com.jsblock.gui;
 
-import com.jsblock.Joestu;
-import com.jsblock.config.ClientConfig;
 import com.mojang.blaze3d.vertex.PoseStack;
 import mtr.client.Config;
 import mtr.data.IGui;
 import net.minecraft.client.gui.Font;
 import net.minecraft.client.renderer.LightTexture;
 import net.minecraft.client.renderer.MultiBufferSource;
-import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.Style;
 import net.minecraft.network.chat.TextComponent;
 import net.minecraft.resources.ResourceLocation;
@@ -18,13 +15,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 public interface IDrawingJoestu {
-	static void drawStringWithFont(PoseStack matrices, Font textRenderer, MultiBufferSource.BufferSource immediate, String text, IGui.HorizontalAlignment horizontalAlignment, IGui.VerticalAlignment verticalAlignment, float x, float y, float maxWidth, float maxHeight, float scale, int textColor, boolean shadow, int light, String fontChinese, String fontEnglish) {
-		drawStringWithFont(matrices, textRenderer, immediate, text, horizontalAlignment, verticalAlignment, horizontalAlignment, x, y, maxWidth, maxHeight, scale, textColor, shadow, light, fontChinese, fontEnglish, null);
+	static void drawStringWithFont(PoseStack matrices, Font textRenderer, MultiBufferSource.BufferSource immediate, String text, IGui.HorizontalAlignment horizontalAlignment, IGui.VerticalAlignment verticalAlignment, float x, float y, float maxWidth, float maxHeight, float scale, boolean keepRatio, int textColor, boolean shadow, int light, String fontChinese, String fontEnglish) {
+		drawStringWithFont(matrices, textRenderer, immediate, text, horizontalAlignment, verticalAlignment, horizontalAlignment, x, y, maxWidth, maxHeight, scale, keepRatio, textColor, shadow, light, fontChinese, fontEnglish, false, null);
 	}
 
-	static void drawStringWithFont(PoseStack matrices, Font textRenderer, MultiBufferSource.BufferSource immediate, String text, IGui.HorizontalAlignment horizontalAlignment, IGui.VerticalAlignment verticalAlignment, IGui.HorizontalAlignment xAlignment, float x, float y, float maxWidth, float maxHeight, float scale, int textColor, boolean shadow, int light, String fontChinese, String fontEnglish, mtr.client.IDrawing.DrawingCallback drawingCallback) {
-		final Style styleChinese = Config.useMTRFont() ? Style.EMPTY.withFont(new ResourceLocation(ClientConfig.getKCRSignChinFont())) : Style.EMPTY;
-		final Style styleEnglish = Config.useMTRFont() ? Style.EMPTY.withFont(new ResourceLocation(ClientConfig.getKCRSignEngFont())) : Style.EMPTY;
+	static void drawStringWithFont(PoseStack matrices, Font textRenderer, MultiBufferSource.BufferSource immediate, String text, IGui.HorizontalAlignment horizontalAlignment, IGui.VerticalAlignment verticalAlignment, IGui.HorizontalAlignment xAlignment, float x, float y, float maxWidth, float maxHeight, float scale, boolean keepRatio, int textColor, boolean shadow, int light, String fontChinese, String fontEnglish, boolean sameSize, mtr.client.IDrawing.DrawingCallback drawingCallback) {
+		final Style styleChinese = Config.useMTRFont() ? Style.EMPTY.withFont(new ResourceLocation(fontChinese)) : Style.EMPTY;
+		final Style styleEnglish = Config.useMTRFont() ? Style.EMPTY.withFont(new ResourceLocation(fontEnglish)) : Style.EMPTY;
 
 		while (text.contains("||")) {
 			text = text.replace("||", "|");
@@ -63,13 +60,13 @@ public interface IDrawingJoestu {
 			totalWidthScaled = totalWidth;
 			scaleX = scale;
 		}
-		matrices.scale(1 / scaleX, 1 / scale, 1 / scale);
+		matrices.scale(1 / scaleX, 1 / (keepRatio ? scaleX : scale), 1 / scale);
 
 		float offset = verticalAlignment.getOffset(y * scale, totalHeight);
 		for (int i = 0; i < orderedTexts.size(); i++) {
 			final boolean isCJK = isCJKList.get(i);
-			final int extraScale = isCJK ? 2 : 1;
-			if (isCJK) {
+			final int extraScale = isCJK && !sameSize ? 2 : 1;
+			if (isCJK && !sameSize) {
 				matrices.pushPose();
 				matrices.scale(extraScale, extraScale, 1);
 			}
@@ -86,7 +83,7 @@ public interface IDrawingJoestu {
 				textRenderer.drawInBatch(orderedTexts.get(i), xOffset / extraScale, offset / extraScale, (a << 24) + (r << 16) + (g << 8) + b, shadow, matrices.last().pose(), immediate, false, 0, light);
 			}
 
-			if (isCJK) {
+			if (isCJK && !sameSize) {
 				matrices.popPose();
 			}
 
@@ -102,17 +99,18 @@ public interface IDrawingJoestu {
 		}
 	}
 
-	static void renderTextWithOffset(PoseStack matrices, Font textRenderer, Component text, float x, float y, int color) {
+	static void renderTextWithOffset(PoseStack matrices, Font textRenderer, MultiBufferSource.BufferSource immediate, String text, float x, float y, float maxX, float maxY, int color, int light, IGui.HorizontalAlignment xAlignment, IGui.VerticalAlignment yAlignment, boolean keepRatio, String fontChin, String fontEng) {
 		final float finalY;
 		final float finalX;
-		if (Config.useMTRFont() && text.getString().codePoints().noneMatch(Character::isIdeographic)) {
+		if (Config.useMTRFont()) {
 			finalY = y + 0.5F;
 			finalX = x;
 		} else {
-			finalY = y - 0.2F;
-			finalX = x + 0.5F;
+			finalY = y + 0.4F;
+			finalX = x + 0.1F;
 		}
 
-		textRenderer.draw(matrices, text, finalX, finalY, color);
+		drawStringWithFont(matrices, textRenderer, immediate, text, xAlignment, yAlignment, finalX, finalY, maxX, 5, 1F, keepRatio, color, false, light, fontChin, fontEng);
+		immediate.endBatch();
 	}
 }

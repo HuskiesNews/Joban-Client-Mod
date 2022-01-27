@@ -2,6 +2,7 @@ package com.jsblock.render;
 
 import com.jsblock.config.ClientConfig;
 import com.mojang.blaze3d.vertex.PoseStack;
+import com.mojang.blaze3d.vertex.Tesselator;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import com.mojang.math.Vector3f;
 import mtr.block.BlockPIDSBase;
@@ -55,7 +56,6 @@ public class RenderRVPIDS<T extends BlockEntityMapper> extends BlockEntityRender
 	private List<ClientCache.PlatformRouteDetails> routeData;
 
 	private static final int SWITCH_LANGUAGE_TICKS = 80;
-	private static final int MTR_FONT_OFFSET = 20;
 	private static final int MAX_VIEW_DISTANCE = 16;
 
 	public RenderRVPIDS(BlockEntityRenderDispatcher dispatcher, int maxArrivals, float startX, float startY, float startZ, float maxHeight, int maxWidth, boolean rotate90, boolean renderArrivalNumber, boolean showPlatforms, int textColor) {
@@ -63,8 +63,8 @@ public class RenderRVPIDS<T extends BlockEntityMapper> extends BlockEntityRender
 		scale = 230 * maxArrivals / maxHeight;
 		totalScaledWidth = scale * maxWidth / 16;
 		destinationStart = renderArrivalNumber ? scale * 2 / 16 : 0;
-		destinationMaxWidth = totalScaledWidth * 0.6F;
-		platformMaxWidth = showPlatforms ? scale * 2 / 16 : 0;
+		destinationMaxWidth = totalScaledWidth * 0.3F;
+		platformMaxWidth = showPlatforms ? scale * 2F / 16 : 0;
 		arrivalMaxWidth = totalScaledWidth - destinationStart - destinationMaxWidth - platformMaxWidth;
 		this.maxArrivals = maxArrivals;
 		this.maxHeight = maxHeight;
@@ -152,11 +152,12 @@ public class RenderRVPIDS<T extends BlockEntityMapper> extends BlockEntityRender
 			long time = worlds.getDayTime() + 6000;
 			long hours = time / 1000;
 			long minutes = Math.round((time - (hours * 1000)) / 16.8);
-			Component timeString = new TextComponent(String.format("%02d:%02d", hours % 24, minutes % 60)).setStyle(FontEngStyle);
+			String timeString = String.format("%02d:%02d", hours % 24, minutes % 60);
 			matrices.pushPose();
-			matrices.translate(90, -9.8, -0.01);
-			matrices.scale(0.75F, 0.75F, 0.75F);
-			renderTextWithOffset(matrices, textRenderer, timeString, 0, 0, 0xFFFFFF);
+			matrices.translate(108, -10.5, -0.01);
+			matrices.scale(1.6F, 1.6F, 1.6F);
+			final MultiBufferSource.BufferSource immediate = MultiBufferSource.immediate(Tesselator.getInstance().getBuilder());
+			renderTextWithOffset(matrices, textRenderer, immediate, timeString, 0, 0, 12, 2, 0xFFFFFF, MAX_LIGHT_GLOWING, HorizontalAlignment.RIGHT, VerticalAlignment.TOP, false, ClientConfig.getRVPIDSEngFont(), ClientConfig.getRVPIDSEngFont());
 			matrices.popPose();
 
 			/* Draw Weather icon */
@@ -205,20 +206,10 @@ public class RenderRVPIDS<T extends BlockEntityMapper> extends BlockEntityRender
 				matrices.mulPose(Vector3f.YP.rotationDegrees((rotate90 ? 90 : 0) - facing.toYRot()));
 				matrices.mulPose(Vector3f.ZP.rotationDegrees(180));
 				matrices.translate((startX - 8) / 16, -startY / 16 + i * maxHeight / maxArrivals / 16, (startZ - 8) / 16 - SMALL_OFFSET * 2);
-				matrices.scale(1F / scale, 1F / scale, 1F / scale);
+				matrices.scale(1F / (scale / 2), 1F / (scale / 2), 1F / (scale / 2));
 
 				if (useCustomMessage) {
-					int destinationWidth = textRenderer.width(destinationString);
-					if (Config.useMTRFont()) {
-						destinationWidth -= MTR_FONT_OFFSET;
-					}
-
-					if (destinationWidth > totalScaledWidth) {
-						matrices.scale(totalScaledWidth / destinationWidth, 1, 1);
-					}
-
-					Component destString = new TextComponent(destinationString).setStyle(FontChinStyle);
-					renderTextWithOffset(matrices, textRenderer, destString, 0, 0, textColor);
+					renderTextWithOffset(matrices, textRenderer, immediate, destinationString, 0, 0, arrivalMaxWidth - platformMaxWidth, 4, textColor, MAX_LIGHT_GLOWING, HorizontalAlignment.LEFT, VerticalAlignment.TOP, false, ClientConfig.getRVPIDSChinFont(), ClientConfig.getRVPIDSEngFont());
 				} else {
 					final ScheduleEntry currentSchedule = scheduleList.get(i);
 					final Component arrivalText;
@@ -229,9 +220,7 @@ public class RenderRVPIDS<T extends BlockEntityMapper> extends BlockEntityRender
 					} else {
 						arrivalText = seconds > 0 ? new TranslatableComponent(isCJK ? "gui.mtr.arrival_sec_cjk" : "gui.mtr.arrival_sec", seconds).setStyle(isCJK? FontChinStyle : FontEngStyle) : null;
 					}
-					final Component carText = new TranslatableComponent(isCJK ? "gui.mtr.arrival_car_cjk" : "gui.mtr.arrival_car", currentSchedule.trainCars).setStyle(isCJK ? FontChinStyle : FontEngStyle);
-
-					final float newDestinationMaxWidth = destinationMaxWidth;
+					final Component carText = new TranslatableComponent(isCJK ? "gui.mtr.arrival_car_cjk" : "gui.mtr.arrival_car", currentSchedule.trainCars);
 
 					/* PLATFORM */
 					if (showPlatforms) {
@@ -241,59 +230,36 @@ public class RenderRVPIDS<T extends BlockEntityMapper> extends BlockEntityRender
 						if (platform != null) {
 							final List<ClientCache.PlatformRouteDetails> platformRouteDetails = ClientData.DATA_CACHE.requestPlatformIdToRoutes(platform.id);
 							routeData = platformRouteDetails == null ? new ArrayList<>() : platformRouteDetails;
-							final float x = destinationStart + newDestinationMaxWidth;
-							int routeColor = routeData.isEmpty() ? 0 : routeData.get(0).routeColor;
-							drawTexture(matrices, vertexConsumerStationCircle, x - 4.5F / 2, 0, 8, 8, facing, routeColor + ARGB_BLACK, MAX_LIGHT_GLOWING);
-							matrices.pushPose();
-							matrices.translate(destinationStart + newDestinationMaxWidth, 1.2F, -0.05);
-							matrices.scale(0.8F, 0.8F, 0.8F);
-							Component platformText = new TextComponent(platform.name).setStyle(isCJK ? FontChinStyle : FontEngStyle);
-							final int platformTextWidth = textRenderer.width(platformText);
-							final float platformMaxWidth = 7.0F;
-							if (platformTextWidth > platformMaxWidth) {
-								matrices.translate(-0.73 - (platformTextWidth / 100.0F), 0.9F + (platformTextWidth / 20.0F), 0);
-								matrices.scale(platformMaxWidth / platformTextWidth, platformMaxWidth / platformTextWidth, 1);
-							}
+							final float x = destinationStart + destinationMaxWidth;
 
-							renderTextWithOffset(matrices, textRenderer, platformText, -0.9F, 0, 0xFFFFFF);
+							/* PLATFORM CIRCLE */
+							int routeColor = routeData.isEmpty() ? 0 : routeData.get(0).routeColor;
+							drawTexture(matrices, vertexConsumerStationCircle, x, 0, 4, 4, facing, routeColor + ARGB_BLACK, MAX_LIGHT_GLOWING);
+							matrices.pushPose();
+							matrices.translate(x + 1.95F, 2.2F, -0.05);
+							matrices.scale(0.7F, 0.7F, 0.7F);
+
+							renderTextWithOffset(matrices, textRenderer, immediate, platform.name, 0, 0, 4, 3,0xFFFFFF, MAX_LIGHT_GLOWING, HorizontalAlignment.CENTER, VerticalAlignment.CENTER, true, ClientConfig.getRVPIDSChinFont(), ClientConfig.getRVPIDSEngFont());
 							matrices.popPose();
 						}
 					}
 
 					matrices.pushPose();
 					matrices.translate(destinationStart, 0, 0);
-					/* 5 is offset to prevent text overflowing the platform circle */
-					final int destinationWidth = textRenderer.width(destinationString) + 5;
-					if (destinationWidth > newDestinationMaxWidth) {
-						matrices.scale(newDestinationMaxWidth / destinationWidth, 1, 1);
-					}
 
-					Component destText = new TextComponent(destinationString).setStyle(isCJK ? FontChinStyle : FontEngStyle);
-					renderTextWithOffset(matrices, textRenderer, destText, 0, 0, 0x000000);
+					renderTextWithOffset(matrices, textRenderer, immediate, destinationString, 0, 0, 30, 5, 0x000000, MAX_LIGHT_GLOWING, HorizontalAlignment.LEFT, VerticalAlignment.TOP, false, ClientConfig.getRVPIDSChinFont(), ClientConfig.getRVPIDSEngFont());
 					matrices.popPose();
 
 					if (arrivalText != null) {
 						matrices.pushPose();
-						final int arrivalWidth;
 						final boolean isShowCar = showCarLength && (languageTicks % 6 == 0 || languageTicks % 6 == 1);
+						
+						matrices.translate(arrivalMaxWidth - platformMaxWidth, 0, 0);
 
 						if (isShowCar) {
-							arrivalWidth = textRenderer.width(carText);
+							renderTextWithOffset(matrices, textRenderer, immediate, carText.getString(), 0, -0.025F, 15, 5, textColor, MAX_LIGHT_GLOWING, HorizontalAlignment.RIGHT, VerticalAlignment.TOP, false, ClientConfig.getRVPIDSChinFont(), ClientConfig.getRVPIDSEngFont());
 						} else {
-							arrivalWidth = textRenderer.width(arrivalText);
-						}
-
-						if (arrivalWidth > arrivalMaxWidth) {
-							matrices.translate(destinationStart + newDestinationMaxWidth + platformMaxWidth, 0, 0);
-							matrices.scale(arrivalMaxWidth / arrivalWidth, 1, 1);
-						} else {
-							matrices.translate(totalScaledWidth - arrivalWidth, 0, 0);
-						}
-
-						if (isShowCar) {
-							renderTextWithOffset(matrices, textRenderer, carText, 0, -0.025F, textColor);
-						} else {
-							renderTextWithOffset(matrices, textRenderer, arrivalText, 0, -0.025F, textColor);
+							renderTextWithOffset(matrices, textRenderer, immediate, arrivalText.getString(), 0, -0.025F, 15, 5, textColor, MAX_LIGHT_GLOWING, HorizontalAlignment.RIGHT, VerticalAlignment.TOP, false, ClientConfig.getRVPIDSChinFont(), ClientConfig.getRVPIDSEngFont());
 						}
 
 						matrices.popPose();
