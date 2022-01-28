@@ -3,6 +3,7 @@
 	"textures": {
 		"4": "jsblock:block/ticket_barrier_1_canin",
 		"tex": "jsblock:block/ticket_barrier_1_bare",
+		"particle": "jsblock:block/ticket_barrier_1_bare",
 		"stby": "jsblock:block/ticket_barrier_1_stby_bare",
 		"nis": "jsblock:block/ticket_barrier_1_nis_bare"
 	},

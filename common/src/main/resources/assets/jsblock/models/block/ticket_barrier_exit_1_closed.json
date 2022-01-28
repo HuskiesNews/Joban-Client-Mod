@@ -1,6 +1,7 @@
 {
 	"credit": "CoJ 2022",
 	"textures": {
+		"particle": "jsblock:block/ticket_barrier_1_exit",
 		"tex": "jsblock:block/ticket_barrier_1_exit",
 		"barrier": "jsblock:block/ticket_barrier_1_door",
 		"stby": "jsblock:block/ticket_barrier_1_stby_exit",

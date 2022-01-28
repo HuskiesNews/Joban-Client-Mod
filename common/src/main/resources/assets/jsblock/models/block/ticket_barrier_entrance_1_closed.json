@@ -3,6 +3,7 @@
 	"textures": {
 		"tex": "jsblock:block/ticket_barrier_1_entrance",
 		"barrier": "jsblock:block/ticket_barrier_1_door",
+		"particle": "jsblock:block/ticket_barrier_1_entrance",
 		"stby": "jsblock:block/ticket_barrier_1_stby_entrance",
 		"nis": "jsblock:block/ticket_barrier_1_nis_entrance"
 	},

@@ -20,6 +20,7 @@ public class ConfigScreen extends ScreenMapper implements IGui {
 	private final WidgetBetterTextField textBoxKCRSignFontEng;
 	private final WidgetBetterTextField textBoxPIDS4FontChin;
 	private final WidgetBetterTextField textBoxPIDS4FontEng;
+	private final WidgetBetterTextField textBoxDepTimerFont;
 
 	private static final int TEXT_PADDING = 12;
 	private static final int BUTTON_WIDTH = 60;
@@ -38,10 +39,11 @@ public class ConfigScreen extends ScreenMapper implements IGui {
 
 		textBoxRVPIDSFontChin = new WidgetBetterTextField(null, "mtr:mtr", MAX_TEXT_LENGTH);
 		textBoxRVPIDSFontEng = new WidgetBetterTextField(null, "mtr:mtr", MAX_TEXT_LENGTH);
-		textBoxKCRSignFontChin = new WidgetBetterTextField(null, "jsblock:kcr_chin", MAX_TEXT_LENGTH);
-		textBoxKCRSignFontEng = new WidgetBetterTextField(null, "jsblock:kcr_eng", MAX_TEXT_LENGTH);
+		textBoxKCRSignFontChin = new WidgetBetterTextField(null, "jsblock:kcr_sign", MAX_TEXT_LENGTH);
+		textBoxKCRSignFontEng = new WidgetBetterTextField(null, "jsblock:kcr_sign", MAX_TEXT_LENGTH);
 		textBoxPIDS4FontChin = new WidgetBetterTextField(null, "jsblock:pids_4", MAX_TEXT_LENGTH);
 		textBoxPIDS4FontEng = new WidgetBetterTextField(null, "jsblock:pids_4", MAX_TEXT_LENGTH);
+		textBoxDepTimerFont = new WidgetBetterTextField(null, "jsblock:deptimer", MAX_TEXT_LENGTH);
 	}
 
 		@Override
@@ -57,6 +59,7 @@ public class ConfigScreen extends ScreenMapper implements IGui {
 			IDrawing.setPositionAndWidth(textBoxPIDS4FontEng, width - SQUARE_SIZE - TEXT_FIELD_WIDTH, FINAL_TEXT_HEIGHT * (i++) + SQUARE_SIZE, TEXT_FIELD_WIDTH);
 			IDrawing.setPositionAndWidth(textBoxKCRSignFontChin, width - SQUARE_SIZE - TEXT_FIELD_WIDTH, FINAL_TEXT_HEIGHT * (i++) + SQUARE_SIZE, TEXT_FIELD_WIDTH);
 			IDrawing.setPositionAndWidth(textBoxKCRSignFontEng, width - SQUARE_SIZE - TEXT_FIELD_WIDTH, FINAL_TEXT_HEIGHT * (i++) + SQUARE_SIZE, TEXT_FIELD_WIDTH);
+			IDrawing.setPositionAndWidth(textBoxDepTimerFont, width - SQUARE_SIZE - TEXT_FIELD_WIDTH, FINAL_TEXT_HEIGHT * (i++) + SQUARE_SIZE, TEXT_FIELD_WIDTH);
 
 			textBoxRVPIDSFontChin.setValue(ClientConfig.getRVPIDSChinFont());
 			textBoxRVPIDSFontEng.setValue(ClientConfig.getRVPIDSEngFont());
@@ -64,6 +67,7 @@ public class ConfigScreen extends ScreenMapper implements IGui {
 			textBoxPIDS4FontEng.setValue(ClientConfig.getPIDS4EngFont());
 			textBoxKCRSignFontChin.setValue(ClientConfig.getKCRSignChinFont());
 			textBoxKCRSignFontEng.setValue(ClientConfig.getKCRSignEngFont());
+			textBoxDepTimerFont.setValue(ClientConfig.getDepTimerFont());
 
 			setButtonText(buttonUseMTRFont, enableRendering);
 
@@ -74,6 +78,7 @@ public class ConfigScreen extends ScreenMapper implements IGui {
 			addDrawableChild(textBoxPIDS4FontEng);
 			addDrawableChild(textBoxKCRSignFontChin);
 			addDrawableChild(textBoxKCRSignFontEng);
+			addDrawableChild(textBoxDepTimerFont);
 		}
 
 		@Override
@@ -91,6 +96,7 @@ public class ConfigScreen extends ScreenMapper implements IGui {
 				drawString(matrices, font, new TranslatableComponent("gui.jsblock.config.pids_4_eng_font"), SQUARE_SIZE, FINAL_TEXT_HEIGHT * (i++) + yStart1, ARGB_WHITE);
 				drawString(matrices, font, new TranslatableComponent("gui.jsblock.config.kcrsign_chin_font"), SQUARE_SIZE, FINAL_TEXT_HEIGHT * (i++) + yStart1, ARGB_WHITE);
 				drawString(matrices, font, new TranslatableComponent("gui.jsblock.config.kcrsign_eng_font"), SQUARE_SIZE, FINAL_TEXT_HEIGHT * (i++) + yStart1, ARGB_WHITE);
+				drawString(matrices, font, new TranslatableComponent("gui.jsblock.config.deptimer_font"), SQUARE_SIZE, FINAL_TEXT_HEIGHT * (i++) + yStart1, ARGB_WHITE);
 
 				super.render(matrices, mouseX, mouseY, delta);
 			} catch (Exception e) {
@@ -107,6 +113,7 @@ public class ConfigScreen extends ScreenMapper implements IGui {
 			ClientConfig.setPIDS4EngFont(textBoxPIDS4FontEng.getValue());
 			ClientConfig.setKCRSignChinFont(textBoxKCRSignFontChin.getValue());
 			ClientConfig.setKCRSignEngFont(textBoxKCRSignFontEng.getValue());
+			ClientConfig.setDepTimerFont(textBoxDepTimerFont.getValue());
 			ClientConfig.writeConfig();
 		}
 

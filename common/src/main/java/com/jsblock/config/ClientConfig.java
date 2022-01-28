@@ -15,8 +15,9 @@ public class ClientConfig {
     private static String RVPIDSEngFont = MTR.MOD_ID + ":" + "mtr";
     private static String PIDS4ChinFont = Joestu.MOD_ID + ":" + "pids_4";
     private static String PIDS4EngFont = Joestu.MOD_ID + ":" + "pids_4";
-    private static String KCRSignChinFont = Joestu.MOD_ID + ":" + "kcr_chin";
-    private static String KCRSignEngFont = Joestu.MOD_ID + ":" + "kcr_eng";
+    private static String KCRSignChinFont = Joestu.MOD_ID + ":" + "kcr_sign";
+    private static String KCRSignEngFont = Joestu.MOD_ID + ":" + "kcr_sign";
+    private static String depTimerFont = Joestu.MOD_ID + ":" + "deptimer";
 
     public static void loadConfig() {
         if(!Files.exists(Paths.get(CONFIG_PATH))) {
@@ -56,6 +57,10 @@ public class ClientConfig {
             if(jsonConfig.has("PIDS4EngFont")) {
                 PIDS4EngFont = jsonConfig.get("PIDS4EngFont").getAsString();
             }
+
+            if(jsonConfig.has("DepTimerFont")) {
+                depTimerFont = jsonConfig.get("depTimerFont").getAsString();
+            }
         } catch (Exception e) {
             e.printStackTrace();
             writeConfig();
@@ -72,6 +77,7 @@ public class ClientConfig {
         jsonConfig.addProperty("KCRSignEngFont", KCRSignEngFont);
         jsonConfig.addProperty("PIDS4ChinFont", PIDS4ChinFont);
         jsonConfig.addProperty("PIDS4EngFont", PIDS4EngFont);
+        jsonConfig.addProperty("DepTimerFont", depTimerFont);
 
         try {
             Files.write(Paths.get(CONFIG_PATH), Collections.singleton(new GsonBuilder().setPrettyPrinting().create().toJson(jsonConfig)));
@@ -108,6 +114,10 @@ public class ClientConfig {
         return KCRSignEngFont;
     }
 
+    public static String getDepTimerFont() {
+        return depTimerFont;
+    }
+
     public static boolean setRenderDisabled(boolean disabled) {
         renderDisabled = disabled;
         return renderDisabled;
@@ -135,5 +145,9 @@ public class ClientConfig {
 
     public static void setKCRSignEngFont(String id) {
         KCRSignEngFont = id;
+    }
+
+    public static void setDepTimerFont(String id) {
+        depTimerFont = id;
     }
 }

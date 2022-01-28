@@ -61,10 +61,5 @@ public class JoestuClient {
 			final Minecraft minecraft = Minecraft.getInstance();
 			minecraft.execute(() -> UtilitiesClient.setScreen(minecraft, new TicketMachineScreen(balance)));
 		});
-
-		RegistryClient.registerNetworkReceiver(new ResourceLocation("jsblock", "packet_open_jcm_config_screen"), packet -> {
-			final Minecraft minecraft = Minecraft.getInstance();
-			minecraft.execute(() -> UtilitiesClient.setScreen(minecraft, new ConfigScreen()));
-		});
 	}
 }

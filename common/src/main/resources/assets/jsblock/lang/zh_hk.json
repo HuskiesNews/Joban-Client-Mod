@@ -48,11 +48,12 @@
   "gui.jsblock.ticket_machine_atm_loc": "",
   "gui.jsblock.subsidy":"已將 $10 加入你的餘額，你現在的餘額是 $%d",
   "gui.jsblock.config": "Joestu 模組設定",
-  "gui.jsblock.config.enable_render": "停用渲染元件（除錯）",
+  "gui.jsblock.config.enable_render": "停用渲染元件（除錯用）",
   "gui.jsblock.config.rvpids_chin_font": "鐵路願景乘客資訊顯示屏（中文字型）路徑",
   "gui.jsblock.config.rvpids_eng_font": "鐵路願景乘客資訊顯示屏（英文字型）路徑",
   "gui.jsblock.config.pids_4_chin_font": "將軍澳綫乘客資訊顯示屏（中文字型）路徑",
   "gui.jsblock.config.pids_4_eng_font": "將軍澳綫乘客資訊顯示屏（英文字型）路徑",
   "gui.jsblock.config.kcrsign_chin_font": "九鐵站名牌（中文字型）路徑",
-  "gui.jsblock.config.kcrsign_eng_font": "九鐵站名牌（英文字型）路徑"
+  "gui.jsblock.config.kcrsign_eng_font": "九鐵站名牌（英文字型）路徑",
+  "gui.jsblock.config.deptimer_font": "發車倒數器 字型路徑"
 }
