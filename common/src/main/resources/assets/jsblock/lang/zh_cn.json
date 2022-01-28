@@ -44,7 +44,15 @@
   "block.jsblock.pids_4":"乘客资讯显示屏",
   "block.jsblock.ticket_barrier_1_entrance":"Thales 进站闸机",
   "block.jsblock.ticket_barrier_1_exit":"Thales 出站闸机",
-  "block.jsblock.ticket_barrier_1_bare":"Thales 闸机 (Bare Metal)",
+  "block.jsblock.ticket_barrier_1_bare":"Thales 闸机侧壳",
   "gui.jsblock.ticket_machine_atm_loc":"",
-  "gui.jsblock.subsidy":"已把 $10 加入你的余额，你现在的余额是 $%d"
+  "gui.jsblock.subsidy":"已把 $10 加入你的余额，你现在的余额是 $%d",
+  "gui.jsblock.config": "Joestu 模组设置",
+  "gui.jsblock.config.enable_render": "停用渲染元件（除错）",
+  "gui.jsblock.config.rvpids_chin_font": "铁路愿景乘客资讯显示屏（中文字型）路径",
+  "gui.jsblock.config.rvpids_eng_font": "铁路愿景乘客资讯显示屏（英文字型）路径",
+  "gui.jsblock.config.pids_4_chin_font": "将军澳线乘客资讯显示屏（中文字型）路径",
+  "gui.jsblock.config.pids_4_eng_font": "将军澳线乘客资讯显示屏（英文字型）路径",
+  "gui.jsblock.config.kcrsign_chin_font": "九铁站名牌（中文字型）路径",
+  "gui.jsblock.config.kcrsign_eng_font": "九铁站名牌（英文字型）路径"
 }
