@@ -10,7 +10,7 @@ import java.util.*;
 
 public class ClientConfig {
     private static final String CONFIG_PATH = System.getProperty("user.dir") + "/config/" + "jsclient.json";
-    private static boolean renderDisabled = true;
+    private static boolean renderDisabled = false;
     private static String RVPIDSChinFont = MTR.MOD_ID + ":" + "mtr";
     private static String RVPIDSEngFont = MTR.MOD_ID + ":" + "mtr";
     private static String PIDS4ChinFont = Joestu.MOD_ID + ":" + "pids_4";
