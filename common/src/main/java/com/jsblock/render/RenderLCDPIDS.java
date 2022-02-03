@@ -5,11 +5,11 @@ import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.Tesselator;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import com.mojang.math.Vector3f;
+import mtr.MTRClient;
 import mtr.block.BlockPIDSBase;
 import mtr.block.IBlock;
 import mtr.client.ClientCache;
 import mtr.client.ClientData;
-import mtr.client.Config;
 import mtr.client.IDrawing;
 import mtr.data.IGui;
 import mtr.data.Platform;
@@ -26,7 +26,6 @@ import net.minecraft.client.renderer.blockentity.BlockEntityRenderDispatcher;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.Style;
 import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.Level;
@@ -60,7 +59,8 @@ public class RenderLCDPIDS<T extends BlockEntityMapper> extends BlockEntityRende
 	private static final int SWITCH_LANGUAGE_TICKS = 80;
 	private static final int MAX_VIEW_DISTANCE = 16;
 
-	public RenderLCDPIDS(BlockEntityRenderDispatcher dispatcher, int maxArrivals, float startX, float startY, float startZ, float maxHeight, int maxWidth, boolean rotate90, boolean renderArrivalNumber, boolean showPlatforms, int textColor, float textPadding, boolean appendDotAfterMin, String pidsType) {		super(dispatcher);
+	public RenderLCDPIDS(BlockEntityRenderDispatcher dispatcher, int maxArrivals, float startX, float startY, float startZ, float maxHeight, int maxWidth, boolean rotate90, boolean renderArrivalNumber, boolean showPlatforms, int textColor, float textPadding, boolean appendDotAfterMin, String pidsType) {
+		super(dispatcher);
 		scale = 230 * maxArrivals / maxHeight;
 		totalScaledWidth = scale * maxWidth / 16;
 		destinationStart = renderArrivalNumber ? scale * 2 / 16 : 0;
@@ -77,7 +77,7 @@ public class RenderLCDPIDS<T extends BlockEntityMapper> extends BlockEntityRende
 		this.textColor = textColor;
 		this.pidsType = pidsType;
 		this.textPadding = textPadding;
-		this.appendDotsAfterMin = appendDotAfterMin;
+		appendDotsAfterMin = appendDotAfterMin;
 	}
 
 	@Override
@@ -92,7 +92,7 @@ public class RenderLCDPIDS<T extends BlockEntityMapper> extends BlockEntityRende
 		final String chineseFont;
 		final String englishFont;
 
-		if(pidsType.equals("pids_tkl")) {
+		if (pidsType.equals("pids_tkl")) {
 			chineseFont = ClientConfig.getPIDS4ChinFont();
 			englishFont = ClientConfig.getPIDS4EngFont();
 		} else {
@@ -161,7 +161,7 @@ public class RenderLCDPIDS<T extends BlockEntityMapper> extends BlockEntityRende
 
 			/* Loop through each arrival */
 			for (int i = 0; i < maxArrivals; i++) {
-				final int languageTicks = (int) Math.floor(RenderTrains.getGameTicks()) / SWITCH_LANGUAGE_TICKS;
+				final int languageTicks = (int) Math.floor(MTRClient.getGameTick()) / SWITCH_LANGUAGE_TICKS;
 				final String destinationString;
 				final boolean useCustomMessage;
 				if (i < scheduleList.size() && !hideArrival[i]) {
@@ -224,7 +224,7 @@ public class RenderLCDPIDS<T extends BlockEntityMapper> extends BlockEntityRende
 							matrices.translate(x + 1.95F, 2.2F, -0.05);
 							matrices.scale(0.7F, 0.7F, 0.7F);
 
-							renderTextWithOffset(matrices, textRenderer, immediate, platform.name, 0, 0, 4, 3,textColor, MAX_LIGHT_GLOWING, HorizontalAlignment.CENTER, VerticalAlignment.CENTER, true, chineseFont, englishFont);
+							renderTextWithOffset(matrices, textRenderer, immediate, platform.name, 0, 0, 4, 3, textColor, MAX_LIGHT_GLOWING, HorizontalAlignment.CENTER, VerticalAlignment.CENTER, true, chineseFont, englishFont);
 							matrices.popPose();
 						}
 					}

@@ -5,6 +5,7 @@ import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.Tesselator;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import com.mojang.math.Vector3f;
+import mtr.MTRClient;
 import mtr.block.BlockPIDSBase;
 import mtr.block.IBlock;
 import mtr.client.ClientCache;
@@ -27,7 +28,6 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.Style;
-import net.minecraft.network.chat.TextComponent;
 import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.Level;
@@ -176,7 +176,7 @@ public class RenderRVPIDS<T extends BlockEntityMapper> extends BlockEntityRender
 
 			/* Loop through each arrival */
 			for (int i = 0; i < maxArrivals; i++) {
-				final int languageTicks = (int) Math.floor(RenderTrains.getGameTicks()) / SWITCH_LANGUAGE_TICKS;
+				final int languageTicks = (int) Math.floor(MTRClient.getGameTick()) / SWITCH_LANGUAGE_TICKS;
 				final String destinationString;
 				final boolean useCustomMessage;
 				if (i < scheduleList.size() && !hideArrival[i]) {
@@ -239,7 +239,7 @@ public class RenderRVPIDS<T extends BlockEntityMapper> extends BlockEntityRender
 							matrices.translate(x + 1.95F, 2.2F, -0.05);
 							matrices.scale(0.7F, 0.7F, 0.7F);
 
-							renderTextWithOffset(matrices, textRenderer, immediate, platform.name, 0, 0, 4, 3,0xFFFFFF, MAX_LIGHT_GLOWING, HorizontalAlignment.CENTER, VerticalAlignment.CENTER, true, ClientConfig.getRVPIDSChinFont(), ClientConfig.getRVPIDSEngFont());
+							renderTextWithOffset(matrices, textRenderer, immediate, platform.name, 0, 0, 4, 3, 0xFFFFFF, MAX_LIGHT_GLOWING, HorizontalAlignment.CENTER, VerticalAlignment.CENTER, true, ClientConfig.getRVPIDSChinFont(), ClientConfig.getRVPIDSEngFont());
 							matrices.popPose();
 						}
 					}
