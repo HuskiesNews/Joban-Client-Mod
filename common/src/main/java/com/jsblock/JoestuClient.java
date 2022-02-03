@@ -4,7 +4,6 @@ import com.jsblock.blocks.PIDS1A;
 import com.jsblock.blocks.PIDS4;
 import com.jsblock.blocks.PIDSRV;
 import com.jsblock.config.ClientConfig;
-import com.jsblock.gui.ConfigScreen;
 import com.jsblock.gui.TicketMachineScreen;
 import com.jsblock.render.*;
 import mtr.RegistryClient;
@@ -13,7 +12,6 @@ import mtr.packet.IPacket;
 import mtr.render.RenderPIDS;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.RenderType;
-import net.minecraft.resources.ResourceLocation;
 
 public class JoestuClient {
 

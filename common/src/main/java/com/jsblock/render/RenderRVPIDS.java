@@ -10,7 +10,6 @@ import mtr.block.BlockPIDSBase;
 import mtr.block.IBlock;
 import mtr.client.ClientCache;
 import mtr.client.ClientData;
-import mtr.client.Config;
 import mtr.client.IDrawing;
 import mtr.data.IGui;
 import mtr.data.Platform;
@@ -27,7 +26,6 @@ import net.minecraft.client.renderer.blockentity.BlockEntityRenderDispatcher;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.Style;
 import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.Level;
@@ -85,8 +83,6 @@ public class RenderRVPIDS<T extends BlockEntityMapper> extends BlockEntityRender
 
 		final BlockPos pos = entity.getBlockPos();
 		final Direction facing = IBlock.getStatePropertySafe(world, pos, HorizontalDirectionalBlock.FACING);
-		final Style FontChinStyle = Config.useMTRFont() ? Style.EMPTY.withFont(new ResourceLocation(ClientConfig.getRVPIDSChinFont())) : Style.EMPTY;
-		final Style FontEngStyle = Config.useMTRFont() ? Style.EMPTY.withFont(new ResourceLocation(ClientConfig.getRVPIDSEngFont())) : Style.EMPTY;
 
 		final String[] customMessages = new String[maxArrivals];
 		final boolean[] hideArrival = new boolean[maxArrivals];
@@ -202,7 +198,7 @@ public class RenderRVPIDS<T extends BlockEntityMapper> extends BlockEntityRender
 				}
 
 				matrices.pushPose();
-				matrices.translate(0.5, 0, 0.5);
+				matrices.translate(0.5, 0, 0.505);
 				matrices.mulPose(Vector3f.YP.rotationDegrees((rotate90 ? 90 : 0) - facing.toYRot()));
 				matrices.mulPose(Vector3f.ZP.rotationDegrees(180));
 				matrices.translate((startX - 8) / 16, -startY / 16 + i * maxHeight / maxArrivals / 16, (startZ - 8) / 16 - SMALL_OFFSET * 2);

@@ -72,7 +72,7 @@ public class RenderDepartureTimer<T extends BlockEntityMapper> extends BlockEnti
 			timeRemaining = String.format("%d:%02d", minutes % 60, seconds % 60);
 		}
 
-		/* This defines the font style. If MTR Font is enbled, use the font defined in Config. Otherwise don't add any style */
+		/* This defines the font style. If MTR Font is enbled, use the font defined in Config. Otherwise, don't add any style */
 		final Style style = Config.useMTRFont() ? Style.EMPTY.withFont(new ResourceLocation(ClientConfig.getDepTimerFont())) : Style.EMPTY;
 		final Direction facing = IBlock.getStatePropertySafe(world, pos, HorizontalDirectionalBlock.FACING);
 

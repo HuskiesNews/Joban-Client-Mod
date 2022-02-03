@@ -38,7 +38,6 @@ import static com.jsblock.gui.IDrawingJoestu.renderTextWithOffset;
 public class RenderLCDPIDS<T extends BlockEntityMapper> extends BlockEntityRendererMapper<T> implements IGui {
 
 	private final String pidsType;
-	private final float textPadding;
 	private final float scale;
 	private final float totalScaledWidth;
 	private final float destinationStart;
@@ -51,8 +50,8 @@ public class RenderLCDPIDS<T extends BlockEntityMapper> extends BlockEntityRende
 	private final float startY;
 	private final float startZ;
 	private final boolean rotate90;
-	private final boolean appendDotsAfterMin;
 	private final boolean showPlatforms;
+	private final float screenWidth;
 	private final int textColor;
 	private List<ClientCache.PlatformRouteDetails> routeData;
 
@@ -67,6 +66,7 @@ public class RenderLCDPIDS<T extends BlockEntityMapper> extends BlockEntityRende
 		destinationMaxWidth = totalScaledWidth * 0.33F;
 		platformMaxWidth = showPlatforms ? scale * 2F / 16 : 0;
 		arrivalMaxWidth = totalScaledWidth - destinationStart - destinationMaxWidth - platformMaxWidth;
+		screenWidth = arrivalMaxWidth / 1.35F;
 		this.maxArrivals = maxArrivals;
 		this.maxHeight = maxHeight;
 		this.startX = startX;
@@ -76,8 +76,6 @@ public class RenderLCDPIDS<T extends BlockEntityMapper> extends BlockEntityRende
 		this.showPlatforms = showPlatforms;
 		this.textColor = textColor;
 		this.pidsType = pidsType;
-		this.textPadding = textPadding;
-		appendDotsAfterMin = appendDotAfterMin;
 	}
 
 	@Override
@@ -194,7 +192,7 @@ public class RenderLCDPIDS<T extends BlockEntityMapper> extends BlockEntityRende
 				matrices.scale(1F / (scale / 2), 1F / (scale / 2), 1F / (scale / 2));
 
 				if (useCustomMessage) {
-					renderTextWithOffset(matrices, textRenderer, immediate, destinationString, 0, 0, arrivalMaxWidth - platformMaxWidth, 4, textColor, MAX_LIGHT_GLOWING, HorizontalAlignment.LEFT, VerticalAlignment.TOP, false, chineseFont, englishFont);
+					renderTextWithOffset(matrices, textRenderer, immediate, destinationString, 0, 0, screenWidth, 4, textColor, MAX_LIGHT_GLOWING, HorizontalAlignment.LEFT, VerticalAlignment.TOP, false, chineseFont, englishFont);
 				} else {
 					final ScheduleEntry currentSchedule = scheduleList.get(i);
 					final Component arrivalText;
@@ -239,8 +237,7 @@ public class RenderLCDPIDS<T extends BlockEntityMapper> extends BlockEntityRende
 						matrices.pushPose();
 						final boolean isShowCar = showCarLength && (languageTicks % 6 == 0 || languageTicks % 6 == 1);
 
-						/* TODO: FIX ARRIVAL WRONG POS (TKL PIDS) */
-						matrices.translate(destinationMaxWidth + 18F, 0, 0);
+						matrices.translate(screenWidth, 0, 0);
 
 						if (isShowCar) {
 							renderTextWithOffset(matrices, textRenderer, immediate, carText.getString(), 0, -0.025F, 15, 5, textColor, MAX_LIGHT_GLOWING, HorizontalAlignment.RIGHT, VerticalAlignment.TOP, false, chineseFont, englishFont);

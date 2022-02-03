@@ -124,7 +124,7 @@ public class ButterflyLight extends HorizontalDirectionalBlock implements Entity
 						return;
 					}
 					/* This gets the time of the day, expressed in ticks */
-					/* The following setBlockState code will be ran every 16 ticks or 0.8 second */
+					/* The following setBlockState code will be run every 16 ticks or 0.8 second */
 					/* Does not work when doDaylightCycle is false */
 					if (MTR.isGameTickInterval(16)) {
 						/* This cycles through the block state of the "lit" property, which has true and false (as it's a boolean), creating a blinking effect */

@@ -2,6 +2,7 @@ package com.jsblock.gui;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import mtr.data.IGui;
+import mtr.mappings.ScreenMapper;
 import mtr.mappings.Utilities;
 import mtr.mappings.UtilitiesClient;
 import mtr.packet.IPacket;
@@ -13,7 +14,7 @@ import net.minecraft.network.chat.TextComponent;
 import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.world.item.Items;
 
-public class TicketMachineScreenReserved extends Screen implements IGui, IPacket {
+public class TicketMachineScreenReserved extends ScreenMapper implements IGui, IPacket {
 
 	private final Button[] buttons = new Button[BAL_BUTTON_COUNT];
 	private final Button[] ticketButtons = new Button[TICKET_BUTTON_COUNT];
@@ -63,13 +64,13 @@ public class TicketMachineScreenReserved extends Screen implements IGui, IPacket
 			mtr.client.IDrawing.setPositionAndWidth(ticketButtons[i], width - BUTTON_WIDTH, (SQUARE_SIZE * (i + 1)) + (SQUARE_SIZE * BAL_BUTTON_COUNT) + (SQUARE_SIZE * SEPARATOR_MARGIN), BUTTON_WIDTH - TEXT_FIELD_PADDING);
 		}
 
-//        for (final Button button : buttons) {
-//            addDrawableChild(button);
-//        }
-//
-//        for (final Button button : ticketButtons) {
-//            addDrawableChild(button);
-//        }
+        for (final Button button : buttons) {
+            addDrawableChild(button);
+        }
+
+        for (final Button button : ticketButtons) {
+            addDrawableChild(button);
+        }
 	}
 
 	@Override

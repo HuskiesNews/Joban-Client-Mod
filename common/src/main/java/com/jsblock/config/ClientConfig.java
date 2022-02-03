@@ -77,7 +77,7 @@ public class ClientConfig {
         jsonConfig.addProperty("KCRSignEngFont", KCRSignEngFont);
         jsonConfig.addProperty("PIDS4ChinFont", PIDS4ChinFont);
         jsonConfig.addProperty("PIDS4EngFont", PIDS4EngFont);
-        jsonConfig.addProperty("DepTimerFont", depTimerFont);
+        jsonConfig.addProperty("depTimerFont", depTimerFont);
 
         try {
             Files.write(Paths.get(CONFIG_PATH), Collections.singleton(new GsonBuilder().setPrettyPrinting().create().toJson(jsonConfig)));

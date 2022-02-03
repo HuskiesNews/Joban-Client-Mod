@@ -41,19 +41,12 @@ public class StationNameTallStand extends mtr.block.BlockStationNameTallBase {
 	public static Tuple<Integer, Integer> getBounds(BlockState state) {
 		final EnumThird third = IBlock.getStatePropertySafe(state, THIRD);
 		final int start, end;
-		switch (third) {
-			case LOWER:
-				start = 0;
-				end = 16;
-				break;
-			case UPPER:
-				start = 0;
-				end = 6;
-				break;
-			default:
-				start = 0;
-				end = 16;
-				break;
+		if (third == EnumThird.UPPER) {
+			start = 0;
+			end = 6;
+		} else {
+			start = 0;
+			end = 16;
 		}
 		return new Tuple<>(start, end);
 	}

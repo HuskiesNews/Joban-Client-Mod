@@ -1,52 +1,26 @@
 package com.jsblock.blocks;
 
 import mtr.block.IBlock;
-import mtr.SoundEvents;
 import mtr.data.TicketSystem;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.world.entity.Entity;
-import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
-import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.HorizontalDirectionalBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.EnumProperty;
-import net.minecraft.world.level.material.Material;
-import net.minecraft.world.level.material.MaterialColor;
-import net.minecraft.world.phys.Vec3;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
 
-public class TicketBarrier1 extends HorizontalDirectionalBlock {
-
-	private final boolean isEntrance;
+public class TicketBarrier1 extends mtr.block.BlockTicketBarrier {
 
 	public static final EnumProperty<TicketSystem.EnumTicketBarrierOpen> OPEN = EnumProperty.create("open", TicketSystem.EnumTicketBarrierOpen.class);
 
 	public TicketBarrier1(boolean isEntrance) {
-		super(Properties.of(Material.METAL, MaterialColor.COLOR_GRAY).requiresCorrectToolForDrops().strength(2).lightLevel(state -> 5).noOcclusion());
-		this.isEntrance = isEntrance;
-	}
-
-	@Override
-	public void entityInside(BlockState state, Level world, BlockPos pos, Entity entity) {
-		if (!world.isClientSide && entity instanceof Player) {
-			final Direction facing = IBlock.getStatePropertySafe(state, FACING);
-			final Vec3 playerPosRotated = entity.position().subtract(pos.getX() + 0.5, 0, pos.getZ() + 0.5).yRot((float) Math.toRadians(facing.toYRot()));
-			final TicketSystem.EnumTicketBarrierOpen open = IBlock.getStatePropertySafe(state, OPEN);
-
-			if (open.isOpen() && playerPosRotated.z > 0) {
-				world.setBlockAndUpdate(pos, state.setValue(OPEN, TicketSystem.EnumTicketBarrierOpen.CLOSED));
-			} else if (!open.isOpen() && playerPosRotated.z < 0) {
-				world.setBlockAndUpdate(pos, state.setValue(OPEN, TicketSystem.passThrough(world, pos, (Player) entity, isEntrance, !isEntrance, SoundEvents.TICKET_BARRIER, SoundEvents.TICKET_BARRIER_CONCESSIONARY, SoundEvents.TICKET_BARRIER, SoundEvents.TICKET_BARRIER_CONCESSIONARY, null, false)));
-			}
-		}
+		super(isEntrance);
 	}
 
 	@Override

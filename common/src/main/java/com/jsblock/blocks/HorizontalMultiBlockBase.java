@@ -24,7 +24,7 @@ public abstract class HorizontalMultiBlockBase extends HorizontalDirectionalBloc
 
 	@Override
 	public BlockState updateShape(BlockState state, Direction direction, BlockState newState, LevelAccessor world, BlockPos pos, BlockPos posFrom) {
-		/* This gets the direction of the block is facing, then rotate 90 degree *Counter* Clockwise if this is the left part. Otherwise rotate 90 degree Clockwise if this is the right part */
+		/* This gets the direction of the block is facing, then rotate 90 degree *Counter* Clockwise if this is the left part. Otherwise, rotate 90 degree Clockwise if this is the right part */
 		/* The result is that if it's the left part, it will check for right. If it's right part, check for the left. */
 		final Direction facing = IBlock.getStatePropertySafe(state, LEFT) ? IBlock.getStatePropertySafe(state, FACING).getCounterClockWise() : IBlock.getStatePropertySafe(state, FACING).getClockWise();
 
