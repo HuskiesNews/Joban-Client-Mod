@@ -2,7 +2,7 @@ package com.jsblock.render;
 
 import com.jsblock.blocks.KCRNameSign;
 import com.jsblock.config.ClientConfig;
-import com.jsblock.gui.IDrawingJoestu;
+import com.jsblock.gui.IDrawingJoban;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.Tesselator;
 import com.mojang.math.Vector3f;
@@ -70,7 +70,7 @@ public class RenderKCRStationName<T extends BlockEntityMapper> extends BlockEnti
 			final Font textRenderer = Minecraft.getInstance().font;
 			final String stationName = station == null ? new TranslatableComponent("gui.mtr.untitled").getString() : station.name;
 			final MultiBufferSource.BufferSource immediate = MultiBufferSource.immediate(Tesselator.getInstance().getBuilder());
-			IDrawingJoestu.drawStringWithFont(matrices, textRenderer, immediate, stationName, HorizontalAlignment.CENTER, VerticalAlignment.CENTER, 0, 0, 60, 32, 1, false, 0xEEEEEE, false, MAX_LIGHT_GLOWING, ClientConfig.getKCRSignChinFont(), ClientConfig.getKCRSignEngFont());
+			IDrawingJoban.drawStringWithFont(matrices, textRenderer, immediate, stationName, HorizontalAlignment.CENTER, VerticalAlignment.CENTER, 0, 0, 60, 32, 1, false, 0xEEEEEE, false, MAX_LIGHT_GLOWING, ClientConfig.getKCRSignChinFont(), ClientConfig.getKCRSignEngFont());
 			immediate.endBatch();
 			matrices.popPose();
 		}

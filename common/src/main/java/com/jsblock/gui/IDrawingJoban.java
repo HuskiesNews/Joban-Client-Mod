@@ -14,7 +14,7 @@ import net.minecraft.util.FormattedCharSequence;
 import java.util.ArrayList;
 import java.util.List;
 
-public interface IDrawingJoestu {
+public interface IDrawingJoban {
 	static void drawStringWithFont(PoseStack matrices, Font textRenderer, MultiBufferSource.BufferSource immediate, String text, IGui.HorizontalAlignment horizontalAlignment, IGui.VerticalAlignment verticalAlignment, float x, float y, float maxWidth, float maxHeight, float scale, boolean keepRatio, int textColor, boolean shadow, int light, String fontChinese, String fontEnglish) {
 		drawStringWithFont(matrices, textRenderer, immediate, text, horizontalAlignment, verticalAlignment, horizontalAlignment, x, y, maxWidth, maxHeight, scale, keepRatio, textColor, shadow, light, fontChinese, fontEnglish, false, null);
 	}

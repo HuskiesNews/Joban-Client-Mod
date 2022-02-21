@@ -5,9 +5,9 @@ license = "Apache 2.0"
 [[mods]]
 modId = "jsblock"
 version = "${version}"
-displayName = "Joestu Client Mod"
+displayName = "Joban Client Mod"
 authors = "LX86, StrikeSNC, AozoraSky"
-description = "Add static signal light, PIDS and decoration blocks to the MTR Mod."
+description = "Add static signal light, PIDS and HK-Specific decoration blocks to the MTR Mod."
 logoFile = "icon.png"
 
 [[dependencies.jsblock]]

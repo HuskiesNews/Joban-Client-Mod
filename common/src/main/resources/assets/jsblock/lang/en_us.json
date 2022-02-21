@@ -1,5 +1,5 @@
 {
-  "itemGroup.jsblock.core": "Joestu Blocks",
+  "itemGroup.jsblock.core": "Joban Blocks",
   "block.jsblock.auto_iron_door":"Automatic Iron Door",
   "block.jsblock.block.rv_pids_pole":"Must be placed on top of existing Railway Vision PIDS",
   "block.jsblock.butterfly_light":"Door Closing Indicator (Butterfly Light)",
@@ -47,7 +47,7 @@
   "block.jsblock.water_machine_1":"Water Machine",
   "gui.jsblock.ticket_machine_atm_loc": "",
   "gui.jsblock.subsidy": "$10 added to your balance, your balance is now $%d",
-  "gui.jsblock.config": "Joestu Client Mod Config",
+  "gui.jsblock.config": "Joban Client Mod Config",
   "gui.jsblock.config.enable_render": "Disable rendering component (For debugging)",
   "gui.jsblock.config.rvpids_chin_font": "Font path for the Railway Vision PIDS (Chinese)",
   "gui.jsblock.config.rvpids_eng_font": "Font path for the Railway Vision PIDS (English)",

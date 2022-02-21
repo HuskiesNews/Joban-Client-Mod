@@ -13,11 +13,11 @@ import mtr.render.RenderPIDS;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.RenderType;
 
-public class JoestuClient {
+public class JobanClient {
 
 	public static void init() {
 		ClientConfig.loadConfig();
-		if(ClientConfig.getRenderDisabled()) Joestu.LOGGER.info("[Joestu Client] Rendering is disabled.");
+		if(ClientConfig.getRenderDisabled()) Joban.LOGGER.info("[Joban Client] Rendering for all JCM block is disabled.");
 		/* Allow transparent texture for the block */
 		RegistryClient.registerBlockRenderType(RenderType.cutout(), Blocks.AUTO_IRON_DOOR);
 		RegistryClient.registerBlockRenderType(RenderType.cutout(), Blocks.BUFFERSTOP_1);

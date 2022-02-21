@@ -15,18 +15,18 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 
-@Mod(Joestu.MOD_ID)
-public class JoestuForge {
+@Mod(Joban.MOD_ID)
+public class JobanForge {
 
-	private static final DeferredRegisterHolder<Item> ITEMS = new DeferredRegisterHolder<>(Joestu.MOD_ID, Registry.ITEM_REGISTRY);
-	private static final DeferredRegisterHolder<Block> BLOCKS = new DeferredRegisterHolder<>(Joestu.MOD_ID, Registry.BLOCK_REGISTRY);
-	private static final DeferredRegisterHolder<BlockEntityType<?>> BLOCK_ENTITY_TYPES = new DeferredRegisterHolder<>(Joestu.MOD_ID, Registry.BLOCK_ENTITY_TYPE_REGISTRY);
+	private static final DeferredRegisterHolder<Item> ITEMS = new DeferredRegisterHolder<>(Joban.MOD_ID, Registry.ITEM_REGISTRY);
+	private static final DeferredRegisterHolder<Block> BLOCKS = new DeferredRegisterHolder<>(Joban.MOD_ID, Registry.BLOCK_REGISTRY);
+	private static final DeferredRegisterHolder<BlockEntityType<?>> BLOCK_ENTITY_TYPES = new DeferredRegisterHolder<>(Joban.MOD_ID, Registry.BLOCK_ENTITY_TYPE_REGISTRY);
 
-	public JoestuForge() {
+	public JobanForge() {
 		final IEventBus eventBus = FMLJavaModLoadingContext.get().getModEventBus();
-		ForgeUtilities.registerModEventBus(Joestu.MOD_ID, eventBus);
+		ForgeUtilities.registerModEventBus(Joban.MOD_ID, eventBus);
 		eventBus.register(MTRForgeRegistry.class);
-		Joestu.init(JoestuForge::registerBlock, JoestuForge::registerBlockEntityType);
+		Joban.init(JobanForge::registerBlock, JobanForge::registerBlockEntityType);
 		ITEMS.register();
 		BLOCKS.register();
 		BLOCK_ENTITY_TYPES.register();
@@ -49,7 +49,7 @@ public class JoestuForge {
 
 		@SubscribeEvent
 		public static void onClientSetupEvent(FMLClientSetupEvent event) {
-			JoestuClient.init();
+			JobanClient.init();
 		}
 	}
 }

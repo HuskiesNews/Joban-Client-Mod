@@ -33,7 +33,7 @@ import net.minecraft.world.level.block.HorizontalDirectionalBlock;
 
 import java.util.*;
 
-import static com.jsblock.gui.IDrawingJoestu.renderTextWithOffset;
+import static com.jsblock.gui.IDrawingJoban.renderTextWithOffset;
 
 public class RenderRVPIDS<T extends BlockEntityMapper> extends BlockEntityRendererMapper<T> implements IGui {
 

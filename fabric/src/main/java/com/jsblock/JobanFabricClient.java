@@ -2,10 +2,10 @@ package com.jsblock;
 
 import net.fabricmc.api.ClientModInitializer;
 
-public class JoestuFabricClient implements ClientModInitializer {
+public class JobanFabricClient implements ClientModInitializer {
 
 	@Override
 	public void onInitializeClient() {
-		JoestuClient.init();
+		JobanClient.init();
 	}
 }

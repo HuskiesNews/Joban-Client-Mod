@@ -1,5 +1,5 @@
 {
-  "itemGroup.jsblock.core":"Joestu 方塊",
+  "itemGroup.jsblock.core":"Joban 方塊",
   "block.jsblock.auto_iron_door":"鐵門 (自動)",
   "block.jsblock.block.rv_pids_pole":"必須在原有的鐵路願景乘客資訊顯示屏柱上放置",
   "block.jsblock.butterfly_light":"關門指示燈 (蝴蝶燈)",
@@ -47,7 +47,7 @@
   "block.jsblock.ticket_barrier_1_bare":"Thales 閘機 (側殼)",
   "gui.jsblock.ticket_machine_atm_loc":"",
   "gui.jsblock.subsidy":"已把 $10 加入你的餘額，你現在的餘額是 $%d",
-  "gui.jsblock.config": "Joestu 模組設定",
+  "gui.jsblock.config": "Joban 模組設定",
   "gui.jsblock.config.enable_render": "停用渲染元件（除錯用）",
   "gui.jsblock.config.rvpids_chin_font": "鐵路願景乘客資訊顯示屏（中文字型）路徑",
   "gui.jsblock.config.rvpids_eng_font": "鐵路願景乘客資訊顯示屏（英文字型）路徑",

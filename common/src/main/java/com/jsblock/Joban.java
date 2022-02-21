@@ -9,10 +9,10 @@ import org.apache.logging.log4j.Logger;
 
 import java.util.function.BiConsumer;
 
-public class Joestu {
+public class Joban {
 	public static final String MOD_ID = "jsblock";
-	public static final String VERSION = "1.0.6";
-	public static final Logger LOGGER = LogManager.getLogger("Joestu Client");
+	public static final String VERSION = "1.0.7";
+	public static final Logger LOGGER = LogManager.getLogger("Joban Client");
 
 	public static void init(
 			RegisterBlockItem registerBlockItem,
@@ -20,7 +20,7 @@ public class Joestu {
 	) {
 		/* RESERVED FOR TICKETS */
 		//ServerPlayNetworking.registerGlobalReceiver(new ResourceLocation("packet_buy_tickets"), (minecraftServer, player, handler, packet, sender) -> PacketTrainDataGuiServer.receiveAddBalanceC2S(minecraftServer, player, packet));
-		LOGGER.info("[Joestu Client] Version " + VERSION);
+		LOGGER.info("[Joban Client] Version " + VERSION);
 
 		/* Try to register the block */
 		try {
@@ -85,7 +85,7 @@ public class Joestu {
 		} catch (NoClassDefFoundError error) {
 			/* If we end up with a NoClassDefFoundError, this means some method we use are not found, presumably MTR Mod */
 			/* Let's warn the user beforehand, as the game will crash eventually */
-			LOGGER.error("[Joestu Client] Cannot find class " + error.getMessage() + " which is required by this mod!");
+			LOGGER.error("[Joban Client] Cannot find class " + error.getMessage() + " which is required by this mod!");
 			LOGGER.info("");
 			/* Give them 20s to read */
 			try {

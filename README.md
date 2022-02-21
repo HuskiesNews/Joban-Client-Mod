@@ -1,4 +1,4 @@
-# Joestu Client Mod
+# Joban Client Mod
 
 ## Setup
 
@@ -19,4 +19,4 @@ If builds are failing for whatever reason, try the steps below:
 
 ## License
 
-[Apache 2.0](https://github.com/Kenny-Hui/Joestu-Block-Mod/blob/main/LICENSE)
+[Apache 2.0](https://github.com/Kenny-Hui/Joban-Client-Mod/blob/main/LICENSE)

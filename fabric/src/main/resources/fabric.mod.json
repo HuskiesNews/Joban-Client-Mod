@@ -2,15 +2,15 @@
 	"schemaVersion": 1,
 	"id": "jsblock",
 	"version": "${version}",
-	"name": "Joestu Client Mod",
-	"description": "Add static signal light, PIDS and decoration blocks to the MTR Mod.",
+	"name": "Joban Client Mod",
+	"description": "Add static signal light, PIDS and HK-Specific decoration blocks to the MTR Mod.",
 	"authors": [
 		"LX86",
 		"StrikeSNC",
 		"AozoraSky"
 	],
 	"contact": {
-		"homepage": "https://discord.gg/ue7reMvMc2",
+		"homepage": "https://discord.gg/FNc2rgWmP2",
 		"sources": ""
 	},
 	"license": "Apache 2.0",
@@ -18,10 +18,10 @@
 	"environment": "*",
 	"entrypoints": {
 		"main": [
-			"com.jsblock.JoestuFabric"
+			"com.jsblock.JobanFabric"
 		],
 		"client": [
-			"com.jsblock.JoestuFabricClient"
+			"com.jsblock.JobanFabricClient"
 		],
 		"modmenu": [
 			"com.jsblock.ModMenuConfig"

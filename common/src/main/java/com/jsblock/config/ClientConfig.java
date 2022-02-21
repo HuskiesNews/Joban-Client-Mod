@@ -1,7 +1,7 @@
 package com.jsblock.config;
 
 import com.google.gson.*;
-import com.jsblock.Joestu;
+import com.jsblock.Joban;
 import mtr.MTR;
 
 import java.nio.file.Files;
@@ -13,20 +13,20 @@ public class ClientConfig {
     private static boolean renderDisabled = false;
     private static String RVPIDSChinFont = MTR.MOD_ID + ":" + "mtr";
     private static String RVPIDSEngFont = MTR.MOD_ID + ":" + "mtr";
-    private static String PIDS4ChinFont = Joestu.MOD_ID + ":" + "pids_4";
-    private static String PIDS4EngFont = Joestu.MOD_ID + ":" + "pids_4";
-    private static String KCRSignChinFont = Joestu.MOD_ID + ":" + "kcr_sign";
-    private static String KCRSignEngFont = Joestu.MOD_ID + ":" + "kcr_sign";
-    private static String depTimerFont = Joestu.MOD_ID + ":" + "deptimer";
+    private static String PIDS4ChinFont = Joban.MOD_ID + ":" + "pids_4";
+    private static String PIDS4EngFont = Joban.MOD_ID + ":" + "pids_4";
+    private static String KCRSignChinFont = Joban.MOD_ID + ":" + "kcr_sign";
+    private static String KCRSignEngFont = Joban.MOD_ID + ":" + "kcr_sign";
+    private static String depTimerFont = Joban.MOD_ID + ":" + "deptimer";
 
     public static void loadConfig() {
         if(!Files.exists(Paths.get(CONFIG_PATH))) {
-            Joestu.LOGGER.warn("[Joestu Client] Config file not found, generating one...");
+            Joban.LOGGER.warn("[Joban Client] Config file not found, generating one...");
             writeConfig();
             return;
         }
 
-        Joestu.LOGGER.info("[Joestu Client] Reading Config...");
+        Joban.LOGGER.info("[Joban Client] Reading Config...");
         try {
             final JsonObject jsonConfig = new JsonParser().parse(String.join("", Files.readAllLines(Paths.get(CONFIG_PATH)))).getAsJsonObject();
 
@@ -68,7 +68,7 @@ public class ClientConfig {
     }
 
     public static void writeConfig() {
-        Joestu.LOGGER.info("[Joestu Client] Writing Config...");
+        Joban.LOGGER.info("[Joban Client] Writing Config...");
         final JsonObject jsonConfig = new JsonObject();
         jsonConfig.addProperty("renderDisabled", renderDisabled);
         jsonConfig.addProperty("RVPIDSChinFont", RVPIDSChinFont == null ? "" : RVPIDSChinFont);
