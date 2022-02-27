@@ -8,6 +8,7 @@ public interface BlockEntityTypes {
 
 	BlockEntityType<ButterflyLight.TileEntityButterFlyLight> BUTTERFLY_LIGHT_TILE_ENTITY = RegistryUtilities.getBlockEntityType(ButterflyLight.TileEntityButterFlyLight::new, Blocks.BUTTERFLY_LIGHT);
 	BlockEntityType<DepartureTimer.TileEntityDepartureTimer> DEPARTURE_TIMER_TILE_ENTITY = RegistryUtilities.getBlockEntityType(DepartureTimer.TileEntityDepartureTimer::new, Blocks.DEPARTURE_TIMER);
+	BlockEntityType<SoundLooper.TileEntitySoundLooper> SOUND_LOOPER_TILE_ENTITY = RegistryUtilities.getBlockEntityType(SoundLooper.TileEntitySoundLooper::new, Blocks.SOUND_LOOPER);
 	BlockEntityType<StationNameTallStand.TileEntityStationNameTallStand> STATION_NAME_TALL_STAND_TILE_ENTITY = RegistryUtilities.getBlockEntityType(StationNameTallStand.TileEntityStationNameTallStand::new, Blocks.STATION_NAME_TALL_STAND);
 	BlockEntityType<SignalLightRed1.TileEntitySignalLightRed> SIGNAL_LIGHT_RED_ENTITY_1 = RegistryUtilities.getBlockEntityType(SignalLightRed1.TileEntitySignalLightRed::new, Blocks.SIGNAL_LIGHT_RED_1);
 	BlockEntityType<SignalLightRed2.TileEntitySignalLightRed2> SIGNAL_LIGHT_RED_ENTITY_2 = RegistryUtilities.getBlockEntityType(SignalLightRed2.TileEntitySignalLightRed2::new, Blocks.SIGNAL_LIGHT_RED_2);

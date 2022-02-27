@@ -4,7 +4,10 @@ import com.jsblock.blocks.PIDS1A;
 import com.jsblock.blocks.PIDS4;
 import com.jsblock.blocks.PIDSRV;
 import com.jsblock.config.ClientConfig;
+import com.jsblock.gui.SoundLooperScreen;
 import com.jsblock.gui.TicketMachineScreen;
+import com.jsblock.packets.Client;
+import com.jsblock.packets.IPacketJoban;
 import com.jsblock.render.*;
 import mtr.RegistryClient;
 import mtr.mappings.UtilitiesClient;
@@ -12,6 +15,7 @@ import mtr.packet.IPacket;
 import mtr.render.RenderPIDS;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.RenderType;
+import net.minecraft.core.BlockPos;
 
 public class JobanClient {
 
@@ -51,13 +55,17 @@ public class JobanClient {
 		RegistryClient.registerTileEntityRenderer(BlockEntityTypes.PIDS_5_TILE_ENTITY, dispatcher -> new RenderRVPIDS<>(dispatcher, PIDSRV.TileEntityBlockPIDS5.MAX_ARRIVALS, 6, 8.25F, 6, 11F, 20, true, false, true, 0x000000));
 		RegistryClient.registerTileEntityRenderer(BlockEntityTypes.KCR_NAME_SIGN_TILE_ENTITY, RenderKCRStationName::new);
 
-
-
 		RegistryClient.registerBlockColors(Blocks.STATION_NAME_TALL_STAND);
 		RegistryClient.registerNetworkReceiver(IPacket.PACKET_OPEN_TICKET_MACHINE_SCREEN, packet -> {
 			final int balance = packet.readInt();
 			final Minecraft minecraft = Minecraft.getInstance();
 			minecraft.execute(() -> UtilitiesClient.setScreen(minecraft, new TicketMachineScreen(balance)));
+		});
+
+		RegistryClient.registerNetworkReceiver(IPacketJoban.PACKET_OPEN_SOUND_LOOPER_SCREEN, packet -> {
+			final Minecraft minecraft = Minecraft.getInstance();
+			BlockPos pos = packet.readBlockPos();
+			minecraft.execute(() -> Client.openSoundLooperScreenS2C(minecraft, pos));
 		});
 	}
 }
