@@ -39,7 +39,7 @@ public class Server {
 	public static void receiveSoundLooperC2S(MinecraftServer minecraftServer, ServerPlayer player, FriendlyByteBuf packet) {
 		final BlockPos pos = packet.readBlockPos();
 		final String soundId = packet.readUtf();
-		final String soundCategory = packet.readUtf();
+		final int soundCategory = packet.readInt();
 		final int interval = packet.readInt();
 		minecraftServer.execute(() -> {
 			final BlockEntity entity = player.level.getBlockEntity(pos);

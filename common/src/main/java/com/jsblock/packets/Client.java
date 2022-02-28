@@ -31,11 +31,11 @@ public class Client {
 		});;
 	}
 
-	public static void sendSoundLooperC2S(BlockPos pos, String categoryName, String soundId, int loopInterval) {
+	public static void sendSoundLooperC2S(BlockPos pos, int categoryIndex, String soundId, int loopInterval) {
 		final FriendlyByteBuf packet = new FriendlyByteBuf(Unpooled.buffer());
 		packet.writeBlockPos(pos);
 		packet.writeUtf(soundId);
-		packet.writeUtf(categoryName);
+		packet.writeInt(categoryIndex);
 		packet.writeInt(loopInterval);
 		RegistryClient.sendToServer(PACKET_UPDATE_SOUND_LOOPER, packet);
 	}

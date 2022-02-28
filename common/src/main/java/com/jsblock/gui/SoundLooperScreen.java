@@ -23,33 +23,38 @@ public class SoundLooperScreen extends ScreenMapper implements IGui {
 	private final WidgetBetterTextField textBoxRepeatTick;
 	private final Button buttonCategory;
 	private final BlockPos pos;
-	private SoundSource selectedCategory;
+	private int selectedCategory;
 
 	private static final int TEXT_PADDING = 12;
 	private static final int TEXT_FIELD_WIDTH = 100;
 	private static final int FINAL_TEXT_HEIGHT = TEXT_HEIGHT + TEXT_PADDING;
 	private static final int MAX_TEXT_LENGTH = 128;
 	private static final int BUTTON_WIDTH = 60;
-	private static final int BUTTON_HEIGHT = TEXT_HEIGHT + 8;
+	private static final int BUTTON_HEIGHT = TEXT_HEIGHT + 10;
+	private static final SoundSource[] SOURCE_LIST = {SoundSource.MASTER, SoundSource.MUSIC, SoundSource.WEATHER, SoundSource.AMBIENT, SoundSource.PLAYERS};
 
 	public SoundLooperScreen(BlockPos pos) {
 		super(new TextComponent(""));
 		this.pos = pos;
 
 		buttonCategory = new Button(0, 0, 0, BUTTON_HEIGHT, new TextComponent(""), button -> {
-			button.setMessage(new TextComponent(SoundSource.values()[selectedCategory.ordinal() + 1].getName()));
+			selectedCategory++;
+			if(selectedCategory > SOURCE_LIST.length - 1) {
+				selectedCategory = 0;
+			}
+
+			button.setMessage(new TextComponent(SOURCE_LIST[selectedCategory].getName()));
 		});
 
-		textBoxSoundId = new WidgetBetterTextField(null, "minecraft:block.anvil.land", MAX_TEXT_LENGTH);
+		textBoxSoundId = new WidgetBetterTextField(null, "mtr:ticket_barrier", MAX_TEXT_LENGTH);
 		textBoxRepeatTick = new WidgetBetterTextField(WidgetBetterTextField.TextFieldFilter.POSITIVE_INTEGER, "20", MAX_TEXT_LENGTH);
 	}
 
 		@Override
 		protected void init() {
 			super.init();
-
 			int i = 1;
-			IDrawing.setPositionAndWidth(buttonCategory, width - SQUARE_SIZE - BUTTON_WIDTH, SQUARE_SIZE, BUTTON_WIDTH);
+			IDrawing.setPositionAndWidth(buttonCategory, width - SQUARE_SIZE - BUTTON_WIDTH, FINAL_TEXT_HEIGHT * (i++) + SQUARE_SIZE, BUTTON_WIDTH);
 			IDrawing.setPositionAndWidth(textBoxSoundId, width - SQUARE_SIZE - TEXT_FIELD_WIDTH, FINAL_TEXT_HEIGHT * (i++) + SQUARE_SIZE, TEXT_FIELD_WIDTH);
 			IDrawing.setPositionAndWidth(textBoxRepeatTick, width - SQUARE_SIZE - TEXT_FIELD_WIDTH, FINAL_TEXT_HEIGHT * (i++) + SQUARE_SIZE, TEXT_FIELD_WIDTH);
 
@@ -59,9 +64,12 @@ public class SoundLooperScreen extends ScreenMapper implements IGui {
 				if (entity instanceof SoundLooper.TileEntitySoundLooper) {
 					textBoxSoundId.setValue(((SoundLooper.TileEntitySoundLooper) entity).getSoundId());
 					textBoxRepeatTick.setValue(String.valueOf(((SoundLooper.TileEntitySoundLooper) entity).getLoopInterval()));
+					selectedCategory = ((SoundLooper.TileEntitySoundLooper) entity).getSoundCategory();
+					buttonCategory.setMessage(new TextComponent(SOURCE_LIST[selectedCategory].getName()));
 				}
 			}
 
+			addDrawableChild(buttonCategory);
 			addDrawableChild(textBoxSoundId);
 			addDrawableChild(textBoxRepeatTick);
 		}
@@ -73,6 +81,7 @@ public class SoundLooperScreen extends ScreenMapper implements IGui {
 				drawCenteredString(matrices, font, new TranslatableComponent("gui.jsblock.looper"), width / 2, TEXT_PADDING, ARGB_WHITE);
 
 				int i = 1;
+				drawString(matrices, font, new TranslatableComponent("gui.jsblock.looper.sound_source"), SQUARE_SIZE, FINAL_TEXT_HEIGHT * (i++) + SQUARE_SIZE, ARGB_WHITE);
 				drawString(matrices, font, new TranslatableComponent("gui.jsblock.looper.sound_id"), SQUARE_SIZE, FINAL_TEXT_HEIGHT * (i++) + SQUARE_SIZE, ARGB_WHITE);
 				drawString(matrices, font, new TranslatableComponent("gui.jsblock.looper.repeat_tick"), SQUARE_SIZE, FINAL_TEXT_HEIGHT * (i++) + SQUARE_SIZE, ARGB_WHITE);
 
@@ -85,6 +94,6 @@ public class SoundLooperScreen extends ScreenMapper implements IGui {
 		@Override
 		public void onClose() {
 			super.onClose();
-			Client.sendSoundLooperC2S(pos, textBoxSoundId.getValue(), selectedCategory.getName(), (int)(Double.parseDouble(textBoxRepeatTick.getValue())));
+			Client.sendSoundLooperC2S(pos, selectedCategory, textBoxSoundId.getValue(), (int)(Double.parseDouble(textBoxRepeatTick.getValue())));
 		}
 }

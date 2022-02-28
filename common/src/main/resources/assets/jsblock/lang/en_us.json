@@ -57,6 +57,7 @@
   "gui.jsblock.config.kcrsign_eng_font": "Font path for the KCR Signs (English)",
   "gui.jsblock.config.deptimer_font": "Font path for the Departure Timer Countdown",
   "gui.jsblock.looper": "Sound Looper/Repeater",
+  "gui.jsblock.looper.sound_source": "Sound Source/Category",
   "gui.jsblock.looper.sound_id": "The identifier for the sound",
   "gui.jsblock.looper.repeat_tick": "Time to repeat after playing (ticks)"
 }

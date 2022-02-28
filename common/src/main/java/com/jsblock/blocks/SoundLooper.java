@@ -51,10 +51,11 @@ public class SoundLooper extends Block implements EntityBlockMapper {
 
 		private String soundID = "";
 		private int repeatTick = 20;
-		private String soundCategory = "MASTER";
+		private int soundCategory = 0;
 		private static final String KEY_REPEAT_TICK = "repeat_tick";
 		private static final String KEY_SOUND_ID = "sound_id";
 		private static final String KEY_SOUND_CATEGORY = "sound_category";
+		private static final SoundSource[] SOURCE_LIST = {SoundSource.MASTER, SoundSource.MUSIC, SoundSource.WEATHER, SoundSource.AMBIENT, SoundSource.PLAYERS};
 		public TileEntitySoundLooper(BlockPos pos, BlockState state) {
 			super(BlockEntityTypes.SOUND_LOOPER_TILE_ENTITY, pos, state);
 		}
@@ -63,27 +64,27 @@ public class SoundLooper extends Block implements EntityBlockMapper {
 		public void readCompoundTag(CompoundTag compoundTag) {
 			repeatTick = compoundTag.getInt(KEY_REPEAT_TICK);
 			soundID = compoundTag.getString(KEY_SOUND_ID);
-			soundCategory = compoundTag.getString(KEY_SOUND_CATEGORY);
+			soundCategory = compoundTag.getInt(KEY_SOUND_CATEGORY);
 		}
 
 		@Override
 		public void writeCompoundTag(CompoundTag compoundTag) {
 			compoundTag.putInt(KEY_REPEAT_TICK, repeatTick);
 			compoundTag.putString(KEY_SOUND_ID, soundID);
-			compoundTag.putString(KEY_SOUND_CATEGORY, soundCategory);
+			compoundTag.putInt(KEY_SOUND_CATEGORY, soundCategory);
 		}
 
 		@Override
 		public void tick() {
-			if (repeatTick > 0 && MTR.isGameTickInterval(repeatTick) && soundID != null) {
+			if (repeatTick > 0 && MTR.isGameTickInterval(repeatTick) && !soundID.isEmpty()) {
 				if(level == null || level.isClientSide()) return;
 				BlockPos pos = this.worldPosition;
 				level.players().forEach(player -> {
 					try {
 						final ResourceLocation soundLocation = new ResourceLocation(soundID);
-						final SoundSource source = SoundSource.valueOf(soundCategory);
+						final SoundSource source = SOURCE_LIST[soundCategory];
 						((ServerPlayer)player).connection.send(new ClientboundCustomSoundPacket(soundLocation, source, new Vec3(pos.getX(), pos.getY(), pos.getZ()), 1, 1));
-					} catch (ResourceLocationException ignored) {
+					} catch (Exception ignored) {
 					}
 				});
 			}
@@ -96,8 +97,14 @@ public class SoundLooper extends Block implements EntityBlockMapper {
 		public int getLoopInterval() {
 			return repeatTick;
 		}
+		public int getSoundCategory() {
+			if(soundCategory > SOURCE_LIST.length) {
+				soundCategory = 0;
+			}
+			return soundCategory;
+		}
 
-		public void setData(String soundId, String soundCategory, int interval) {
+		public void setData(String soundId, int soundCategory, int interval) {
 			this.soundID = soundId;
 			this.repeatTick = interval;
 			this.soundCategory = soundCategory;
