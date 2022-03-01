@@ -198,7 +198,7 @@ public class RenderRVPIDS<T extends BlockEntityMapper> extends BlockEntityRender
 				}
 
 				matrices.pushPose();
-				matrices.translate(0.5, 0, 0.505);
+				matrices.translate(0.5, 0, 0.5);
 				matrices.mulPose(Vector3f.YP.rotationDegrees((rotate90 ? 90 : 0) - facing.toYRot()));
 				matrices.mulPose(Vector3f.ZP.rotationDegrees(180));
 				matrices.translate((startX - 8) / 16, -startY / 16 + i * maxHeight / maxArrivals / 16, (startZ - 8) / 16 - SMALL_OFFSET * 2);
