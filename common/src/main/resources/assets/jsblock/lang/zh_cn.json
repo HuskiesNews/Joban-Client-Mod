@@ -1,5 +1,6 @@
 {
   "itemGroup.jsblock.core":"Joban 方块",
+  "itemGroup.jsblock.pids":"Joban 方块 (资讯显示屏)",
   "block.jsblock.auto_iron_door":"铁门 (自动)",
   "block.jsblock.block.rv_pids_pole":"必须在原有的铁路愿景乘客资讯显示屏柱上放置",
   "block.jsblock.butterfly_light":"关门指示灯",
@@ -34,6 +35,7 @@
   "block.jsblock.signal_light_green":"信号灯 (绿色在下)",
   "block.jsblock.signal_light_inverted_1":"信号灯 (反转，蓝-红)",
   "block.jsblock.signal_light_inverted_2":"信号灯 (反转，蓝-绿)",
+  "block.jsblock.sound_looper":"声音循环器",
   "block.jsblock.station_name_tall_stand":"站名 (立柱)",
   "block.jsblock.subsidy_machine_1":"补贴领取站",
   "block.jsblock.train_model_e44":"列車模型 (E44)",

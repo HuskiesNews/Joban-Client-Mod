@@ -1,5 +1,6 @@
 {
   "itemGroup.jsblock.core": "Joban Blocks",
+  "itemGroup.jsblock.pids": "Joban Blocks (PIDS)",
   "block.jsblock.auto_iron_door":"Automatic Iron Door",
   "block.jsblock.block.rv_pids_pole":"Must be placed on top of existing Railway Vision PIDS",
   "block.jsblock.butterfly_light":"Door Closing Indicator (Butterfly Light)",
@@ -36,6 +37,7 @@
   "block.jsblock.signal_light_green":"Signal Light (Green, Bottom)",
   "block.jsblock.signal_light_inverted_1":"Signal Light (Inverted, Blue-Red)",
   "block.jsblock.signal_light_inverted_2":"Signal Light (Inverted, Blue-Green)",
+  "block.jsblock.sound_looper":"Sound Looper",
   "block.jsblock.station_name_tall_stand":"Station Name (Standing)",
   "block.jsblock.subsidy_machine_1":"Subsidy Machine",
   "block.jsblock.ticket_barrier_1_entrance":"Thales Ticket Barrier (Entrance)",
