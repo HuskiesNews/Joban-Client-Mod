@@ -1,5 +1,7 @@
 package com.jsblock;
 
+import com.jsblock.packets.Server;
+import mtr.Registry;
 import mtr.mappings.BlockEntityMapper;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.level.block.Block;
@@ -8,6 +10,8 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.util.function.BiConsumer;
+
+import static com.jsblock.packets.IPacketJoban.PACKET_UPDATE_SOUND_LOOPER;
 
 public class Joban {
 	public static final String MOD_ID = "jsblock";
@@ -60,6 +64,7 @@ public class Joban {
 			registerBlockItem.accept("signal_light_blue", Blocks.SIGNAL_LIGHT_BLUE, ItemGroups.MAIN);
 			registerBlockItem.accept("signal_light_inverted_1", Blocks.SIGNAL_LIGHT_INVERTED_1, ItemGroups.MAIN);
 			registerBlockItem.accept("signal_light_inverted_2", Blocks.SIGNAL_LIGHT_INVERTED_2, ItemGroups.MAIN);
+			registerBlockItem.accept("sound_looper", Blocks.SOUND_LOOPER, ItemGroups.MAIN);
 			registerBlockItem.accept("subsidy_machine_1", Blocks.SUBSIDY_MACHINE_1, ItemGroups.MAIN);
 			registerBlockItem.accept("train_model_e44", Blocks.MODEL_E44, ItemGroups.MAIN);
 			registerBlockItem.accept("ticket_barrier_1_entrance", Blocks.TICKET_BARRIER_1_ENTRANCE, ItemGroups.MAIN);
@@ -78,6 +83,7 @@ public class Joban {
 			registerBlockEntityType.accept("signal_light_green", BlockEntityTypes.SIGNAL_LIGHT_GREEN_ENTITY);
 			registerBlockEntityType.accept("signal_light_inverted_1", BlockEntityTypes.SIGNAL_LIGHT_INVERTED_ENTITY_1);
 			registerBlockEntityType.accept("signal_light_inverted_2", BlockEntityTypes.SIGNAL_LIGHT_INVERTED_ENTITY_2);
+			registerBlockEntityType.accept("sound_looper", BlockEntityTypes.SOUND_LOOPER_TILE_ENTITY);
 			registerBlockEntityType.accept("pids_4", BlockEntityTypes.PIDS_1A_TILE_ENTITY);
 			registerBlockEntityType.accept("pids_5", BlockEntityTypes.PIDS_5_TILE_ENTITY);
 			registerBlockEntityType.accept("pids_4a", BlockEntityTypes.PIDS_4_TILE_ENTITY);
@@ -93,6 +99,8 @@ public class Joban {
 			} catch (InterruptedException ignored) {
 			}
 		}
+
+		Registry.registerNetworkReceiver(PACKET_UPDATE_SOUND_LOOPER, Server::receiveSoundLooperC2S);
 	}
 
 	@FunctionalInterface

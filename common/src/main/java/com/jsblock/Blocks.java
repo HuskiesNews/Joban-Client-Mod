@@ -26,6 +26,7 @@ public interface Blocks {
 	Block SIGNAL_LIGHT_GREEN = new SignalLightGreen(BlockBehaviour.Properties.of(Material.METAL, MaterialColor.COLOR_BLACK).strength(1.0f));
 	Block SIGNAL_LIGHT_INVERTED_1 = new SignalLightInverted1(BlockBehaviour.Properties.of(Material.METAL, MaterialColor.COLOR_BLACK).strength(1.0f));
 	Block SIGNAL_LIGHT_INVERTED_2 = new SignalLightInverted2(BlockBehaviour.Properties.of(Material.METAL, MaterialColor.COLOR_BLACK).strength(1.0f));
+	Block SOUND_LOOPER = new SoundLooper(BlockBehaviour.Properties.of(Material.METAL, MaterialColor.COLOR_BLACK).strength(3.0f));
 	Block CEILING_1 = new Ceiling1(BlockBehaviour.Properties.of(Material.METAL).strength(2.0f).noOcclusion());
 	Block ENQUIRY_MACHINE_1 = new EnquiryMachine1(BlockBehaviour.Properties.of(Material.METAL).strength(4.0f));
 	Block EMG_STOP_1 = new EmgStop1(BlockBehaviour.Properties.of(Material.METAL).strength(1.0f));
