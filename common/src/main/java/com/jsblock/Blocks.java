@@ -30,7 +30,8 @@ public interface Blocks {
 	Block CEILING_1 = new Ceiling1(BlockBehaviour.Properties.of(Material.METAL).strength(2.0f).noOcclusion());
 	Block ENQUIRY_MACHINE_1 = new EnquiryMachine1(BlockBehaviour.Properties.of(Material.METAL).strength(4.0f));
 	Block EMG_STOP_1 = new EmgStop1(BlockBehaviour.Properties.of(Material.METAL).strength(1.0f));
-	Block EXIT_SIGN_1 = new ExitSign1(BlockBehaviour.Properties.of(Material.METAL).strength(1.0f).lightLevel(state -> 10));
+	Block EXIT_SIGN_1O = new ExitSign1o(BlockBehaviour.Properties.of(Material.METAL).strength(1.0f).lightLevel(state -> 10));
+	Block EXIT_SIGN_1E = new ExitSign1e(BlockBehaviour.Properties.of(Material.METAL).strength(1.0f).lightLevel(state -> 10));
 	Block HELPLINE_1 = new HelpLine1(BlockBehaviour.Properties.of(Material.METAL).strength(2.0f));
 	Block HELPLINE_2 = new HelpLine2(BlockBehaviour.Properties.of(Material.METAL).strength(2.0f));
 	Block HELPLINE_3 = new HelpLine3(BlockBehaviour.Properties.of(Material.METAL).strength(3.0f).noOcclusion());

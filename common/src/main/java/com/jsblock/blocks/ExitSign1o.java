@@ -11,8 +11,8 @@ import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
-public class ExitSign1 extends HorizontalDirectionalBlock {
-	public ExitSign1(Properties settings) {
+public class ExitSign1o extends HorizontalDirectionalBlock {
+	public ExitSign1o(Properties settings) {
 		super(settings);
 	}
 
