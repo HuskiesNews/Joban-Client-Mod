@@ -41,10 +41,12 @@ public class Server {
 		final String soundId = packet.readUtf();
 		final int soundCategory = packet.readInt();
 		final int interval = packet.readInt();
+		final float volume = packet.readFloat();
+		final boolean needRedstone = packet.readBoolean();
 		minecraftServer.execute(() -> {
 			final BlockEntity entity = player.level.getBlockEntity(pos);
 			if (entity instanceof SoundLooper.TileEntitySoundLooper) {
-				((SoundLooper.TileEntitySoundLooper) entity).setData(soundId, soundCategory, interval);
+				((SoundLooper.TileEntitySoundLooper) entity).setData(soundId, soundCategory, interval, volume, needRedstone);
 			}
 		});
 	}

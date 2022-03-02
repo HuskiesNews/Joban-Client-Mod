@@ -51,10 +51,14 @@ public class SoundLooper extends Block implements EntityBlockMapper {
 
 		private String soundID = "";
 		private int repeatTick = 20;
+		private float soundVolume = 1;
 		private int soundCategory = 0;
+		private boolean requireRedstone = false;
 		private static final String KEY_REPEAT_TICK = "repeat_tick";
 		private static final String KEY_SOUND_ID = "sound_id";
 		private static final String KEY_SOUND_CATEGORY = "sound_category";
+		private static final String KEY_NEED_REDSTONE = "need_redstone";
+		private static final String KEY_SOUND_VOLUME = "volume";
 		private static final SoundSource[] SOURCE_LIST = {SoundSource.MASTER, SoundSource.MUSIC, SoundSource.WEATHER, SoundSource.AMBIENT, SoundSource.PLAYERS};
 		public TileEntitySoundLooper(BlockPos pos, BlockState state) {
 			super(BlockEntityTypes.SOUND_LOOPER_TILE_ENTITY, pos, state);
@@ -65,6 +69,8 @@ public class SoundLooper extends Block implements EntityBlockMapper {
 			repeatTick = compoundTag.getInt(KEY_REPEAT_TICK);
 			soundID = compoundTag.getString(KEY_SOUND_ID);
 			soundCategory = compoundTag.getInt(KEY_SOUND_CATEGORY);
+			soundVolume = compoundTag.getFloat(KEY_SOUND_VOLUME);
+			requireRedstone = compoundTag.getBoolean(KEY_NEED_REDSTONE);
 		}
 
 		@Override
@@ -72,6 +78,8 @@ public class SoundLooper extends Block implements EntityBlockMapper {
 			compoundTag.putInt(KEY_REPEAT_TICK, repeatTick);
 			compoundTag.putString(KEY_SOUND_ID, soundID);
 			compoundTag.putInt(KEY_SOUND_CATEGORY, soundCategory);
+			compoundTag.putFloat(KEY_SOUND_VOLUME, soundVolume);
+			compoundTag.putBoolean(KEY_NEED_REDSTONE, requireRedstone);
 		}
 
 		@Override
@@ -79,11 +87,14 @@ public class SoundLooper extends Block implements EntityBlockMapper {
 			if (repeatTick > 0 && MTR.isGameTickInterval(repeatTick) && !soundID.isEmpty()) {
 				if(level == null || level.isClientSide()) return;
 				BlockPos pos = this.worldPosition;
+
+				if (requireRedstone && !level.hasNeighborSignal(pos)) return;
+
 				level.players().forEach(player -> {
 					try {
 						final ResourceLocation soundLocation = new ResourceLocation(soundID);
 						final SoundSource source = SOURCE_LIST[soundCategory];
-						((ServerPlayer)player).connection.send(new ClientboundCustomSoundPacket(soundLocation, source, new Vec3(pos.getX(), pos.getY(), pos.getZ()), 1, 1));
+						((ServerPlayer)player).connection.send(new ClientboundCustomSoundPacket(soundLocation, source, new Vec3(pos.getX(), pos.getY(), pos.getZ()), soundVolume, 1));
 					} catch (Exception ignored) {
 					}
 				});
@@ -104,11 +115,21 @@ public class SoundLooper extends Block implements EntityBlockMapper {
 			return soundCategory;
 		}
 
-		public void setData(String soundId, int soundCategory, int interval) {
+		public void setData(String soundId, int soundCategory, int interval, float volume, boolean requireRedstone) {
 			this.soundID = soundId;
 			this.repeatTick = interval;
 			this.soundCategory = soundCategory;
+			this.soundVolume = volume;
+			this.requireRedstone = requireRedstone;
 			syncData();
+		}
+
+		public float getSoundVolume() {
+			return soundVolume;
+		}
+
+		public boolean getNeedRedstone() {
+			return requireRedstone;
 		}
 	}
 }

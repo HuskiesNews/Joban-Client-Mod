@@ -55,5 +55,11 @@
   "gui.jsblock.config.pids_4_eng_font": "将军澳线乘客资讯显示屏（英文字型）路径",
   "gui.jsblock.config.kcrsign_chin_font": "九铁站名牌（中文字型）路径",
   "gui.jsblock.config.kcrsign_eng_font": "九铁站名牌（英文字型）路径",
-  "gui.jsblock.config.deptimer_font": "发车倒数器 字型路径"
+  "gui.jsblock.config.deptimer_font": "发车倒数器 字型路径",
+  "gui.jsblock.looper": "声音循环器",
+  "gui.jsblock.looper.need_redstone": "需要红石信号",
+  "gui.jsblock.looper.sound_id": "聲音ID",
+  "gui.jsblock.looper.sound_source": "声音类别",
+  "gui.jsblock.looper.sound_vol": "音量 (默认为 1.0)",
+  "gui.jsblock.looper.repeat_tick": "重复时间 (刻/Ticks计算)"
 }

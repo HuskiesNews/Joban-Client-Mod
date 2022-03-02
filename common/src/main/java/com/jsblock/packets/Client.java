@@ -31,12 +31,14 @@ public class Client {
 		});;
 	}
 
-	public static void sendSoundLooperC2S(BlockPos pos, int categoryIndex, String soundId, int loopInterval) {
+	public static void sendSoundLooperC2S(BlockPos pos, int categoryIndex, String soundId, int loopInterval, float volume, boolean needRedstone) {
 		final FriendlyByteBuf packet = new FriendlyByteBuf(Unpooled.buffer());
 		packet.writeBlockPos(pos);
 		packet.writeUtf(soundId);
 		packet.writeInt(categoryIndex);
 		packet.writeInt(loopInterval);
+		packet.writeFloat(volume);
+		packet.writeBoolean(needRedstone);
 		RegistryClient.sendToServer(PACKET_UPDATE_SOUND_LOOPER, packet);
 	}
 }

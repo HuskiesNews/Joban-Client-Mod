@@ -55,5 +55,11 @@
   "gui.jsblock.config.pids_4_eng_font": "將軍澳綫乘客資訊顯示屏（英文字型）路徑",
   "gui.jsblock.config.kcrsign_chin_font": "九鐵站名牌（中文字型）路徑",
   "gui.jsblock.config.kcrsign_eng_font": "九鐵站名牌（英文字型）路徑",
-  "gui.jsblock.config.deptimer_font": "發車倒數器 字型路徑"
+  "gui.jsblock.config.deptimer_font": "發車倒數器 字型路徑",
+  "gui.jsblock.looper": "聲音循環器",
+  "gui.jsblock.looper.need_redstone": "需要紅石信號",
+  "gui.jsblock.looper.sound_id": "聲音ID",
+  "gui.jsblock.looper.sound_source": "聲音類別",
+  "gui.jsblock.looper.sound_vol": "音量 (預設為 1.0)",
+  "gui.jsblock.looper.repeat_tick": "重複時間 (以Ticks計算)"
 }
