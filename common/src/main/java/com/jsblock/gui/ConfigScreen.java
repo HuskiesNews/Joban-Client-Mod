@@ -107,6 +107,7 @@ public class ConfigScreen extends ScreenMapper implements IGui {
 		@Override
 		public void onClose() {
 			super.onClose();
+			/* Set the value in the ClientConfig */
 			ClientConfig.setRVPIDSChinFont(textBoxRVPIDSFontChin.getValue());
 			ClientConfig.setRVPIDSEngFont(textBoxRVPIDSFontEng.getValue());
 			ClientConfig.setPIDS4ChinFont(textBoxPIDS4FontChin.getValue());
@@ -114,6 +115,7 @@ public class ConfigScreen extends ScreenMapper implements IGui {
 			ClientConfig.setKCRSignChinFont(textBoxKCRSignFontChin.getValue());
 			ClientConfig.setKCRSignEngFont(textBoxKCRSignFontEng.getValue());
 			ClientConfig.setDepTimerFont(textBoxDepTimerFont.getValue());
+			/* Actually save the config */
 			ClientConfig.writeConfig();
 		}
 

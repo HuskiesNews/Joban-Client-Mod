@@ -94,11 +94,13 @@ public class ButterflyLight extends HorizontalDirectionalBlock implements Entity
 					return;
 				}
 
+				/* Get the closest platform */
 				final long platformId = RailwayData.getClosePlatformId(railwayData.platforms, railwayData.dataCache, pos, 5, 3, 3);
 				if (platformId == 0) {
 					return;
 				}
 
+				/* Get the arrivals on that platform */
 				final List<ScheduleEntry> schedules = railwayData.getSchedulesAtPlatform(platformId);
 				if (schedules == null) {
 					return;
@@ -110,6 +112,8 @@ public class ButterflyLight extends HorizontalDirectionalBlock implements Entity
 
 					/* If the train has not yet arrived (Should be negative when train arrived) */
 					if (scheduleList.get(0).arrivalMillis - System.currentTimeMillis() > 0) {
+						/* Run the schedule tick after 16 ticks, if not already scheduled. */
+						/* The schedule tick will reset the butterfly light */
 						if (!world.getBlockTicks().hasScheduledTick(pos, state.getBlock())) {
 							Utilities.scheduleBlockTick(world, new BlockPos(pos), state.getBlock(), 16);
 						}
@@ -118,14 +122,13 @@ public class ButterflyLight extends HorizontalDirectionalBlock implements Entity
 
 					int remainingSecond = (int) (scheduleList.get(0).arrivalMillis - System.currentTimeMillis()) / 1000;
 					final Platform platform = railwayData.dataCache.platformIdMap.get(platformId);
+					/* platform.getDwellTime() returns the dwell second x2, so we have to divide it by 2 to get the second */
 					int seconds = platform == null ? 0 : (platform.getDwellTime() / 2) - Math.abs(remainingSecond);
 					/* If the departure time is still more than 10 seconds, return and don't blink the light */
 					if (seconds > 10) {
 						return;
 					}
-					/* This gets the time of the day, expressed in ticks */
 					/* The following setBlockState code will be run every 16 ticks or 0.8 second */
-					/* Does not work when doDaylightCycle is false */
 					if (MTR.isGameTickInterval(16)) {
 						/* This cycles through the block state of the "lit" property, which has true and false (as it's a boolean), creating a blinking effect */
 						world.setBlockAndUpdate(pos, state.cycle(LIT));

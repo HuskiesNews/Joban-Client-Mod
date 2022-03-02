@@ -22,8 +22,6 @@ public class Joban {
 			RegisterBlockItem registerBlockItem,
 			BiConsumer<String, BlockEntityType<? extends BlockEntityMapper>> registerBlockEntityType
 	) {
-		/* RESERVED FOR TICKETS */
-		//ServerPlayNetworking.registerGlobalReceiver(new ResourceLocation("packet_buy_tickets"), (minecraftServer, player, handler, packet, sender) -> PacketTrainDataGuiServer.receiveAddBalanceC2S(minecraftServer, player, packet));
 		LOGGER.info("[Joban Client] Version " + VERSION);
 
 		/* Try to register the block */
@@ -92,6 +90,7 @@ public class Joban {
 			/* If we end up with a NoClassDefFoundError, this means some method we use are not found, presumably MTR Mod */
 			/* Let's warn the user beforehand, as the game will crash eventually */
 			LOGGER.error("[Joban Client] Cannot find class " + error.getMessage() + " which is required by this mod!");
+			LOGGER.error("[Joban Client] Make sure you're running the correct version of MTR Mod and Minecraft Version.");
 			LOGGER.info("");
 			/* Give them 20s to read */
 			try {

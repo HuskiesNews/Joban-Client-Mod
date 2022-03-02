@@ -35,21 +35,25 @@ public class AutoDoor extends DoorBlock {
 			return;
 		}
 
+		/* Define a box, which is 3 blocks around the door. */
 		AABB box = new AABB(new BlockPos(pos.getX() - 3, pos.getY() - 3, pos.getZ() - 3), new BlockPos(pos.getX() + 3, pos.getY() + 3, pos.getZ() + 3));
 		List<Player> playerList = world.getEntitiesOfClass(Player.class, box);
 
+		/* If there's at least 1 player within the 3 block range, open the door */
 		if (playerList.size() > 0) {
 			if (!state.getValue(OPEN)) {
 				world.playSound(null, pos, SoundEvents.IRON_DOOR_OPEN, SoundSource.BLOCKS, 1, 1);
 			}
 			world.setBlock(pos, state.setValue(OPEN, true), 10);
 		} else {
+			/* Otherwise, close it. */
 			if (state.getValue(OPEN)) {
 				world.playSound(null, pos, SoundEvents.IRON_DOOR_CLOSE, SoundSource.BLOCKS, 1, 1);
 			}
 			world.setBlock(pos, state.setValue(OPEN, false), 10);
 		}
 
+		/* Schedule the check itself again to run after 15 ticks */
 		Utilities.scheduleBlockTick(world, pos, state.getBlock(), 15);
 	}
 }

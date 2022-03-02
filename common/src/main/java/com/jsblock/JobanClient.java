@@ -4,7 +4,6 @@ import com.jsblock.blocks.PIDS1A;
 import com.jsblock.blocks.PIDS4;
 import com.jsblock.blocks.PIDSRV;
 import com.jsblock.config.ClientConfig;
-import com.jsblock.gui.SoundLooperScreen;
 import com.jsblock.gui.TicketMachineScreen;
 import com.jsblock.packets.Client;
 import com.jsblock.packets.IPacketJoban;
@@ -21,7 +20,9 @@ public class JobanClient {
 
 	public static void init() {
 		ClientConfig.loadConfig();
-		if(ClientConfig.getRenderDisabled()) Joban.LOGGER.info("[Joban Client] Rendering for all JCM block is disabled.");
+		if(ClientConfig.getRenderDisabled()) {
+			Joban.LOGGER.info("[Joban Client] Rendering for all JCM block is disabled.");
+		}
 		/* Allow transparent texture for the block */
 		RegistryClient.registerBlockRenderType(RenderType.cutout(), Blocks.AUTO_IRON_DOOR);
 		RegistryClient.registerBlockRenderType(RenderType.cutout(), Blocks.BUFFERSTOP_1);
@@ -55,6 +56,7 @@ public class JobanClient {
 		RegistryClient.registerTileEntityRenderer(BlockEntityTypes.PIDS_5_TILE_ENTITY, dispatcher -> new RenderRVPIDS<>(dispatcher, PIDSRV.TileEntityBlockPIDS5.MAX_ARRIVALS, 6, 8.25F, 6, 11F, 20, true, false, true, 0x000000));
 		RegistryClient.registerTileEntityRenderer(BlockEntityTypes.KCR_NAME_SIGN_TILE_ENTITY, RenderKCRStationName::new);
 
+
 		RegistryClient.registerBlockColors(Blocks.STATION_NAME_TALL_STAND);
 		RegistryClient.registerNetworkReceiver(IPacket.PACKET_OPEN_TICKET_MACHINE_SCREEN, packet -> {
 			final int balance = packet.readInt();
@@ -62,6 +64,7 @@ public class JobanClient {
 			minecraft.execute(() -> UtilitiesClient.setScreen(minecraft, new TicketMachineScreen(balance)));
 		});
 
+		/* Register Client Packet with the packet id, and points to the corresponding action in the client */
 		RegistryClient.registerNetworkReceiver(IPacketJoban.PACKET_OPEN_SOUND_LOOPER_SCREEN, packet -> {
 			final Minecraft minecraft = Minecraft.getInstance();
 			BlockPos pos = packet.readBlockPos();

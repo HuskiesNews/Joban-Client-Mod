@@ -32,15 +32,16 @@ public class WaterMachine1 extends mtr.block.BlockDirectionalDoubleBlockBase {
 
 	@Override
 	public InteractionResult use(BlockState state, Level world, BlockPos pos, Player player, InteractionHand hand, BlockHitResult blockHitResult) {
-		/* Loop through player's hand, as on 1.9+ player can use both the left hand and the right hand */
+		/* Loop through player's hand, as on MC 1.9+ player can use both the left hand and the right hand */
 		for (ItemStack itm : player.getHandSlots()) {
+			/* If player is holding glass bottle */
 			if (itm.getItem().asItem().equals(Items.GLASS_BOTTLE)) {
 				ItemStack playerHolding = player.getItemInHand(hand);
 				ItemStack waterBottle = PotionUtils.setPotion(new ItemStack(Items.POTION), Potions.WATER);
 				/* Remove 1 water bottle from player */
 				playerHolding.shrink(1);
 
-				/* If player is not holding anything, give the water bottle directly to their hand */
+				/* If player is not holding anything after removing 1 water bottle, give the water bottle directly to their hand */
 				if (playerHolding.isEmpty()) {
 					player.setItemInHand(hand, waterBottle);
 				} else {

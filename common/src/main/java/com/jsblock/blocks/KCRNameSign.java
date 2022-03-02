@@ -32,7 +32,9 @@ public class KCRNameSign extends HorizontalDirectionalBlock implements EntityBlo
 
 	@Override
 	public InteractionResult use(BlockState state, Level world, BlockPos pos, Player player, InteractionHand interactionHand, BlockHitResult blockHitResult) {
+		/* The following code will only be ran if player is holding the MTR brush item */
 		return IBlock.checkHoldingBrush(world, player, () -> {
+			/* Cycle the boolean value of EXIT_ON_LEFT */
 			world.setBlockAndUpdate(pos, state.cycle(EXIT_ON_LEFT));
 		});
 	}

@@ -29,11 +29,13 @@ public class EnquiryMachine1 extends mtr.block.BlockDirectionalDoubleBlockBase {
 	@Override
 	public VoxelShape getShape(BlockState state, BlockGetter blockGetter, BlockPos pos, CollisionContext collisionContext) {
 		final Direction facing = IBlock.getStatePropertySafe(state, FACING);
+		/* If the block is the upper one */
 		if (IBlock.getStatePropertySafe(state, HALF) == DoubleBlockHalf.UPPER) {
 			VoxelShape vx1 = IBlock.getVoxelShapeByDirection(4, 0, 7, 12, 5.62, 14, facing);
 			VoxelShape vx2 = IBlock.getVoxelShapeByDirection(4, 5.62, 8.275, 12, 10.12, 8.425, facing);
 			return Shapes.or(vx1, vx2);
 		} else {
+			/* Otherwise, return the lower block shape */
 			return IBlock.getVoxelShapeByDirection(4, 0, 7, 12, 16, 14, facing);
 		}
 	}
@@ -41,8 +43,11 @@ public class EnquiryMachine1 extends mtr.block.BlockDirectionalDoubleBlockBase {
 	@Override
 	public InteractionResult use(BlockState state, Level world, BlockPos pos, Player player, InteractionHand interactionHand, BlockHitResult blockHitResult) {
 		if (!world.isClientSide) {
+			/* Get the player's score */
 			final int playerScore = TicketSystem.getPlayerScore(world, player, TicketSystem.BALANCE_OBJECTIVE).getScore();
+			/* Send a message (Actionbar) to the player displaying playerScore */
 			player.displayClientMessage(new TranslatableComponent("gui.mtr.balance", String.valueOf(playerScore)), true);
+			/* Play a sound effect (from the MTR Mod) */
 			world.playSound(null, pos, SoundEvents.TICKET_PROCESSOR_ENTRY, SoundSource.BLOCKS, 1, 1);
 		}
 		return InteractionResult.SUCCESS;

@@ -15,9 +15,9 @@ import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
 
-public class TicketBarrier1Decor extends HorizontalDirectionalBlock {
+public class ThalesTicketBarrierDecor extends HorizontalDirectionalBlock {
 
-	public TicketBarrier1Decor() {
+	public ThalesTicketBarrierDecor() {
 		super(Properties.of(Material.METAL, MaterialColor.COLOR_GRAY).requiresCorrectToolForDrops().strength(2).lightLevel(state -> 5).noOcclusion());
 	}
 

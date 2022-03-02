@@ -15,11 +15,11 @@ import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
 
-public class TicketBarrier1 extends mtr.block.BlockTicketBarrier {
+public class ThalesTicketBarrier extends mtr.block.BlockTicketBarrier {
 
 	public static final EnumProperty<TicketSystem.EnumTicketBarrierOpen> OPEN = EnumProperty.create("open", TicketSystem.EnumTicketBarrierOpen.class);
 
-	public TicketBarrier1(boolean isEntrance) {
+	public ThalesTicketBarrier(boolean isEntrance) {
 		super(isEntrance);
 	}
 
