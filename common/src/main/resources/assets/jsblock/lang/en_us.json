@@ -64,5 +64,5 @@
   "gui.jsblock.looper.sound_id": "The identifier for the sound",
   "gui.jsblock.looper.sound_source": "Sound Source/Category",
   "gui.jsblock.looper.sound_vol": "Sound Volume (Default is 1.0)",
-  "gui.jsblock.looper.repeat_tick": "Time to repeat after playing (ticks)"
+  "gui.jsblock.looper.repeat_tick": "Loop interval in Ticks (1s = 20 Ticks)"
 }
