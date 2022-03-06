@@ -24,7 +24,9 @@ jobs:
           java-version: 17
       - name: Make gradle wrapper executable
         run: chmod +x ./gradlew
-      - name: Build ${{ matrix.minecraft }} Fabric
+      - name: Setup ${{ matrix.minecraft }} ${{ matrix.loader }}
+        run: ./gradlew setupLibrary -PbuildVersion="1.16.5"
+      - name: Build ${{ matrix.minecraft }} ${{ matrix.loader }}
         run: ./gradlew ${{ matrix.loader }}:build -PbuildVersion="${{ matrix.minecraft }}"
       - name: Capture release artifacts
         uses: actions/upload-artifact@v2
