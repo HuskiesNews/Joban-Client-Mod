@@ -25,7 +25,7 @@ jobs:
       - name: Make gradle wrapper executable
         run: chmod +x ./gradlew
       - name: Setup ${{ matrix.minecraft }} ${{ matrix.loader }}
-        run: ./gradlew setupLibrary -PbuildVersion="1.16.5"
+        run: ./gradlew setupLibrary -PbuildVersion="${{ matrix.minecraft }}"
       - name: Build ${{ matrix.minecraft }} ${{ matrix.loader }}
         run: ./gradlew ${{ matrix.loader }}:build -PbuildVersion="${{ matrix.minecraft }}"
       - name: Capture release artifacts
