@@ -59,16 +59,16 @@ public class SoundLooper extends Block implements EntityBlockMapper {
 
 	public static class TileEntitySoundLooper extends BlockEntityClientSerializableMapper implements TickableMapper {
 
-		private static String soundID = "";
-		private static int repeatTick = 20;
-		private static float soundVolume = 1;
-		private static int soundCategory = 0;
-		private static boolean requireRedstone = false;
-		private static final String KEY_REPEAT_TICK = "repeat_tick";
-		private static final String KEY_SOUND_ID = "sound_id";
-		private static final String KEY_SOUND_CATEGORY = "sound_category";
-		private static final String KEY_NEED_REDSTONE = "need_redstone";
-		private static final String KEY_SOUND_VOLUME = "volume";
+		private String soundID = "";
+		private int repeatTick = 20;
+		private float soundVolume = 1;
+		private int soundCategory = 0;
+		private boolean requireRedstone = false;
+		private final String KEY_REPEAT_TICK = "repeat_tick";
+		private final String KEY_SOUND_ID = "sound_id";
+		private final String KEY_SOUND_CATEGORY = "sound_category";
+		private final String KEY_NEED_REDSTONE = "need_redstone";
+		private final String KEY_SOUND_VOLUME = "volume";
 		private static final SoundSource[] SOURCE_LIST = {SoundSource.MASTER, SoundSource.MUSIC, SoundSource.WEATHER, SoundSource.AMBIENT, SoundSource.PLAYERS};
 		public TileEntitySoundLooper(BlockPos pos, BlockState state) {
 			super(BlockEntityTypes.SOUND_LOOPER_TILE_ENTITY, pos, state);
@@ -98,8 +98,15 @@ public class SoundLooper extends Block implements EntityBlockMapper {
 		}
 
 		public static <T extends BlockEntityClientSerializableMapper> void tick(Level level, BlockPos pos, BlockEntity entity) {
-			if (repeatTick > 0 && MTR.isGameTickInterval(repeatTick) && !soundID.isEmpty()) {
+			if (!(entity instanceof TileEntitySoundLooper)) return;
 
+			int repeatTick = ((TileEntitySoundLooper) entity).getLoopInterval();
+			int soundCategory = ((TileEntitySoundLooper) entity).getSoundCategory();
+			float soundVolume = ((TileEntitySoundLooper) entity).getSoundVolume();
+			boolean requireRedstone = ((TileEntitySoundLooper) entity).getNeedRedstone();
+			String soundID = ((TileEntitySoundLooper) entity).getSoundId();
+
+			if(repeatTick > 0 && MTR.isGameTickInterval(repeatTick) && !soundID.isEmpty()) {
 				if(level == null || level.isClientSide()) return;
 				if (requireRedstone && !level.hasNeighborSignal(pos)) return;
 
@@ -129,11 +136,11 @@ public class SoundLooper extends Block implements EntityBlockMapper {
 		}
 
 		public void setData(String soundId, int soundCategory, int interval, float volume, boolean requireRedstone) {
-			TileEntitySoundLooper.soundID = soundId;
-			TileEntitySoundLooper.repeatTick = interval;
-			TileEntitySoundLooper.soundCategory = soundCategory;
-			TileEntitySoundLooper.soundVolume = volume;
-			TileEntitySoundLooper.requireRedstone = requireRedstone;
+			this.soundID = soundId;
+			this.repeatTick = interval;
+			this.soundCategory = soundCategory;
+			this.soundVolume = volume;
+			this.requireRedstone = requireRedstone;
 			syncData();
 		}
 
