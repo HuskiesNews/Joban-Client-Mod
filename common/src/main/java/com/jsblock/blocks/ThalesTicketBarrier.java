@@ -17,8 +17,6 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 
 public class ThalesTicketBarrier extends mtr.block.BlockTicketBarrier {
 
-	public static final EnumProperty<TicketSystem.EnumTicketBarrierOpen> OPEN = EnumProperty.create("open", TicketSystem.EnumTicketBarrierOpen.class);
-
 	public ThalesTicketBarrier(boolean isEntrance) {
 		super(isEntrance);
 	}
