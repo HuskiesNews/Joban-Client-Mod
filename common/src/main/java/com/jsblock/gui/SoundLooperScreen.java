@@ -28,6 +28,7 @@ public class SoundLooperScreen extends ScreenMapper implements IGui {
 	private final BlockPos pos;
 	private int selectedCategory;
 
+	private static final int VOLUME_SCALE = 100;
 	private static final int TEXT_PADDING = 16;
 	private static final int TEXT_FIELD_WIDTH = 100;
 	private static final int FINAL_TEXT_HEIGHT = TEXT_HEIGHT + TEXT_PADDING;
@@ -35,7 +36,7 @@ public class SoundLooperScreen extends ScreenMapper implements IGui {
 	private static final int BUTTON_WIDTH = 60;
 	private static final int BUTTON_HEIGHT = TEXT_HEIGHT + 10;
 	private static final int DEFAULT_REPEAT_TICK = 20;
-	private static final float DEFAULT_VOLUME = 1;
+	private static final int DEFAULT_VOLUME = 100;
 	private static final SoundSource[] SOURCE_LIST = {SoundSource.MASTER, SoundSource.MUSIC, SoundSource.WEATHER, SoundSource.AMBIENT, SoundSource.PLAYERS};
 
 	public SoundLooperScreen(BlockPos pos) {
@@ -53,7 +54,7 @@ public class SoundLooperScreen extends ScreenMapper implements IGui {
 
 		textBoxSoundId = new WidgetBetterTextField(null, "mtr:ticket_barrier", MAX_TEXT_LENGTH);
 		textBoxRepeatTick = new WidgetBetterTextField(WidgetBetterTextField.TextFieldFilter.POSITIVE_INTEGER, "20", MAX_TEXT_LENGTH);
-		textBoxSoundVolume = new WidgetBetterTextField(WidgetBetterTextField.TextFieldFilter.POSITIVE_FLOATING_POINT, "1", MAX_TEXT_LENGTH);
+		textBoxSoundVolume = new WidgetBetterTextField(WidgetBetterTextField.TextFieldFilter.POSITIVE_INTEGER, String.valueOf(DEFAULT_VOLUME), MAX_TEXT_LENGTH);
 		checkBoxNeedRedstone = new WidgetBetterCheckbox(0,0, 0, SQUARE_SIZE, new TextComponent(""), checked -> {});
 	}
 
@@ -73,7 +74,7 @@ public class SoundLooperScreen extends ScreenMapper implements IGui {
 				if (entity instanceof SoundLooper.TileEntitySoundLooper) {
 					textBoxSoundId.setValue(((SoundLooper.TileEntitySoundLooper) entity).getSoundId());
 					textBoxRepeatTick.setValue(String.valueOf(((SoundLooper.TileEntitySoundLooper) entity).getLoopInterval()));
-					textBoxSoundVolume.setValue(String.valueOf(((SoundLooper.TileEntitySoundLooper) entity).getSoundVolume()));
+					textBoxSoundVolume.setValue(String.valueOf(Math.round(((SoundLooper.TileEntitySoundLooper) entity).getSoundVolume() * VOLUME_SCALE)));
 					checkBoxNeedRedstone.setChecked(((SoundLooper.TileEntitySoundLooper) entity).getNeedRedstone());
 					selectedCategory = ((SoundLooper.TileEntitySoundLooper) entity).getSoundCategory();
 					buttonCategory.setMessage(new TextComponent(SOURCE_LIST[selectedCategory].getName()));
@@ -116,9 +117,9 @@ public class SoundLooperScreen extends ScreenMapper implements IGui {
 			}
 			float volume;
 			try {
-				volume = Float.parseFloat(textBoxSoundVolume.getValue());
+				volume = (float) Integer.parseInt(textBoxSoundVolume.getValue()) / VOLUME_SCALE;
 			} catch (Exception ignored) {
-				volume = DEFAULT_VOLUME;
+				volume = (float) DEFAULT_VOLUME / VOLUME_SCALE;
 			}
 
 			Client.sendSoundLooperC2S(pos, selectedCategory, textBoxSoundId.getValue(), repeatTick, volume, checkBoxNeedRedstone.selected());
