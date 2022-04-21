@@ -36,14 +36,16 @@ public interface Blocks {
 	Block HELPLINE_2 = new HelpLine2(BlockBehaviour.Properties.of(Material.METAL).strength(2.0f));
 	Block HELPLINE_3 = new HelpLine3(BlockBehaviour.Properties.of(Material.METAL).strength(3.0f).noOcclusion());
 	Block HELPLINE_4 = new HelpLine4(BlockBehaviour.Properties.of(Material.METAL).strength(3.0f).noOcclusion());
+	Block HELPLINE_5 = new HelpLine5(BlockBehaviour.Properties.of(Material.METAL).strength(3.0f).lightLevel(state -> 15).noOcclusion());
 	Block KCR_NAME_SIGN = new KCRNameSign(BlockBehaviour.Properties.of(Material.METAL).strength(4.0f).lightLevel(state -> 15).noOcclusion());
+	Block KCR_EMG_STOP_SIGN = new KCREmgStopSign(BlockBehaviour.Properties.of(Material.METAL).strength(4.0f).noOcclusion());
 	Block LIGHT_1 = new Light1(BlockBehaviour.Properties.of(Material.METAL).strength(1.0f).lightLevel(state -> 15));
 	Block LIGHT_2 = new Light2(BlockBehaviour.Properties.of(Material.METAL).strength(1.0f).lightLevel(state -> 15));
 	Block LIGHT_BLOCK = new LightBlock(BlockBehaviour.Properties.of(Material.METAL).strength(4.0f).lightLevel(state -> 15).noOcclusion());
 	Block OP_BUTTONS = new OpOnlyButton(BlockBehaviour.Properties.of(Material.METAL).strength(4.0f).lightLevel(state -> 15).noOcclusion());
 	Block PIDS_1A = new PIDS1A();
 	Block PIDS_4 = new PIDS4();
-	Block PIDS_RV = new PIDSRV();
+	Block PIDS_RV = new PIDSRVTCL();
 	Block MODEL_E44 = new ModelE44(BlockBehaviour.Properties.of(Material.METAL).strength(0.5f).noOcclusion());
 	Block RV_PIDS_POLE = new RVPIDSPole(BlockBehaviour.Properties.of(Material.METAL).strength(0.5f).noOcclusion());
 	Block STATION_NAME_TALL_STAND = new StationNameTallStand();

@@ -47,7 +47,9 @@ public class Joban {
 			registerBlockItem.accept("helpline_2", Blocks.HELPLINE_2, ItemGroups.MAIN);
 			registerBlockItem.accept("helpline_3", Blocks.HELPLINE_3, ItemGroups.MAIN);
 			registerBlockItem.accept("helpline_4", Blocks.HELPLINE_4, ItemGroups.MAIN);
+			registerBlockItem.accept("helpline_5", Blocks.HELPLINE_5, ItemGroups.MAIN);
 			registerBlockItem.accept("kcr_name_sign", Blocks.KCR_NAME_SIGN, ItemGroups.MAIN);
+			registerBlockItem.accept("kcr_emg_stop_sign", Blocks.KCR_EMG_STOP_SIGN, ItemGroups.MAIN);
 			registerBlockItem.accept("light_1", Blocks.LIGHT_1, ItemGroups.MAIN);
 			registerBlockItem.accept("light_2", Blocks.LIGHT_2, ItemGroups.MAIN);
 			registerBlockItem.accept("light_block", Blocks.LIGHT_BLOCK, ItemGroups.MAIN);
@@ -75,6 +77,7 @@ public class Joban {
 
 			registerBlockEntityType.accept("butterfly_light", BlockEntityTypes.BUTTERFLY_LIGHT_TILE_ENTITY);
 			registerBlockEntityType.accept("departure_timer", BlockEntityTypes.DEPARTURE_TIMER_TILE_ENTITY);
+			registerBlockEntityType.accept("light_block", BlockEntityTypes.LIGHT_BLOCK_TILE_ENTITY);
 			registerBlockEntityType.accept("station_name_tall_stand", BlockEntityTypes.STATION_NAME_TALL_STAND_TILE_ENTITY);
 			registerBlockEntityType.accept("signal_light_red_1", BlockEntityTypes.SIGNAL_LIGHT_RED_ENTITY_1);
 			registerBlockEntityType.accept("signal_light_red_2", BlockEntityTypes.SIGNAL_LIGHT_RED_ENTITY_2);

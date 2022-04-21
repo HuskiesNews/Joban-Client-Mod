@@ -1,0 +1,8 @@
+{
+  "variants": {
+    "facing=north": { "model": "jsblock:block/kcr_emg_stop_sign" },
+    "facing=east": { "model": "jsblock:block/kcr_emg_stop_sign", "y": 90 },
+    "facing=west": { "model": "jsblock:block/kcr_emg_stop_sign", "y": 270 },
+    "facing=south": { "model": "jsblock:block/kcr_emg_stop_sign", "y": 180 }
+  }
+}
