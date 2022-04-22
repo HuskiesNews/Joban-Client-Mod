@@ -55,7 +55,7 @@ public class RenderLightBlockParticle<T extends BlockEntityMapper> extends Block
 		matrices.translate(0F, -0.5F, -0.25F);
 
 		matrices.translate(0.25F, 0F, 0.25F);
-		matrices.mulPose(Vector3f.XP.rotationDegrees(player.xRot));
+		matrices.mulPose(Vector3f.XP.rotationDegrees(player.xRotO));
 		matrices.translate(-0.25F, 0F, -0.25F);
 
 		final VertexConsumer vertexConsumer = vertexConsumers.getBuffer(MoreRenderLayers.getLight(new ResourceLocation("jsblock:textures/item/light_block.png"), true));
