@@ -57,7 +57,7 @@ public class JobanClient {
 		RegistryClient.registerTileEntityRenderer(BlockEntityTypes.STATION_NAME_TALL_STAND_TILE_ENTITY, RenderStationNameTall::new);
 		RegistryClient.registerTileEntityRenderer(BlockEntityTypes.PIDS_1A_TILE_ENTITY, dispatcher -> new RenderPIDS<>(dispatcher, PIDS1A.TileEntityBlockPIDS1A.MAX_ARRIVALS, 1, 9.5F, 6, 8.8F, 30, true, false, false, 0xFF9900, 0xFF9900));
 		RegistryClient.registerTileEntityRenderer(BlockEntityTypes.PIDS_4_TILE_ENTITY, dispatcher -> new RenderLCDPIDS<>(dispatcher, PIDS4.TileEntityBlockPIDS4.MAX_ARRIVALS, 5.7F, 9.5F, 6, 11.5F, 21, true, false, false, 0xEFE29E, 1.25F, false, "pids_tkl"));
-		RegistryClient.registerTileEntityRenderer(BlockEntityTypes.PIDS_5_TILE_ENTITY, dispatcher -> new RenderRVPIDS<>(dispatcher, PIDSRVTCL.TileEntityBlockPIDS5.MAX_ARRIVALS, 6, 8.25F, 6, 11F, 20, true, false, true, 0x000000));
+		RegistryClient.registerTileEntityRenderer(BlockEntityTypes.PIDS_5_TILE_ENTITY, dispatcher -> new RenderRVPIDS<>(dispatcher, PIDSRVTCL.TileEntityBlockPIDS5.MAX_ARRIVALS, 6, 8.25F, 6, 11F, 20, true, false, true, 0x000000, 0));
 		RegistryClient.registerTileEntityRenderer(BlockEntityTypes.KCR_NAME_SIGN_TILE_ENTITY, RenderKCRStationName::new);
 
 

@@ -48,12 +48,13 @@ public class RenderRVPIDS<T extends BlockEntityMapper> extends BlockEntityRender
 	private final boolean rotate90;
 	private final boolean showPlatforms;
 	private final int textColor;
+	private final float rotation;
 	private List<ClientCache.PlatformRouteDetails> routeData;
 
 	private static final int SWITCH_LANGUAGE_TICKS = 80;
 	private static final int MAX_VIEW_DISTANCE = 16;
 
-	public RenderRVPIDS(BlockEntityRenderDispatcher dispatcher, int maxArrivals, float startX, float startY, float startZ, float maxHeight, int maxWidth, boolean rotate90, boolean renderArrivalNumber, boolean showPlatforms, int textColor) {
+	public RenderRVPIDS(BlockEntityRenderDispatcher dispatcher, int maxArrivals, float startX, float startY, float startZ, float maxHeight, int maxWidth, boolean rotate90, boolean renderArrivalNumber, boolean showPlatforms, int textColor, float rotation) {
 		super(dispatcher);
 		scale = 230 * maxArrivals / maxHeight;
 		totalScaledWidth = scale * maxWidth / 16;
@@ -69,6 +70,7 @@ public class RenderRVPIDS<T extends BlockEntityMapper> extends BlockEntityRender
 		this.rotate90 = rotate90;
 		this.showPlatforms = showPlatforms;
 		this.textColor = textColor;
+		this.rotation = rotation;
 	}
 
 	@Override
@@ -128,6 +130,7 @@ public class RenderRVPIDS<T extends BlockEntityMapper> extends BlockEntityRender
 			matrices.translate(0.5, 0, 0.5);
 			matrices.mulPose(Vector3f.YP.rotationDegrees((rotate90 ? 90 : 0) - facing.toYRot()));
 			matrices.mulPose(Vector3f.ZP.rotationDegrees(180));
+			matrices.mulPose(Vector3f.XP.rotationDegrees(rotation));
 			matrices.translate((startX - 8) / 16, -startY / 16 + 0 * maxHeight / maxArrivals / 16, (startZ - 8) / 16 - SMALL_OFFSET * 2);
 			matrices.scale(1F / scale, 1F / scale, 1F / scale);
 
@@ -206,6 +209,7 @@ public class RenderRVPIDS<T extends BlockEntityMapper> extends BlockEntityRender
 				matrices.translate(0.5, 0, 0.5);
 				matrices.mulPose(Vector3f.YP.rotationDegrees((rotate90 ? 90 : 0) - facing.toYRot()));
 				matrices.mulPose(Vector3f.ZP.rotationDegrees(180));
+				matrices.mulPose(Vector3f.XP.rotationDegrees(rotation));
 				matrices.translate((startX - 8) / 16, -startY / 16 + i * maxHeight / maxArrivals / 16, (startZ - 8) / 16 - SMALL_OFFSET * 2);
 				matrices.scale(1F / (scale / 2), 1F / (scale / 2), 1F / (scale / 2));
 
