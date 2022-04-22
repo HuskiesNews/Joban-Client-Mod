@@ -56,7 +56,8 @@ public class Joban {
 			registerBlockItem.accept("op_button", Blocks.OP_BUTTONS, ItemGroups.MAIN);
 			registerBlockItem.accept("pids_1a", Blocks.PIDS_1A, ItemGroups.PIDS);
 			registerBlockItem.accept("pids_4", Blocks.PIDS_4, ItemGroups.PIDS);
-			registerBlockItem.accept("pids_rv", Blocks.PIDS_RV, ItemGroups.PIDS);
+			registerBlockItem.accept("pids_rv", Blocks.PIDS_RV_TCL, ItemGroups.PIDS);
+			registerBlockItem.accept("pids_rv_sil", Blocks.PIDS_RV_SIL, ItemGroups.PIDS);
 			registerBlockItem.accept("rv_pids_pole", Blocks.RV_PIDS_POLE, ItemGroups.PIDS);
 			registerBlockItem.accept("station_name_tall_stand", Blocks.STATION_NAME_TALL_STAND, ItemGroups.MAIN);
 			registerBlockItem.accept("signal_light_red_1", Blocks.SIGNAL_LIGHT_RED_1, ItemGroups.MAIN);
@@ -87,7 +88,8 @@ public class Joban {
 			registerBlockEntityType.accept("signal_light_inverted_2", BlockEntityTypes.SIGNAL_LIGHT_INVERTED_ENTITY_2);
 			registerBlockEntityType.accept("sound_looper", BlockEntityTypes.SOUND_LOOPER_TILE_ENTITY);
 			registerBlockEntityType.accept("pids_4", BlockEntityTypes.PIDS_1A_TILE_ENTITY);
-			registerBlockEntityType.accept("pids_5", BlockEntityTypes.PIDS_5_TILE_ENTITY);
+			registerBlockEntityType.accept("pids_5", BlockEntityTypes.PIDS_RV_TILE_ENTITY);
+			registerBlockEntityType.accept("pids_rv_sil", BlockEntityTypes.PIDS_RV_SIL_TILE_ENTITY);
 			registerBlockEntityType.accept("pids_4a", BlockEntityTypes.PIDS_4_TILE_ENTITY);
 			registerBlockEntityType.accept("kcr_name_sign", BlockEntityTypes.KCR_NAME_SIGN_TILE_ENTITY);
 		} catch (NoClassDefFoundError error) {

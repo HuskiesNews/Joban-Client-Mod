@@ -45,7 +45,8 @@ public interface Blocks {
 	Block OP_BUTTONS = new OpOnlyButton(BlockBehaviour.Properties.of(Material.METAL).strength(4.0f).lightLevel(state -> 15).noOcclusion());
 	Block PIDS_1A = new PIDS1A();
 	Block PIDS_4 = new PIDS4();
-	Block PIDS_RV = new PIDSRVTCL();
+	Block PIDS_RV_TCL = new PIDSRV();
+	Block PIDS_RV_SIL = new PIDSRVSIL();
 	Block MODEL_E44 = new ModelE44(BlockBehaviour.Properties.of(Material.METAL).strength(0.5f).noOcclusion());
 	Block RV_PIDS_POLE = new RVPIDSPole(BlockBehaviour.Properties.of(Material.METAL).strength(0.5f).noOcclusion());
 	Block STATION_NAME_TALL_STAND = new StationNameTallStand();

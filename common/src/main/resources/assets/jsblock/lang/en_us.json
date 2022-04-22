@@ -33,6 +33,7 @@
   "block.jsblock.pids_1a":"Passenger Information Display System",
   "block.jsblock.pids_4":"Old Tsueng Kwan O Line PIDS",
   "block.jsblock.pids_rv":"Railway Vision PIDS",
+  "block.jsblock.pids_rv_sil":"Railway Vision PIDS (SIL)",
   "block.jsblock.rv_pids_pole":"Railway Vision PIDS Pole",
   "block.jsblock.signal_light_red_1":"Signal Light (Red, Bottom)",
   "block.jsblock.signal_light_red_2":"Signal Light (Red, Top)",

@@ -31,6 +31,7 @@
   "block.jsblock.light_2":"射燈",
   "block.jsblock.pids_1a":"乘客資訊顯示屏",
   "block.jsblock.pids_rv":"鐵路願景乘客資訊顯示屏",
+  "block.jsblock.pids_rv_sil":"鐵路願景乘客資訊顯示屏 (南港島綫)",
   "block.jsblock.rv_pids_pole":"鐵路願景乘客資訊顯示屏柱",
   "block.jsblock.op_button":"認可人員掣",
   "block.jsblock.signal_light_red_1":"信號燈 (紅色在下)",

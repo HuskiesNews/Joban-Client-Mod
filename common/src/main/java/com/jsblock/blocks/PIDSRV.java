@@ -10,7 +10,7 @@ import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
-public class PIDSRVTCL extends PIDSRVBase {
+public class PIDSRV extends PIDSRVBase {
 
 	@Override
 	public VoxelShape getShape(BlockState state, BlockGetter blockGetter, BlockPos pos, CollisionContext collisionContext) {
@@ -21,15 +21,15 @@ public class PIDSRVTCL extends PIDSRVBase {
 
 	@Override
 	public BlockEntityMapper createBlockEntity(BlockPos pos, BlockState state) {
-		return new TileEntityBlockPIDS5(pos, state);
+		return new TileEntityBlockPIDSRV(pos, state);
 	}
 
-	public static class TileEntityBlockPIDS5 extends TileEntityBlockPIDSBase {
+	public static class TileEntityBlockPIDSRV extends TileEntityBlockPIDSBase {
 
 		public static final int MAX_ARRIVALS = 4;
 
-		public TileEntityBlockPIDS5(BlockPos pos, BlockState state) {
-			super(BlockEntityTypes.PIDS_5_TILE_ENTITY, pos, state);
+		public TileEntityBlockPIDSRV(BlockPos pos, BlockState state) {
+			super(BlockEntityTypes.PIDS_RV_TILE_ENTITY, pos, state);
 		}
 
 		@Override

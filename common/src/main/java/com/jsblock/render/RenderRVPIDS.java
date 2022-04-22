@@ -54,7 +54,7 @@ public class RenderRVPIDS<T extends BlockEntityMapper> extends BlockEntityRender
 	private static final int SWITCH_LANGUAGE_TICKS = 80;
 	private static final int MAX_VIEW_DISTANCE = 16;
 
-	public RenderRVPIDS(BlockEntityRenderDispatcher dispatcher, int maxArrivals, float startX, float startY, float startZ, float maxHeight, int maxWidth, boolean rotate90, boolean renderArrivalNumber, boolean showPlatforms, int textColor, float rotation) {
+	public RenderRVPIDS(BlockEntityRenderDispatcher dispatcher, int maxArrivals, float startX, float startY, float startZ, float maxHeight, float maxWidth, boolean rotate90, boolean renderArrivalNumber, boolean showPlatforms, int textColor, float rotation) {
 		super(dispatcher);
 		scale = 230 * maxArrivals / maxHeight;
 		totalScaledWidth = scale * maxWidth / 16;
@@ -136,7 +136,7 @@ public class RenderRVPIDS<T extends BlockEntityMapper> extends BlockEntityRender
 
 			/* If the player is too far away from the PIDS that not even the train renders */
 			if (RenderTrains.shouldNotRender(pos, Math.min(MAX_VIEW_DISTANCE, RenderTrains.maxTrainRenderDistance), rotate90 ? null : facing)) {
-				final VertexConsumer vertexConsumerPIDSBG = vertexConsumers.getBuffer(MoreRenderLayers.getLight(new ResourceLocation("jsblock:textures/block/pids_5.png"), false));
+				final VertexConsumer vertexConsumerPIDSBG = vertexConsumers.getBuffer(MoreRenderLayers.getLight(new ResourceLocation("jsblock:textures/block/pids_rv_screen.png"), false));
 				matrices.translate(0, -9.5, 0.01);
 				drawTexture(matrices, vertexConsumerPIDSBG, startX - 26F / 2, -1.5F, 119F, 65.8F, facing, ARGB_WHITE, MAX_LIGHT_GLOWING);
 				matrices.popPose();
@@ -165,7 +165,7 @@ public class RenderRVPIDS<T extends BlockEntityMapper> extends BlockEntityRender
 			matrices.popPose();
 
 			/* Render PIDS Background */
-			final VertexConsumer vertexConsumerPIDSBG = vertexConsumers.getBuffer(MoreRenderLayers.getLight(new ResourceLocation("jsblock:textures/block/pids_5.png"), false));
+			final VertexConsumer vertexConsumerPIDSBG = vertexConsumers.getBuffer(MoreRenderLayers.getLight(new ResourceLocation("jsblock:textures/block/pids_rv_screen.png"), false));
 			matrices.translate(0, -9.5, 0.01);
 			drawTexture(matrices, vertexConsumerPIDSBG, startX - 26F / 2, -1.5F, 119F, 65.8F, facing, ARGB_WHITE, MAX_LIGHT_GLOWING);
 			matrices.popPose();
