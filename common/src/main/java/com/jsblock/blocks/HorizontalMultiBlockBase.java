@@ -4,6 +4,7 @@ import mtr.block.IBlock;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.Level;
@@ -51,6 +52,14 @@ public abstract class HorizontalMultiBlockBase extends HorizontalDirectionalBloc
 			world.updateNeighborsAt(pos, Blocks.AIR);
 			state.updateNeighbourShapes(world, pos, 3);
 		}
+	}
+
+	@Override
+	public void playerWillDestroy(Level world, BlockPos pos, BlockState state, Player player) {
+		if (!IBlock.getStatePropertySafe(state, LEFT)) {
+			IBlock.onBreakCreative(world, player, pos.relative(IBlock.getStatePropertySafe(state, FACING).getClockWise()));
+		}
+		super.playerWillDestroy(world, pos, state, player);
 	}
 
 
