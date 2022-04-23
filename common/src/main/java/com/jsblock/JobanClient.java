@@ -1,10 +1,8 @@
 package com.jsblock;
 
-import com.jsblock.blocks.PIDS1A;
-import com.jsblock.blocks.PIDS4;
-import com.jsblock.blocks.PIDSRVSIL;
-import com.jsblock.blocks.PIDSRV;
+import com.jsblock.blocks.*;
 import com.jsblock.config.ClientConfig;
+import com.jsblock.gui.RVPIDSConfigScreen;
 import com.jsblock.gui.TicketMachineScreen;
 import com.jsblock.packets.Client;
 import com.jsblock.packets.IPacketJoban;
@@ -13,6 +11,7 @@ import mtr.RegistryClient;
 import mtr.mappings.UtilitiesClient;
 import mtr.packet.IPacket;
 import mtr.render.RenderPIDS;
+import mtr.screen.PIDSConfigScreen;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.core.BlockPos;
@@ -70,6 +69,25 @@ public class JobanClient {
 			final Minecraft minecraft = Minecraft.getInstance();
 			minecraft.execute(() -> UtilitiesClient.setScreen(minecraft, new TicketMachineScreen(balance)));
 		});
+
+// Does not work reliably?
+//		RegistryClient.registerNetworkReceiver(IPacket.PACKET_OPEN_PIDS_CONFIG_SCREEN, packet -> {
+//			final BlockPos pos1 = packet.readBlockPos();
+//			final BlockPos pos2 = packet.readBlockPos();
+//			final Minecraft minecraft = Minecraft.getInstance();
+//			final int maxArrivals = packet.readInt();
+//			if(minecraft.level.getBlockEntity(pos1) instanceof PIDSRVBase.TileEntityBlockPIDSBase) {
+//				minecraft.execute(() -> {
+//					if (!(minecraft.screen instanceof RVPIDSConfigScreen)) {
+//						UtilitiesClient.setScreen(minecraft, new RVPIDSConfigScreen(pos1, pos2, maxArrivals));
+//					}
+//				});
+//			} else {
+//				if (!(minecraft.screen instanceof PIDSConfigScreen)) {
+//					UtilitiesClient.setScreen(minecraft, new PIDSConfigScreen(pos1, pos2, maxArrivals));
+//				}
+//			}
+//		});
 
 		/* Register Client Packet with the packet id, and points to the corresponding action in the client */
 		RegistryClient.registerNetworkReceiver(IPacketJoban.PACKET_OPEN_SOUND_LOOPER_SCREEN, packet -> {

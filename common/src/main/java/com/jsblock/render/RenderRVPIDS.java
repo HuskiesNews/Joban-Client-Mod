@@ -1,5 +1,6 @@
 package com.jsblock.render;
 
+import com.jsblock.blocks.PIDSRVBase;
 import com.jsblock.config.ClientConfig;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.Tesselator;
@@ -46,7 +47,6 @@ public class RenderRVPIDS<T extends BlockEntityMapper> extends BlockEntityRender
 	private final float startY;
 	private final float startZ;
 	private final boolean rotate90;
-	private final boolean showPlatforms;
 	private final int textColor;
 	private final float rotation;
 	private List<ClientCache.PlatformRouteDetails> routeData;
@@ -54,13 +54,13 @@ public class RenderRVPIDS<T extends BlockEntityMapper> extends BlockEntityRender
 	private static final int SWITCH_LANGUAGE_TICKS = 80;
 	private static final int MAX_VIEW_DISTANCE = 16;
 
-	public RenderRVPIDS(BlockEntityRenderDispatcher dispatcher, int maxArrivals, float startX, float startY, float startZ, float maxHeight, float maxWidth, boolean rotate90, boolean renderArrivalNumber, boolean showPlatforms, int textColor, float rotation) {
+	public RenderRVPIDS(BlockEntityRenderDispatcher dispatcher, int maxArrivals, float startX, float startY, float startZ, float maxHeight, float maxWidth, boolean rotate90, boolean renderArrivalNumber, boolean hidePlatforms, int textColor, float rotation) {
 		super(dispatcher);
 		scale = 230 * maxArrivals / maxHeight;
 		totalScaledWidth = scale * maxWidth / 16;
 		destinationStart = renderArrivalNumber ? scale * 2 / 16 : 0;
 		destinationMaxWidth = totalScaledWidth * 0.3F;
-		platformMaxWidth = showPlatforms ? scale * 2F / 16 : 0;
+		platformMaxWidth = scale * 2F / 16;
 		arrivalMaxWidth = totalScaledWidth - destinationStart - destinationMaxWidth - platformMaxWidth;
 		this.maxArrivals = maxArrivals;
 		this.maxHeight = maxHeight;
@@ -68,7 +68,6 @@ public class RenderRVPIDS<T extends BlockEntityMapper> extends BlockEntityRender
 		this.startY = startY;
 		this.startZ = startZ;
 		this.rotate90 = rotate90;
-		this.showPlatforms = showPlatforms;
 		this.textColor = textColor;
 		this.rotation = rotation;
 	}
@@ -85,6 +84,7 @@ public class RenderRVPIDS<T extends BlockEntityMapper> extends BlockEntityRender
 
 		final String[] customMessages = new String[maxArrivals];
 		final boolean[] hideArrival = new boolean[maxArrivals];
+		final boolean hidePlatforms;
 		for (int i = 0; i < maxArrivals; i++) {
 			if (entity instanceof BlockPIDSBase.TileEntityBlockPIDSBase) {
 				customMessages[i] = ((BlockPIDSBase.TileEntityBlockPIDSBase) entity).getMessage(i);
@@ -92,6 +92,12 @@ public class RenderRVPIDS<T extends BlockEntityMapper> extends BlockEntityRender
 			} else {
 				customMessages[i] = "";
 			}
+		}
+
+		if(entity instanceof PIDSRVBase.TileEntityBlockPIDSBase) {
+			hidePlatforms = ((PIDSRVBase.TileEntityBlockPIDSBase) entity).getHidePlatformNumber();
+		} else {
+			hidePlatforms = false;
 		}
 
 		try {
@@ -227,7 +233,7 @@ public class RenderRVPIDS<T extends BlockEntityMapper> extends BlockEntityRender
 					final Component carText = new TranslatableComponent(isCJK ? "gui.mtr.arrival_car_cjk" : "gui.mtr.arrival_car", currentSchedule.trainCars);
 
 					/* PLATFORM */
-					if (showPlatforms) {
+					if (!hidePlatforms) {
 						final VertexConsumer vertexConsumerStationCircle = vertexConsumers.getBuffer(MoreRenderLayers.getLight(new ResourceLocation("mtr:textures/sign/circle.png"), true));
 
 						final Platform platform = ClientData.DATA_CACHE.platformIdMap.get(platformId);
@@ -242,7 +248,6 @@ public class RenderRVPIDS<T extends BlockEntityMapper> extends BlockEntityRender
 							matrices.pushPose();
 							matrices.translate(x + 1.95F, 2.2F, -0.05);
 							matrices.scale(0.7F, 0.7F, 0.7F);
-
 							renderTextWithOffset(matrices, textRenderer, immediate, platform.name, 0, 0, 4, 3, 0xFFFFFF, MAX_LIGHT_GLOWING, HorizontalAlignment.CENTER, VerticalAlignment.CENTER, true, ClientConfig.getRVPIDSChinFont(), ClientConfig.getRVPIDSEngFont());
 							matrices.popPose();
 						}

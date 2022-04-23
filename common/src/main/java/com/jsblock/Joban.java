@@ -11,11 +11,12 @@ import org.apache.logging.log4j.Logger;
 
 import java.util.function.BiConsumer;
 
+import static com.jsblock.packets.IPacketJoban.PACKET_UPDATE_PIDS_CONFIG;
 import static com.jsblock.packets.IPacketJoban.PACKET_UPDATE_SOUND_LOOPER;
 
 public class Joban {
 	public static final String MOD_ID = "jsblock";
-	public static final String VERSION = "1.0.7";
+	public static final String VERSION = "1.1.0";
 	public static final Logger LOGGER = LogManager.getLogger("Joban Client");
 
 	public static void init(
@@ -106,6 +107,7 @@ public class Joban {
 		}
 
 		Registry.registerNetworkReceiver(PACKET_UPDATE_SOUND_LOOPER, Server::receiveSoundLooperC2S);
+		Registry.registerNetworkReceiver(PACKET_UPDATE_PIDS_CONFIG, Server::receiveRVPIDSMessageC2S);
 	}
 
 	@FunctionalInterface

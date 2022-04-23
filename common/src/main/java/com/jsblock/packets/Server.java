@@ -1,8 +1,10 @@
 package com.jsblock.packets;
 
+import com.jsblock.blocks.PIDSRVBase;
 import com.jsblock.blocks.SoundLooper;
 import io.netty.buffer.Unpooled;
 import mtr.Registry;
+import mtr.data.SerializedDataBase;
 import mtr.mappings.Utilities;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.FriendlyByteBuf;
@@ -27,6 +29,30 @@ public class Server {
 			// TODO: Merge code from server tickets mod
 			ContainerHelper.clearOrCountMatchingItems(Utilities.getInventory(player), itemStack -> itemStack.getItem() == Items.EMERALD, emeralds, false);
 			world.playSound(null, player.blockPosition(), SoundEvents.EXPERIENCE_ORB_PICKUP, SoundSource.BLOCKS, 1, 1);
+		});
+	}
+
+	public static void receiveRVPIDSMessageC2S(MinecraftServer minecraftServer, ServerPlayer player, FriendlyByteBuf packet) {
+		final BlockPos pos1 = packet.readBlockPos();
+		final BlockPos pos2 = packet.readBlockPos();
+		final int maxArrivals = packet.readInt();
+		final String[] messages = new String[maxArrivals];
+		final boolean[] hideArrivals = new boolean[maxArrivals];
+		for (int i = 0; i < maxArrivals; i++) {
+			messages[i] = packet.readUtf(SerializedDataBase.PACKET_STRING_READ_LENGTH);
+			hideArrivals[i] = packet.readBoolean();
+		}
+		final boolean hidePlatformNumber = packet.readBoolean();
+		System.out.println(hidePlatformNumber + " Server");
+		minecraftServer.execute(() -> {
+			final BlockEntity entity1 = player.level.getBlockEntity(pos1);
+			if (entity1 instanceof PIDSRVBase.TileEntityBlockPIDSBase) {
+				((PIDSRVBase.TileEntityBlockPIDSBase) entity1).setData(messages, hideArrivals, hidePlatformNumber);
+			}
+			final BlockEntity entity2 = player.level.getBlockEntity(pos2);
+			if (entity2 instanceof PIDSRVBase.TileEntityBlockPIDSBase) {
+				((PIDSRVBase.TileEntityBlockPIDSBase) entity2).setData(messages, hideArrivals, hidePlatformNumber);
+			}
 		});
 	}
 

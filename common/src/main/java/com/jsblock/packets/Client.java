@@ -20,6 +20,22 @@ public class Client {
 		RegistryClient.sendToServer(new ResourceLocation("packet_buy_tickets"), packet);
 	}
 
+	public static void sendRVPIDSConfigC2S(BlockPos pos1, BlockPos pos2, String[] messages, boolean[] hideArrival, boolean hidePlatformNumber) {
+		FriendlyByteBuf packet = new FriendlyByteBuf(Unpooled.buffer());
+		packet.writeBlockPos(pos1);
+		packet.writeBlockPos(pos2);
+		packet.writeInt(messages.length);
+		for(int i = 0; i < messages.length; ++i) {
+			packet.writeUtf(messages[i]);
+			packet.writeBoolean(hideArrival[i]);
+		}
+
+		packet.writeBoolean(hidePlatformNumber);
+		System.out.println(hidePlatformNumber);
+
+		RegistryClient.sendToServer(IPacketJoban.PACKET_UPDATE_PIDS_CONFIG, packet);
+	}
+
 	public static void openSoundLooperScreenS2C(Minecraft minecraftClient, BlockPos pos) {
 		minecraftClient.execute(() -> {
 			if (minecraftClient.level != null) {
