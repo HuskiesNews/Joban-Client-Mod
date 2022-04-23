@@ -70,24 +70,20 @@ public class JobanClient {
 			minecraft.execute(() -> UtilitiesClient.setScreen(minecraft, new TicketMachineScreen(balance)));
 		});
 
-// Does not work reliably?
-//		RegistryClient.registerNetworkReceiver(IPacket.PACKET_OPEN_PIDS_CONFIG_SCREEN, packet -> {
-//			final BlockPos pos1 = packet.readBlockPos();
-//			final BlockPos pos2 = packet.readBlockPos();
-//			final Minecraft minecraft = Minecraft.getInstance();
-//			final int maxArrivals = packet.readInt();
-//			if(minecraft.level.getBlockEntity(pos1) instanceof PIDSRVBase.TileEntityBlockPIDSBase) {
-//				minecraft.execute(() -> {
-//					if (!(minecraft.screen instanceof RVPIDSConfigScreen)) {
-//						UtilitiesClient.setScreen(minecraft, new RVPIDSConfigScreen(pos1, pos2, maxArrivals));
-//					}
-//				});
-//			} else {
-//				if (!(minecraft.screen instanceof PIDSConfigScreen)) {
-//					UtilitiesClient.setScreen(minecraft, new PIDSConfigScreen(pos1, pos2, maxArrivals));
-//				}
-//			}
-//		});
+		RegistryClient.registerNetworkReceiver(IPacketJoban.PACKET_OPEN_RV_PIDS_CONFIG_SCREEN, packet -> {
+			final BlockPos pos1 = packet.readBlockPos();
+			final BlockPos pos2 = packet.readBlockPos();
+			final Minecraft minecraft = Minecraft.getInstance();
+			final int maxArrivals = packet.readInt();
+
+			if(minecraft.level.getBlockEntity(pos1) instanceof PIDSRVBase.TileEntityBlockPIDSBase) {
+				minecraft.execute(() -> {
+					if (!(minecraft.screen instanceof RVPIDSConfigScreen)) {
+						UtilitiesClient.setScreen(minecraft, new RVPIDSConfigScreen(pos1, pos2, maxArrivals));
+					}
+				});
+			}
+		});
 
 		/* Register Client Packet with the packet id, and points to the corresponding action in the client */
 		RegistryClient.registerNetworkReceiver(IPacketJoban.PACKET_OPEN_SOUND_LOOPER_SCREEN, packet -> {

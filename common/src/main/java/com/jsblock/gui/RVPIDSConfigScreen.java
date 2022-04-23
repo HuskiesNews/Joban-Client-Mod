@@ -3,12 +3,10 @@ package com.jsblock.gui;
 import com.jsblock.blocks.PIDSRVBase;
 import com.jsblock.packets.Client;
 import com.mojang.blaze3d.vertex.PoseStack;
-import mtr.block.BlockPIDSBase;
 import mtr.client.IDrawing;
 import mtr.data.IGui;
 import mtr.mappings.ScreenMapper;
 import mtr.packet.IPacket;
-import mtr.packet.PacketTrainDataGuiClient;
 import mtr.screen.WidgetBetterCheckbox;
 import mtr.screen.WidgetBetterTextField;
 import net.minecraft.client.Minecraft;
@@ -31,7 +29,7 @@ public class RVPIDSConfigScreen extends ScreenMapper implements IGui, IPacket {
     private final WidgetBetterCheckbox buttonsHidePlatformNumbers;
     private final Component messageText = new TranslatableComponent("gui.mtr.pids_message");
     private final Component hideArrivalText = new TranslatableComponent("gui.mtr.hide_arrival");
-    private final Component hidePlatformNumberText = new TranslatableComponent("gui.mtr.hide_platform_number");
+    private final Component hidePlatformNumberText = new TranslatableComponent("gui.jsblock.hide_platform_number");
 
     private static final int MAX_MESSAGE_LENGTH = 2048;
 
@@ -106,6 +104,7 @@ public class RVPIDSConfigScreen extends ScreenMapper implements IGui, IPacket {
             messages[i] = textFieldMessages[i].getValue();
             hideArrival[i] = buttonsHideArrival[i].selected();
         }
+        hidePlatformNumber = buttonsHidePlatformNumbers.selected();
         Client.sendRVPIDSConfigC2S(pos1, pos2, messages, hideArrival, hidePlatformNumber);
         super.onClose();
     }

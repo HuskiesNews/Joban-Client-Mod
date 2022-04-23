@@ -8,18 +8,11 @@ import mtr.mappings.UtilitiesClient;
 import net.minecraft.client.Minecraft;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.FriendlyByteBuf;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.entity.BlockEntity;
 
 import static com.jsblock.packets.IPacketJoban.PACKET_UPDATE_SOUND_LOOPER;
 
 public class Client {
-	public static void buyTicketC2S(int type) {
-		final FriendlyByteBuf packet = new FriendlyByteBuf(Unpooled.buffer());
-		packet.writeInt(type);
-		RegistryClient.sendToServer(new ResourceLocation("packet_buy_tickets"), packet);
-	}
-
 	public static void sendRVPIDSConfigC2S(BlockPos pos1, BlockPos pos2, String[] messages, boolean[] hideArrival, boolean hidePlatformNumber) {
 		FriendlyByteBuf packet = new FriendlyByteBuf(Unpooled.buffer());
 		packet.writeBlockPos(pos1);
@@ -31,9 +24,7 @@ public class Client {
 		}
 
 		packet.writeBoolean(hidePlatformNumber);
-		System.out.println(hidePlatformNumber);
-
-		RegistryClient.sendToServer(IPacketJoban.PACKET_UPDATE_PIDS_CONFIG, packet);
+		RegistryClient.sendToServer(IPacketJoban.PACKET_UPDATE_RV_PIDS_CONFIG, packet);
 	}
 
 	public static void openSoundLooperScreenS2C(Minecraft minecraftClient, BlockPos pos) {

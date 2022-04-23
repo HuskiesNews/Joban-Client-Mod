@@ -17,6 +17,7 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 
+import static com.jsblock.packets.IPacketJoban.PACKET_OPEN_RV_PIDS_CONFIG_SCREEN;
 import static com.jsblock.packets.IPacketJoban.PACKET_OPEN_SOUND_LOOPER_SCREEN;
 
 public class Server {
@@ -26,7 +27,6 @@ public class Server {
 
 		minecraftServer.execute(() -> {
 			final Level world = player.level;
-			// TODO: Merge code from server tickets mod
 			ContainerHelper.clearOrCountMatchingItems(Utilities.getInventory(player), itemStack -> itemStack.getItem() == Items.EMERALD, emeralds, false);
 			world.playSound(null, player.blockPosition(), SoundEvents.EXPERIENCE_ORB_PICKUP, SoundSource.BLOCKS, 1, 1);
 		});
@@ -43,7 +43,6 @@ public class Server {
 			hideArrivals[i] = packet.readBoolean();
 		}
 		final boolean hidePlatformNumber = packet.readBoolean();
-		System.out.println(hidePlatformNumber + " Server");
 		minecraftServer.execute(() -> {
 			final BlockEntity entity1 = player.level.getBlockEntity(pos1);
 			if (entity1 instanceof PIDSRVBase.TileEntityBlockPIDSBase) {
@@ -75,5 +74,13 @@ public class Server {
 				((SoundLooper.TileEntitySoundLooper) entity).setData(soundId, soundCategory, interval, volume, needRedstone);
 			}
 		});
+	}
+
+	public static void openRVPIDSConfigScreenS2C(ServerPlayer player, BlockPos pos1, BlockPos pos2, int maxArrivals) {
+		final FriendlyByteBuf packet = new FriendlyByteBuf(Unpooled.buffer());
+		packet.writeBlockPos(pos1);
+		packet.writeBlockPos(pos2);
+		packet.writeInt(maxArrivals);
+		Registry.sendToPlayer(player, PACKET_OPEN_RV_PIDS_CONFIG_SCREEN, packet);
 	}
 }

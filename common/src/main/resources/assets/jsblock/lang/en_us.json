@@ -62,6 +62,7 @@
   "gui.jsblock.config.kcrsign_chin_font": "Font path for the KCR Signs (Chinese)",
   "gui.jsblock.config.kcrsign_eng_font": "Font path for the KCR Signs (English)",
   "gui.jsblock.config.deptimer_font": "Font path for the Departure Timer Countdown",
+  "gui.jsblock.hide_platform_number": "Hide Platform Number",
   "gui.jsblock.looper": "Sound Looper/Repeater",
   "gui.jsblock.looper.need_redstone": "Require Redstone Power",
   "gui.jsblock.looper.sound_id": "The identifier for the sound",

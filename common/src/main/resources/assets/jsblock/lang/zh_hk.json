@@ -62,6 +62,7 @@
   "gui.jsblock.config.kcrsign_chin_font": "九鐵站名牌（中文字型）路徑",
   "gui.jsblock.config.kcrsign_eng_font": "九鐵站名牌（英文字型）路徑",
   "gui.jsblock.config.deptimer_font": "發車倒數器 字型路徑",
+  "gui.jsblock.hide_platform_number": "隱藏月台號碼",
   "gui.jsblock.looper": "聲音循環器",
   "gui.jsblock.looper.need_redstone": "需要紅石信號",
   "gui.jsblock.looper.sound_id": "聲音ID",

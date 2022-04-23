@@ -11,7 +11,7 @@ import org.apache.logging.log4j.Logger;
 
 import java.util.function.BiConsumer;
 
-import static com.jsblock.packets.IPacketJoban.PACKET_UPDATE_PIDS_CONFIG;
+import static com.jsblock.packets.IPacketJoban.PACKET_UPDATE_RV_PIDS_CONFIG;
 import static com.jsblock.packets.IPacketJoban.PACKET_UPDATE_SOUND_LOOPER;
 
 public class Joban {
@@ -107,7 +107,7 @@ public class Joban {
 		}
 
 		Registry.registerNetworkReceiver(PACKET_UPDATE_SOUND_LOOPER, Server::receiveSoundLooperC2S);
-		Registry.registerNetworkReceiver(PACKET_UPDATE_PIDS_CONFIG, Server::receiveRVPIDSMessageC2S);
+		Registry.registerNetworkReceiver(PACKET_UPDATE_RV_PIDS_CONFIG, Server::receiveRVPIDSMessageC2S);
 	}
 
 	@FunctionalInterface
