@@ -24,46 +24,46 @@ public class JobanClient {
 			Joban.LOGGER.info("[Joban Client] Rendering for all JCM block is disabled.");
 		}
 		/* Allow transparent texture for the block */
-		RegistryClient.registerBlockRenderType(RenderType.cutout(), Blocks.AUTO_IRON_DOOR);
-		RegistryClient.registerBlockRenderType(RenderType.cutout(), Blocks.BUFFERSTOP_1);
-		RegistryClient.registerBlockRenderType(RenderType.cutout(), Blocks.CEILING_1);
-		RegistryClient.registerBlockRenderType(RenderType.cutout(), Blocks.ENQUIRY_MACHINE_1);
-		RegistryClient.registerBlockRenderType(RenderType.cutout(), Blocks.HELPLINE_1);
-		RegistryClient.registerBlockRenderType(RenderType.cutout(), Blocks.HELPLINE_2);
-		RegistryClient.registerBlockRenderType(RenderType.cutout(), Blocks.HELPLINE_3);
-		RegistryClient.registerBlockRenderType(RenderType.cutout(), Blocks.HELPLINE_4);
-		RegistryClient.registerBlockRenderType(RenderType.cutout(), Blocks.HELPLINE_5);
-		RegistryClient.registerBlockRenderType(RenderType.cutout(), Blocks.KCR_EMG_STOP_SIGN);
-		RegistryClient.registerBlockRenderType(RenderType.cutout(), Blocks.KCR_NAME_SIGN);
-		RegistryClient.registerBlockRenderType(RenderType.cutout(), Blocks.LIGHT_2);
-		RegistryClient.registerBlockRenderType(RenderType.cutout(), Blocks.PIDS_RV_SIL);
-		RegistryClient.registerBlockRenderType(RenderType.cutout(), Blocks.STATION_NAME_TALL_STAND);
-		RegistryClient.registerBlockRenderType(RenderType.cutout(), Blocks.SUBSIDY_MACHINE_1);
-		RegistryClient.registerBlockRenderType(RenderType.cutout(), Blocks.TRESPASS_SIGN_1);
-		RegistryClient.registerBlockRenderType(RenderType.cutout(), Blocks.TICKET_BARRIER_1_ENTRANCE);
-		RegistryClient.registerBlockRenderType(RenderType.cutout(), Blocks.TICKET_BARRIER_1_EXIT);
-		RegistryClient.registerBlockRenderType(RenderType.cutout(), Blocks.TICKET_BARRIER_1_DECOR);
-		RegistryClient.registerBlockRenderType(RenderType.cutout(), Blocks.WATER_MACHINE_1);
+		RegistryClient.registerBlockRenderType(RenderType.cutout(), Blocks.AUTO_IRON_DOOR.get());
+		RegistryClient.registerBlockRenderType(RenderType.cutout(), Blocks.BUFFERSTOP_1.get());
+		RegistryClient.registerBlockRenderType(RenderType.cutout(), Blocks.CEILING_1.get());
+		RegistryClient.registerBlockRenderType(RenderType.cutout(), Blocks.ENQUIRY_MACHINE_1.get());
+		RegistryClient.registerBlockRenderType(RenderType.cutout(), Blocks.HELPLINE_1.get());
+		RegistryClient.registerBlockRenderType(RenderType.cutout(), Blocks.HELPLINE_2.get());
+		RegistryClient.registerBlockRenderType(RenderType.cutout(), Blocks.HELPLINE_3.get());
+		RegistryClient.registerBlockRenderType(RenderType.cutout(), Blocks.HELPLINE_4.get());
+		RegistryClient.registerBlockRenderType(RenderType.cutout(), Blocks.HELPLINE_5.get());
+		RegistryClient.registerBlockRenderType(RenderType.cutout(), Blocks.KCR_EMG_STOP_SIGN.get());
+		RegistryClient.registerBlockRenderType(RenderType.cutout(), Blocks.KCR_NAME_SIGN.get());
+		RegistryClient.registerBlockRenderType(RenderType.cutout(), Blocks.LIGHT_2.get());
+		RegistryClient.registerBlockRenderType(RenderType.cutout(), Blocks.PIDS_RV_SIL.get());
+		RegistryClient.registerBlockRenderType(RenderType.cutout(), Blocks.STATION_NAME_TALL_STAND.get());
+		RegistryClient.registerBlockRenderType(RenderType.cutout(), Blocks.SUBSIDY_MACHINE_1.get());
+		RegistryClient.registerBlockRenderType(RenderType.cutout(), Blocks.TRESPASS_SIGN_1.get());
+		RegistryClient.registerBlockRenderType(RenderType.cutout(), Blocks.TICKET_BARRIER_1_ENTRANCE.get());
+		RegistryClient.registerBlockRenderType(RenderType.cutout(), Blocks.TICKET_BARRIER_1_EXIT.get());
+		RegistryClient.registerBlockRenderType(RenderType.cutout(), Blocks.TICKET_BARRIER_1_DECOR.get());
+		RegistryClient.registerBlockRenderType(RenderType.cutout(), Blocks.WATER_MACHINE_1.get());
 
 		/* Register entity that requires to be rendered, and pointing to the corresponding method */
-		RegistryClient.registerTileEntityRenderer(BlockEntityTypes.DEPARTURE_TIMER_TILE_ENTITY, RenderDepartureTimer::new);
+		RegistryClient.registerTileEntityRenderer(BlockEntityTypes.DEPARTURE_TIMER_TILE_ENTITY.get(), RenderDepartureTimer::new);
 		/* Sprite does not rotate reliably */
 		//RegistryClient.registerTileEntityRenderer(BlockEntityTypes.LIGHT_BLOCK_TILE_ENTITY, RenderLightBlockParticle::new);
-		RegistryClient.registerTileEntityRenderer(BlockEntityTypes.SIGNAL_LIGHT_RED_ENTITY_1, dispatcher -> new RenderConstantSignalLight<>(dispatcher, true, 0xFFFF0000, false));
-		RegistryClient.registerTileEntityRenderer(BlockEntityTypes.SIGNAL_LIGHT_RED_ENTITY_2, dispatcher -> new RenderConstantSignalLight<>(dispatcher, true, 0xFFFF0000, true));
-		RegistryClient.registerTileEntityRenderer(BlockEntityTypes.SIGNAL_LIGHT_BLUE_ENTITY, dispatcher -> new RenderConstantSignalLight<>(dispatcher, true, 0xFF0000FF, false));
-		RegistryClient.registerTileEntityRenderer(BlockEntityTypes.SIGNAL_LIGHT_GREEN_ENTITY, dispatcher -> new RenderConstantSignalLight<>(dispatcher, true, 0xFF00FF00, false));
-		RegistryClient.registerTileEntityRenderer(BlockEntityTypes.SIGNAL_LIGHT_INVERTED_ENTITY_1, dispatcher -> new RenderSignalLight<>(dispatcher, true, true, true, 0xFF0000FF));
-		RegistryClient.registerTileEntityRenderer(BlockEntityTypes.SIGNAL_LIGHT_INVERTED_ENTITY_2, dispatcher -> new RenderSignalLight<>(dispatcher, true, true, false, 0xFF00FF00));
-		RegistryClient.registerTileEntityRenderer(BlockEntityTypes.STATION_NAME_TALL_STAND_TILE_ENTITY, RenderStationNameTall::new);
-		RegistryClient.registerTileEntityRenderer(BlockEntityTypes.PIDS_1A_TILE_ENTITY, dispatcher -> new RenderPIDS<>(dispatcher, PIDS1A.TileEntityBlockPIDS1A.MAX_ARRIVALS, 1, 9.5F, 6, 8.8F, 30, true, false, false, 0xFF9900, 0xFF9900));
-		RegistryClient.registerTileEntityRenderer(BlockEntityTypes.PIDS_4_TILE_ENTITY, dispatcher -> new RenderLCDPIDS<>(dispatcher, PIDS4.TileEntityBlockPIDS4.MAX_ARRIVALS, 5.7F, 9.5F, 6, 11.5F, 21, true, false, false, 0xEFE29E, 1.25F, false, "pids_tkl"));
-		RegistryClient.registerTileEntityRenderer(BlockEntityTypes.PIDS_RV_TILE_ENTITY, dispatcher -> new RenderRVPIDS<>(dispatcher, PIDSRV.TileEntityBlockPIDSRV.MAX_ARRIVALS, 6, 8.25F, 6, 11F, 20, true, false, true, 0x000000, 0));
-		RegistryClient.registerTileEntityRenderer(BlockEntityTypes.PIDS_RV_SIL_TILE_ENTITY, dispatcher -> new RenderRVPIDS<>(dispatcher, PIDSRVSIL.TileEntityBlockPIDSSIL.MAX_ARRIVALS, 6F, 11.7F, 2.45F, 11F, 20.7F, true, false, true, 0x000000, 22.5F));
-		RegistryClient.registerTileEntityRenderer(BlockEntityTypes.KCR_NAME_SIGN_TILE_ENTITY, RenderKCRStationName::new);
+		RegistryClient.registerTileEntityRenderer(BlockEntityTypes.SIGNAL_LIGHT_RED_ENTITY_1.get(), dispatcher -> new RenderConstantSignalLight<>(dispatcher, true, 0xFFFF0000, false));
+		RegistryClient.registerTileEntityRenderer(BlockEntityTypes.SIGNAL_LIGHT_RED_ENTITY_2.get(), dispatcher -> new RenderConstantSignalLight<>(dispatcher, true, 0xFFFF0000, true));
+		RegistryClient.registerTileEntityRenderer(BlockEntityTypes.SIGNAL_LIGHT_BLUE_ENTITY.get(), dispatcher -> new RenderConstantSignalLight<>(dispatcher, true, 0xFF0000FF, false));
+		RegistryClient.registerTileEntityRenderer(BlockEntityTypes.SIGNAL_LIGHT_GREEN_ENTITY.get(), dispatcher -> new RenderConstantSignalLight<>(dispatcher, true, 0xFF00FF00, false));
+		RegistryClient.registerTileEntityRenderer(BlockEntityTypes.SIGNAL_LIGHT_INVERTED_ENTITY_1.get(), dispatcher -> new RenderSignalLight<>(dispatcher, true, true, true, 0xFF0000FF));
+		RegistryClient.registerTileEntityRenderer(BlockEntityTypes.SIGNAL_LIGHT_INVERTED_ENTITY_2.get(), dispatcher -> new RenderSignalLight<>(dispatcher, true, true, false, 0xFF00FF00));
+		RegistryClient.registerTileEntityRenderer(BlockEntityTypes.STATION_NAME_TALL_STAND_TILE_ENTITY.get(), RenderStationNameTall::new);
+		RegistryClient.registerTileEntityRenderer(BlockEntityTypes.PIDS_1A_TILE_ENTITY.get(), dispatcher -> new RenderPIDS<>(dispatcher, PIDS1A.TileEntityBlockPIDS1A.MAX_ARRIVALS, 1, 9.5F, 6, 8.8F, 30, true, false, false, 0xFF9900, 0xFF9900));
+		RegistryClient.registerTileEntityRenderer(BlockEntityTypes.PIDS_4_TILE_ENTITY.get(), dispatcher -> new RenderLCDPIDS<>(dispatcher, PIDS4.TileEntityBlockPIDS4.MAX_ARRIVALS, 5.7F, 9.5F, 6, 11.5F, 21, true, false, false, 0xEFE29E, 1.25F, false, "pids_tkl"));
+		RegistryClient.registerTileEntityRenderer(BlockEntityTypes.PIDS_RV_TILE_ENTITY.get(), dispatcher -> new RenderRVPIDS<>(dispatcher, PIDSRV.TileEntityBlockPIDSRV.MAX_ARRIVALS, 6, 8.25F, 6, 11F, 20, true, false, true, 0x000000, 0));
+		RegistryClient.registerTileEntityRenderer(BlockEntityTypes.PIDS_RV_SIL_TILE_ENTITY.get(), dispatcher -> new RenderRVPIDS<>(dispatcher, PIDSRVSIL.TileEntityBlockPIDSSIL.MAX_ARRIVALS, 6F, 11.7F, 2.45F, 11F, 20.7F, true, false, true, 0x000000, 22.5F));
+		RegistryClient.registerTileEntityRenderer(BlockEntityTypes.KCR_NAME_SIGN_TILE_ENTITY.get(), RenderKCRStationName::new);
 
 
-		RegistryClient.registerBlockColors(Blocks.STATION_NAME_TALL_STAND);
+		RegistryClient.registerBlockColors(Blocks.STATION_NAME_TALL_STAND.get());
 		RegistryClient.registerNetworkReceiver(IPacket.PACKET_OPEN_TICKET_MACHINE_SCREEN, packet -> {
 			final int balance = packet.readInt();
 			final Minecraft minecraft = Minecraft.getInstance();

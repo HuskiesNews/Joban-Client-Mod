@@ -1,6 +1,7 @@
 package com.jsblock;
 
 import com.jsblock.mappings.ForgeUtilities;
+import mtr.RegistryObject;
 import mtr.mappings.BlockEntityMapper;
 import mtr.mappings.DeferredRegisterHolder;
 import net.minecraft.core.Registry;
@@ -22,27 +23,30 @@ public class JobanForge {
 	private static final DeferredRegisterHolder<Block> BLOCKS = new DeferredRegisterHolder<>(Joban.MOD_ID, Registry.BLOCK_REGISTRY);
 	private static final DeferredRegisterHolder<BlockEntityType<?>> BLOCK_ENTITY_TYPES = new DeferredRegisterHolder<>(Joban.MOD_ID, Registry.BLOCK_ENTITY_TYPE_REGISTRY);
 
+	static{
+		Joban.init(JobanForge::registerBlock, JobanForge::registerBlockEntityType);
+	}
+
 	public JobanForge() {
 		final IEventBus eventBus = FMLJavaModLoadingContext.get().getModEventBus();
 		ForgeUtilities.registerModEventBus(Joban.MOD_ID, eventBus);
-		eventBus.register(MTRForgeRegistry.class);
-		Joban.init(JobanForge::registerBlock, JobanForge::registerBlockEntityType);
 		ITEMS.register();
 		BLOCKS.register();
 		BLOCK_ENTITY_TYPES.register();
+		eventBus.register(MTRForgeRegistry.class);
 	}
 
-	private static void registerBlock(String path, Block block) {
-		BLOCKS.register(path, () -> block);
+	private static void registerBlock(String path, RegistryObject<Block> block) {
+		BLOCKS.register(path, block::register);
 	}
 
-	private static void registerBlock(String path, Block block, CreativeModeTab itemGroup) {
+	private static void registerBlock(String path, RegistryObject<Block> block, CreativeModeTab itemGroup) {
 		registerBlock(path, block);
-		ITEMS.register(path, () -> new BlockItem(block, new Item.Properties().tab(itemGroup)));
+		ITEMS.register(path, () -> new BlockItem(block.get(), new Item.Properties().tab(itemGroup)));
 	}
 
-	private static <T extends BlockEntityMapper> void registerBlockEntityType(String path, BlockEntityType<T> blockEntityType) {
-		BLOCK_ENTITY_TYPES.register(path, () -> blockEntityType);
+	private static <T extends BlockEntityMapper> void registerBlockEntityType(String path, RegistryObject<? extends BlockEntityType<? extends BlockEntityMapper>> blockEntityType) {
+		BLOCK_ENTITY_TYPES.register(path, blockEntityType::register);
 	}
 
 	private static class MTRForgeRegistry {

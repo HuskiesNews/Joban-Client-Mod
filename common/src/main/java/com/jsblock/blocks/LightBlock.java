@@ -45,7 +45,7 @@ public class LightBlock extends Block implements EntityBlockMapper {
 
 	public static class TileEntityLightBlock extends BlockEntityMapper {
 		public TileEntityLightBlock(BlockPos pos, BlockState state) {
-			super(BlockEntityTypes.LIGHT_BLOCK_TILE_ENTITY, pos, state);
+			super(BlockEntityTypes.LIGHT_BLOCK_TILE_ENTITY.get(), pos, state);
 		}
 	}
 }

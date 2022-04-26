@@ -29,7 +29,7 @@ public class PIDSRVSIL extends PIDSRVBase {
 		public static final int MAX_ARRIVALS = 4;
 
 		public TileEntityBlockPIDSSIL(BlockPos pos, BlockState state) {
-			super(BlockEntityTypes.PIDS_RV_SIL_TILE_ENTITY, pos, state);
+			super(BlockEntityTypes.PIDS_RV_SIL_TILE_ENTITY.get(), pos, state);
 		}
 
 		@Override

@@ -46,7 +46,7 @@ public class KCRNameSign extends HorizontalDirectionalBlock implements EntityBlo
 
 	@Override
 	public BlockEntityType<? extends BlockEntityMapper> getType() {
-		return BlockEntityTypes.KCR_NAME_SIGN_TILE_ENTITY;
+		return BlockEntityTypes.KCR_NAME_SIGN_TILE_ENTITY.get();
 	}
 
 	@Override
@@ -68,7 +68,7 @@ public class KCRNameSign extends HorizontalDirectionalBlock implements EntityBlo
 	public static class TileEntityKCRNameSign extends BlockEntityMapper {
 
 		public TileEntityKCRNameSign(BlockPos pos, BlockState state) {
-			super(BlockEntityTypes.KCR_NAME_SIGN_TILE_ENTITY, pos, state);
+			super(BlockEntityTypes.KCR_NAME_SIGN_TILE_ENTITY.get(), pos, state);
 		}
 	}
 }

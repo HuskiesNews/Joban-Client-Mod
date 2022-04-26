@@ -19,7 +19,7 @@ public class SignalLightInverted2 extends mtr.block.BlockSignalLightBase {
 	public static class TileEntitySignalLightInverted extends BlockEntityMapper {
 
 		public TileEntitySignalLightInverted(BlockPos pos, BlockState state) {
-			super(BlockEntityTypes.SIGNAL_LIGHT_INVERTED_ENTITY_2, pos, state);
+			super(BlockEntityTypes.SIGNAL_LIGHT_INVERTED_ENTITY_2.get(), pos, state);
 		}
 	}
 }

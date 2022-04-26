@@ -19,7 +19,7 @@ public class SignalLightBlue extends mtr.block.BlockSignalLightBase {
 	public static class TileEntitySignalLightBlue extends BlockEntityMapper {
 
 		public TileEntitySignalLightBlue(BlockPos pos, BlockState state) {
-			super(BlockEntityTypes.SIGNAL_LIGHT_BLUE_ENTITY, pos, state);
+			super(BlockEntityTypes.SIGNAL_LIGHT_BLUE_ENTITY.get(), pos, state);
 		}
 	}
 }

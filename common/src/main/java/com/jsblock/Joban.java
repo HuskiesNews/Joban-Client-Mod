@@ -2,6 +2,7 @@ package com.jsblock;
 
 import com.jsblock.packets.Server;
 import mtr.Registry;
+import mtr.RegistryObject;
 import mtr.mappings.BlockEntityMapper;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.level.block.Block;
@@ -21,7 +22,7 @@ public class Joban {
 
 	public static void init(
 			RegisterBlockItem registerBlockItem,
-			BiConsumer<String, BlockEntityType<? extends BlockEntityMapper>> registerBlockEntityType
+			BiConsumer<String,RegistryObject<? extends BlockEntityType<? extends BlockEntityMapper>>> registerBlockEntityType
 	) {
 		LOGGER.info("[Joban Client] Version " + VERSION);
 
@@ -112,6 +113,6 @@ public class Joban {
 
 	@FunctionalInterface
 	public interface RegisterBlockItem {
-		void accept(String string, Block block, CreativeModeTab tab);
+		void accept(String string, RegistryObject<Block> block, CreativeModeTab tab);
 	}
 }

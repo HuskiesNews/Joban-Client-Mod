@@ -45,7 +45,7 @@ public class DepartureTimer extends HorizontalDirectionalBlock implements Entity
 	public static class TileEntityDepartureTimer extends BlockEntityMapper {
 
 		public TileEntityDepartureTimer(BlockPos pos, BlockState state) {
-			super(BlockEntityTypes.DEPARTURE_TIMER_TILE_ENTITY, pos, state);
+			super(BlockEntityTypes.DEPARTURE_TIMER_TILE_ENTITY.get(), pos, state);
 		}
 	}
 }

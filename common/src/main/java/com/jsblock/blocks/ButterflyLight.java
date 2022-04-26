@@ -51,7 +51,7 @@ public class ButterflyLight extends HorizontalDirectionalBlock implements Entity
 
 	@Override
 	public BlockEntityType<? extends BlockEntityMapper> getType() {
-		return BlockEntityTypes.BUTTERFLY_LIGHT_TILE_ENTITY;
+		return BlockEntityTypes.BUTTERFLY_LIGHT_TILE_ENTITY.get();
 	}
 
 	@Override
@@ -78,7 +78,7 @@ public class ButterflyLight extends HorizontalDirectionalBlock implements Entity
 	public static class TileEntityButterFlyLight extends BlockEntityMapper implements TickableMapper {
 
 		public TileEntityButterFlyLight(BlockPos pos, BlockState state) {
-			super(BlockEntityTypes.BUTTERFLY_LIGHT_TILE_ENTITY, pos, state);
+			super(BlockEntityTypes.BUTTERFLY_LIGHT_TILE_ENTITY.get(), pos, state);
 		}
 
 		@Override

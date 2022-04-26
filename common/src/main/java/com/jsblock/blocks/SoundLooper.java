@@ -43,7 +43,7 @@ public class SoundLooper extends Block implements EntityBlockMapper {
 
 	@Override
 	public BlockEntityType<? extends BlockEntityMapper> getType() {
-		return BlockEntityTypes.SOUND_LOOPER_TILE_ENTITY;
+		return BlockEntityTypes.SOUND_LOOPER_TILE_ENTITY.get();
 	}
 
 	@Override
@@ -71,7 +71,7 @@ public class SoundLooper extends Block implements EntityBlockMapper {
 		private final String KEY_SOUND_VOLUME = "volume";
 		private static final SoundSource[] SOURCE_LIST = {SoundSource.MASTER, SoundSource.MUSIC, SoundSource.WEATHER, SoundSource.AMBIENT, SoundSource.PLAYERS};
 		public TileEntitySoundLooper(BlockPos pos, BlockState state) {
-			super(BlockEntityTypes.SOUND_LOOPER_TILE_ENTITY, pos, state);
+			super(BlockEntityTypes.SOUND_LOOPER_TILE_ENTITY.get(), pos, state);
 		}
 
 		@Override
