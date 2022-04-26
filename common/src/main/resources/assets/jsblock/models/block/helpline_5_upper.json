@@ -2,6 +2,7 @@
 	"credit": "CoJ 2022",
 	"texture_size": [16, 32],
 	"textures": {
+		"particle": "jsblock:block/helpline_5_upper",
 		"1": "jsblock:block/helpline_5_upper"
 	},
 	"elements": [
