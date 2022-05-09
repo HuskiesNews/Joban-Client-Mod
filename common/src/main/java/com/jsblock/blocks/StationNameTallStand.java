@@ -34,7 +34,7 @@ public class StationNameTallStand extends mtr.block.BlockStationNameTallBase {
 
 	public static class TileEntityStationNameTallStand extends mtr.block.BlockStationNameTallWall.TileEntityStationNameTallBase {
 		public TileEntityStationNameTallStand(BlockPos pos, BlockState state) {
-			super(BlockEntityTypes.STATION_NAME_TALL_STAND_TILE_ENTITY.get(), pos, state, 0.04025F);
+			super(BlockEntityTypes.STATION_NAME_TALL_STAND_TILE_ENTITY.get(), pos, state, 0.04025F, false);
 		}
 	}
 
