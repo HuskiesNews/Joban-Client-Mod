@@ -1,5 +1,5 @@
 {
-	"credit": "Made with Blockbench",
+	"credit": "CoJ 2022",
 	"ambientocclusion": false,
 	"texture_size": [22, 22],
 	"textures": {
@@ -9,8 +9,8 @@
 	"elements": [
 		{
 			"name": "main",
-			"from": [3, 0, 0.1],
-			"to": [14, 14, 0.1],
+			"from": [2.5, 0, 0.1],
+			"to": [13.5, 14, 0.1],
 			"faces": {
 				"north": {"uv": [0, 0, 8, 10.18182], "texture": "#0"},
 				"east": {"uv": [0, 0, 0, 10.18182], "texture": "#0"},

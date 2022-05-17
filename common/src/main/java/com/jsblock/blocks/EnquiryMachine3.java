@@ -1,10 +1,8 @@
 package com.jsblock.blocks;
 
 import mtr.SoundEvents;
-import mtr.block.IBlock;
 import mtr.data.TicketSystem;
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.Direction;
 import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
@@ -14,26 +12,21 @@ import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.HorizontalDirectionalBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
-import net.minecraft.world.level.block.state.properties.DoubleBlockHalf;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
-public class EnquiryMachine3 extends mtr.block.BlockDirectionalDoubleBlockBase {
+public class EnquiryMachine3 extends HorizontalDirectionalBlock {
 	public EnquiryMachine3(Properties settings) {
 		super(settings);
 	}
 
 	@Override
 	public VoxelShape getShape(BlockState state, BlockGetter blockGetter, BlockPos pos, CollisionContext collisionContext) {
-		return mtr.block.IBlock.getVoxelShapeByDirection(3, 0, 0, 14, 14, 0.1, state.getValue(FACING));
-	}
-
-	@Override
-	public VoxelShape getCollisionShape(BlockState state, BlockGetter world, BlockPos pos, CollisionContext collisionContext) {
-		return mtr.block.IBlock.getVoxelShapeByDirection(3, 0, 0, 14, 14, 0.1, state.getValue(FACING));
+		return mtr.block.IBlock.getVoxelShapeByDirection(2.5, 0, 0, 13.5, 14, 0.1, state.getValue(FACING));
 	}
 
 	@Override
@@ -55,6 +48,7 @@ public class EnquiryMachine3 extends mtr.block.BlockDirectionalDoubleBlockBase {
 	}
 
 	@Override
-	protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {builder.add(FACING);
+	protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
+		builder.add(FACING);
 	}
 }

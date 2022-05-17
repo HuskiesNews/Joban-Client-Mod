@@ -18,7 +18,6 @@ import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.DoubleBlockHalf;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
-import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
 public class EnquiryMachine2 extends mtr.block.BlockDirectionalDoubleBlockBase {
@@ -32,10 +31,10 @@ public class EnquiryMachine2 extends mtr.block.BlockDirectionalDoubleBlockBase {
 		final Direction facing = IBlock.getStatePropertySafe(state, FACING);
 		/* If the block is the upper one */
 		if (IBlock.getStatePropertySafe(state, HALF) == DoubleBlockHalf.UPPER) {
-			return IBlock.getVoxelShapeByDirection(3, 0, 0, 14, 16, 13, facing);
+			return IBlock.getVoxelShapeByDirection(3, 0, 0, 13, 12, 12, facing);
 		} else {
 			/* Otherwise, return the lower block shape */
-			return IBlock.getVoxelShapeByDirection(3, 0, 0, 14, 16, 13, facing);
+			return IBlock.getVoxelShapeByDirection(3, 0, 0, 13, 16, 12, facing);
 		}
 	}
 
