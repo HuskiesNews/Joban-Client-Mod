@@ -38,6 +38,7 @@ public interface Blocks {
 	RegistryObject<Block> HELPLINE_3 =new RegistryObject<>(()-> new HelpLine3(BlockBehaviour.Properties.of(Material.METAL).strength(2.0f).noOcclusion()));
 	RegistryObject<Block> HELPLINE_4 =new RegistryObject<>(()-> new HelpLine4(BlockBehaviour.Properties.of(Material.METAL).strength(2.0f).noOcclusion()));
 	RegistryObject<Block> HELPLINE_5 =new RegistryObject<>(()-> new HelpLine5(BlockBehaviour.Properties.of(Material.METAL).strength(2.0f).lightLevel(state -> 15).noOcclusion()));
+	RegistryObject<Block> HELPLINE_6 =new RegistryObject<>(()-> new HelpLine6(BlockBehaviour.Properties.of(Material.METAL).strength(2.0f).lightLevel(state -> 15).noOcclusion()));
 	RegistryObject<Block> KCR_NAME_SIGN =new RegistryObject<>(()-> new KCRNameSign(BlockBehaviour.Properties.of(Material.METAL).strength(5.0f).lightLevel(state -> 15).noOcclusion()));
 	RegistryObject<Block> KCR_EMG_STOP_SIGN =new RegistryObject<>(()-> new KCREmgStopSign(BlockBehaviour.Properties.of(Material.METAL).strength(3.0f).noOcclusion()));
 	RegistryObject<Block> LIGHT_1 =new RegistryObject<>(()-> new Light1(BlockBehaviour.Properties.of(Material.METAL).strength(2.0f).lightLevel(state -> 15)));

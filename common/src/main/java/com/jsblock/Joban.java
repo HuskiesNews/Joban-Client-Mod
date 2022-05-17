@@ -50,6 +50,7 @@ public class Joban {
 			registerBlockItem.accept("helpline_3", Blocks.HELPLINE_3, ItemGroups.MAIN);
 			registerBlockItem.accept("helpline_4", Blocks.HELPLINE_4, ItemGroups.MAIN);
 			registerBlockItem.accept("helpline_5", Blocks.HELPLINE_5, ItemGroups.MAIN);
+			registerBlockItem.accept("helpline_6", Blocks.HELPLINE_6, ItemGroups.MAIN);
 			registerBlockItem.accept("kcr_name_sign", Blocks.KCR_NAME_SIGN, ItemGroups.MAIN);
 			registerBlockItem.accept("kcr_emg_stop_sign", Blocks.KCR_EMG_STOP_SIGN, ItemGroups.MAIN);
 			registerBlockItem.accept("light_1", Blocks.LIGHT_1, ItemGroups.MAIN);
