@@ -27,11 +27,13 @@ public class JobanClient {
 		RegistryClient.registerBlockRenderType(RenderType.cutout(), Blocks.BUFFERSTOP_1.get());
 		RegistryClient.registerBlockRenderType(RenderType.cutout(), Blocks.CEILING_1.get());
 		RegistryClient.registerBlockRenderType(RenderType.cutout(), Blocks.ENQUIRY_MACHINE_1.get());
+		RegistryClient.registerBlockRenderType(RenderType.cutout(), Blocks.ENQUIRY_MACHINE_2.get());
 		RegistryClient.registerBlockRenderType(RenderType.cutout(), Blocks.HELPLINE_1.get());
 		RegistryClient.registerBlockRenderType(RenderType.cutout(), Blocks.HELPLINE_2.get());
 		RegistryClient.registerBlockRenderType(RenderType.cutout(), Blocks.HELPLINE_3.get());
 		RegistryClient.registerBlockRenderType(RenderType.cutout(), Blocks.HELPLINE_4.get());
 		RegistryClient.registerBlockRenderType(RenderType.cutout(), Blocks.HELPLINE_5.get());
+		RegistryClient.registerBlockRenderType(RenderType.cutout(), Blocks.HELPLINE_6.get());
 		RegistryClient.registerBlockRenderType(RenderType.cutout(), Blocks.KCR_EMG_STOP_SIGN.get());
 		RegistryClient.registerBlockRenderType(RenderType.cutout(), Blocks.KCR_NAME_SIGN.get());
 		RegistryClient.registerBlockRenderType(RenderType.cutout(), Blocks.LIGHT_2.get());

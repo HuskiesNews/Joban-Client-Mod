@@ -30,6 +30,8 @@ public interface Blocks {
 	RegistryObject<Block> SOUND_LOOPER =new RegistryObject<>(()-> new SoundLooper(BlockBehaviour.Properties.copy(net.minecraft.world.level.block.Blocks.SMOOTH_SANDSTONE)));
 	RegistryObject<Block> CEILING_1 =new RegistryObject<>(()-> new Ceiling1(BlockBehaviour.Properties.of(Material.METAL).strength(2.0f).noOcclusion()));
 	RegistryObject<Block> ENQUIRY_MACHINE_1 =new RegistryObject<>(()-> new EnquiryMachine1(BlockBehaviour.Properties.of(Material.METAL).strength(4.0f)));
+	RegistryObject<Block> ENQUIRY_MACHINE_2 =new RegistryObject<>(()-> new EnquiryMachine2(BlockBehaviour.Properties.of(Material.METAL).strength(4.0f)));
+	RegistryObject<Block> ENQUIRY_MACHINE_3 =new RegistryObject<>(()-> new EnquiryMachine3(BlockBehaviour.Properties.of(Material.METAL).strength(4.0f)));
 	RegistryObject<Block> EMG_STOP_1 =new RegistryObject<>(()-> new EmgStop1(BlockBehaviour.Properties.of(Material.METAL).strength(1.0f)));
 	RegistryObject<Block> EXIT_SIGN_1O =new RegistryObject<>(()-> new ExitSign1o(BlockBehaviour.Properties.of(Material.METAL).strength(1.5f).lightLevel(state -> 10)));
 	RegistryObject<Block> EXIT_SIGN_1E =new RegistryObject<>(()-> new ExitSign1e(BlockBehaviour.Properties.of(Material.METAL).strength(1.5f).lightLevel(state -> 10)));
@@ -38,6 +40,7 @@ public interface Blocks {
 	RegistryObject<Block> HELPLINE_3 =new RegistryObject<>(()-> new HelpLine3(BlockBehaviour.Properties.of(Material.METAL).strength(2.0f).noOcclusion()));
 	RegistryObject<Block> HELPLINE_4 =new RegistryObject<>(()-> new HelpLine4(BlockBehaviour.Properties.of(Material.METAL).strength(2.0f).noOcclusion()));
 	RegistryObject<Block> HELPLINE_5 =new RegistryObject<>(()-> new HelpLine5(BlockBehaviour.Properties.of(Material.METAL).strength(2.0f).lightLevel(state -> 15).noOcclusion()));
+	RegistryObject<Block> HELPLINE_6 =new RegistryObject<>(()-> new HelpLine6(BlockBehaviour.Properties.of(Material.METAL).strength(2.0f).lightLevel(state -> 15).noOcclusion()));
 	RegistryObject<Block> KCR_NAME_SIGN =new RegistryObject<>(()-> new KCRNameSign(BlockBehaviour.Properties.of(Material.METAL).strength(5.0f).lightLevel(state -> 15).noOcclusion()));
 	RegistryObject<Block> KCR_EMG_STOP_SIGN =new RegistryObject<>(()-> new KCREmgStopSign(BlockBehaviour.Properties.of(Material.METAL).strength(3.0f).noOcclusion()));
 	RegistryObject<Block> LIGHT_1 =new RegistryObject<>(()-> new Light1(BlockBehaviour.Properties.of(Material.METAL).strength(2.0f).lightLevel(state -> 15)));
