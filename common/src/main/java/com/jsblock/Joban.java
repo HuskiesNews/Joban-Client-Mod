@@ -43,6 +43,7 @@ public class Joban {
 			registerBlockItem.accept("departure_timer", Blocks.DEPARTURE_TIMER, ItemGroups.MAIN);
 			registerBlockItem.accept("emg_stop_1", Blocks.EMG_STOP_1, ItemGroups.MAIN);
 			registerBlockItem.accept("enquiry_machine_1", Blocks.ENQUIRY_MACHINE_1, ItemGroups.MAIN);
+			registerBlockItem.accept("enquiry_machine_2", Blocks.ENQUIRY_MACHINE_2, ItemGroups.MAIN);
 			registerBlockItem.accept("exit_sign_1", Blocks.EXIT_SIGN_1O, ItemGroups.MAIN);
 			registerBlockItem.accept("exit_sign_1e", Blocks.EXIT_SIGN_1E, ItemGroups.MAIN);
 			registerBlockItem.accept("helpline_1", Blocks.HELPLINE_1, ItemGroups.MAIN);

@@ -27,6 +27,7 @@ public class JobanClient {
 		RegistryClient.registerBlockRenderType(RenderType.cutout(), Blocks.BUFFERSTOP_1.get());
 		RegistryClient.registerBlockRenderType(RenderType.cutout(), Blocks.CEILING_1.get());
 		RegistryClient.registerBlockRenderType(RenderType.cutout(), Blocks.ENQUIRY_MACHINE_1.get());
+		RegistryClient.registerBlockRenderType(RenderType.cutout(), Blocks.ENQUIRY_MACHINE_2.get());
 		RegistryClient.registerBlockRenderType(RenderType.cutout(), Blocks.HELPLINE_1.get());
 		RegistryClient.registerBlockRenderType(RenderType.cutout(), Blocks.HELPLINE_2.get());
 		RegistryClient.registerBlockRenderType(RenderType.cutout(), Blocks.HELPLINE_3.get());
