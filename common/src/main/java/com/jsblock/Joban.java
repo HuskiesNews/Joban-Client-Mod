@@ -17,7 +17,7 @@ import static com.jsblock.packets.IPacketJoban.PACKET_UPDATE_SOUND_LOOPER;
 
 public class Joban {
 	public static final String MOD_ID = "jsblock";
-	public static final String VERSION = "1.1.0";
+	public static final String VERSION = "1.1.1";
 	public static final Logger LOGGER = LogManager.getLogger("Joban Client");
 
 	public static void init(

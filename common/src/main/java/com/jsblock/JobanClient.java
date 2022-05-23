@@ -86,12 +86,6 @@ public class JobanClient {
 			}
 		});
 
-/*		RegistryClient.registerPlayerJoinEvent(player -> {
-			if(Minecraft.getInstance().player.getUUID() == player.getUUID()) {
-				mtr.client.TrainClientRegistry.register("custom_boat_jcm", TrainType.OAK_BOAT, new ModelE44(), "mtr:textures/entity/e44", "mlr", "mlr", "Custom Boat (JCM)", 0x002288, 93, 0.5F, false);
-			}
-		});*/
-
 		/* Register Client Packet with the packet id, and points to the corresponding action in the client */
 		RegistryClient.registerNetworkReceiver(IPacketJoban.PACKET_OPEN_SOUND_LOOPER_SCREEN, packet -> {
 			final Minecraft minecraft = Minecraft.getInstance();

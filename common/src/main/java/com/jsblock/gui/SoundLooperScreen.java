@@ -52,7 +52,7 @@ public class SoundLooperScreen extends ScreenMapper implements IGui {
 			button.setMessage(new TextComponent(SOURCE_LIST[selectedCategory].getName()));
 		});
 
-		textBoxSoundId = new WidgetBetterTextField(null, "mtr:ticket_barrier", MAX_TEXT_LENGTH);
+		textBoxSoundId = new WidgetBetterTextField("mtr:ticket_barrier", MAX_TEXT_LENGTH);
 		textBoxRepeatTick = new WidgetBetterTextField(WidgetBetterTextField.TextFieldFilter.POSITIVE_INTEGER, "20", MAX_TEXT_LENGTH);
 		textBoxSoundVolume = new WidgetBetterTextField(WidgetBetterTextField.TextFieldFilter.POSITIVE_INTEGER, String.valueOf(DEFAULT_VOLUME), MAX_TEXT_LENGTH);
 		checkBoxNeedRedstone = new WidgetBetterCheckbox(0,0, 0, SQUARE_SIZE, new TextComponent(""), checked -> {});

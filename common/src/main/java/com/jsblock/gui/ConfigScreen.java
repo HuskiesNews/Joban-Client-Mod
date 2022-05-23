@@ -37,13 +37,13 @@ public class ConfigScreen extends ScreenMapper implements IGui {
 			setButtonText(button, enableRendering);
 		});
 
-		textBoxRVPIDSFontChin = new WidgetBetterTextField(null, "mtr:mtr", MAX_TEXT_LENGTH);
-		textBoxRVPIDSFontEng = new WidgetBetterTextField(null, "mtr:mtr", MAX_TEXT_LENGTH);
-		textBoxKCRSignFontChin = new WidgetBetterTextField(null, "jsblock:kcr_sign", MAX_TEXT_LENGTH);
-		textBoxKCRSignFontEng = new WidgetBetterTextField(null, "jsblock:kcr_sign", MAX_TEXT_LENGTH);
-		textBoxPIDS4FontChin = new WidgetBetterTextField(null, "jsblock:pids_4", MAX_TEXT_LENGTH);
-		textBoxPIDS4FontEng = new WidgetBetterTextField(null, "jsblock:pids_4", MAX_TEXT_LENGTH);
-		textBoxDepTimerFont = new WidgetBetterTextField(null, "jsblock:deptimer", MAX_TEXT_LENGTH);
+		textBoxRVPIDSFontChin = new WidgetBetterTextField("mtr:mtr", MAX_TEXT_LENGTH);
+		textBoxRVPIDSFontEng = new WidgetBetterTextField("mtr:mtr", MAX_TEXT_LENGTH);
+		textBoxKCRSignFontChin = new WidgetBetterTextField("jsblock:kcr_sign", MAX_TEXT_LENGTH);
+		textBoxKCRSignFontEng = new WidgetBetterTextField("jsblock:kcr_sign", MAX_TEXT_LENGTH);
+		textBoxPIDS4FontChin = new WidgetBetterTextField("jsblock:pids_4", MAX_TEXT_LENGTH);
+		textBoxPIDS4FontEng = new WidgetBetterTextField("jsblock:pids_4", MAX_TEXT_LENGTH);
+		textBoxDepTimerFont = new WidgetBetterTextField("jsblock:deptimer", MAX_TEXT_LENGTH);
 	}
 
 		@Override
